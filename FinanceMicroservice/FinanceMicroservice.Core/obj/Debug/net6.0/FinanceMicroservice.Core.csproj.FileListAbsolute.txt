@@ -1,0 +1,12 @@
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Core\bin\Debug\net6.0\FinanceMicroservice.Core.deps.json
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Core\bin\Debug\net6.0\FinanceMicroservice.Core.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Core\bin\Debug\net6.0\FinanceMicroservice.Core.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Core\obj\Debug\net6.0\FinanceMicroservice.Core.csproj.AssemblyReference.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Core\obj\Debug\net6.0\FinanceMicroservice.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Core\obj\Debug\net6.0\FinanceMicroservice.Core.AssemblyInfoInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Core\obj\Debug\net6.0\FinanceMicroservice.Core.AssemblyInfo.cs
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Core\obj\Debug\net6.0\FinanceMicroservice.Core.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Core\obj\Debug\net6.0\FinanceMicroservice.Core.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Core\obj\Debug\net6.0\refint\FinanceMicroservice.Core.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Core\obj\Debug\net6.0\FinanceMicroservice.Core.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Core\obj\Debug\net6.0\ref\FinanceMicroservice.Core.dll

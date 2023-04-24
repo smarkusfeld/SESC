@@ -1,0 +1,12 @@
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\bin\Debug\net6.0\FinanceMicroservice.Services.deps.json
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\bin\Debug\net6.0\FinanceMicroservice.Services.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\bin\Debug\net6.0\FinanceMicroservice.Services.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\obj\Debug\net6.0\FinanceMicroservice.Services.csproj.AssemblyReference.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\obj\Debug\net6.0\FinanceMicroservice.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\obj\Debug\net6.0\FinanceMicroservice.Services.AssemblyInfoInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\obj\Debug\net6.0\FinanceMicroservice.Services.AssemblyInfo.cs
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\obj\Debug\net6.0\FinanceMicroservice.Services.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\obj\Debug\net6.0\FinanceMicroservice.Services.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\obj\Debug\net6.0\refint\FinanceMicroservice.Services.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\obj\Debug\net6.0\FinanceMicroservice.Services.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\obj\Debug\net6.0\ref\FinanceMicroservice.Services.dll
