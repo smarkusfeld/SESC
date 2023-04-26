@@ -9,11 +9,10 @@ namespace FinanceMicroservice.Core.Interfaces
 {
     public interface IBaseRepository<T> where T : class
     {
-        Task<T> GetById(int id);
-        IEnumerable<T> Find(Expression<Func<T, bool>> expression);
-        Task<IEnumerable<T>> GetAll();
-        Task Add(T entity);
-        void Delete(T entity);
+        IQueryable<T> FindAll();
+        IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression);
+        void Create(T entity);
         void Update(T entity);
+        void Delete(T entity);
     }
 }

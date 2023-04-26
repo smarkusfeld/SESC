@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using FinanceMicroservice.Infastructure.Repositories;
 using FinanceMicroservice.Core.Infastructure;
 using FinanceMicroservice.Core.Interfaces;
+using FinanceMicroservice.Infastructure.Context;
+using Microsoft.Extensions.Options;
 
 namespace FinanceMicroservice.Infastructure
 {
@@ -14,6 +16,7 @@ namespace FinanceMicroservice.Infastructure
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("Default"));
+
             });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAccountRepository, AccountRepository>();

@@ -1,5 +1,6 @@
 using FinanceMicroservice.Core.Models;
 using FinanceMicroservice.Infastructure;
+using FinanceMicroservice.Infastructure.Context;
 using FinanceMicroservice.Services;
 using FinanceMicroservice.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+//add database if it does not exsit
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<DataContext>();
+    context.Database.EnsureCreated();
+    DbInitializer.Initialize(context);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

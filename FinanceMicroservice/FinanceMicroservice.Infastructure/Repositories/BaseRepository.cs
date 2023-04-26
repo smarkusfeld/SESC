@@ -5,41 +5,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FinanceMicroservice.Core.Interfaces;
+using System.Linq.Expressions;
+using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using FinanceMicroservice.Infastructure.Context;
 
 namespace FinanceMicroservice.Infastructure.Repositories
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        protected readonly DataContext _dbContext;
+        protected DataContext DataContext { get; set; }
 
-        protected BaseRepository(DataContext context)
+        public BaseRepository(DataContext context)
         {
-            _dbContext = context;
+            DataContext = context;
         }
 
-        public async Task<T> GetById(int id)
-        {
-            return await _dbContext.Set<T>().FindAsync(id);
-        }
-
-        public async Task<IEnumerable<T>> GetAll()
-        {
-            return await _dbContext.Set<T>().ToListAsync();
-        }
-
-        public async Task Add(T entity)
-        {
-            await _dbContext.Set<T>().AddAsync(entity);
-        }
-
-        public void Delete(T entity)
-        {
-            _dbContext.Set<T>().Remove(entity);
-        }
-
-        public void Update(T entity)
-        {
-            _dbContext.Set<T>().Update(entity);
-        }
+        public IQueryable<T> FindAll() => DataContext.Set<T>().AsNoTracking();
+        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression) =>
+            DataContext.Set<T>().Where(expression).AsNoTracking();
+        public void Create(T entity) => DataContext.Set<T>().Add(entity);
+        public void Update(T entity) => DataContext.Set<T>().Update(entity);
+        public void Delete(T entity) => DataContext.Set<T>().Remove(entity);
     }
 }

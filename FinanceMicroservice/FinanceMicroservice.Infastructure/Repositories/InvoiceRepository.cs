@@ -1,5 +1,6 @@
 ﻿using FinanceMicroservice.Core.Interfaces;
 using FinanceMicroservice.Core.Models;
+using FinanceMicroservice.Infastructure.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
