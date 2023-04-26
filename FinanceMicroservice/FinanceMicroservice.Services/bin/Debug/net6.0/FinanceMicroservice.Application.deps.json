@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "FinanceMicroservice.Application/1.0.0": {
+        "dependencies": {
+          "FinanceMicroservice.Domain": "1.0.0"
+        },
+        "runtime": {
+          "FinanceMicroservice.Application.dll": {}
+        }
+      },
+      "FinanceMicroservice.Domain/1.0.0": {
+        "runtime": {
+          "FinanceMicroservice.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FinanceMicroservice.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FinanceMicroservice.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

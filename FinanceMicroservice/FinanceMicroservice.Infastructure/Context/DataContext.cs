@@ -1,4 +1,4 @@
-﻿using FinanceMicroservice.Core.Models;
+﻿using FinanceMicroservice.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
 

@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FinanceMicroservice.Core.Interfaces;
+using FinanceMicroservice.Domain.Entities;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using FinanceMicroservice.Infastructure.Context;
+using FinanceMicroservice.Application.Interfaces;
 
-namespace FinanceMicroservice.Infastructure.Repositories
+namespace FinanceMicroservice.Application.Repositories
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
     {

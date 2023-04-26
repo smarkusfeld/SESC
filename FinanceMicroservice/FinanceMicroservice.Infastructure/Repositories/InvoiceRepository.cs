@@ -1,13 +1,9 @@
-﻿using FinanceMicroservice.Core.Interfaces;
-using FinanceMicroservice.Core.Models;
+﻿using FinanceMicroservice.Application.Interfaces;
+using FinanceMicroservice.Domain.Entities;
 using FinanceMicroservice.Infastructure.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FinanceMicroservice.Infastructure.Repositories
+
+namespace FinanceMicroservice.Application.Repositories
 {
     public class InvoiceRepository : BaseRepository<Invoice>, IInvoiceRepository
     {

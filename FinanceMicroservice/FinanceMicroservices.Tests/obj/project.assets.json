@@ -2887,9 +2887,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "FinanceMicroservice.Core": "1.0.0",
+          "FinanceMicroservice.Application": "1.0.0",
+          "FinanceMicroservice.Domain": "1.0.0",
           "FinanceMicroservice.Infastructure": "1.0.0",
-          "FinanceMicroservice.Services": "1.0.0",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.17.2",
           "Swashbuckle.AspNetCore": "6.2.3"
         },
@@ -2903,6 +2903,19 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "FinanceMicroservice.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "FinanceMicroservice.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/FinanceMicroservice.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FinanceMicroservice.Application.dll": {}
+        }
+      },
       "FinanceMicroservice.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -2913,12 +2926,23 @@
           "bin/placeholder/FinanceMicroservice.Core.dll": {}
         }
       },
+      "FinanceMicroservice.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/FinanceMicroservice.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FinanceMicroservice.Domain.dll": {}
+        }
+      },
       "FinanceMicroservice.Infastructure/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "EntityFramework": "6.4.4",
-          "FinanceMicroservice.Core": "1.0.0",
+          "FinanceMicroservice.Application": "1.0.0",
+          "FinanceMicroservice.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.5"
         },
@@ -9267,10 +9291,20 @@
       "path": "../WebApplication1/FinanceMicroservice.csproj",
       "msbuildProject": "../WebApplication1/FinanceMicroservice.csproj"
     },
+    "FinanceMicroservice.Application/1.0.0": {
+      "type": "project",
+      "path": "../FinanceMicroservice.Services/FinanceMicroservice.Application.csproj",
+      "msbuildProject": "../FinanceMicroservice.Services/FinanceMicroservice.Application.csproj"
+    },
     "FinanceMicroservice.Core/1.0.0": {
       "type": "project",
       "path": "../FinanceMicroservice.Core/FinanceMicroservice.Core.csproj",
       "msbuildProject": "../FinanceMicroservice.Core/FinanceMicroservice.Core.csproj"
+    },
+    "FinanceMicroservice.Domain/1.0.0": {
+      "type": "project",
+      "path": "../FinanceMicroservice.Core/FinanceMicroservice.Domain.csproj",
+      "msbuildProject": "../FinanceMicroservice.Core/FinanceMicroservice.Domain.csproj"
     },
     "FinanceMicroservice.Infastructure/1.0.0": {
       "type": "project",

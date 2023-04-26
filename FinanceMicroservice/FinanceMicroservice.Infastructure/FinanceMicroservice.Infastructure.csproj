@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-	<ProjectReference Include="..\FinanceMicroservice.Core\FinanceMicroservice.Core.csproj" />
+	<ProjectReference Include="..\FinanceMicroservice.Core\FinanceMicroservice.Domain.csproj" />
+	<ProjectReference Include="..\FinanceMicroservice.Services\FinanceMicroservice.Application.csproj" />
 	<PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />

@@ -1,5 +1,6 @@
-﻿using FinanceMicroservice.Core.Interfaces;
-using FinanceMicroservice.Core.Models;
+﻿using FinanceMicroservice.Application.Interfaces;
+using FinanceMicroservice.Application.Repositories;
+using FinanceMicroservice.Domain.Entities;
 using FinanceMicroservice.Infastructure.Context;
 
 namespace FinanceMicroservice.Infastructure.Repositories

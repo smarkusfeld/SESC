@@ -2,10 +2,11 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FinanceMicroservice.Infastructure.Repositories;
-using FinanceMicroservice.Core.Infastructure;
-using FinanceMicroservice.Core.Interfaces;
 using FinanceMicroservice.Infastructure.Context;
-using Microsoft.Extensions.Options;
+using FinanceMicroservice.Application;
+using FinanceMicroservice.Application.Interfaces;
+using FinanceMicroservice.Application.Services;
+using FinanceMicroservice.Application.Repositories;
 
 namespace FinanceMicroservice.Infastructure
 {

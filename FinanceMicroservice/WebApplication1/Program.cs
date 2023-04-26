@@ -1,7 +1,7 @@
-using FinanceMicroservice.Core.Models;
+using FinanceMicroservice.Application.Services;
+using FinanceMicroservice.Core.DTOs;
 using FinanceMicroservice.Infastructure;
 using FinanceMicroservice.Infastructure.Context;
-using FinanceMicroservice.Services;
 using FinanceMicroservice.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

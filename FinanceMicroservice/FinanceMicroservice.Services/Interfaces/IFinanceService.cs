@@ -1,6 +1,5 @@
 ﻿
-using FinanceMicroservice.Core.Interfaces;
-using FinanceMicroservice.Core.Models;
+using FinanceMicroservice.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinanceMicroservice.Services.Interfaces
+namespace FinanceMicroservice.Application.Interfaces
 {
     
     public interface IFinanceService<T> where T : class

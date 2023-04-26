@@ -1264,14 +1264,27 @@
           }
         }
       },
-      "FinanceMicroservice.Core/1.0.0": {
+      "FinanceMicroservice.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "FinanceMicroservice.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/FinanceMicroservice.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FinanceMicroservice.Application.dll": {}
+        }
+      },
+      "FinanceMicroservice.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/FinanceMicroservice.Core.dll": {}
+          "bin/placeholder/FinanceMicroservice.Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/FinanceMicroservice.Core.dll": {}
+          "bin/placeholder/FinanceMicroservice.Domain.dll": {}
         }
       }
     }
@@ -3917,16 +3930,22 @@
         "version.txt"
       ]
     },
-    "FinanceMicroservice.Core/1.0.0": {
+    "FinanceMicroservice.Application/1.0.0": {
       "type": "project",
-      "path": "../FinanceMicroservice.Core/FinanceMicroservice.Core.csproj",
-      "msbuildProject": "../FinanceMicroservice.Core/FinanceMicroservice.Core.csproj"
+      "path": "../FinanceMicroservice.Services/FinanceMicroservice.Application.csproj",
+      "msbuildProject": "../FinanceMicroservice.Services/FinanceMicroservice.Application.csproj"
+    },
+    "FinanceMicroservice.Domain/1.0.0": {
+      "type": "project",
+      "path": "../FinanceMicroservice.Core/FinanceMicroservice.Domain.csproj",
+      "msbuildProject": "../FinanceMicroservice.Core/FinanceMicroservice.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "EntityFramework >= 6.4.4",
-      "FinanceMicroservice.Core >= 1.0.0",
+      "FinanceMicroservice.Application >= 1.0.0",
+      "FinanceMicroservice.Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.5",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.5",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.5"
@@ -3965,8 +3984,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceMicroservice\\FinanceMicroservice.Core\\FinanceMicroservice.Core.csproj": {
-              "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceMicroservice\\FinanceMicroservice.Core\\FinanceMicroservice.Core.csproj"
+            "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceMicroservice\\FinanceMicroservice.Core\\FinanceMicroservice.Domain.csproj": {
+              "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceMicroservice\\FinanceMicroservice.Core\\FinanceMicroservice.Domain.csproj"
+            },
+            "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceMicroservice\\FinanceMicroservice.Services\\FinanceMicroservice.Application.csproj": {
+              "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceMicroservice\\FinanceMicroservice.Services\\FinanceMicroservice.Application.csproj"
             }
           }
         }

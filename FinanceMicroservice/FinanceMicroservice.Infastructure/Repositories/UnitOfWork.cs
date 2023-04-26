@@ -1,8 +1,7 @@
-﻿using FinanceMicroservice.Core.Infastructure;
-using FinanceMicroservice.Core.Interfaces;
+﻿using FinanceMicroservice.Application.Interfaces;
 using FinanceMicroservice.Infastructure.Context;
 
-namespace FinanceMicroservice.Infastructure.Repositories
+namespace FinanceMicroservice.Application.Services
 {
     public class UnitOfWork : IUnitOfWork
     {

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FinanceMicroservice.Core\FinanceMicroservice.Domain.csproj" />
+    <ProjectReference Include="..\FinanceMicroservice.Infastructure\FinanceMicroservice.Infastructure.csproj" />
+    <ProjectReference Include="..\FinanceMicroservice.Services\FinanceMicroservice.Application.csproj" />
+  </ItemGroup>
+
+</Project>

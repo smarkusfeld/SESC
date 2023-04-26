@@ -1,4 +1,7 @@
-﻿using FinanceMicroservice.Services.Interfaces;
+﻿
+using FinanceMicroservice.Application.Interfaces;
+using FinanceMicroservice.Application.Services;
+using FinanceMicroservice.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -8,8 +11,8 @@ namespace FinanceMicroservice.Controllers
     [ApiController]
     public class AccountController : Controller
     {
-        private readonly IFinanceService _service;
-        public AccountController(IFinanceService service)
+        private readonly AccountService _service;
+        public AccountController(AccountService service)
         {
             _service = service;
         }
@@ -20,7 +23,7 @@ namespace FinanceMicroservice.Controllers
             return Ok(accounts);
         }
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public IActionResult Get(Int id)
         {
             var account = _service.GetById(id);
             if (account == null)
@@ -51,3 +54,5 @@ namespace FinanceMicroservice.Controllers
             return NoContent();
         }
     }
+
+}
