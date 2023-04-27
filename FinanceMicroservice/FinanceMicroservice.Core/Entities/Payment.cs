@@ -5,14 +5,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FinanceMicroservice.Domain.Interfaces;
 
 namespace FinanceMicroservice.Domain.Entities
 {
-    public class Payment
+    public class Payment : IEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long ID { get; set; }
 
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "Payment Date created is required")]

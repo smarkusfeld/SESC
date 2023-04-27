@@ -1,10 +1,14 @@
-﻿using System.Linq.Expressions;
-using FinanceMicroservice.Application.DTOs;
+﻿using FinanceMicroservice.Application.DTOs;
 using FinanceMicroservice.Application.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace FinanceMicroservice.Application.Services
 {
-    public class InvoiceService<T> : IEntityService<T> where T : InvoiceDTO
+    public class PaymentService<T> : IEntityService<T> where T : PaymentDTO
     {
         public Task Add(T dto)
         {

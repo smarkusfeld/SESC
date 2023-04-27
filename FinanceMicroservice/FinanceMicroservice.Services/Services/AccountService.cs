@@ -1,44 +1,46 @@
 ﻿using System.Linq.Expressions;
 using FinanceMicroservice.Application.DTOs;
 using FinanceMicroservice.Application.Interfaces;
+using FinanceMicroservice.Domain.Entities;
+using FinanceMicroservice.Domain.Interfaces;
 
 namespace FinanceMicroservice.Application.Services
 {
 
-    public class AccountService : IFinanceService<AccountDTO>
+    public class AccountService<T> : IEntityService<T> where T : BaseDTO
     {
-        public readonly IUnitOfWork _unitOfWork;
-        public AccountService(IUnitOfWork unitOfWork)
+        private readonly IAccountRepository _repository;
+        public AccountService(IAccountRepository repository)
         {
-            _unitOfWork = unitOfWork;
+            _repository = repository;
         }
 
-        public Task Add(AccountDTO entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(AccountDTO entity)
+        public Task Add(T dto)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<AccountDTO> Find(Expression<Func<AccountDTO, bool>> expression)
+        public void Delete(T dto)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<AccountDTO>> GetAll()
+        public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
         {
             throw new NotImplementedException();
         }
 
-        public Task<AccountDTO> GetById(int id)
+        public Task<IEnumerable<T>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public void Update(AccountDTO entity)
+        public Task<T> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(T dto)
         {
             throw new NotImplementedException();
         }

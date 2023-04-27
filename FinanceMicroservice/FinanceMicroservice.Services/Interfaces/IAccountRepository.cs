@@ -1,4 +1,5 @@
-﻿using FinanceMicroservice.Domain.Entities;
+﻿
+using FinanceMicroservice.Domain.Entities;
 
 namespace FinanceMicroservice.Application.Interfaces
 {

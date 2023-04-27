@@ -1,15 +1,14 @@
-﻿using Microsoft.VisualBasic;
+﻿using FinanceMicroservice.Domain.Interfaces;
+using Microsoft.VisualBasic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinanceMicroservice.Domain.Entities
 {
     [Table("invoice")]
-    public class Invoice
+    public class Invoice : IEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long ID { get; set; }
+
 
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "Invoice Date created is required")]

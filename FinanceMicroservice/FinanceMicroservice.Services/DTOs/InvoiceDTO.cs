@@ -3,9 +3,8 @@ using FinanceMicroservice.Domain.Enums;
 
 namespace FinanceMicroservice.Application.DTOs
 {
-    public class InvoiceDTO
+    public class InvoiceDTO : BaseDTO
     {
-        public long ID { get; set; }
         public DateTime InvoiceDate { get; set; }
         public InvoiceType Type { get; set; }
 

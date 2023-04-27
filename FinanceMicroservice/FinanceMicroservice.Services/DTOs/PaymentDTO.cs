@@ -4,9 +4,8 @@ using FinanceMicroservice.Domain.Enums;
 
 namespace FinanceMicroservice.Application.DTOs
 {
-    public class PaymentDTO
+    public class PaymentDTO : BaseDTO
     {
-        public long ID { get; set; }
         public DateTime PaymentDate { get; set; }
         public PaymentStatus Status { get; private set; }
 

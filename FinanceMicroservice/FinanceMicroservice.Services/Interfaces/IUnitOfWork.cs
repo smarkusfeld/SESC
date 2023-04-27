@@ -6,6 +6,7 @@ namespace FinanceMicroservice.Application
     {
         IAccountRepository Accounts { get; }
         IInvoiceRepository Invoices { get; }
+        IPaymentRepository Payments { get; }
         int Save();
     }
 }

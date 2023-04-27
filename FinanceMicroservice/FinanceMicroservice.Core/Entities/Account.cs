@@ -1,16 +1,14 @@
-﻿using System;
+﻿using FinanceMicroservice.Domain.Interfaces;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinanceMicroservice.Domain.Entities
 {
     [Table("account")]
-    public class Account
+    public class Account : IEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long ID { get; set; }
-
+       
         [Required(ErrorMessage = "Student ID is required")]
         public string StudentID { get; set; }
 

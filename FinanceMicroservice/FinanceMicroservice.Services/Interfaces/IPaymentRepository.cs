@@ -1,4 +1,4 @@
-﻿using FinanceMicroservice.Domain.Entities;
+﻿using FinanceMicroservice.Core.Models;
 
 
 namespace FinanceMicroservice.Application.Interfaces

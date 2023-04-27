@@ -10,23 +10,28 @@ using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using FinanceMicroservice.Infastructure.Context;
 using FinanceMicroservice.Application.Interfaces;
+using System.Data.Entity.Core.Common.CommandTrees;
+using FinanceMicroservice.Domain.Interfaces;
 
 namespace FinanceMicroservice.Application.Repositories
 {
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : IEntity
     {
-        protected DataContext DataContext { get; set; }
+        protected readonly DataContext _context;
 
-        public BaseRepository(DataContext context)
+        protected BaseRepository(DataContext context)
         {
-            DataContext = context;
+            _context = context;
         }
 
-        public IQueryable<T> FindAll() => DataContext.Set<T>().AsNoTracking();
+        public IQueryable<T> FindAll() => _context.Set<T>().AsNoTracking();
+
+        public IQueryable<T> FindByID(int id) => FindByCondition(T => T.ID.Equals(id));
         public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression) =>
-            DataContext.Set<T>().Where(expression).AsNoTracking();
-        public void Create(T entity) => DataContext.Set<T>().Add(entity);
-        public void Update(T entity) => DataContext.Set<T>().Update(entity);
-        public void Delete(T entity) => DataContext.Set<T>().Remove(entity);
+            _context.Set<T>().Where(expression).AsNoTracking();
+
+        public void Create(T entity) => _context.Set<T>().Add(entity);
+        public void Update(T entity) => _context.Set<T>().Update(entity);
+        public void Delete(T entity) => _context.Set<T>().Remove(entity);
     }
 }
