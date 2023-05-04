@@ -11,7 +11,7 @@ namespace FinanceMicroservice.Controllers
     [ApiController]
     public class AccountController : Controller
     {
-        private readonly AccountService _service;
+      // private readonly AccountService _service;
         public AccountController(AccountService service)
         {
             _service = service;

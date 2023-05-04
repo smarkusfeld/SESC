@@ -16,7 +16,7 @@ namespace FinanceMicroservice.Domain.Entities
         [Required(ErrorMessage = "Payment Date created is required")]
         public DateTime PaymentDate { get; set; }
         public string Status { get; private set; }
-        public decimal amount { get; set; }
+        public decimal Amount { get; set; }
         public Account Account { get; set; }
         public Invoice Invoice{ get; set; }
 

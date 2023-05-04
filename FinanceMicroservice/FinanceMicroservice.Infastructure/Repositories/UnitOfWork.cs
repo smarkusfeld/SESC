@@ -1,27 +1,65 @@
 ﻿using FinanceMicroservice.Application.Interfaces;
+using FinanceMicroservice.Application.Repositories;
 using FinanceMicroservice.Infastructure.Context;
+using FinanceMicroservice.Infastructure.Repositories;
 
 namespace FinanceMicroservice.Application.Services
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DataContext _dbContext;
-        public IAccountRepository Accounts { get; }
-        public IInvoiceRepository Invoices { get; }
-        public IPaymentRepository Payments { get; }
-        public UnitOfWork(DataContext dbContext, IAccountRepository accountRepository, IInvoiceRepository invoiceRepository, IPaymentRepository paymentRepository)
+        private IAccountRepository _accounts;
+        private IInvoiceRepository _invoices;
+        private IPaymentRepository _payments;
+        public IAccountRepository Accounts
+        {
+            get
+            {
+                if (_accounts == null)
+                {
+                    _accounts = new AccountRepository(_dbContext);
+                }
+                return _accounts;
+            }   
+        }
+        public IInvoiceRepository Invoices
+        {
+            get
+            {
+                if (_invoices == null)
+                {
+                    _invoices = new InvoiceRepository(_dbContext);
+                }
+                return _invoices;
+            }
+        }
+        public IPaymentRepository Payments
+        {
+            get
+            {
+                if (_payments == null)
+                {
+                    _payments = new PaymentRepository(_dbContext);
+                }
+                return _payments;
+            }
+        }
+        public UnitOfWork(DataContext dbContext)
         {
             _dbContext = dbContext;
-            Accounts = accountRepository;
-            Invoices = invoiceRepository;
-            Payments = paymentRepository;
+            _accounts = Accounts;
+            _invoices = Invoices;
+            _payments = Payments;
         }
 
         public int Save()
         {
             return _dbContext.SaveChanges();
         }
-
+        public Task<int> CommitAsync()
+        {
+            return _dbContext.SaveChangesAsync();
+        }
         public void Dispose()
         {
             Dispose(true);

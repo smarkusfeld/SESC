@@ -1,10 +1,13 @@
 ﻿using FinanceMicroservice.Domain.Entities;
 using FinanceMicroservice.Domain.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace FinanceMicroservice.Application.DTOs
 {
     public class InvoiceDTO : BaseDTO
     {
+        [Required(ErrorMessage = "Valid ID required.")]
+        public long ID { get; set; }
         public DateTime InvoiceDate { get; set; }
         public InvoiceType Type { get; set; }
 

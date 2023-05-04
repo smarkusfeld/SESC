@@ -13,14 +13,8 @@ using System.Threading.Tasks;
 namespace FinanceMicroservice.Application.Interfaces
 {
     
-    public interface IEntityService<T> where T : BaseDTO
+    public interface IAccountService : IGenericService<AccountDTO>
     {
-        Task<T> GetById(int id);
-        Task<IEnumerable<T>> GetAll();
-        IEnumerable<T> Find(Expression<Func<T, bool>> expression);
-        Task Add(T dto);
-        void Delete(T dto);
-        void Update(T dto);
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System;
+using System.Linq.Expressions;
 using FinanceMicroservice.Application.DTOs;
 using FinanceMicroservice.Application.Interfaces;
 using FinanceMicroservice.Domain.Entities;
@@ -7,40 +8,91 @@ using FinanceMicroservice.Domain.Interfaces;
 namespace FinanceMicroservice.Application.Services
 {
 
-    public class AccountService<T> : IEntityService<T> where T : BaseDTO
+    public class AccountService : GenericService<AccountDTO,Account>, IAccountService
     {
-        private readonly IAccountRepository _repository;
-        public AccountService(IAccountRepository repository)
+        private readonly IUnitOfWork _unitOfWork;
+        public AccountService(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
+        //check records 
+        public bool IsAccount(int id) => _unitOfWork.Accounts.Exists(id);
+        public bool IsInvoice(int id) => _unitOfWork.Invoices.Exists(id);
+        public bool IsPayment(int id) => _unitOfWork.Payments.Exists(id);
 
-        public Task Add(T dto)
-        {
-            throw new NotImplementedException();
-        }
+    
 
-        public void Delete(T dto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
+        public override bool Delete(AccountDTO dto)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<T>> GetAll()
+        public override ICollection<AccountDTO> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+        public override ICollection<AccountDTO> Filter(Expression<Func<AccountDTO, bool>> expression)
+        {
+            //parse expression 
+            throw new NotImplementedException();
+        }
+
+        public ICollection<AccountDTO> getOutstanding()
         {
             throw new NotImplementedException();
         }
 
-        public Task<T> GetById(int id)
+        public override AccountDTO GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(T dto)
+        public override AccountDTO GetByStudentId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Update(AccountDTO dto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Upsert(AccountDTO dto)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override AccountDTO DTO(Account enity)
+        {
+            return new AccountDTO
+            {
+                ID = enity.ID,
+                StudentID = enity.StudentID,
+                HasOutstandingBalance = enity.HasOutstandingBalance,
+            };
+        }
+
+        protected override Account Model(AccountDTO dto)
+        {
+            return new Account
+            {
+                ID = dto.ID,
+                StudentID = dto.StudentID,
+                HasOutstandingBalance = dto.HasOutstandingBalance,
+            };
+        }
+
+        public override AccountDTO GetByStudent(int studentid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override ICollection<AccountDTO> Index(string sortOrder)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override AccountDTO Create(AccountDTO dto)
         {
             throw new NotImplementedException();
         }

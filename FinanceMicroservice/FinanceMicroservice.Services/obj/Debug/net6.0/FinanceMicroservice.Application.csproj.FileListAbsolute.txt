@@ -4,7 +4,6 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\obj\Debug\net6.0\FinanceMicroservice.Application.AssemblyInfo.cs
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\obj\Debug\net6.0\FinanceMicroservice.Application.csproj.CoreCompileInputs.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\bin\Debug\net6.0\FinanceMicroservice.Application.deps.json
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\bin\Debug\net6.0\FinanceMicroservice.Application.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\bin\Debug\net6.0\FinanceMicroservice.Application.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\bin\Debug\net6.0\FinanceMicroservice.Domain.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\bin\Debug\net6.0\FinanceMicroservice.Domain.pdb
@@ -13,3 +12,4 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\obj\Debug\net6.0\refint\FinanceMicroservice.Application.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\obj\Debug\net6.0\FinanceMicroservice.Application.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\obj\Debug\net6.0\ref\FinanceMicroservice.Application.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceMicroservice\FinanceMicroservice.Services\bin\Debug\net6.0\FinanceMicroservice.Application.dll

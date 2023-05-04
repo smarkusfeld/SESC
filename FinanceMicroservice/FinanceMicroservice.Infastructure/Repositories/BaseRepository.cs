@@ -1,17 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FinanceMicroservice.Domain.Entities;
 using System.Linq.Expressions;
-using System.Text.RegularExpressions;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using FinanceMicroservice.Infastructure.Context;
 using FinanceMicroservice.Application.Interfaces;
-using System.Data.Entity.Core.Common.CommandTrees;
 using FinanceMicroservice.Domain.Interfaces;
+using FinanceMicroservice.Application.DTOs;
+using System.Threading;
 
 namespace FinanceMicroservice.Application.Repositories
 {
@@ -24,14 +17,55 @@ namespace FinanceMicroservice.Application.Repositories
             _context = context;
         }
 
-        public IQueryable<T> FindAll() => _context.Set<T>().AsNoTracking();
+        public async Task<List<T>> FindAll() => await _context.Set<T>().ToListAsync();
 
-        public IQueryable<T> FindByID(int id) => FindByCondition(T => T.ID.Equals(id));
+        public T FindByID(int ID) => SingleOrDefaultAsync(T => T.ID.Equals(ID)).Result;
+        public IQueryable<T> FindQueryable(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null)
+        {
+            var query = _context.Set<T>().Where(expression);
+            return orderBy != null ? orderBy(query) : query;
+        }
+        public Task<List<T>> FindAsync(Expression<Func<T, bool>>? expression, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null)
+        {
+            var query = expression != null ? _context.Set<T>().Where(expression) : _context.Set<T>();
+            return orderBy != null
+               ? orderBy(query).ToListAsync()
+               : query.ToListAsync();
+        }
+        public Task<List<T>> FindAllAsync() => _context.Set<T>().ToListAsync();
+        public Task<T?> SingleOrDefaultAsync(Expression<Func<T, bool>> expression)
+        {
+            var query = _context.Set<T>().AsQueryable();
+            return query.SingleOrDefaultAsync(expression);
+        }
+        public Task<T?> SingleOrDefaultAsync(Expression<Func<T, bool>> expression, string includeProperties) 
+        {
+            var query = _context.Set<T>().AsQueryable();
+
+            query = includeProperties.Split(new char[] { ',' },
+                StringSplitOptions.RemoveEmptyEntries).Aggregate(query, (current, includeProperty)
+                => current.Include(includeProperty));
+
+            return query.SingleOrDefaultAsync(expression);
+        }
+
         public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression) =>
             _context.Set<T>().Where(expression).AsNoTracking();
-
-        public void Create(T entity) => _context.Set<T>().Add(entity);
-        public void Update(T entity) => _context.Set<T>().Update(entity);
+        public T Create(T entity) =>  _context.Set<T>().Add(entity).Entity;
+        public void Update(T entity) => _context.Set<T>().Update(entity).State = EntityState.Modified;
+        public void Update(IEnumerable<T> entities) => _context.Set<T>().UpdateRange(entities);
         public void Delete(T entity) => _context.Set<T>().Remove(entity);
+
+        public bool Exists(int id)
+        {
+            if (FindByID(id) != null)
+                return true;
+            else
+                return false;
+        }
+
+        
+
+
     }
 }

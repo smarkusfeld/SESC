@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FinanceMicroservice.Application.DTOs
 {
-    public class BaseDTO
+    public abstract class BaseDTO
     {
-        public long ID { get; set; }
+        
     }
 }
