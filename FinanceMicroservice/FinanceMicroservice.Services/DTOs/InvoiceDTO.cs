@@ -7,7 +7,9 @@ namespace FinanceMicroservice.Application.DTOs
     public class InvoiceDTO : BaseDTO
     {
         [Required(ErrorMessage = "Valid ID required.")]
-        public long ID { get; set; }
+        public int ID { get; set; }
+
+        public int AccountID { get; set; }
         public DateTime InvoiceDate { get; set; }
         public InvoiceType Type { get; set; }
 

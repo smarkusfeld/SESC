@@ -11,12 +11,12 @@ namespace FinanceMicroservice.Application.Interfaces
     public interface IBaseRepository<T> where T : IEntity
     {
         Task<List<T>> FindAll();
-        T FindByID(int ID);
+        Task<T> FindByID(int ID);
         IQueryable<T> FindQueryable(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null);
         Task<List<T>> FindAsync(Expression<Func<T, bool>>? expression, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null);
         Task<T?> SingleOrDefaultAsync(Expression<Func<T, bool>> expression, string includeProperties);
         Task<T?> SingleOrDefaultAsync(Expression<Func<T, bool>> expression);
-        Task<List<T>> FindAllAsync();
+        Task<List<T>> FindAllAsync(Func<object, bool> value);
 
         T Create(T entity);
         void Update(T entity);

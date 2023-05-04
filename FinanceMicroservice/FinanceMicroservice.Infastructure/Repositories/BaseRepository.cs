@@ -19,7 +19,7 @@ namespace FinanceMicroservice.Application.Repositories
 
         public async Task<List<T>> FindAll() => await _context.Set<T>().ToListAsync();
 
-        public T FindByID(int ID) => SingleOrDefaultAsync(T => T.ID.Equals(ID)).Result;
+        public async Task<T> FindByID(int ID) => await SingleOrDefaultAsync(T => T.ID.Equals(ID));
         public IQueryable<T> FindQueryable(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null)
         {
             var query = _context.Set<T>().Where(expression);

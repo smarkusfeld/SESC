@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 
 namespace FinanceMicroservice.Application.Services
 {
-    public class FinanaceService
+    public class FinanceService
     {
         //add model validation?
         private readonly IUnitOfWork _unitOfWork;
   
-        public FinanaceService(IUnitOfWork unitOfWork)
+        public FinanceService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
         //check records 
-        public async Task<bool> hasAccount(string studentID)
+        public async Task<bool> accountExists(string studentID)
         {
              var result = await _unitOfWork.Accounts.FindAsync(x => x.StudentID == studentID);
 
@@ -73,7 +73,7 @@ namespace FinanceMicroservice.Application.Services
         {
             if (_unitOfWork.Invoices.Exists(invoiceID))
             {
-                var invoice = _unitOfWork.Invoices.FindByID(invoiceID);
+                var invoice = _unitOfWork.Invoices.FindByID(invoiceID).Result;
                 var payment = new Payment
                 {
                     //add

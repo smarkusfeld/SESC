@@ -12,15 +12,17 @@ namespace FinanceMicroservice.Application.Interfaces
 {
     public interface IGenericService<T> where T : class
     {
-        T GetById(int id);
-        T GetByStudent(int studentid);
+        Task<T> GetById(int id);
+        Task<T> GetByStudent(int studentid);
         ICollection<T> GetAll();
         ICollection<T> Index(string sortOrder);
         ICollection<T> Filter(Expression<Func<T, bool>> expression);
-        bool Create(T dto);
-        bool Upsert(T dto);
-        bool Delete(T dto);
-        bool Update(T dto);
-        
+        Task<bool> Create(T dto);
+        Task<bool> Upsert(T dto);
+        Task<bool> Delete(T dto);
+        Task<bool> Update(T dto);
+        T getDTO (IEntity entity);
+        List<T> getDTO(List<IEntity> entities);
+
     }
 }

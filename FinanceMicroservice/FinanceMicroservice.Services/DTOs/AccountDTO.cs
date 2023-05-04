@@ -9,7 +9,7 @@ namespace FinanceMicroservice.Application.DTOs
     public class AccountDTO : BaseDTO
     {
         [Required(ErrorMessage = "Valid ID required.")]
-        public long ID { get; set; }
+        public int ID { get; set; }
     
         [Required (ErrorMessage = "StudentID required.")]
         public string StudentID { get; set; }

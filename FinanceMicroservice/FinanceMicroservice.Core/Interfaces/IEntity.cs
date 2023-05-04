@@ -12,6 +12,6 @@ namespace FinanceMicroservice.Domain.Interfaces
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long ID { get; set; }
+        public int ID { get; set; }
     }
 }
