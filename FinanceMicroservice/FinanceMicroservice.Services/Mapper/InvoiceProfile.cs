@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FinanceMicroservice.Application.DTOs;
 using FinanceMicroservice.Domain.Entities;
+using FinanceMicroservice.Domain.Enums;
 
 namespace FinanceMicroservice.Application.Mapper
 {
@@ -14,7 +15,7 @@ namespace FinanceMicroservice.Application.Mapper
         public InvoiceProfile()
         {
             CreateMap<InvoiceDTO, Invoice>();
-            CreateMap<Invoice, InvoiceDTO>();
+            CreateMap<Invoice, InvoiceDTO>(); 
         }
     }
 }

@@ -42,7 +42,16 @@ namespace FinanceMicroservice.Application.Interfaces
         /// A task that represents the asynchronous operation.
         /// The task result contains the accountDTO
         /// </returns>
-        Task<AccountDTO> GetProductById(int accountID);
+        Task<AccountDTO> GetAccountById(int accountID);
+        /// <summary>
+        /// This method returns an account from the student id
+        /// </summary>
+        /// <param name="studentID"></param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// The task result contains the accountDTO
+        /// </returns>
+        Task<AccountDTO> GetStudentAccount(int studentID);
         /// <summary>
         /// Method to update an account
         /// </summary>
@@ -79,6 +88,18 @@ namespace FinanceMicroservice.Application.Interfaces
         /// The task result contains a boolean value
         /// </returns>
         Task<bool> CheckOutstanding(int accountID);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accountID"></param>
+        /// <returns></returns>
+        Task<IEnumerable<InvoiceDTO>> GetAllInvoices(int accountID);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accountID"></param>
+        /// <returns></returns>
+        Task<IEnumerable<InvoiceDTO>> GetOutstandingInvoices(int accountID);
 
     }
 }

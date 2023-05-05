@@ -12,5 +12,6 @@ namespace FinanceMicroservice.Application.Interfaces
         Task<InvoiceDTO> GetInvoiceById(int id);
         Task<InvoiceDTO> GetInvoiceAccountById(int id);
         Task<ICollection<AccountDTO>> GetAll();
+       
     }
 }
