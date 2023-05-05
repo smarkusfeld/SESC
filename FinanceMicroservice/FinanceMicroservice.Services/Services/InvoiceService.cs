@@ -57,9 +57,11 @@ namespace FinanceMicroservice.Application.Services
         public async Task<InvoiceDTO> GetByStudent(int studentid)
         {
             var account = await _unitOfWork.Accounts.SingleOrDefaultAsync(x => x.StudentID.Equals(studentid));
+            
             if (account != null)
             {
-                var invoices = await _unitOfWork.Invoices.F(x => x.Account.ID.Equals(account.ID));
+                
+                var invoices = await _unitOfWork.Invoices.FindAsync(x => x.Account.ID == account.ID);
                 var all = new List<InvoiceDTO>();
                 foreach (var invoice in invoices)
                 {
@@ -68,7 +70,7 @@ namespace FinanceMicroservice.Application.Services
                 return all;
             }
             
-            return InvoiceDTO(getInvoice);
+            
         }
         //getall invoices
         public async Task<IEnumerable<InvoiceDTO>> GetAll()

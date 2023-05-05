@@ -6,7 +6,7 @@ using FinanceMicroservice.Infastructure.Context;
 
 namespace FinanceMicroservice.Infastructure.Repositories
 {
-    public class PaymentRepository : BaseRepository<Payment>, IPaymentRepository
+    public class PaymentRepository : GenericRepository<Payment>, IPaymentRepository
     {
         public PaymentRepository(DataContext dbContext) : base(dbContext)
         {

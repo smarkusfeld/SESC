@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace FinanceMicroservice.Application.Interfaces
 {
-    public interface IGenericService<T> where T : class
+    public interface IService<T> where T : class
     {
         Task<T> GetById(int id);
         Task<T> GetByStudent(int studentid);
-        ICollection<T> GetAll();
-        ICollection<T> Index(string sortOrder);
-        ICollection<T> Filter(Expression<Func<T, bool>> expression);
+        IEnumerable<T> GetAll();
+        IEnumerable<T> Index(string sortOrder);
+        IEnumerable<T> Filter(Expression<Func<T, bool>> expression);
         Task<bool> Create(T dto);
         Task<bool> Upsert(T dto);
         Task<bool> Delete(T dto);

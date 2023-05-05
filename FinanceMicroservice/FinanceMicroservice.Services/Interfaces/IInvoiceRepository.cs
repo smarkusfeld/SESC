@@ -2,7 +2,7 @@
 
 namespace FinanceMicroservice.Application.Interfaces
 {
-    public interface IInvoiceRepository : IBaseRepository<Invoice>
+    public interface IInvoiceRepository : IGenericRepository<Invoice>
     {
 
     }
