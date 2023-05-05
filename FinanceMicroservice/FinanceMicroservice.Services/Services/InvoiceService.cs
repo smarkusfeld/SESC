@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FinanceMicroservice.Application.Services
 {
-     public class InvoiceService : IService<InvoiceDTO>
+     public class InvoiceService : IGenericService<InvoiceDTO>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -50,32 +50,27 @@ namespace FinanceMicroservice.Application.Services
         //get invoice by id
         public async Task<InvoiceDTO> GetById(int id)
         {
-            var getInvoice = await _unitOfWork.Invoices.FindByID(id);
+            var getInvoice = await _unitOfWork.Invoices.Find(id);
             return InvoiceDTO(getInvoice);
 
         }
-        public async Task<InvoiceDTO> GetByStudent(int studentid)
+        public async Task<List<InvoiceDTO>?> GetByStudent(int studentid)
         {
-            var account = await _unitOfWork.Accounts.SingleOrDefaultAsync(x => x.StudentID.Equals(studentid));
-            
-            if (account != null)
+            var account = await _unitOfWork.Accounts.FindWhere(x => x.StudentID.Equals(studentid));
+            if (account == null) { return null; }
+            var invoices = await _unitOfWork.Invoices.FindAllWhere(x => x.Account.ID == account.ID);
+            var all = new List<InvoiceDTO>();
+            foreach (var invoice in invoices)
             {
-                
-                var invoices = await _unitOfWork.Invoices.FindAsync(x => x.Account.ID == account.ID);
-                var all = new List<InvoiceDTO>();
-                foreach (var invoice in invoices)
-                {
-                    all.Add(InvoiceDTO(invoice));
-                }
-                return all;
+                all.Add(InvoiceDTO(invoice));
             }
-            
-            
+            return all;
+
         }
         //getall invoices
         public async Task<IEnumerable<InvoiceDTO>> GetAll()
         {
-            var invoices = await _unitOfWork.Invoices.FindAllAsync();
+            var invoices = await _unitOfWork.Invoices.FindAll();
             var all = new List<InvoiceDTO>();
             foreach (var invoice in invoices)
             {
@@ -88,7 +83,7 @@ namespace FinanceMicroservice.Application.Services
         public async Task<bool> Create(InvoiceDTO invoice)
         {
             //validate invoice
-            var account = await _unitOfWork.Accounts.FindByID(invoice.AccountID);
+            var account = await _unitOfWork.Accounts.Find(invoice.AccountID);
             //get account
             if (account != null)
             {
@@ -103,8 +98,8 @@ namespace FinanceMicroservice.Application.Services
                     Account = account
 
                 };
-                _unitOfWork.Invoices.Create(newInvoice);
-                var result = await _unitOfWork.CommitAsync();
+                await _unitOfWork.Invoices.Create(newInvoice);
+                var result =  _unitOfWork.Save();
                 if (result > 0)
                     return true;
                 else
@@ -116,7 +111,7 @@ namespace FinanceMicroservice.Application.Services
         //cancel invoice
         public async Task<bool> CancelInvoice(InvoiceDTO invoicedto)
         {
-            var invoice = await _unitOfWork.Invoices.FindByID(invoicedto.ID);
+            var invoice = await _unitOfWork.Invoices.Find(invoicedto.ID);
             if (invoice != null)
                 
             {

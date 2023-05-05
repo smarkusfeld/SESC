@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "AWnClw6YZZ/DVqQ+FbIqcmsx9biS2/mU3WXa/Tjzc39ixMT/5RB5wPBps8bQKoAieQ9QnRxH/pAN8dzCM8OXmQ==",
+  "dgSpecHash": "7U5/vqrWESZg47A25r4io9BjyQh46FOF92DoR8lhM6+yFzGVl20RVhUnmtburaH2Ok0tGwuxDfn8u05yaEm3Zw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceMicroservice\\FinanceMicroservice.Infastructure\\FinanceMicroservice.Infastructure.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",

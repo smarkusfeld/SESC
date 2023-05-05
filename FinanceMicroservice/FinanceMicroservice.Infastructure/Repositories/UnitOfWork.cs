@@ -5,6 +5,9 @@ using FinanceMicroservice.Infastructure.Repositories;
 
 namespace FinanceMicroservice.Application.Services
 {
+    ///<summary>
+    /// This class includes the properties and methods needsed to carry out any transactions or data operations 
+    ///</summary>
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DataContext _dbContext;
@@ -56,10 +59,7 @@ namespace FinanceMicroservice.Application.Services
         {
             return _dbContext.SaveChanges();
         }
-        public Task<int> CommitAsync()
-        {
-            return _dbContext.SaveChangesAsync();
-        }
+  
         public void Dispose()
         {
             Dispose(true);

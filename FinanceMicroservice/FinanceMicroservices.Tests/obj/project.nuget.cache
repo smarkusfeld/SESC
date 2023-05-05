@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "nM5/HvoR9/AQsiTEbGDY8TWnVLB/1Zpx2s3o4f3td3ojyvI8+nByKbtpzdGSojVppSdT8j18UEtTLM6MmOA/yA==",
+  "dgSpecHash": "uffOMozP9I6IeN0xgVKdzNwVGwaNok/osEhjXOOoROb+MhL7gmPHUQE10JFA7ADKerZa8yBG7iqVRV6qHA1sVw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceMicroservice\\FinanceMicroservices.Tests\\FinanceMicroservice.Tests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
