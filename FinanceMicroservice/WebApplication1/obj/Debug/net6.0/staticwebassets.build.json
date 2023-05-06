@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "wWt3hg0TF9jOS9Su3rQdtuASpjrS5nDGKDLo1uEB7Tg=",
+  "Source": "FinanceMicroservice",
+  "BasePath": "_content/FinanceMicroservice",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

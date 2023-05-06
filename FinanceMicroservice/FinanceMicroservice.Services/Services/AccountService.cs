@@ -116,7 +116,7 @@ namespace FinanceMicroservice.Application.Services
         public async Task<decimal> GetAccountBalance(int accountID)
         {
             var all = await GetAllInvoices(accountID);
-            return all.Sum(x => x.balance);
+            return all.Sum(x => x.Balance);
         }
        
     }

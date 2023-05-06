@@ -4,7 +4,6 @@ using FinanceMicroservice.Application.Interfaces;
 using FinanceMicroservice.Domain.Entities;
 using FinanceMicroservice.Domain.Enums;
 using FinanceMicroservice.Domain.Interfaces;
-using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;

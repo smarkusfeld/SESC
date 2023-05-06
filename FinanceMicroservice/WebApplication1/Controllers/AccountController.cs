@@ -1,4 +1,5 @@
 ﻿
+using FinanceMicroservice.Application.DTOs;
 using FinanceMicroservice.Application.Interfaces;
 using FinanceMicroservice.Application.Services;
 using FinanceMicroservice.Domain.Entities;
@@ -11,46 +12,59 @@ namespace FinanceMicroservice.Controllers
     [ApiController]
     public class AccountController : Controller
     {
-      // private readonly AccountService _service;
+      private readonly IAccountService _service;
         public AccountController(AccountService service)
         {
             _service = service;
         }
+        /// <summary>
+        /// Get the list of accounts
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> GetAll()
         {
-            var accounts = _service.GetAll();
-            return Ok(accounts);
-        }
-        [HttpGet("{id}")]
-        public IActionResult Get(Int id)
-        {
-            var account = _service.GetById(id);
-            if (account == null)
+            var accountDTOList = await _service.GetAllAccounts();
+            if (accountDTOList == null)
             {
                 return NotFound();
             }
-            return Ok(account);
+            return Ok(accountDTOList);
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var accountDTO = await _service.GetAccountById(id);
+
+            if (accountDTO != null)
+            {
+                return Ok(accountDTO);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
         [HttpPost]
-        public IActionResult Post([FromBody] Account value)
+        public IActionResult Post(AccountDTO accountDTO)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                _service.CreateAccount(accountDTO);
+                return CreatedAtAction("Get", new { id = accountDTO.ID }, accountDTO);
+                
             }
-            var item = _service.Add(value);
-            return CreatedAtAction("Get", new { id = item.Id }, item);
+            return BadRequest(ModelState);
         }
         [HttpDelete("{id}")]
-        public IActionResult Remove(Guid id)
+        public async Task<IActionResult> Remove(int id)
         {
-            var existingItem = _service.GetById(id);
+            var existingItem =  _service.GetAccountById(id);
             if (existingItem == null)
             {
                 return NotFound();
             }
-            _service.Remove(id);
+            await _service.DeleteAccount(id);
             return NoContent();
         }
     }
