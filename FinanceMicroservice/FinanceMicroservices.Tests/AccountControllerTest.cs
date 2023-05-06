@@ -6,19 +6,28 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit.Abstractions;
-
+using FinanceMicroservice.Application;
+using FinanceMicroservice.Application.Services;
 
 namespace FinanceMicroservice.Tests
 {
     public class AccountControllerTest
     {
+        private readonly Mock<IUnitOfWork> _unitOfWork;
+        private readonly Mock<IAccountRepository> _mockAccounts;
+        private readonly Mock<IInvoiceRepository> _invoices;
+        private readonly Mock<IPaymentRepository> _payments;
         private readonly AccountController _controller;
+        
         //private readonly IFinanceService<Account> _service;
 
 
         public AccountControllerTest()
         {
-            //_service = new AccountService();
+            _unitOfWork = new Mock<IUnitOfWork>();
+            _mockAccounts = new Mock<IAccountRepository>();
+            _invoices = new Mock<IInvoiceRepository>();
+            _payments = new Mock<IPaymentRepository>();
             //_controller = new AccountController(_service);
         }
 

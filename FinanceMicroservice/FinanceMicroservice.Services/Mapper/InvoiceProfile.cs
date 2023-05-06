@@ -16,8 +16,10 @@ namespace FinanceMicroservice.Application.Mapper
         {
             CreateMap<string, Enumeration>().ConvertUsing(new EnumTypeConverter());
             CreateMap<Enumeration, string>().ConvertUsing(x => x.ToString());
-            CreateMap<Invoice, InvoiceDTO>();
-            CreateMap<Invoice, InvoiceDTO>(); 
+            CreateMap<Invoice, InvoiceDTO>()
+                .ForMember(dest => dest.Payments, opt => opt.MapFrom(src => src.Payments));
+            CreateMap<Invoice, InvoiceDTO>()
+                .ForMember(dest => dest.Payments, opt => opt.MapFrom(src => src.Payments));
         }
     }
 }
