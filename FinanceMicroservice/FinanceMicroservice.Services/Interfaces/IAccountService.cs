@@ -51,7 +51,7 @@ namespace FinanceMicroservice.Application.Interfaces
         /// A task that represents the asynchronous operation.
         /// The task result contains the accountDTO
         /// </returns>
-        Task<AccountDTO> GetStudentAccount(int studentID);
+        Task<AccountDTO> GetStudentAccount(string studentID);
         /// <summary>
         /// Method to update an account
         /// </summary>
@@ -60,7 +60,7 @@ namespace FinanceMicroservice.Application.Interfaces
         /// A task that represents the asynchronous operation.
         /// The task result contains a boolean value
         /// </returns>
-        Task<bool> UpdateProduct(AccountDTO accountDTO);
+        Task<bool> UpdateAccount(AccountDTO accountDTO);
         /// <summary>
         /// Method to delete an account
         /// </summary>
@@ -78,7 +78,7 @@ namespace FinanceMicroservice.Application.Interfaces
         /// A task that represents the asynchronous operation.
         /// The task result the blance for the account
         /// </returns>
-        Task<int> GetAccountBalance(int accountID);
+        Task<decimal> GetAccountBalance(int accountID);
         /// <summary>
         /// 
         /// </summary>

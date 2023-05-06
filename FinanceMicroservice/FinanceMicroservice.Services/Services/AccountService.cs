@@ -18,8 +18,7 @@ namespace FinanceMicroservice.Application.Services
             _unitOfWork = unitOfWork;
             _mapper= mapper;
         }
-
-      
+             
 
         public Task<bool> CheckOutstanding(int accountID)
         {
@@ -59,11 +58,7 @@ namespace FinanceMicroservice.Application.Services
             return false;
         }
 
-        public Task<int> GetAccountBalance(int accountID)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public async Task<IEnumerable<AccountDTO>> GetAllAccounts()
         {
             var accountList = await _unitOfWork.Accounts.FindAll();
@@ -75,17 +70,31 @@ namespace FinanceMicroservice.Application.Services
             return accountDTOList.AsEnumerable();
         }
 
-        public Task<AccountDTO> GetAccountById(int accountID)
+        public async Task<AccountDTO> GetAccountById(int accountID)
         {
-            throw new NotImplementedException();
+            var account = await _unitOfWork.Accounts.Find(accountID);
+            return _mapper.Map<AccountDTO>(account);
         }
-        public Task<AccountDTO> GetStudentAccount(int studentID)
+        public async Task<AccountDTO> GetStudentAccount(string studentID)
         {
-            throw new NotImplementedException();
+            var account = await _unitOfWork.Accounts.FindWhere(x=>x.StudentID==studentID);
+            return _mapper.Map<AccountDTO>(account);
         }
-        public Task<bool> UpdateProduct(AccountDTO accountDTO)
+        public async Task<bool> UpdateAccount(AccountDTO accountDTO)
         {
-            throw new NotImplementedException();
+            var check= await _unitOfWork.Accounts.Find(accountDTO.ID);
+            if (check != null)
+            {
+                var account = _mapper.Map<Account>(check);
+                _unitOfWork.Accounts.Update(account);
+                var result = _unitOfWork.Save();
+
+                if (result > 0)
+                    return true;
+                else
+                    return false;
+            }
+            return false;
         }
 
         public async Task<IEnumerable<InvoiceDTO>> GetAllInvoices(int accountID)
@@ -105,21 +114,11 @@ namespace FinanceMicroservice.Application.Services
             return all.Where(x => x.Status == Domain.Enums.InvoiceStatus.Outstanding);
         }
 
-
-        //create account
-
-        //accountdto
-
-        //getallaccounts
-
-        //getbystudentid
-
-        //create new account
-
-        //upsert account
-
-        //delete account
-
-        //check account balance
+        public async Task<decimal> GetAccountBalance(int accountID)
+        {
+            var all = await GetAllInvoices(accountID);
+            return all.Sum(x => x.balance);
+        }
+       
     }
 }
