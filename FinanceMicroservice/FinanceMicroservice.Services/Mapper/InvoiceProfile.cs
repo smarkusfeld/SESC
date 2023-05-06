@@ -9,8 +9,10 @@ namespace FinanceMicroservice.Application.Mapper
     {
         public InvoiceProfile()
         {
-            CreateMap<string, Enumeration>().ConvertUsing(new EnumTypeConverter());
-            CreateMap<Enumeration, string>().ConvertUsing(x => x.ToString());
+            CreateMap<string, InvoiceType>().ConvertUsing(x => Enumeration.FromName<InvoiceType>(x));
+            CreateMap<InvoiceType, string>().ConvertUsing(x => x.Name);
+            CreateMap<string, InvoiceStatus>().ConvertUsing(x => Enumeration.FromName<InvoiceStatus>(x));
+            CreateMap<InvoiceStatus, string>().ConvertUsing(x => x.Name);
             CreateMap<Invoice, InvoiceDTO>()
                 .ForMember(dest => dest.Payments, opt => opt.MapFrom(src => src.Payments));
             CreateMap<Invoice, InvoiceDTO>()
