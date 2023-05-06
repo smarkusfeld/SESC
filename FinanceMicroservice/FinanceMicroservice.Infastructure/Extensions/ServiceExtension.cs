@@ -1,14 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FinanceMicroservice.Application;
+using FinanceMicroservice.Application.Interfaces;
+using FinanceMicroservice.Application.Mapper;
+using FinanceMicroservice.Application.Repositories;
+using FinanceMicroservice.Application.Services;
+using FinanceMicroservice.Infastructure.Context;
+using FinanceMicroservice.Infastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using FinanceMicroservice.Infastructure.Repositories;
-using FinanceMicroservice.Infastructure.Context;
-using FinanceMicroservice.Application;
-using FinanceMicroservice.Application.Interfaces;
-using FinanceMicroservice.Application.Services;
-using FinanceMicroservice.Application.Repositories;
-using System.Reflection;
-using FinanceMicroservice.Application.Mapper;
 
 namespace FinanceMicroservice.Infastructure
 {
@@ -21,7 +20,7 @@ namespace FinanceMicroservice.Infastructure
                 options.UseSqlServer(configuration.GetConnectionString("Default"));
 
             });
-            services.AddAutoMapper(typeof(AccountProfile),typeof(InvoiceProfile),typeof(PaymentProfile));
+            services.AddAutoMapper(typeof(AccountProfile), typeof(InvoiceProfile), typeof(PaymentProfile));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IInvoiceRepository, InvoiceRepository>();
@@ -29,6 +28,6 @@ namespace FinanceMicroservice.Infastructure
 
             return services;
         }
-      
+
     }
 }

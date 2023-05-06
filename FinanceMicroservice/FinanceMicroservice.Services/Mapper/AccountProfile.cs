@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using FinanceMicroservice.Application.DTOs;
 using FinanceMicroservice.Domain.Entities;
 using FinanceMicroservice.Domain.Enums;
@@ -12,7 +7,7 @@ namespace FinanceMicroservice.Application.Mapper
 {
     public class AccountProfile : Profile
     {
-        public AccountProfile() 
+        public AccountProfile()
         {
             CreateMap<string, Enumeration>().ConvertUsing(new EnumTypeConverter());
             CreateMap<Enumeration, string>().ConvertUsing(x => x.ToString());

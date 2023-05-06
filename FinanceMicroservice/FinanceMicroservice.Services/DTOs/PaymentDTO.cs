@@ -1,5 +1,4 @@
-﻿using FinanceMicroservice.Domain.Entities;
-using FinanceMicroservice.Domain.Enums;
+﻿using FinanceMicroservice.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace FinanceMicroservice.Application.DTOs
@@ -14,6 +13,6 @@ namespace FinanceMicroservice.Application.DTOs
 
         public decimal Amount { get; set; }
 
-        
+
     }
 }

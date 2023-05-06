@@ -2,7 +2,6 @@
 using FinanceMicroservice.Application.DTOs;
 using FinanceMicroservice.Application.Interfaces;
 using FinanceMicroservice.Application.Services;
-using FinanceMicroservice.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -12,7 +11,7 @@ namespace FinanceMicroservice.Controllers
     [ApiController]
     public class AccountController : Controller
     {
-      private readonly IAccountService _service;
+        private readonly IAccountService _service;
         public AccountController(AccountService service)
         {
             _service = service;
@@ -52,14 +51,14 @@ namespace FinanceMicroservice.Controllers
             {
                 _service.CreateAccount(accountDTO);
                 return CreatedAtAction("Get", new { id = accountDTO.ID }, accountDTO);
-                
+
             }
             return BadRequest(ModelState);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remove(int id)
         {
-            var existingItem =  _service.GetAccountById(id);
+            var existingItem = _service.GetAccountById(id);
             if (existingItem == null)
             {
                 return NotFound();

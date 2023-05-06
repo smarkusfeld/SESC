@@ -1,10 +1,7 @@
-﻿using System;
-using System.Linq.Expressions;
-using AutoMapper;
+﻿using AutoMapper;
 using FinanceMicroservice.Application.DTOs;
 using FinanceMicroservice.Application.Interfaces;
 using FinanceMicroservice.Domain.Entities;
-using FinanceMicroservice.Domain.Interfaces;
 
 namespace FinanceMicroservice.Application.Services
 {
@@ -16,8 +13,8 @@ namespace FinanceMicroservice.Application.Services
         public AccountService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _mapper= mapper;
-        }           
+            _mapper = mapper;
+        }
 
         public Task<bool> CheckOutstanding(int accountID)
         {
@@ -57,7 +54,7 @@ namespace FinanceMicroservice.Application.Services
             return false;
         }
 
-        
+
         public async Task<IEnumerable<AccountDTO>> GetAllAccounts()
         {
             var accountList = await _unitOfWork.Accounts.FindAll();
@@ -76,12 +73,12 @@ namespace FinanceMicroservice.Application.Services
         }
         public async Task<AccountDTO> GetStudentAccount(string studentID)
         {
-            var account = await _unitOfWork.Accounts.FindWhere(x=>x.StudentID==studentID);
+            var account = await _unitOfWork.Accounts.FindWhere(x => x.StudentID == studentID);
             return _mapper.Map<AccountDTO>(account);
         }
         public async Task<bool> UpdateAccount(AccountDTO accountDTO)
         {
-            var check= await _unitOfWork.Accounts.Find(accountDTO.ID);
+            var check = await _unitOfWork.Accounts.Find(accountDTO.ID);
             if (check != null)
             {
                 var account = _mapper.Map<Account>(accountDTO);
@@ -118,6 +115,6 @@ namespace FinanceMicroservice.Application.Services
             var all = await GetAllInvoices(accountID);
             return all.Sum(x => x.Balance);
         }
-       
+
     }
 }

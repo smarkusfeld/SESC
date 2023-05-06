@@ -1,8 +1,8 @@
 ﻿using FinanceMicroservice.Domain.Entities;
 
-namespace FinanceMicroservice.Infastructure.Context  
+namespace FinanceMicroservice.Infastructure.Context
 {
-    public class DbInitializer 
+    public class DbInitializer
     {
 
         public static void Initialize(DataContext context)
@@ -36,6 +36,6 @@ namespace FinanceMicroservice.Infastructure.Context
 
 
         }
-       
+
     }
 }

@@ -1,13 +1,7 @@
-using FinanceMicroservice.Controllers;
-using FinanceMicroservice.Domain.Entities;
-using FinanceMicroservice.Infastructure;
-using FinanceMicroservice.Application.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Moq;
-using Xunit.Abstractions;
 using FinanceMicroservice.Application;
-using FinanceMicroservice.Application.Services;
+using FinanceMicroservice.Application.Interfaces;
+using FinanceMicroservice.Controllers;
+using Moq;
 
 namespace FinanceMicroservice.Tests
 {
@@ -18,7 +12,7 @@ namespace FinanceMicroservice.Tests
         private readonly Mock<IInvoiceRepository> _invoices;
         private readonly Mock<IPaymentRepository> _payments;
         private readonly AccountController _controller;
-        
+
         //private readonly IFinanceService<Account> _service;
 
 
@@ -38,13 +32,13 @@ namespace FinanceMicroservice.Tests
             //var result = _controller.Get();
 
             //assert
-           // Assert.IsType<OkObjectResult>(result as OkObjectResult);
+            // Assert.IsType<OkObjectResult>(result as OkObjectResult);
         }
         [Fact]
         public void GetAll_ReturnsAllAccounts()
-        {   
+        {
             //act
-           // var result = _controller.Get();
+            // var result = _controller.Get();
 
             //assert
             //var accounts = Assert.IsType<List<Account>>(result.Value);
@@ -59,9 +53,9 @@ namespace FinanceMicroservice.Tests
             //add!! add to test repository 
 
             //act
-           // var result = _controller.Get();
+            // var result = _controller.Get();
             //assert
-           // Assert.IsType<OkObjectResult>(result as OkObjectResult);
+            // Assert.IsType<OkObjectResult>(result as OkObjectResult);
         }
 
         [Fact]
@@ -70,9 +64,9 @@ namespace FinanceMicroservice.Tests
             //arrange
             //add!! add to test repository 
             //act
-           // var result = _controller.Get();
+            // var result = _controller.Get();
             //assert
-           // Assert.IsType<NotFoundResult>(notFoundResult);
+            // Assert.IsType<NotFoundResult>(notFoundResult);
         }
 
         [Fact]

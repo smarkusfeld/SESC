@@ -1,6 +1,4 @@
-﻿using FinanceMicroservice.Application.Interfaces;
-using FinanceMicroservice.Domain.Entities;
-using FinanceMicroservice.Domain.Enums;
+﻿using FinanceMicroservice.Domain.Entities;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,8 +8,8 @@ namespace FinanceMicroservice.Application.DTOs
     {
         [Required(ErrorMessage = "Valid ID required.")]
         public int ID { get; set; }
-    
-        [Required (ErrorMessage = "StudentID required.")]
+
+        [Required(ErrorMessage = "StudentID required.")]
         public string StudentID { get; set; }
 
         [DefaultValue(false)]

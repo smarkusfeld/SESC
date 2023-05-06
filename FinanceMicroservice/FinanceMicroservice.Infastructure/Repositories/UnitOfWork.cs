@@ -23,7 +23,7 @@ namespace FinanceMicroservice.Application.Services
                     _accounts = new AccountRepository(_dbContext);
                 }
                 return _accounts;
-            }   
+            }
         }
         public IInvoiceRepository Invoices
         {
@@ -59,7 +59,7 @@ namespace FinanceMicroservice.Application.Services
         {
             return _dbContext.SaveChanges();
         }
-  
+
         public void Dispose()
         {
             Dispose(true);

@@ -1,10 +1,5 @@
 ﻿using FinanceMicroservice.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinanceMicroservice.Application.Interfaces
 {
@@ -39,7 +34,7 @@ namespace FinanceMicroservice.Application.Interfaces
         /// The task result contains the database record of an arbirary  type, <typeparamref name="T"/>
         /// </returns>
         Task<T?> FindWhere(Expression<Func<T, bool>> predicate);
-     
+
         /// <summary>
         /// This method retrvies all records of an arbirary type, <typeparamref name="T"/>
         /// </summary>
@@ -58,7 +53,7 @@ namespace FinanceMicroservice.Application.Interfaces
         /// </returns>
         Task<List<T>> FindAllWhere(Expression<Func<T, bool>> predicate);
 
-      
+
         /// <summary>
         /// This method creates a new record in the database
         /// </summary>
@@ -84,8 +79,8 @@ namespace FinanceMicroservice.Application.Interfaces
         /// This method updates the specified entity in the database 
         /// </summary>
         /// <param><see cref="IEnumerable{T}" /></param>
-        void Update(IEnumerable<T> entities);  
-        
+        void Update(IEnumerable<T> entities);
+
 
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 
 namespace FinanceMicroservice.Domain.Enums
 {
@@ -40,7 +35,7 @@ namespace FinanceMicroservice.Domain.Enums
 
             return typeMatches && valueMatches;
         }
-        private static T Parse<T, TIntOrString>(TIntOrString nameOrId,string description, Func<T, bool> predicate) where T : Enumeration
+        private static T Parse<T, TIntOrString>(TIntOrString nameOrId, string description, Func<T, bool> predicate) where T : Enumeration
         {
             var match = GetAll<T>().FirstOrDefault(predicate);
 

@@ -1,6 +1,4 @@
 ﻿using FinanceMicroservice.Domain.Interfaces;
-using Microsoft.VisualBasic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinanceMicroservice.Domain.Entities
@@ -19,6 +17,6 @@ namespace FinanceMicroservice.Domain.Entities
         public ICollection<Payment>? Payments { get; set; }
     }
 
-    
+
 
 }

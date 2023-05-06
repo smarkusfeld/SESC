@@ -3,18 +3,10 @@ using FinanceMicroservice.Application.DTOs;
 using FinanceMicroservice.Application.Interfaces;
 using FinanceMicroservice.Domain.Entities;
 using FinanceMicroservice.Domain.Enums;
-using FinanceMicroservice.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinanceMicroservice.Application.Services
 {
-     public class InvoiceService : IInvoiceService
+    public class InvoiceService : IInvoiceService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -33,8 +25,8 @@ namespace FinanceMicroservice.Application.Services
                 _unitOfWork.Payments.Update(payment);
                 var result = _unitOfWork.Save();
 
-                if (result > 0)               
-                    return true;               
+                if (result > 0)
+                    return true;
                 else
                     return false;
             }

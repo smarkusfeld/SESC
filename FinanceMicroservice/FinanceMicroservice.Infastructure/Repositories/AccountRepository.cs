@@ -9,8 +9,8 @@ namespace FinanceMicroservice.Infastructure.Repositories
     {
         public AccountRepository(DataContext dbContext) : base(dbContext)
         {
-            
+
         }
-        
+
     }
 }

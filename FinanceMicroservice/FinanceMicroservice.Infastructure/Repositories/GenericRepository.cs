@@ -1,13 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
-using FinanceMicroservice.Infastructure.Context;
-using FinanceMicroservice.Application.Interfaces;
+﻿using FinanceMicroservice.Application.Interfaces;
 using FinanceMicroservice.Domain.Interfaces;
-using FinanceMicroservice.Application.DTOs;
-using System.Threading;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using System.Linq;
-using System.Threading.Tasks;
+using FinanceMicroservice.Infastructure.Context;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace FinanceMicroservice.Application.Repositories
 {
@@ -36,9 +31,9 @@ namespace FinanceMicroservice.Application.Repositories
         public void Update(T entity) => _context.Set<T>().Update(entity).State = EntityState.Modified;
         public void Update(IEnumerable<T> entities) => _context.Set<T>().UpdateRange(entities);
         public void Delete(T entity) => _context.Set<T>().Remove(entity);
-        
-        
-        
-        
+
+
+
+
     }
 }

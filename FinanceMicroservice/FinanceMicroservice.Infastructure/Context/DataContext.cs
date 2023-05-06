@@ -1,6 +1,5 @@
 ﻿using FinanceMicroservice.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata;
 
 namespace FinanceMicroservice.Infastructure.Context
 {
@@ -10,18 +9,18 @@ namespace FinanceMicroservice.Infastructure.Context
         public DataContext(DbContextOptions<DataContext> options)
         : base(options)
         {
-           
+
         }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Payment> Payments { get; set; }
 
-        
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           
+
             // Add the shadow properties for foreign keys to the model
             modelBuilder.Entity<Payment>()
                 .Property<int>("InventoryID");

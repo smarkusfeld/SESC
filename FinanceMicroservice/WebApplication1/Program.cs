@@ -1,8 +1,6 @@
-using FinanceMicroservice.Application.DTOs;
 using FinanceMicroservice.Application.Services;
 using FinanceMicroservice.Infastructure;
 using FinanceMicroservice.Infastructure.Context;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,14 +15,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 //add database if it does not exsit
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
 
-    var context = services.GetRequiredService<DataContext>();
-    context.Database.EnsureCreated();
-    DbInitializer.Initialize(context);
-}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

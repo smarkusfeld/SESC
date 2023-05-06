@@ -1,5 +1,4 @@
-﻿using FinanceMicroservice.Application.DTOs;
-using FinanceMicroservice.Application.Interfaces;
+﻿using FinanceMicroservice.Application.Interfaces;
 using FinanceMicroservice.Application.Repositories;
 using FinanceMicroservice.Domain.Entities;
 using FinanceMicroservice.Infastructure.Context;

@@ -20,4 +20,6 @@
     <ProjectReference Include="..\FinanceMicroservice.Services\FinanceMicroservice.Application.csproj" />
   </ItemGroup>
 
+
+
 </Project>
