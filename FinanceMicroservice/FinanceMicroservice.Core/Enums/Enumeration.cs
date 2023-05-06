@@ -40,7 +40,28 @@ namespace FinanceMicroservice.Domain.Enums
 
             return typeMatches && valueMatches;
         }
+        private static T Parse<T, TIntOrString>(TIntOrString nameOrId,string description, Func<T, bool> predicate) where T : Enumeration
+        {
+            var match = GetAll<T>().FirstOrDefault(predicate);
 
+            if (match == null)
+            {
+                throw new InvalidOperationException(
+                    $"'{nameOrId}' is not a valid {description} in {typeof(T)}");
+            }
+
+            return match;
+        }
+        public static T FromValue<T>(int id) where T : Enumeration
+        {
+            var match = Parse<T, int>(id, "ID", x => x.Id == id);
+            return match;
+        }
+        public static T FromName<T>(string name) where T : Enumeration
+        {
+            var match = Parse<T, string>(name, "name", item => item.Name == name);
+            return match;
+        }
         public int CompareTo(object? other)
         {
             if (!(other is Enumeration e))

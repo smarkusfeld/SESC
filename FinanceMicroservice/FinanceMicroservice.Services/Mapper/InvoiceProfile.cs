@@ -14,7 +14,9 @@ namespace FinanceMicroservice.Application.Mapper
     {
         public InvoiceProfile()
         {
-            CreateMap<InvoiceDTO, Invoice>();
+            CreateMap<string, Enumeration>().ConvertUsing(new EnumTypeConverter());
+            CreateMap<Enumeration, string>().ConvertUsing(x => x.ToString());
+            CreateMap<Invoice, InvoiceDTO>();
             CreateMap<Invoice, InvoiceDTO>(); 
         }
     }

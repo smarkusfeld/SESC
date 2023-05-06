@@ -8,6 +8,7 @@ using FinanceMicroservice.Application.Interfaces;
 using FinanceMicroservice.Application.Services;
 using FinanceMicroservice.Application.Repositories;
 using System.Reflection;
+using FinanceMicroservice.Application.Mapper;
 
 namespace FinanceMicroservice.Infastructure
 {
@@ -20,7 +21,7 @@ namespace FinanceMicroservice.Infastructure
                 options.UseSqlServer(configuration.GetConnectionString("Default"));
 
             });
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(typeof(AccountProfile),typeof(InvoiceProfile),typeof(PaymentProfile));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IInvoiceRepository, InvoiceRepository>();
