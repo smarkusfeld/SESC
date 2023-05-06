@@ -17,8 +17,7 @@ namespace FinanceMicroservice.Application.Services
         {
             _unitOfWork = unitOfWork;
             _mapper= mapper;
-        }
-             
+        }           
 
         public Task<bool> CheckOutstanding(int accountID)
         {
@@ -85,7 +84,7 @@ namespace FinanceMicroservice.Application.Services
             var check= await _unitOfWork.Accounts.Find(accountDTO.ID);
             if (check != null)
             {
-                var account = _mapper.Map<Account>(check);
+                var account = _mapper.Map<Account>(accountDTO);
                 _unitOfWork.Accounts.Update(account);
                 var result = _unitOfWork.Save();
 

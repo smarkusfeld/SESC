@@ -1,105 +1,55 @@
-﻿using FinanceMicroservice.Application.DTOs;
+﻿using AutoMapper;
+using FinanceMicroservice.Application.DTOs;
 using FinanceMicroservice.Application.Interfaces;
 using FinanceMicroservice.Domain.Entities;
 using FinanceMicroservice.Domain.Enums;
 using FinanceMicroservice.Domain.Interfaces;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FinanceMicroservice.Application.Services
 {
-     public class InvoiceService : IGenericService<InvoiceDTO>
+     public class InvoiceService : IInvoiceService
     {
         private readonly IUnitOfWork _unitOfWork;
-
-        public InvoiceService(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public InvoiceService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
-        private static InvoiceDTO InvoiceDTO(Invoice invoice)
+
+        public async Task<bool> CancelPayment(PaymentDTO paymentDTO)
         {
-            return new InvoiceDTO
+            var check = await _unitOfWork.Payments.Find(paymentDTO.ID);
+            if (check != null)
             {
-                ID = invoice.ID,
-                //add other fields 
+                var payment = _mapper.Map<Payment>(paymentDTO);
+                _unitOfWork.Payments.Update(payment);
+                var result = _unitOfWork.Save();
 
-            };
-        }
-        public InvoiceDTO getDTO(IEntity entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<InvoiceDTO> getDTO(List<IEntity> entities)
-        {
-            throw new NotImplementedException();
-        }
-        private static PaymentDTO PaymentDTO(Payment payment)
-        {
-            return new PaymentDTO
-            {
-                ID = payment.ID,
-                //add other fields 
-
-            };
-        }
-        //get invoice by id
-        public async Task<InvoiceDTO> GetById(int id)
-        {
-            var getInvoice = await _unitOfWork.Invoices.Find(id);
-            return InvoiceDTO(getInvoice);
-
-        }
-        public async Task<List<InvoiceDTO>?> GetByStudent(int studentid)
-        {
-            var account = await _unitOfWork.Accounts.FindWhere(x => x.StudentID.Equals(studentid));
-            if (account == null) { return null; }
-            var invoices = await _unitOfWork.Invoices.FindAllWhere(x => x.Account.ID == account.ID);
-            var all = new List<InvoiceDTO>();
-            foreach (var invoice in invoices)
-            {
-                all.Add(InvoiceDTO(invoice));
+                if (result > 0)               
+                    return true;               
+                else
+                    return false;
             }
-            return all;
-
-        }
-        //getall invoices
-        public async Task<IEnumerable<InvoiceDTO>> GetAll()
-        {
-            var invoices = await _unitOfWork.Invoices.FindAll();
-            var all = new List<InvoiceDTO>();
-            foreach (var invoice in invoices)
-            {
-                all.Add(InvoiceDTO(invoice));
-            }
-            return all;
+            return false;
         }
 
-        //create invoice
-        public async Task<bool> Create(InvoiceDTO invoice)
+        public async Task<bool> CreateInvoice(InvoiceDTO invoiceDTO)
         {
-            //validate invoice
-            var account = await _unitOfWork.Accounts.Find(invoice.AccountID);
-            //get account
-            if (account != null)
+            // Validation logic
+            var invoice = _mapper.Map<Invoice>(invoiceDTO);
+            if (invoice != null)
             {
-
-                var newInvoice = new Invoice
-                {
-                    ID = invoice.ID,
-                    InvoiceDate = invoice.InvoiceDate,
-                    Type = invoice.Type.Name,
-                    Status = invoice.Status.Name,
-                    total = invoice.total,
-                    Account = account
-
-                };
-                await _unitOfWork.Invoices.Create(newInvoice);
-                var result =  _unitOfWork.Save();
+                await _unitOfWork.Invoices.Create(invoice);
+                var result = _unitOfWork.Save();
                 if (result > 0)
                     return true;
                 else
@@ -108,16 +58,12 @@ namespace FinanceMicroservice.Application.Services
             return false;
         }
 
-        //cancel invoice
-        public async Task<bool> CancelInvoice(InvoiceDTO invoicedto)
+        public async Task<bool> DeleteInvoice(int invoiceID)
         {
-            var invoice = await _unitOfWork.Invoices.Find(invoicedto.ID);
+            var invoice = await _unitOfWork.Invoices.Find(invoiceID);
             if (invoice != null)
-                
             {
-                invoice.Status = InvoiceStatus.Cancelled.Name;
-                _unitOfWork.Invoices.Update(invoice);
-
+                _unitOfWork.Invoices.Delete(invoice);
                 var result = _unitOfWork.Save();
 
                 if (result > 0)
@@ -125,41 +71,113 @@ namespace FinanceMicroservice.Application.Services
                 else
                     return false;
             }
+            return false;
+        }
 
+        public async Task<IEnumerable<InvoiceDTO>> GetAllInvoices()
+        {
+            var invoiceList = await _unitOfWork.Invoices.FindAll();
+            var invoiceDTOList = new List<InvoiceDTO>();
+            foreach (var invoice in invoiceList)
+            {
+                invoiceDTOList.Add(_mapper.Map<InvoiceDTO>(invoice));
+            }
+            return invoiceDTOList.AsEnumerable();
+        }
+
+        public async Task<IEnumerable<InvoiceDTO>> GetAllOutstandingInvoices()
+        {
+            var invoiceList = await _unitOfWork.Invoices.FindAllWhere(x => x.Status == InvoiceStatus.Outstanding.Name);
+            var invoiceDTOList = new List<InvoiceDTO>();
+            foreach (var invoice in invoiceList)
+            {
+                invoiceDTOList.Add(_mapper.Map<InvoiceDTO>(invoice));
+            }
+            return invoiceDTOList.AsEnumerable();
+        }
+        public async Task<IEnumerable<InvoiceDTO>> GetAllOverdueInvoices()
+        {
+            var invoiceList = await _unitOfWork.Invoices.FindAllWhere(x => x.DueDate < DateTime.Now);
+            var invoiceDTOList = new List<InvoiceDTO>();
+            foreach (var invoice in invoiceList)
+            {
+                invoiceDTOList.Add(_mapper.Map<InvoiceDTO>(invoice));
+            }
+            return invoiceDTOList.AsEnumerable();
+        }
+        public Task<InvoiceDTO> GetInvoiceById(int invoiceID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<InvoiceDTO> GetInvoiceByReference(string reference)
+        {
+            var invoiceDTO = await _unitOfWork.Invoices.FindWhere(x => x.Reference == reference);
+            return _mapper.Map<InvoiceDTO>(invoiceDTO);
+        }
+
+        public async Task<bool> MakePayment(PaymentDTO paymentDTO)
+        {
+            var check = await _unitOfWork.Invoices.Find(paymentDTO.InvoiceID);
+            if (check != null)
+            {
+                var payment = _mapper.Map<Payment>(paymentDTO);
+                await _unitOfWork.Payments.Create(payment);
+                var result = _unitOfWork.Save();
+
+                if (result > 0)
+                    return true;
+                else
+                    return false;
+            }
             return false;
 
         }
 
-        
-
-        public IEnumerable<InvoiceDTO> Index(string sortOrder)
+        public async Task<IEnumerable<PaymentDTO>> PaymentsToBeProcessed()
         {
-            throw new NotImplementedException();
+            var paymentList = await _unitOfWork.Payments.FindAllWhere(x => x.Status == PaymentStatus.Recieved.Name);
+            var paymentDTOList = new List<PaymentDTO>();
+            foreach (var payment in paymentList)
+            {
+                paymentDTOList.Add(_mapper.Map<PaymentDTO>(payment));
+            }
+            return paymentDTOList.AsEnumerable();
         }
 
-        public IEnumerable<InvoiceDTO> Filter(Expression<Func<InvoiceDTO, bool>> expression)
+        public async Task<bool> ProcessPayment(PaymentDTO paymentDTO)
         {
-            throw new NotImplementedException();
+            var check = await _unitOfWork.Invoices.Find(paymentDTO.InvoiceID);
+            if (check != null)
+            {
+                var payment = _mapper.Map<Payment>(paymentDTO);
+                _unitOfWork.Payments.Update(payment);
+                var result = _unitOfWork.Save();
+
+                if (result > 0)
+                    return true;
+                else
+                    return false;
+            }
+            return false;
         }
 
-        public Task<bool> Upsert(InvoiceDTO dto)
+        public async Task<bool> UpdateInvoice(InvoiceDTO invoiceDTO)
         {
-            throw new NotImplementedException();
+            var check = await _unitOfWork.Invoices.Find(invoiceDTO.ID);
+            if (check != null)
+            {
+                var invoice = _mapper.Map<Invoice>(invoiceDTO);
+                _unitOfWork.Invoices.Update(invoice);
+                var result = _unitOfWork.Save();
+
+                if (result > 0)
+                    return true;
+                else
+                    return false;
+            }
+            return false;
         }
-
-        public Task<bool> Delete(InvoiceDTO dto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> Update(InvoiceDTO dto)
-        {
-            throw new NotImplementedException();
-        }
-
-        
-        //pay invoice
-
 
 
     }

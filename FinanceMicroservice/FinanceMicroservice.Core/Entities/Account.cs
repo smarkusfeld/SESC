@@ -9,7 +9,6 @@ namespace FinanceMicroservice.Domain.Entities
     public class Account : IEntity
     {
        
-        [Required(ErrorMessage = "Student ID is required")]
         public string StudentID { get; set; }
 
         public bool HasOutstandingBalance { get; set; }

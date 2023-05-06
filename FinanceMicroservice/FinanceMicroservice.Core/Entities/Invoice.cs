@@ -8,20 +8,13 @@ namespace FinanceMicroservice.Domain.Entities
     [Table("invoice")]
     public class Invoice : IEntity
     {
-
-
-        [DataType(DataType.Date)]
-        [Required(ErrorMessage = "Invoice Date created is required")]
         public DateTime InvoiceDate { get; set; }
-        public decimal total { get; set; }
-        public decimal balance { get; set; }
-
-        [Required(ErrorMessage = "Invoice Type is required")] 
+        public DateTime DueDate { get; set; }
+        public string Reference { get; set; }
+        public decimal Total { get; set; }
+        public decimal Balance { get; set; }
         public string Type { get; set; }
-
-        [Required(ErrorMessage = "Invoice Status is required")]
         public string Status { get; set; }
-
         public Account Account { get; set; }
         public ICollection<Payment>? Payments { get; set; }
     }

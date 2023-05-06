@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceMicroservice\\FinanceMicroservice.Core\\FinanceMicroservice.Core.csproj",
-      "projectName": "FinanceMicroservice.Core",
-      "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceMicroservice\\FinanceMicroservice.Core\\FinanceMicroservice.Core.csproj",
+      "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceMicroservice\\FinanceMicroservice.Core\\FinanceMicroservice.Domain.csproj",
+      "projectName": "FinanceMicroservice.Domain",
+      "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceMicroservice\\FinanceMicroservice.Core\\FinanceMicroservice.Domain.csproj",
       "packagesPath": "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceMicroservice\\FinanceMicroservice.Core\\obj\\",
       "projectStyle": "PackageReference",

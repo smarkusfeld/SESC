@@ -10,13 +10,14 @@ namespace FinanceMicroservice.Application.DTOs
         public int ID { get; set; }
 
         public int AccountID { get; set; }
+
+        public string Reference { get; set; }
         public DateTime InvoiceDate { get; set; }
+        public DateTime DueDate { get; set; }
         public InvoiceType Type { get; set; }
-
         public InvoiceStatus Status { get; set; }
-        public decimal total { get; set; }
-
-        public decimal balance { get; set; }
+        public decimal Total { get; set; }
+        public decimal Balance { get; set; }
         public ICollection<Payment>? Payments { get; set; }
     }
 }

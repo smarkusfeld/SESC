@@ -12,8 +12,7 @@ namespace FinanceMicroservice.Domain.Entities
     public class Payment : IEntity
     {
 
-        [DataType(DataType.Date)]
-        [Required(ErrorMessage = "Payment Date created is required")]
+
         public DateTime PaymentDate { get; set; }
         public string Status { get; private set; }
         public decimal Amount { get; set; }

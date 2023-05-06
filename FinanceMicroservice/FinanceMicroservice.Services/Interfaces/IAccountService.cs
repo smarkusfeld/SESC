@@ -34,6 +34,7 @@ namespace FinanceMicroservice.Application.Interfaces
         /// </returns>
         Task<IEnumerable<AccountDTO>> GetAllAccounts();
 
+        
         /// <summary>
         /// This method returns an account from the account id
         /// </summary>
