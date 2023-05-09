@@ -57,7 +57,7 @@ namespace FinanceService.Application.Services
 
         public async Task<IEnumerable<PaymentDTO>> PaymentsToBeProcessed()
         {
-            var paymentList = await _unitOfWork.Payments.FindAllWhere(x => x.Status == PaymentStatus.Recieved.Name);
+            var paymentList = await _unitOfWork.Payments.FindAllWhere(x => x.PaymentStatus == PaymentStatus.Recieved);
             var paymentDTOList = new List<PaymentDTO>();
             foreach (var payment in paymentList)
             {
