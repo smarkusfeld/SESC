@@ -1,5 +1,4 @@
-﻿using FinanceService.Domain.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -16,10 +15,20 @@ namespace FinanceService.Domain.Entities
         public string Reference { get; set; }
         public decimal Total { get; set; }
         public decimal Balance { get; set; }
-        public string Type { get; set; }
-        public string Status { get; set; }
+        public InvoiceType InvoiceType { get; set; }
+        public InvoiceStatus InvoiceStatus { get; set; }
         public Account Account { get; set; }
         public ICollection<Payment>? Payments { get; set; }
     }
-
+    public enum InvoiceStatus
+    {
+        Outstanding,
+        Paid,
+        Candelled
+    }
+    public enum InvoiceType
+    {
+        Tutition,
+        Library
+    }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinanceService.Domain.Interfaces
+namespace FinanceService.Domain.Entities
 {
     public class IEntity
     {
