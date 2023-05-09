@@ -11,11 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E72642E6-1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{A7CF2ED0-898B-45AC-961F-9C61140953BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infastructure", "Infastructure\Infastructure.csproj", "{76FFFABF-9629-42CF-AB2A-5007C0A97D6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceService.Infastructure", "Infastructure\FinanceService.Infastructure.csproj", "{76FFFABF-9629-42CF-AB2A-5007C0A97D6D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{E5B9EA41-050B-4CF1-85A5-75733CBD9080}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceService.API", "FinanceService.API\FinanceService.API.csproj", "{4E8EDB45-6E24-4251-A662-89FD1A5389BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D6D4E4FC-38AD-4E93-A063-6686D23F9AE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
