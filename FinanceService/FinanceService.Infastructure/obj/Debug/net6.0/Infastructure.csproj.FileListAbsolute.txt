@@ -1,0 +1,12 @@
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\Infastructure\bin\Debug\net6.0\Infastructure.deps.json
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\Infastructure\bin\Debug\net6.0\Infastructure.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\Infastructure\bin\Debug\net6.0\Infastructure.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\Infastructure\obj\Debug\net6.0\Infastructure.csproj.AssemblyReference.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\Infastructure\obj\Debug\net6.0\Infastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\Infastructure\obj\Debug\net6.0\Infastructure.AssemblyInfoInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\Infastructure\obj\Debug\net6.0\Infastructure.AssemblyInfo.cs
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\Infastructure\obj\Debug\net6.0\Infastructure.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\Infastructure\obj\Debug\net6.0\Infastructure.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\Infastructure\obj\Debug\net6.0\refint\Infastructure.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\Infastructure\obj\Debug\net6.0\Infastructure.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\Infastructure\obj\Debug\net6.0\ref\Infastructure.dll

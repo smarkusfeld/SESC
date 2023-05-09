@@ -1,0 +1,15 @@
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\FinanceService.Application\bin\Debug\net6.0\FinanceService.Application.deps.json
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\FinanceService.Application\bin\Debug\net6.0\FinanceService.Application.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\FinanceService.Application\bin\Debug\net6.0\FinanceService.Application.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\FinanceService.Application\bin\Debug\net6.0\FinanceService.Domain.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\FinanceService.Application\bin\Debug\net6.0\FinanceService.Domain.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\FinanceService.Application\obj\Debug\net6.0\FinanceService.Application.csproj.AssemblyReference.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\FinanceService.Application\obj\Debug\net6.0\FinanceService.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\FinanceService.Application\obj\Debug\net6.0\FinanceService.Application.AssemblyInfoInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\FinanceService.Application\obj\Debug\net6.0\FinanceService.Application.AssemblyInfo.cs
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\FinanceService.Application\obj\Debug\net6.0\FinanceService.Application.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\FinanceService.Application\obj\Debug\net6.0\FinanceService.Application.csproj.CopyComplete
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\FinanceService.Application\obj\Debug\net6.0\FinanceService.Application.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\FinanceService.Application\obj\Debug\net6.0\refint\FinanceService.Application.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\FinanceService.Application\obj\Debug\net6.0\FinanceService.Application.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\FinanceService.Application\obj\Debug\net6.0\ref\FinanceService.Application.dll
