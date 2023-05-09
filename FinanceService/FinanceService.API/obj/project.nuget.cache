@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "7JoYL5sA3xdivjKtHFryGtFMYEv7lPDZyXuKdBKNMbXB9xKV5C3Wq5iHlmLi3+QfFhphSAHdU4sP86iHe8eZCA==",
+  "dgSpecHash": "MHBw5uzEDFSNbAcH/35NbIiDcOsPBY4aLyYRtllrzJtVfITsFDLxE9dcs42bvE9pIPQ0lgL3p+5AHJBW3c2eiA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\FinanceService.API\\FinanceService.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.2\\microsoft.visualstudio.azure.containers.tools.targets.1.17.2.nupkg.sha512"
   ],
   "logs": []
