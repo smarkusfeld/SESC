@@ -11,7 +11,7 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("f9fa2f8e-98fa-4a82-a1e2-b662f9d3e4d8")]
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("dd497458-5714-4937-b89b-3490dd7ec414")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("FinanceService.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
