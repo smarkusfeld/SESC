@@ -9,7 +9,7 @@ namespace FinanceService.Application.Interfaces
     ///<summary>
     /// This interface defines a contract for invoice services.
     ///</summary>
-    public interface IInvoiceServices
+    public interface IInvoiceService
     {
         // get invoice by id
         //get all invoices

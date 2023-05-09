@@ -9,7 +9,7 @@ namespace FinanceService.Application.Interfaces
     ///<summary>
     /// This interface defines a contract for account services.
     ///</summary>
-    public interface IAccountServices
+    public interface IAccountService
     {
         //get account by id
         //get all acounts
