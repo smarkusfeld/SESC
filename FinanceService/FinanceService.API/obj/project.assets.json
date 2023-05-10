@@ -3888,8 +3888,8 @@
     },
     "FinanceService.Infastructure/1.0.0": {
       "type": "project",
-      "path": "../Infastructure/FinanceService.Infastructure.csproj",
-      "msbuildProject": "../Infastructure/FinanceService.Infastructure.csproj"
+      "path": "../FinanceService.Infastructure/FinanceService.Infastructure.csproj",
+      "msbuildProject": "../FinanceService.Infastructure/FinanceService.Infastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3938,6 +3938,9 @@
           "projectReferences": {
             "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\FinanceService.Application\\FinanceService.Application.csproj": {
               "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\FinanceService.Application\\FinanceService.Application.csproj"
+            },
+            "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\FinanceService.Infastructure\\FinanceService.Infastructure.csproj": {
+              "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\FinanceService.Infastructure\\FinanceService.Infastructure.csproj"
             },
             "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\Infastructure\\FinanceService.Infastructure.csproj": {
               "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\Infastructure\\FinanceService.Infastructure.csproj"
