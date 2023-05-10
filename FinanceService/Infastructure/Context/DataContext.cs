@@ -30,6 +30,19 @@ namespace FinanceService.Infastructure.Context
             modelBuilder.Entity<Invoice>()
                 .Property<int>("AccountID");
 
+
+            modelBuilder.Entity<Invoice>()
+                .Property(x => x.Balance)
+                .HasColumnType("decimal(8,2)");
+
+            modelBuilder.Entity<Invoice>()
+                .Property(x => x.Total)
+                .HasColumnType("decimal(8,2)");
+
+            modelBuilder.Entity<Payment>()
+               .Property(x => x.Amount)
+               .HasColumnType("decimal(8,2)");
+
             //add foreign keys
             modelBuilder.Entity<Account>()
                 .HasMany(y => y.Invoices)
