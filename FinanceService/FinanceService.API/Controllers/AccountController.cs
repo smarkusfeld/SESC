@@ -10,37 +10,28 @@ namespace FinanceService.API.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService _service;
-        public AccountController(AccountService service)
+        public AccountController(IAccountService service)
         {
             _service = service;
         }
+
+      
+
         /// <summary>
         /// Get the list of accounts
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public IActionResult GetAll()
         {
-            var accountDTOList = await _service.GetAllAccounts();
-            if (accountDTOList == null)
-            {
-                return NotFound();
-            }
-            return Ok(accountDTOList);
+            var accountDTOList = _service.GetAllAccounts().Result;
+            return accountDTOList == null ? BadRequest() : Ok(accountDTOList);
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public IActionResult Get(int id)
         {
-            var accountDTO = await _service.GetAccountById(id);
-
-            if (accountDTO != null)
-            {
-                return Ok(accountDTO);
-            }
-            else
-            {
-                return BadRequest();
-            }
+            var accountDTO = _service.GetAccountById(id);
+            return accountDTO == null ? NotFound() : Ok(accountDTO);
         }
         [HttpPost]
         public IActionResult Post(AccountDTO accountDTO)
@@ -54,15 +45,15 @@ namespace FinanceService.API.Controllers
             return BadRequest(ModelState);
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Remove(int id)
+        public IActionResult Remove(int id)
         {
             var existingItem = _service.GetAccountById(id);
             if (existingItem == null)
             {
                 return NotFound();
             }
-            await _service.DeleteAccount(id);
-            return NoContent();
+            var response = _service.DeleteAccount(id).Result;
+            return response == true ? Ok() : BadRequest();
         }
     }
 }

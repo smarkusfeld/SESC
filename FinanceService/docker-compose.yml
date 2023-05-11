@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  financeservice.api:
+    image: ${DOCKER_REGISTRY-}financeserviceapi
+    build:
+      context: .
+      dockerfile: FinanceService.API/Dockerfile
+    depends_on:
+      - finance-db-server
+    restart: always
+    environment:
+      - DBHOST=finance-db-server
+      - ASPNETCORE_ENVIRONMENT=Production
+
+  finance-db-server:
+    image: mysql
+    volumes:
+      - finance-mysql-data:/var/lib/mysql
+    restart: always
+    environment: 
+     MYSQL_ROOT_PASSWORD: tiaspbiqe2r
+     MYSQL_DATABASE: finance-db
+
+volumes:
+  finance-mysql-data:

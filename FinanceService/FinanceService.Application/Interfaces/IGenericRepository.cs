@@ -47,7 +47,7 @@ namespace FinanceService.Application.Interfaces
         /// A task that represents the asynchronous operation.
         /// The task result contains a <see cref="List{T}" /> 
         /// </returns>
-        Task<List<T>> FindAll();
+        Task<IEnumerable<T>?> FindAll();
         /// <summary>
         /// This method retrvies all records from the database
         /// </summary>
@@ -55,7 +55,7 @@ namespace FinanceService.Application.Interfaces
         /// <param name="orderBy"></param>
         /// <param name="includes"></param>
         /// <returns></returns>
-        Task<List<T>> FindAll(
+        Task<IEnumerable<T>?> FindAll(
             Expression<Func<T, bool>>? filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
             params Expression<Func<T, object>>[] includes);
@@ -68,7 +68,7 @@ namespace FinanceService.Application.Interfaces
         /// A task that represents the asynchronous operation.
         /// The task result contains a <see cref="List{T}" /> 
         /// </returns>
-        Task<List<T>> FindAllWhere(Expression<Func<T, bool>> predicate);
+        Task<IEnumerable<T>?> FindAllWhere(Expression<Func<T, bool>> predicate);
         
 
         /// <summary>

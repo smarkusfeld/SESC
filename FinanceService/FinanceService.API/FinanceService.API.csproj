@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dd497458-5714-4937-b89b-3490dd7ec414</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\FinanceService.Application\FinanceService.Application.csproj" />
     <ProjectReference Include="..\FinanceService.Infastructure\FinanceService.Infastructure.csproj" />
-    <ProjectReference Include="..\Infastructure\FinanceService.Infastructure.csproj" />
   </ItemGroup>
 
 </Project>
