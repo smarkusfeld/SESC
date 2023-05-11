@@ -30,7 +30,7 @@ namespace FinanceService.API.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var accountDTO = _service.GetAccountById(id);
+            var accountDTO = _service.GetAccountById(id).Result;
             return accountDTO == null ? NotFound() : Ok(accountDTO);
         }
         [HttpPost]

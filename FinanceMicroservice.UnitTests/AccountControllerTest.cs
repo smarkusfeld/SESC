@@ -44,7 +44,7 @@ namespace FinanceMicroservice.UnitTests
             var accountController = new AccountController(accountService.Object);
             //act
             var result = accountController.GetAll();
-            var actionResult = result as ObjectResult;
+            var actionResult = result as OkObjectResult;
 
             //assert
             Assert.IsType<List<AccountDTO>>(actionResult.Value);
@@ -55,8 +55,8 @@ namespace FinanceMicroservice.UnitTests
         {
             //arrange
             IEnumerable<AccountDTO> noReccords = new List<AccountDTO>();
-            accountService.Setup(x => x.GetAllAccounts().Result)
-                .Returns(noReccords);
+            accountService.Setup(x => x.GetAllAccounts())
+                .ReturnsAsync(noReccords);
             var accountController = new AccountController(accountService.Object);
             //act
             var result = accountController.GetAll();
@@ -98,9 +98,64 @@ namespace FinanceMicroservice.UnitTests
             Assert.NotNull(result);
             Assert.IsType<BadRequestResult>(result);
         }
-        
-        
+        [Fact]
+        public void Get_ReturnsOkResult()
+        {
+            //arrange
+            AccountDTO accountDTO = new AccountDTO
+            {
+                ID = 1,
+                StudentID = "c1234567",
+                HasOutstandingBalance = false,
+            };
 
+            accountService.Setup(x => x.GetAccountById(1))
+                .ReturnsAsync(accountDTO);
+            var accountController = new AccountController(accountService.Object);
+            //act
+            var result = accountController.Get(1);
+            var actionResult = result as OkObjectResult;
+            //assert
+            Assert.NotNull(actionResult);
+            Assert.Equal(200, actionResult.StatusCode);
+        }
+        [Fact]
+        public void Get_ReturnsAccountDTO()
+        {
+            //arrange
+            AccountDTO accountDTO = new AccountDTO
+            {
+                ID = 1,
+                StudentID = "c1234567",
+                HasOutstandingBalance = false,
+            };
+
+            accountService.Setup(x => x.GetAccountById(1))
+                .ReturnsAsync(accountDTO);
+            var accountController = new AccountController(accountService.Object);
+            //act
+            var result = accountController.Get(1);
+            var actionResult = result as ObjectResult;
+
+            //assert
+            Assert.IsType<AccountDTO>(actionResult.Value);
+            Assert.Equal(accountDTO, actionResult.Value);
+        }
+        [Fact]
+        public void Get_ReturnsOk_NoMatch()
+        {
+            //arrange
+            accountService.Setup(x => x.GetAccountById(1))
+                .Returns(Task.FromResult<AccountDTO>(null)); 
+            var accountController = new AccountController(accountService.Object);
+            //act
+            var result = accountController.GetAll();
+            var actionResult = result as OkObjectResult;
+
+            //assert
+            Assert.NotNull(result);
+            Assert.IsType<OkObjectResult>(result);
+        }
 
 
 
