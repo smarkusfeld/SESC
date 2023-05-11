@@ -10,6 +10,8 @@ namespace FinanceService.Application.DTOs
     public class PaymentDTO : IEntityDTO
     {
         public int ID { get; set; }
+        public int InvoiceID { get; set; }
+        public int AccountID { get; set; }
         public InvoiceDTO Invoice { get; set; }
         public AccountDTO Account { get; set; }
         public DateTime PaymentDate { get; set; }

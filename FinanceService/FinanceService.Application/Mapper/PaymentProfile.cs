@@ -14,11 +14,11 @@ namespace FinanceService.Application.Mapper
         public PaymentProfile()
         {
             CreateMap<PaymentDTO, Payment>()
-                .ForMember(dest => dest.Invoice, opt => opt.MapFrom(src => src.Invoice))
-             .ForMember(dest => dest.Account, opt => opt.MapFrom(src => src.Account));
+             .ForMember(dest => dest.Invoice, opt => opt.Ignore())
+             .ForMember(dest => dest.Account, opt => opt.Ignore());
             CreateMap<Payment, PaymentDTO>()
-                .ForMember(dest => dest.Invoice, opt => opt.MapFrom(src => src.Invoice))
-             .ForMember(dest => dest.Account, opt => opt.MapFrom(src => src.Account));
+             .ForMember(dest => dest.Invoice, opt => opt.Ignore())
+             .ForMember(dest => dest.Account, opt => opt.Ignore());
         }
     }
 }

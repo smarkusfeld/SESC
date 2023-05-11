@@ -13,60 +13,47 @@ namespace FinanceMicroservice.UnitTests
 {
     public class MappingTests
     {
-        public class AccountMappingTests
+        private readonly IConfigurationProvider _configuration;
+        private readonly IMapper _Mapper;
+        public MappingTests()
         {
-            private readonly IConfigurationProvider _configuration;
-            private readonly IMapper _Mapper;
-            public AccountMappingTests()
+            _configuration = new MapperConfiguration(cfg =>
             {
-                _configuration = new MapperConfiguration(cfg =>
-                {
-                    cfg.AddProfile<AccountProfile>();
-                    cfg.AddProfile<InvoiceProfile>();
+                cfg.AddProfile<AccountProfile>();
+                cfg.AddProfile<InvoiceProfile>();
+                cfg.AddProfile<PaymentProfile>();
 
-                });
-                _Mapper = _configuration.CreateMapper();
-            }
-            [Fact]
-            public void ShouldBeValidConfiguration()
-            {
-                _configuration.AssertConfigurationIsValid();
-            }
-            [Theory]
-            [InlineData(typeof(AccountDTO), typeof(Account))]
-            [InlineData(typeof(Account), typeof(AccountDTO))]
-            public void Map_SourceToDestination_ExistConfiguration(Type origin, Type destination)
-            {
-                var instance = FormatterServices.GetUninitializedObject(origin);
-                _Mapper.Map(instance, origin, destination);
-            }
+            });
+            _Mapper = _configuration.CreateMapper();
         }
-        public class InvoiceMappingTests
+        [Fact]
+        public void ShouldBeValidConfiguration()
         {
-            private readonly IConfigurationProvider _configuration;
-            private readonly IMapper _Mapper;
-            public InvoiceMappingTests()
-            {
-                _configuration = new MapperConfiguration(cfg =>
-                {
-                    cfg.AddProfile<InvoiceProfile>();
-
-                });
-                _Mapper = _configuration.CreateMapper();
-            }
-            [Fact]
-            public void ShouldBeValidConfiguration()
-            {
-                _configuration.AssertConfigurationIsValid();
-            }
-            [Theory]
-            [InlineData(typeof(InvoiceDTO), typeof(Invoice))]
-            [InlineData(typeof(Invoice), typeof(InvoiceDTO))]
-            public void Map_SourceToDestination_ExistConfiguration(Type origin, Type destination)
-            {
-                var instance = FormatterServices.GetUninitializedObject(origin);
-                _Mapper.Map(instance, origin, destination);
-            }
+            _configuration.AssertConfigurationIsValid();
+        }
+        [Theory]
+        [InlineData(typeof(AccountDTO), typeof(Account))]
+        [InlineData(typeof(Account), typeof(AccountDTO))]
+        public void AccountMap_SourceToDestination_ExistConfiguration(Type origin, Type destination)
+        {
+            var instance = FormatterServices.GetUninitializedObject(origin);
+            _Mapper.Map(instance, origin, destination);
+        }
+        [Theory]
+        [InlineData(typeof(InvoiceDTO), typeof(Invoice))]
+        [InlineData(typeof(Invoice), typeof(InvoiceDTO))]
+        public void InvoiceMap_SourceToDestination_ExistConfiguration(Type origin, Type destination)
+        {
+            var instance = FormatterServices.GetUninitializedObject(origin);
+            _Mapper.Map(instance, origin, destination);
+        }
+        [Theory]
+        [InlineData(typeof(PaymentDTO), typeof(Payment))]
+        [InlineData(typeof(Payment), typeof(PaymentDTO))]
+        public void PaymentMap_SourceToDestination_ExistConfiguration(Type origin, Type destination)
+        {
+            var instance = FormatterServices.GetUninitializedObject(origin);
+            _Mapper.Map(instance, origin, destination);
         }
     }
 }
