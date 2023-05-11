@@ -1,12 +1,29 @@
 name: dockercompose17214265799717760584
 services:
+  finance-db-server:
+    environment:
+      MYSQL_DATABASE: finance-db
+      MYSQL_ROOT_PASSWORD: tiaspbiqe2r
+    image: mysql
+    networks:
+      default: null
+    restart: always
+    volumes:
+    - type: volume
+      source: finance-mysql-data
+      target: /var/lib/mysql
+      volume: {}
   financeservice.api:
     build:
       context: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService
       dockerfile: FinanceService.API/Dockerfile
+    depends_on:
+      finance-db-server:
+        condition: service_started
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: https://+:443;http://+:80
+      DBHOST: finance-db-server
     image: financeserviceapi
     networks:
       default: null
@@ -17,6 +34,7 @@ services:
     - mode: ingress
       target: 443
       protocol: tcp
+    restart: always
     volumes:
     - type: bind
       source: C:\Users\Sofia Markusfeld\AppData\Roaming/Microsoft/UserSecrets
@@ -33,3 +51,6 @@ services:
 networks:
   default:
     name: dockercompose17214265799717760584_default
+volumes:
+  finance-mysql-data:
+    name: dockercompose17214265799717760584_finance-mysql-data

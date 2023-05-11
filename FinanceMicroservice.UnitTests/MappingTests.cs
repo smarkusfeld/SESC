@@ -15,6 +15,7 @@ namespace FinanceMicroservice.UnitTests
     {
         private readonly IConfigurationProvider _configuration;
         private readonly IMapper _Mapper;
+        public IMapper mapper { get { return _Mapper; } }
         public MappingTests()
         {
             _configuration = new MapperConfiguration(cfg =>
@@ -26,6 +27,7 @@ namespace FinanceMicroservice.UnitTests
             });
             _Mapper = _configuration.CreateMapper();
         }
+        
         [Fact]
         public void ShouldBeValidConfiguration()
         {

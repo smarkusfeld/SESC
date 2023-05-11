@@ -1,5 +1,18 @@
 name: dockercompose17214265799717760584
 services:
+  finance-db-server:
+    environment:
+      MYSQL_DATABASE: finance-db
+      MYSQL_ROOT_PASSWORD: tiaspbiqe2r
+    image: mysql
+    networks:
+      default: null
+    restart: always
+    volumes:
+    - type: volume
+      source: finance-mysql-data
+      target: /var/lib/mysql
+      volume: {}
   financeservice.api:
     build:
       context: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService
@@ -9,6 +22,9 @@ services:
         com.microsoft.visual-studio.project-name: FinanceService.API
       target: base
     container_name: FinanceService.API
+    depends_on:
+      finance-db-server:
+        condition: service_started
     entrypoint:
     - tail
     - -f
@@ -17,12 +33,13 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
       ASPNETCORE_URLS: https://+:443;http://+:80
+      DBHOST: finance-db-server
       DOTNET_USE_POLLING_FILE_WATCHER: "1"
       NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
     image: financeserviceapi:dev
     labels:
       com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
-        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/net6.0/FinanceService.API.dll"'
+        --additionalProbingPath /root/.nuget/fallbackpackages  ""'
       com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
         dotnet); then kill $$PID; fi"
       com.microsoft.visualstudio.debuggee.program: dotnet
@@ -36,6 +53,7 @@ services:
     - mode: ingress
       target: 443
       protocol: tcp
+    restart: always
     tty: true
     volumes:
     - type: bind
@@ -80,3 +98,6 @@ services:
 networks:
   default:
     name: dockercompose17214265799717760584_default
+volumes:
+  finance-mysql-data:
+    name: dockercompose17214265799717760584_finance-mysql-data
