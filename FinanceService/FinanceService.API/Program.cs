@@ -1,12 +1,13 @@
+using FinanceService.Application.Interfaces;
 using FinanceService.Application.Services;
-using FinanceService.Infastructure.ServiceExtension;
+using FinanceService.Application.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDIServices(builder.Configuration);
-builder.Services.AddScoped<AccountService>();
-builder.Services.AddScoped<InvoiceService>();
+builder.Services.AddScoped<IAccountService,AccountService>();
+builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

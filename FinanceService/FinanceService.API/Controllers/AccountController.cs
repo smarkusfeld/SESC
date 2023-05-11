@@ -24,7 +24,8 @@ namespace FinanceService.API.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var accountDTOList = _service.GetAllAccounts().Result;
+            var request = _service.GetAllAccounts();
+            var accountDTOList = request.Result;
             return accountDTOList == null ? BadRequest() : Ok(accountDTOList);
         }
         [HttpGet("{id}")]

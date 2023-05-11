@@ -7,20 +7,15 @@ services:
       context: .
       dockerfile: FinanceService.API/Dockerfile
     depends_on:
-      - finance-db-server
-    restart: always
-    environment:
-      - DBHOST=finance-db-server
-      - ASPNETCORE_ENVIRONMENT=Production
+      - db
 
-  finance-db-server:
-    image: mysql
-    volumes:
-      - finance-mysql-data:/var/lib/mysql
-    restart: always
-    environment: 
-     MYSQL_ROOT_PASSWORD: tiaspbiqe2r
-     MYSQL_DATABASE: finance-db
+  db:
+     image: "mcr.microsoft.com/mssql/server:2022-latest"
+     ports:
+       - "1433:1433"
+     environment:
+       SA_PASSWORD: "S3cur3P@ssW0rd!"
+       ACCEPT_EULA: "Y"
 
 volumes:
   finance-mysql-data:

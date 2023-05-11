@@ -1,5 +1,6 @@
 ﻿using FinanceService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,6 @@ namespace FinanceService.Infastructure.Context
         public DataContext(DbContextOptions<DataContext> options)
         : base(options)
         {
-
         }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Invoice> Invoices { get; set; }

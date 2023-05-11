@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceService.API.Controllers
 {
+    [Route("api/[controller]")]
     public class InvoiceController : Controller
     {
         private readonly IInvoiceService _service;
