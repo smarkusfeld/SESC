@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using FinanceService.Infastructure;
 
-namespace FinanceService.Application.Extensions
+namespace FinanceService.API.Extensions
 { 
     public static class ServiceExtension
     {

@@ -7,9 +7,11 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["FinanceService.API/FinanceService.API.csproj", "FinanceService.API.csproj"]
-RUN dotnet restore "FinanceService.API.csproj"
-
+COPY ["FinanceService.API/FinanceService.API.csproj", "FinanceService.API/"]
+COPY ["FinanceService.Application/FinanceService.Application.csproj", "FinanceService.Application/"]
+COPY ["FinanceService.Domain/FinanceService.Domain.csproj", "FinanceService.Domain/"]
+COPY ["FinanceService.Infastructure/FinanceService.Infastructure.csproj", "FinanceService.Infastructure/"]
+RUN dotnet restore "FinanceService.API/FinanceService.API.csproj"
 COPY . .
 WORKDIR "/src/FinanceService.API"
 RUN dotnet build "FinanceService.API.csproj" -c Release -o /app/build
@@ -21,5 +23,3 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "FinanceService.API.dll"]
-
-

@@ -1,11 +1,12 @@
+using FinanceService.API.Extensions;
 using FinanceService.Application.Interfaces;
 using FinanceService.Application.Services;
-using FinanceService.Application.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDIServices(builder.Configuration);
+
 builder.Services.AddScoped<IAccountService,AccountService>();
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 builder.Services.AddControllers();

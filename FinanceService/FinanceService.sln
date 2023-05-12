@@ -19,9 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceService.API", "Finan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceService.Infastructure", "FinanceService.Infastructure\FinanceService.Infastructure.csproj", "{DF129839-0B8F-425D-B81F-60773404A6AA}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C1120EC4-E6CD-4329-BBF8-052B1BE0982E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceMicroservice.UnitTests", "..\FinanceMicroservice.UnitTests\FinanceMicroservice.UnitTests.csproj", "{65A87715-4191-477F-B702-814A8FC4140A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceMicroservice.UnitTests", "..\FinanceMicroservice.UnitTests\FinanceMicroservice.UnitTests.csproj", "{65A87715-4191-477F-B702-814A8FC4140A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +43,6 @@ Global
 		{DF129839-0B8F-425D-B81F-60773404A6AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF129839-0B8F-425D-B81F-60773404A6AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF129839-0B8F-425D-B81F-60773404A6AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C1120EC4-E6CD-4329-BBF8-052B1BE0982E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1120EC4-E6CD-4329-BBF8-052B1BE0982E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1120EC4-E6CD-4329-BBF8-052B1BE0982E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1120EC4-E6CD-4329-BBF8-052B1BE0982E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{65A87715-4191-477F-B702-814A8FC4140A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{65A87715-4191-477F-B702-814A8FC4140A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65A87715-4191-477F-B702-814A8FC4140A}.Release|Any CPU.ActiveCfg = Release|Any CPU
