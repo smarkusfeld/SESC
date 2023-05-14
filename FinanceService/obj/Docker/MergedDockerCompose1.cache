@@ -1,4 +1,4 @@
-name: dockercompose5159996677055254115
+name: dockercompose17214265799717760584
 services:
   adminer:
     image: adminer
@@ -24,7 +24,7 @@ services:
       volume: {}
   finance-api:
     build:
-      context: C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService
+      context: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService
       dockerfile: src/FinanceService.Api/Dockerfile
       labels:
         com.microsoft.created-by: visual-studio
@@ -47,7 +47,7 @@ services:
     image: finance.api:dev
     labels:
       com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
-        --additionalProbingPath /root/.nuget/fallbackpackages  ""'
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/net6.0/FinanceService.Api.dll"'
       com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
         dotnet); then kill $$PID; fi"
       com.microsoft.visualstudio.debuggee.program: dotnet
@@ -65,12 +65,12 @@ services:
     tty: true
     volumes:
     - type: bind
-      source: C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Api
+      source: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\src\FinanceService.Api
       target: /app
       bind:
         create_host_path: true
     - type: bind
-      source: C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService
+      source: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService
       target: /src
       bind:
         create_host_path: true
@@ -105,7 +105,7 @@ services:
         create_host_path: true
 networks:
   default:
-    name: dockercompose5159996677055254115_default
+    name: dockercompose17214265799717760584_default
 volumes:
   finance-mysql-data:
-    name: dockercompose5159996677055254115_finance-mysql-data
+    name: dockercompose17214265799717760584_finance-mysql-data

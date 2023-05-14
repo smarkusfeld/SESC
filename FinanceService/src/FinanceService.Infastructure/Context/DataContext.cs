@@ -41,7 +41,7 @@ namespace FinanceService.Infastructure.Context
             //add foreign keys
             modelBuilder.Entity<Account>()
                 .HasMany(y => y.Invoices)
-            .WithOne(x => x.Account);
+                .WithOne(x => x.Account);
 
             modelBuilder.Entity<Account>()
                 .HasMany(y => y.Payments)
