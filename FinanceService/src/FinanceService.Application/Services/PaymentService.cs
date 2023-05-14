@@ -40,7 +40,7 @@ namespace FinanceService.Application.Services
 
         public async Task<bool> MakePayment(PaymentDTO paymentDTO)
         {
-            var check = await _unitOfWork.Invoices.Find(paymentDTO.Invoice.ID);
+            var check = await _unitOfWork.Invoices.Find(paymentDTO.InvoiceID);
             if (check != null)
             {
                 var payment = _mapper.Map<Payment>(paymentDTO);
@@ -57,7 +57,7 @@ namespace FinanceService.Application.Services
 
         public async Task<IEnumerable<PaymentDTO>> PaymentsToBeProcessed()
         {
-            var paymentList = await _unitOfWork.Payments.FindAllWhere(x => x.PaymentStatus == PaymentStatus.Recieved);
+            var paymentList = await _unitOfWork.Payments.FindAllWhere(x => x.PaymentStatus == PaymentStatus.Recieved.ToString());
             var paymentDTOList = new List<PaymentDTO>();
             foreach (var payment in paymentList)
             {
@@ -68,7 +68,7 @@ namespace FinanceService.Application.Services
 
         public async  Task<bool> ProcessPayment(PaymentDTO paymentDTO)
         {
-            var check = await _unitOfWork.Invoices.Find(paymentDTO.Invoice.ID);
+            var check = await _unitOfWork.Invoices.Find(paymentDTO.InvoiceID);
             if (check != null)
             {
                 var payment = _mapper.Map<Payment>(paymentDTO);

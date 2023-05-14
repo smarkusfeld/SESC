@@ -1,4 +1,5 @@
-﻿using FinanceService.Domain.Entities;
+﻿using FinanceService.Application.Mapper;
+using FinanceService.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,11 @@ namespace FinanceService.Application.DTOs
 {
     public class PaymentDTO : IEntityDTO
     {
-        public int ID { get; set; }
         public int InvoiceID { get; set; }
         public int AccountID { get; set; }
-        public InvoiceDTO Invoice { get; set; }
-        public AccountDTO Account { get; set; }
         public DateTime PaymentDate { get; set; }
-        public PaymentStatus PaymentStatus { get; private set; }
-        public PaymentMethod PaymentMethod { get; private set; }
-
+        public Enumeration PaymentStatus { get; private set; }
+        public Enumeration PaymentMethod { get; private set; }
         public decimal Amount { get; set; }
     }
     

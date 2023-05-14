@@ -9,10 +9,10 @@ namespace FinanceService.Application.Mapper
         public InvoiceProfile()
         {
             CreateMap<Invoice, InvoiceDTO>()
-             .ForMember(dest => dest.Payments, opt => opt.Ignore())            
-             .ForMember(dest => dest.Account, opt => opt.Ignore());
+             //.ForMember(dest => dest.Payments, opt => opt.Ignore())            
+             .ForMember(dest => dest.AccountID, opt => opt.MapFrom(src => src.Account.ID));
             CreateMap<InvoiceDTO, Invoice>()
-             .ForMember(dest => dest.Payments, opt => opt.Ignore())
+             //.ForMember(dest => dest.Payments, opt => opt.Ignore())
              .ForMember(dest => dest.Account, opt => opt.Ignore());
         }
     }
