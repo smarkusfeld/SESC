@@ -896,6 +896,7 @@
       },
       "FinanceService.Application/1.0.0": {
         "dependencies": {
+          "AutoMapper": "12.0.1",
           "FinanceService.Domain": "1.0.0"
         },
         "runtime": {
@@ -910,7 +911,7 @@
       "FinanceService.Infastructure/1.0.0": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
-          "FinanceService.Domain": "1.0.0",
+          "FinanceService.Application": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.5",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.5",

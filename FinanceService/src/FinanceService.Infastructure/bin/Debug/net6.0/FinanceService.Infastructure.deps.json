@@ -9,7 +9,7 @@
       "FinanceService.Infastructure/1.0.0": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
-          "FinanceService.Domain": "1.0.0",
+          "FinanceService.Application": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.5",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.5",
@@ -846,6 +846,15 @@
           }
         }
       },
+      "FinanceService.Application/1.0.0": {
+        "dependencies": {
+          "AutoMapper": "12.0.1",
+          "FinanceService.Domain": "1.0.0"
+        },
+        "runtime": {
+          "FinanceService.Application.dll": {}
+        }
+      },
       "FinanceService.Domain/1.0.0": {
         "runtime": {
           "FinanceService.Domain.dll": {}
@@ -1411,6 +1420,11 @@
       "sha512": "sha512-c1ho9WU9ZxMZawML+ssPKZfdnrg/OjR3pe0m9v8230z3acqphwvPJqzAkH54xRYm5ntZHGG1EPP3sux9H3qSPg==",
       "path": "system.windows.extensions/5.0.0",
       "hashPath": "system.windows.extensions.5.0.0.nupkg.sha512"
+    },
+    "FinanceService.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "FinanceService.Domain/1.0.0": {
       "type": "project",

@@ -1,3 +1,5 @@
+using FinanceService.Application.Interfaces;
+using FinanceService.Application.Services;
 using FinanceService.Infastructure.Context;
 using FinanceService.Infastructure.Extensions;
 using Microsoft.OpenApi.Models;
@@ -7,9 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDIServices(builder.Configuration);
-//builder.Services.AddScoped<IAccountService, AccountService>();
-//builder.Services.AddScoped<IInvoiceService, InvoiceService>();
-//builder.Services.AddControllers();
+builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IInvoiceService, InvoiceService>();
+//builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -34,7 +37,7 @@ using (var scope = app.Services.CreateScope())
     {
         // add 10 seconds delay to ensure the db server is up to accept connections
         System.Threading.Thread.Sleep(10000);
-        var context = services.GetRequiredService<FinanceContext>();
+        var context = services.GetRequiredService<DataContext>();
         var created = context.Database.EnsureCreated();
 
     }
@@ -52,7 +55,7 @@ app.UseSwaggerUI(options =>
     options.RoutePrefix = string.Empty;
 });
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 //app.UseAuthorization();
 
