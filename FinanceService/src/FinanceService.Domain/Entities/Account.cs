@@ -11,9 +11,7 @@ namespace FinanceService.Domain.Entities
     [Table("Accounts")]
     public class Account : IEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+    
         public string StudentID { get; set; }
 
         public bool HasOutstandingBalance { get; set; }

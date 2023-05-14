@@ -17,7 +17,6 @@ services:
     image: mysql
     networks:
       default: null
-    restart: always
     volumes:
     - type: volume
       source: finance-mysql-data
@@ -32,9 +31,6 @@ services:
         com.microsoft.visual-studio.project-name: FinanceService.Api
       target: base
     container_name: FinanceService.Api
-    depends_on:
-      db:
-        condition: service_started
     entrypoint:
     - tail
     - -f
@@ -43,11 +39,15 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
       DOTNET_USE_POLLING_FILE_WATCHER: "1"
+      MYSQL_DB: financedb
+      MYSQL_HOST: db
+      MYSQL_PASSWORD: tiaspbiqe2r
+      MYSQL_USER: root
       NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
     image: finance.api:dev
     labels:
       com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
-        --additionalProbingPath /root/.nuget/fallbackpackages  ""'
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/net6.0/FinanceService.Api.dll"'
       com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
         dotnet); then kill $$PID; fi"
       com.microsoft.visualstudio.debuggee.program: dotnet

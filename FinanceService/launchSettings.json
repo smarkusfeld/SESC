@@ -3,8 +3,9 @@
     "Docker Compose": {
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
-      "composeLaunchAction": "None",
+      "composeLaunchAction": "LaunchBrowser",
       "composeLaunchServiceName": "finance-api",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}/swagger",
       "serviceActions": {
         "adminer": "StartWithoutDebugging",
         "db": "StartWithoutDebugging",

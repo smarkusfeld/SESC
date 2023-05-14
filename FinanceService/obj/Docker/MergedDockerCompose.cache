@@ -17,7 +17,6 @@ services:
     image: mysql
     networks:
       default: null
-    restart: always
     volumes:
     - type: volume
       source: finance-mysql-data
@@ -27,11 +26,13 @@ services:
     build:
       context: C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService
       dockerfile: src/FinanceService.Api/Dockerfile
-    depends_on:
-      db:
-        condition: service_started
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      MYSQL_DB: financedb
+      MYSQL_HOST: db
+      MYSQL_PASSWORD: tiaspbiqe2r
+      MYSQL_USER: root
+    image: finance.api
     networks:
       default: null
     ports:

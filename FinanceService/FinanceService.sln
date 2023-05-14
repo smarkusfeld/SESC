@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceService.Persistence"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BB941BF0-015E-4EE5-91C1-A233965C94A2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceService.UnitTests", "tests\FinanceService.UnitTests\FinanceService.UnitTests.csproj", "{D9C6A395-7EEE-4A72-BFBF-D0B044E1AC1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{BB941BF0-015E-4EE5-91C1-A233965C94A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB941BF0-015E-4EE5-91C1-A233965C94A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB941BF0-015E-4EE5-91C1-A233965C94A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9C6A395-7EEE-4A72-BFBF-D0B044E1AC1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9C6A395-7EEE-4A72-BFBF-D0B044E1AC1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9C6A395-7EEE-4A72-BFBF-D0B044E1AC1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9C6A395-7EEE-4A72-BFBF-D0B044E1AC1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
