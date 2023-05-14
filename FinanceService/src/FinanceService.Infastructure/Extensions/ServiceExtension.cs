@@ -20,7 +20,7 @@ namespace FinanceService.Infastructure.Extensions
                 options.UseMySQL(connection);
 
             });
-            services.AddAutoMapper(typeof(AccountProfile), typeof(InvoiceProfile), typeof(PaymentProfile));
+            services.AddAutoMapper(typeof(AutoMapperProfile),typeof(AccountProfile), typeof(InvoiceProfile), typeof(PaymentProfile));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IInvoiceRepository, InvoiceRepository>();

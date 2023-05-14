@@ -88,7 +88,7 @@ namespace FinanceService.Application.Services
 
         public async Task<IEnumerable<InvoiceDTO>> GetAllOutstandingInvoices()
         {
-            var invoiceList = await _unitOfWork.Invoices.FindAllWhere(x => x.InvoiceStatus == InvoiceStatus.Outstanding);
+            var invoiceList = await _unitOfWork.Invoices.FindAllWhere(x => x.InvoiceStatus == InvoiceStatus.Outstanding.ToString());
             var invoiceDTOList = new List<InvoiceDTO>();
             foreach (var invoice in invoiceList)
             {
