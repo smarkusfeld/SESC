@@ -1,0 +1,27 @@
+services:
+
+ db:
+   image: mysql
+   restart: always
+   environment:
+     MYSQL_DATABASE: ${MYSQL_DATABASE:?database name not set}
+     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?database root password not set}  
+
+
+   volumes:
+     - finance-mysql-data:/var/lib/mysql
+
+ adminer:
+   image: adminer
+   restart: always
+   ports:
+     - 8080:8080
+ api:
+   build:
+     context: .
+   ports:
+     - 5000:80
+   depends_on:
+     - db
+volumes:
+ finance-mysql-data:

@@ -1,0 +1,7 @@
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.csproj.AssemblyReference.cache
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.AssemblyInfoInputs.cache
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.AssemblyInfo.cs
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.MvcApplicationPartsAssemblyInfo.cache
