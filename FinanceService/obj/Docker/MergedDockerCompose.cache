@@ -13,7 +13,7 @@ services:
   db:
     environment:
       MYSQL_DATABASE: financedb
-      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_ROOT_PASSWORD: tiaspbiqe2r
     image: mysql
     networks:
       default: null
@@ -23,7 +23,7 @@ services:
       source: finance-mysql-data
       target: /var/lib/mysql
       volume: {}
-  financeservice.api:
+  finance-api:
     build:
       context: C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService
       dockerfile: src/FinanceService.Api/Dockerfile
@@ -32,7 +32,6 @@ services:
         condition: service_started
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-    image: financeserviceapi-latest
     networks:
       default: null
     ports:

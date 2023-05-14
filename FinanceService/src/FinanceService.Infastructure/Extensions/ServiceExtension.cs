@@ -5,16 +5,17 @@ using Microsoft.EntityFrameworkCore;
 using FinanceService.Infastructure;
 using FinanceService.Infastructure.Context;
 
+
 namespace FinanceService.Infastructure.Extensions
 { 
     public static class ServiceExtension
     {
         public static IServiceCollection AddDIServices(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration["mysqlconnection:connectionString"];
+            var connection = configuration.GetConnectionString("Default");
             services.AddDbContext<FinanceContext>(options =>
             {
-                options.UseSqlServer(connectionString);
+                options.UseMySQL(connection);
 
             });
             //services.AddAutoMapper(typeof(AccountProfile), typeof(InvoiceProfile), typeof(PaymentProfile));

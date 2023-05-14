@@ -1,8 +1,7 @@
 using FinanceService.Infastructure.Context;
 using FinanceService.Infastructure.Extensions;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using System.Reflection;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,9 +24,7 @@ builder.Services.AddSwaggerGen(options =>
     //var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     //options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
-// Add services to the container.
-//var connectionString = builder.Configuration.GetConnectionString("FinanceContext");
-//builder.Services.AddDbContext<FinanceContext>(options => options.UseSqlServer(connectionString));
+
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
@@ -55,6 +52,10 @@ app.UseSwaggerUI(options =>
     options.RoutePrefix = string.Empty;
 });
 
+app.UseHttpsRedirection();
 
+//app.UseAuthorization();
+
+//app.MapControllers();
 
 app.Run();
