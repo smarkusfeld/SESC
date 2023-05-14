@@ -1,0 +1,25 @@
+#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+COPY ["FinanceService.API/FinanceService.API.csproj", "FinanceService.API/"]
+COPY ["FinanceService.Application/FinanceService.Application.csproj", "FinanceService.Application/"]
+COPY ["FinanceService.Domain/FinanceService.Domain.csproj", "FinanceService.Domain/"]
+COPY ["FinanceService.Infastructure/FinanceService.Infastructure.csproj", "FinanceService.Infastructure/"]
+RUN dotnet restore "FinanceService.API/FinanceService.API.csproj"
+COPY . .
+WORKDIR "/src/FinanceService.API"
+RUN dotnet build "FinanceService.API.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "FinanceService.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "FinanceService.API.dll"]

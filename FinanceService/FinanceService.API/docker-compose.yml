@@ -1,0 +1,19 @@
+﻿version: "3.9" 
+services:
+  finance-api:
+    image: finance_api
+    #alt to image use build
+    #build:
+      #context: .
+      #dockerfile: FinanceService.API/Dockerfile
+    container_name: financeService
+    ports:
+      - "5000:80"
+  sql:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    container_name: sql_server2022
+    ports: # not actually needed, because the two services are on the same network
+      - "1433:1433" 
+    environment:
+      - ACCEPT_EULA=y
+      - SA_PASSWORD=tiaspbiqe2r
