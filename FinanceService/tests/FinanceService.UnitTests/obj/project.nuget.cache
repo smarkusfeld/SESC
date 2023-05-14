@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PWqveSON5Hm+eFWbFmhIXlmbNJ6T5OI1Y82DU+hx4cf6QEJ0sp9695k6S6L+HEUbN3qqzbww0bhTzBTmCyGArg==",
+  "dgSpecHash": "jpEuziU7+rJe6UxezzzUEKUg6k5yF1pm+Qz+bB4woBxutQvyGT/N29sW3WCEGBA29o85/P4JVKRQdduJQA8mrA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sofia Markusfeld\\source\\repos\\SESC\\FinanceService\\tests\\FinanceService.UnitTests\\FinanceService.UnitTests.csproj",
+  "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\tests\\FinanceService.UnitTests\\FinanceService.UnitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

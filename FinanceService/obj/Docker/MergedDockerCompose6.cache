@@ -1,4 +1,4 @@
-name: dockercompose5159996677055254115
+name: dockercompose17214265799717760584
 services:
   adminer:
     image: adminer
@@ -17,7 +17,6 @@ services:
     image: mysql
     networks:
       default: null
-    restart: always
     volumes:
     - type: volume
       source: finance-mysql-data
@@ -25,13 +24,16 @@ services:
       volume: {}
   finance-api:
     build:
-      context: C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService
+      context: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService
       dockerfile: src/FinanceService.Api/Dockerfile
       labels:
         com.microsoft.created-by: visual-studio
         com.microsoft.visual-studio.project-name: FinanceService.Api
       target: base
     container_name: FinanceService.Api
+    depends_on:
+      db:
+        condition: service_started
     entrypoint:
     - tail
     - -f
@@ -41,7 +43,7 @@ services:
       ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
       DOTNET_USE_POLLING_FILE_WATCHER: "1"
       MYSQL_DB: financedb
-      MYSQL_HOST: mysql
+      MYSQL_HOST: db
       MYSQL_PASSWORD: tiaspbiqe2r
       MYSQL_USER: root
       NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
@@ -66,12 +68,12 @@ services:
     tty: true
     volumes:
     - type: bind
-      source: C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Api
+      source: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\src\FinanceService.Api
       target: /app
       bind:
         create_host_path: true
     - type: bind
-      source: C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService
+      source: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService
       target: /src
       bind:
         create_host_path: true
@@ -106,7 +108,7 @@ services:
         create_host_path: true
 networks:
   default:
-    name: dockercompose5159996677055254115_default
+    name: dockercompose17214265799717760584_default
 volumes:
   finance-mysql-data:
-    name: dockercompose5159996677055254115_finance-mysql-data
+    name: dockercompose17214265799717760584_finance-mysql-data
