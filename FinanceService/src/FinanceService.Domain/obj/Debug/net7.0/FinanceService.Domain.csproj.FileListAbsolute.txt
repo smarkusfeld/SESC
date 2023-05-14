@@ -1,0 +1,12 @@
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Domain\bin\Debug\net7.0\FinanceService.Domain.deps.json
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Domain\bin\Debug\net7.0\FinanceService.Domain.dll
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Domain\bin\Debug\net7.0\FinanceService.Domain.pdb
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Domain\obj\Debug\net7.0\FinanceService.Domain.csproj.AssemblyReference.cache
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Domain\obj\Debug\net7.0\FinanceService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Domain\obj\Debug\net7.0\FinanceService.Domain.AssemblyInfoInputs.cache
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Domain\obj\Debug\net7.0\FinanceService.Domain.AssemblyInfo.cs
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Domain\obj\Debug\net7.0\FinanceService.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Domain\obj\Debug\net7.0\FinanceService.Domain.dll
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Domain\obj\Debug\net7.0\refint\FinanceService.Domain.dll
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Domain\obj\Debug\net7.0\FinanceService.Domain.pdb
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Domain\obj\Debug\net7.0\ref\FinanceService.Domain.dll
