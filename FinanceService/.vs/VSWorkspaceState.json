@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\FinanceService.Api",
+    "\\src\\FinanceService.Application",
+    "\\src\\FinanceService.Domain",
+    "\\src\\FinanceService.Infastructure",
+    "\\src\\FinanceService.Persistence"
+  ],
+  "SelectedNode": "\\FinanceService.sln",
+  "PreviewInSolutionExplorer": false
+}
