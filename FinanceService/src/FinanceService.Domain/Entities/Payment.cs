@@ -11,9 +11,7 @@ namespace FinanceService.Domain.Entities
     [Table("Payments")]
     public class Payment : IEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+       
         public DateTime PaymentDate { get; set; }
         public PaymentStatus PaymentStatus { get; private set; }
         public PaymentMethod PaymentMethod { get; private set; }

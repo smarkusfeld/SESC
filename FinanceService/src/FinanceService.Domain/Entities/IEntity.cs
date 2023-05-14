@@ -10,6 +10,9 @@ namespace FinanceService.Domain.Entities
 {
     public class IEntity
     {
-        
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
+
     }
 }

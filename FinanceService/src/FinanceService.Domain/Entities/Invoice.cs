@@ -11,9 +11,7 @@ namespace FinanceService.Domain.Entities
     [Table("Invoices")]
     public class Invoice : IEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+      
         public DateTime InvoiceDate { get; set; }
         public DateTime DueDate { get; set; }
         public string Reference { get; set; }
