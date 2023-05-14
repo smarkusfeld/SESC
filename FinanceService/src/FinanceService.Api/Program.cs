@@ -34,7 +34,7 @@ using (var scope = app.Services.CreateScope())
     {
         // add 10 seconds delay to ensure the db server is up to accept connections
         System.Threading.Thread.Sleep(10000);
-        var context = services.GetRequiredService<FinanceContext>();
+        var context = services.GetRequiredService<DataContext>();
         var created = context.Database.EnsureCreated();
 
     }

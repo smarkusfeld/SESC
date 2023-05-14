@@ -13,7 +13,7 @@ namespace FinanceService.Infastructure.Extensions
         public static IServiceCollection AddDIServices(this IServiceCollection services, IConfiguration configuration)
         {
             var connection = configuration.GetConnectionString("Default");
-            services.AddDbContext<FinanceContext>(options =>
+            services.AddDbContext<DataContext>(options =>
             {
                 options.UseMySQL(connection);
 
