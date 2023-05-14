@@ -1,0 +1,51 @@
+name: dockercompose5159996677055254115
+services:
+  adminer:
+    image: adminer
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 8080
+      published: "8080"
+      protocol: tcp
+    restart: always
+  db:
+    environment:
+      MYSQL_DATABASE: financedb
+      MYSQL_ROOT_PASSWORD: toor
+    image: mysql
+    networks:
+      default: null
+    restart: always
+    volumes:
+    - type: volume
+      source: finance-mysql-data
+      target: /var/lib/mysql
+      volume: {}
+  financeservice.api:
+    build:
+      context: C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService
+      dockerfile: src/FinanceService.Api/Dockerfile
+    depends_on:
+      db:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: financeserviceapi-latest
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      protocol: tcp
+    - mode: ingress
+      target: 80
+      published: "5000"
+      protocol: tcp
+networks:
+  default:
+    name: dockercompose5159996677055254115_default
+volumes:
+  finance-mysql-data:
+    name: dockercompose5159996677055254115_finance-mysql-data

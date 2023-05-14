@@ -1,0 +1,17 @@
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Infastructure.deps.json
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Infastructure.dll
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Infastructure.pdb
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.csproj.AssemblyReference.cache
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.AssemblyInfoInputs.cache
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.AssemblyInfo.cs
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.csproj.CopyComplete
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.dll
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\obj\Debug\net6.0\refint\FinanceService.Infastructure.dll
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.pdb
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\obj\Debug\net6.0\ref\FinanceService.Infastructure.dll
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Infastructure.runtimeconfig.json
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Domain.dll
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Domain.pdb
+C:\Users\Sofia Markusfeld\source\repos\SESC\FinanceService\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.genruntimeconfig.cache

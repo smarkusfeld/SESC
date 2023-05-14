@@ -1,0 +1,31 @@
+version: '3.4'
+name: finance-microservice
+services:
+  db:
+   image: mysql
+   restart: always
+   volumes:
+     - finance-mysql-data:/var/lib/mysql
+   environment:
+     MYSQL_DATABASE: ${MYSQL_DATABASE:?database name not set}
+     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?database root password not set}  
+
+  adminer:
+   image: adminer
+   restart: always
+   ports:
+     - 8080:8080
+
+  financeservice.api:
+    image: ${DOCKER_REGISTRY-}financeserviceapi-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/FinanceService.Api/Dockerfile
+    ports:
+     - 5000:80
+    depends_on:
+     - db
+    
+
+volumes:
+   finance-mysql-data:
