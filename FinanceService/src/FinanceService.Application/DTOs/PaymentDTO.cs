@@ -13,8 +13,8 @@ namespace FinanceService.Application.DTOs
         public int InvoiceID { get; set; }
         public int AccountID { get; set; }
         public DateTime PaymentDate { get; set; }
-        public Enumeration PaymentStatus { get; private set; }
-        public Enumeration PaymentMethod { get; private set; }
+        public PaymentStatus Status { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
         public decimal Amount { get; set; }
     }
     

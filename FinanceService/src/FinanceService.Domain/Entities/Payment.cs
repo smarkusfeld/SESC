@@ -13,8 +13,8 @@ namespace FinanceService.Domain.Entities
     {
        
         public DateTime PaymentDate { get; set; }
-        public string PaymentStatus { get; private set; }
-        public string PaymentMethod { get; private set; }
+        public PaymentStatus Status { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
         public decimal Amount { get; set; }
         public Account Account { get; set; }
         public Invoice Invoice { get; set; }

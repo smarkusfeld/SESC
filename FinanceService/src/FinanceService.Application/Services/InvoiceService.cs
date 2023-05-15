@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FinanceService.Application.DTOs;
 using FinanceService.Application.Interfaces;
+using FinanceService.Application.Mapper;
 using FinanceService.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -88,7 +89,7 @@ namespace FinanceService.Application.Services
 
         public async Task<IEnumerable<InvoiceDTO>> GetAllOutstandingInvoices()
         {
-            var invoiceList = await _unitOfWork.Invoices.FindAllWhere(x => x.InvoiceStatus == InvoiceStatus.Outstanding.ToString());
+            var invoiceList = await _unitOfWork.Invoices.FindAllWhere(x => x.Status == InvoiceStatus.Outstanding);
             var invoiceDTOList = new List<InvoiceDTO>();
             foreach (var invoice in invoiceList)
             {

@@ -14,8 +14,8 @@ namespace FinanceService.Application.DTOs
         public string Reference { get; set; }
         public DateTime InvoiceDate { get; set; }
         public DateTime DueDate { get; set; }
-        public Enumeration InvoiceType { get; set; }
-        public Enumeration InvoiceStatus { get; set; }
+        public InvoiceType Type { get; set; }
+        public InvoiceStatus Status { get; set; }
         public decimal Total { get; set; }
         public decimal Balance { get; set; }
 

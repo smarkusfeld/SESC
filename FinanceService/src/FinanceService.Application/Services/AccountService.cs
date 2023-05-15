@@ -21,9 +21,14 @@ namespace FinanceService.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<bool> CreateAccount(AccountDTO accountDTO)
+        public async Task<bool> CreateAccount(string studentId)
         {
             // Validation logic
+            AccountDTO accountDTO = new AccountDTO
+            {
+                StudentID = studentId,
+                HasOutstandingBalance = false,
+            };
             var account = _mapper.Map<Account>(accountDTO);
             if (account != null)
             {
@@ -56,10 +61,12 @@ namespace FinanceService.Application.Services
         public async Task<AccountDTO> GetAccountById(int accountID)
         {
             var account = await _unitOfWork.Accounts.Find(accountID);
+            
             return _mapper.Map<AccountDTO>(account);
         }
         public async Task<AccountDTO> GetStudentAccount(string studentID)
         {
+            
             var account = await _unitOfWork.Accounts.FindWhere(x => x.StudentID == studentID);
             return _mapper.Map<AccountDTO>(account);
         }
@@ -92,12 +99,24 @@ namespace FinanceService.Application.Services
             }
             return false;
         }
-
         public  Task<bool> UpsertAccount(AccountDTO accountDTO)
         {
             throw new NotImplementedException();
         }
-        public async Task<decimal> GetAccountBalance(int accountID)
+        private AccountDTO checkBalance(AccountDTO accountDTO)
+        {
+            var balance = GetAccountBalance(accountDTO.ID).Result;
+            if (balance > 0)
+            {
+                accountDTO.HasOutstandingBalance = false;
+            }
+            else
+            {
+                accountDTO.HasOutstandingBalance = true;
+            }
+            return accountDTO;
+        }
+        private async Task<decimal> GetAccountBalance(int accountID)
         {
             var all = await _unitOfWork.Invoices.FindAllWhere(x => x.Account.ID == accountID);
             return all.Sum(x => x.Balance);
