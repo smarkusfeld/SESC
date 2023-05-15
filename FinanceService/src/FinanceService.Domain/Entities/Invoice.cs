@@ -17,8 +17,8 @@ namespace FinanceService.Domain.Entities
         public string Reference { get; set; }
         public decimal Total { get; set; }
         public decimal Balance { get; set; }
-        public string InvoiceType { get; set; }
-        public string InvoiceStatus { get; set; }
+        public InvoiceType Type { get; set; }
+        public InvoiceStatus Status { get; set; }
         public Account Account { get; set; }
         public ICollection<Payment>? Payments { get; set; }
     }

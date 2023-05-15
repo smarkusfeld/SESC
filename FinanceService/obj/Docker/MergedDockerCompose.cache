@@ -26,6 +26,9 @@ services:
     build:
       context: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService
       dockerfile: src/FinanceService.Api/Dockerfile
+    depends_on:
+      db:
+        condition: service_started
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       MYSQL_DB: financedb

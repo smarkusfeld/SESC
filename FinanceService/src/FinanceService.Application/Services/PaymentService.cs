@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FinanceService.Application.DTOs;
 using FinanceService.Application.Interfaces;
+using FinanceService.Application.Mapper;
 using FinanceService.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,7 @@ namespace FinanceService.Application.Services
 
         public async Task<IEnumerable<PaymentDTO>> PaymentsToBeProcessed()
         {
-            var paymentList = await _unitOfWork.Payments.FindAllWhere(x => x.PaymentStatus == PaymentStatus.Recieved.ToString());
+            var paymentList = await _unitOfWork.Payments.FindAllWhere(x => x.Status == PaymentStatus.Recieved);
             var paymentDTOList = new List<PaymentDTO>();
             foreach (var payment in paymentList)
             {
