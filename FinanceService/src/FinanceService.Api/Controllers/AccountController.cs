@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceService.Api.Controllers
 {
-    
+    /// <summary>
+    /// Controller for all account logic
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class AccountController : Controller
@@ -16,7 +18,10 @@ namespace FinanceService.Api.Controllers
             _service = service;
         }
 
-
+        /// <summary>
+        /// Get all accounts 
+        /// </summary>
+        /// <returns><seealso cref="IActionResult"/></returns>
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<AccountDTO>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpGet]
@@ -26,6 +31,11 @@ namespace FinanceService.Api.Controllers
             var accountDTOList = request.Result;
             return accountDTOList == null ? BadRequest() : Ok(accountDTOList);
         }
+        /// <summary>
+        /// Find an account by passing the account id
+        /// </summary>
+        /// <param name="id">account id</param>
+        /// <returns><seealso cref="IActionResult"/></returns> 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AccountDTO))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -34,6 +44,11 @@ namespace FinanceService.Api.Controllers
             var accountDTO = _service.GetAccountById(id).Result;
             return accountDTO == null ? NotFound() : Ok(accountDTO);
         }
+        /// <summary>
+        /// Find an account by passing the student id 
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns><seealso cref="IActionResult"/></returns>
         [HttpGet("{student}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AccountDTO))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -42,6 +57,12 @@ namespace FinanceService.Api.Controllers
             var accountDTO = _service.GetStudentAccount(studentId).Result;
             return accountDTO == null ? NotFound("Account Does Not Exist") : Ok(accountDTO);
         }
+        /// <summary>
+        /// Create a new account by passing the student id
+        /// </summary>
+        /// <remarks>If the account already exists <seealso cref="StatusCodes.Status400BadRequest"/> is returned</remarks>
+        /// <param name="studentId"></param>
+        /// <returns><seealso cref="IActionResult"/></returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -51,6 +72,11 @@ namespace FinanceService.Api.Controllers
              var result = _service.CreateAccount(studentId).Result;
              return result == true ? Ok() : BadRequest();
         }
+        /// <summary>
+        /// Delete an account
+        /// </summary>
+        /// <param name="id">account id</param>
+        /// <returns><seealso cref="IActionResult"/></returns>
         [HttpPost]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
