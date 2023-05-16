@@ -17,8 +17,7 @@ namespace FinanceService.Application.Mapper
              .ForMember(dest => dest.Invoice, opt => opt.Ignore())
              .ForMember(dest => dest.Account, opt => opt.Ignore());
             CreateMap<Payment, PaymentDTO>()
-             .ForMember(dest => dest.InvoiceID, opt => opt.MapFrom(src => src.Invoice.ID))
-             .ForMember(dest => dest.AccountID, opt => opt.MapFrom(src => src.Account.ID));
+             .ForMember(dest => dest.InvoiceID, opt => opt.MapFrom(src => src.Invoice.ID));
         }
     }
 }

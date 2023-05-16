@@ -1,4 +1,5 @@
-﻿using FinanceService.Application.DTOs;
+﻿using Azure;
+using FinanceService.Application.DTOs;
 using FinanceService.Application.Interfaces;
 using FinanceService.Application.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -22,13 +23,12 @@ namespace FinanceService.Api.Controllers
         /// Get all accounts 
         /// </summary>
         /// <returns><seealso cref="IActionResult"/></returns>
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<AccountDTO>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<AccountDTO>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]       
         public IActionResult GetAll()
         {
-            var request = _service.GetAllAccounts();
-            var accountDTOList = request.Result;
+            var accountDTOList = _service.GetAllAccounts().Result;
             return accountDTOList == null ? BadRequest() : Ok(accountDTOList);
         }
         /// <summary>
@@ -63,21 +63,25 @@ namespace FinanceService.Api.Controllers
         /// <remarks>If the account already exists <seealso cref="StatusCodes.Status400BadRequest"/> is returned</remarks>
         /// <param name="studentId"></param>
         /// <returns><seealso cref="IActionResult"/></returns>
-        [HttpPost]
+        [HttpPost("{student}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult PostAccount(string studentId)
+        public IActionResult CreateAccount(string studentId)
         {
-            
-             var result = _service.CreateAccount(studentId).Result;
-             return result == true ? Ok() : BadRequest();
+            AccountDTO accountDTO = new AccountDTO
+            {
+                StudentID = studentId,
+                HasOutstandingBalance = false,
+            };
+            var result = _service.CreateAccount(accountDTO).Result;
+            return result == true ? Ok(result) : BadRequest();
+
         }
         /// <summary>
         /// Delete an account
         /// </summary>
         /// <param name="id">account id</param>
         /// <returns><seealso cref="IActionResult"/></returns>
-        [HttpPost]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
