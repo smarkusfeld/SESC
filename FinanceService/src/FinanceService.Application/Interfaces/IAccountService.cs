@@ -21,7 +21,7 @@ namespace FinanceService.Application.Interfaces
         /// A task that represents the asynchronous operation.
         /// The task result contains a boolean value
         /// </returns>
-        Task<bool> CreateAccount(string studentID);
+        Task<bool> CreateAccount(AccountDTO AccountDTO);
         /// <summary>
         /// This method returns all accounts  
         /// </summary>
@@ -56,7 +56,7 @@ namespace FinanceService.Application.Interfaces
         /// A task that represents the asynchronous operation.
         /// The task result contains a boolean value
         /// </returns>
-        Task<bool> UdateAccount(AccountDTO accountDTO);
+        Task<bool> UpdateAccount(AccountDTO accountDTO);
         /// <summary>
         /// Method to create/update an account
         /// </summary>

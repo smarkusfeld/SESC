@@ -26,7 +26,7 @@ namespace FinanceService.Domain.Entities
     {
         Outstanding,
         Paid,
-        Candelled
+        Cancelled
     }
     public enum InvoiceType
     {

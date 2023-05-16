@@ -21,7 +21,7 @@ namespace FinanceMicroservice.UnitTests
         public void GetAll_ReturnsOkResult()
         {
             //arrange
-            var accountDTOs = GetaccoutDTOList();
+            var accountDTOs = GetaccountDTOList();
             accountService.Setup(x => x.GetAllAccounts())
                 .ReturnsAsync(accountDTOs);
             var accountController = new AccountController(accountService.Object);
@@ -38,7 +38,7 @@ namespace FinanceMicroservice.UnitTests
         public void GetAll_TaskResultAccountDTOList()
         {
             //arrange
-            var accountDTOs = GetaccoutDTOList();
+            var accountDTOs = GetaccountDTOList();
             accountService.Setup(x => x.GetAllAccounts())
                 .ReturnsAsync(accountDTOs);
             var accountController = new AccountController(accountService.Object);
@@ -76,7 +76,7 @@ namespace FinanceMicroservice.UnitTests
             var accountController = new AccountController(accountService.Object);
             //act
             var result = accountController.GetAll();
-            var actionResult = result as ObjectResult;
+            var actionResult = result as OkObjectResult;
 
             //assert
 
@@ -178,33 +178,28 @@ namespace FinanceMicroservice.UnitTests
             Assert.Equal(200, actionResult.StatusCode);
         }
         [Fact]
-        public void CreateAccount_ReturnsOkResult()
-        {
-            accountService.Setup(x => x.CreateAccount("c1234567"))
-                .ReturnsAsync(true);
-            var accountController = new AccountController(accountService.Object);
-            //act
-            var result = accountController.PostAccount("c1234567");
-            var actionResult = result as OkResult;
-
-            //assert
-            Assert.NotNull(result);
-            Assert.IsType<OkResult>(result);
-        }
-        [Fact]
         public void CreateAccount_False_ReturnsOkResult()
         {
-            accountService.Setup(x => x.CreateAccount("c1234567"))
+            //arrange
+            AccountDTO accountDTO = new AccountDTO
+            {
+                ID = 1,
+                StudentID = "c1234567",
+                HasOutstandingBalance = false,
+            };
+            accountService.Setup(x => x.CreateAccount(accountDTO))
                 .ReturnsAsync(false);
             var accountController = new AccountController(accountService.Object);
             //act
-            var result = accountController.PostAccount("c1234567");
+            var result = accountController.CreateAccount("c1234567");
             var actionResult = result as BadRequestResult;
 
             //assert
             Assert.NotNull(result);
             Assert.IsType<BadRequestResult>(result);
         }
+
+
         [Fact]
         public void DeleteAccount_ReturnsOkResult()
         {
@@ -233,9 +228,9 @@ namespace FinanceMicroservice.UnitTests
             Assert.NotNull(result);
             Assert.IsType<BadRequestResult>(result);
         }
-        private IEnumerable<AccountDTO> GetaccoutDTOList()
+        private IEnumerable<AccountDTO> GetaccountDTOList()
         {
-            IEnumerable<AccountDTO> accoutDTOList = new List<AccountDTO>
+            IEnumerable<AccountDTO> accountDTOList = new List<AccountDTO>
         {
             new AccountDTO
             {
@@ -256,7 +251,7 @@ namespace FinanceMicroservice.UnitTests
                 HasOutstandingBalance=false,
             },
         };
-            return accoutDTOList;
+            return accountDTOList;
         }
     }
 }

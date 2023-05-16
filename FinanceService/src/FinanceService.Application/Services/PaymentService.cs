@@ -21,12 +21,14 @@ namespace FinanceService.Application.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-     
+        
         public async Task<bool> CancelPayment(PaymentDTO paymentDTO)
         {
             var check = await _unitOfWork.Payments.Find(paymentDTO.ID);
             if (check != null)
             {
+
+                paymentDTO.Status = PaymentStatus.Cancelled;
                 var payment = _mapper.Map<Payment>(paymentDTO);
                 _unitOfWork.Payments.Update(payment);
                 var result = _unitOfWork.Save();
@@ -41,19 +43,15 @@ namespace FinanceService.Application.Services
 
         public async Task<bool> MakePayment(PaymentDTO paymentDTO)
         {
-            var check = await _unitOfWork.Invoices.Find(paymentDTO.InvoiceID);
-            if (check != null)
-            {
-                var payment = _mapper.Map<Payment>(paymentDTO);
-                await _unitOfWork.Payments.Create(payment);
-                var result = _unitOfWork.Save();
+            paymentDTO.Status = PaymentStatus.Recieved;
+            var payment = _mapper.Map<Payment>(paymentDTO);
+            await _unitOfWork.Payments.Create(payment);
+            var result = _unitOfWork.Save();
 
-                if (result > 0)
-                    return true;
-                else
-                    return false;
-            }
-            return false;
+            if (result > 0)
+                return true;
+            else
+                return false;
         }
 
         public async Task<IEnumerable<PaymentDTO>> PaymentsToBeProcessed()
@@ -69,9 +67,11 @@ namespace FinanceService.Application.Services
 
         public async  Task<bool> ProcessPayment(PaymentDTO paymentDTO)
         {
-            var check = await _unitOfWork.Invoices.Find(paymentDTO.InvoiceID);
+            var check = await _unitOfWork.Payments.Find(paymentDTO.ID);
             if (check != null)
             {
+
+                paymentDTO.Status = PaymentStatus.Processed;
                 var payment = _mapper.Map<Payment>(paymentDTO);
                 _unitOfWork.Payments.Update(payment);
                 var result = _unitOfWork.Save();
@@ -83,5 +83,24 @@ namespace FinanceService.Application.Services
             }
             return false;
         }
+
+        public async Task<PaymentDTO> FindPaymentByReference(string reference)
+        {
+            var paymentDTO = await _unitOfWork.Payments.FindWhere(x => x.PaymentReference == reference);
+            return _mapper.Map<PaymentDTO>(paymentDTO);
+        }
+        public async Task<int> FindInvoiceID(string reference)
+        {
+            var all = await _unitOfWork.Invoices.FindWhere(x => x.Reference == reference);
+            if (all != null)
+            {
+                return all.ID;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
     }
 }

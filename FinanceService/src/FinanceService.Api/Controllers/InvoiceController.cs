@@ -1,34 +1,42 @@
 ﻿using FinanceService.Application.DTOs;
 using FinanceService.Application.Interfaces;
 using FinanceService.Application.Services;
+using FinanceService.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceService.Api.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
     public class InvoiceController : Controller
     {
         private readonly IInvoiceService _service;
-        public InvoiceController(InvoiceService service)
+        public InvoiceController(IInvoiceService service)
         {
             _service = service;
         }
         /// <summary>
-        /// Get the list of invoices
+        /// Get all accounts
         /// </summary>
-        /// <returns></returns>
+        /// <returns><seealso cref="IActionResult"/></returns>
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<AccountDTO>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult GetAll()
         {
-            var invoiceDTOList = await _service.GetAllInvoices();
-            if (invoiceDTOList == null)
-            {
-                return NotFound();
-            }
-            return Ok(invoiceDTOList);
+            var invoiceDTOList = _service.GetAllInvoices().Result;
+            return invoiceDTOList == null ? BadRequest() : Ok(invoiceDTOList);
+            
         }
+        /// <summary>
+        /// Find an invoice by passing the account id
+        /// </summary>
+        /// <param name="id">account id</param>
+        /// <returns><seealso cref="IActionResult"/></returns> 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(InvoiceDTO))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetInvoice(int id)
         {
             var invoiceDTO = await _service.GetInvoiceById(id);
 
@@ -41,27 +49,42 @@ namespace FinanceService.Api.Controllers
                 return BadRequest();
             }
         }
-        [HttpPost]
-        public IActionResult Post(InvoiceDTO invoiceDTO)
+        /// <summary>
+        /// Create a new invoice 
+        /// </summary>
+        /// <param name="invoiceDTO"></param>
+        /// <returns><seealso cref="IActionResult"/></returns>
+        [HttpPost()]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(InvoiceDTO))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult CreateInvoice([FromBody] InvoiceDTO invoiceDTO)
         {
+            //add valiation logic
             if (!ModelState.IsValid)
             {
                 _service.CreateInvoice(invoiceDTO);
-                return CreatedAtAction("Get", new { id = invoiceDTO.ID }, invoiceDTO);
+                return Ok(invoiceDTO);
 
             }
             return BadRequest(ModelState);
         }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Remove(int id)
+        /// <summary>
+        /// Cancel an invoice 
+        /// </summary>
+        /// <param name="reference"></param>
+        /// <returns><seealso cref="IActionResult"/></returns>
+        [HttpPut("[action]/{reference}")]
+        public IActionResult Cancel(string reference)
         {
-            var existingItem = _service.GetInvoiceById(id);
-            if (existingItem == null)
+            var invoice = _service.GetInvoiceByReference(reference).Result;
+            if (invoice != null && invoice.Status == InvoiceStatus.Outstanding)
             {
-                return NotFound();
+                invoice.Status = InvoiceStatus.Cancelled;
+                var result = _service.UpdateInvoice(invoice).Result;
+                return result == true ? Ok() : BadRequest();
             }
-            await _service.DeleteInvoice(id);
-            return NoContent();
+            return BadRequest();
         }
+        
     }
 }

@@ -24,7 +24,11 @@ namespace FinanceService.Application.Services
 
         public async Task<bool> CreateInvoice(InvoiceDTO invoiceDTO)
         {
-            // Validation logic
+            var check = CheckStudentAccountExists(invoiceDTO.StudentID);
+            if (check == null)
+            {
+                return false;
+            }
             var invoice = _mapper.Map<Invoice>(invoiceDTO);
             if (invoice != null)
             {
@@ -143,6 +147,12 @@ namespace FinanceService.Application.Services
                     return false;
             }
             return false;
+        }
+        private async Task<bool> CheckStudentAccountExists(string studentID)
+        {
+
+            var account = await _unitOfWork.Accounts.FindWhere(x => x.StudentID == studentID);
+            return account != null ? true : false ;
         }
     }
 }

@@ -21,14 +21,10 @@ namespace FinanceService.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<bool> CreateAccount(string studentId)
+        public async Task<bool> CreateAccount(AccountDTO accountDTO)
         {
             // Validation logic
-            AccountDTO accountDTO = new AccountDTO
-            {
-                StudentID = studentId,
-                HasOutstandingBalance = false,
-            };
+            
             var account = _mapper.Map<Account>(accountDTO);
             if (account != null)
             {
@@ -83,7 +79,7 @@ namespace FinanceService.Application.Services
         }
 
       
-        public async Task<bool> UdateAccount(AccountDTO accountDTO)
+        public async Task<bool> UpdateAccount(AccountDTO accountDTO)
         {
             var check = await _unitOfWork.Accounts.Find(accountDTO.ID);
             if (check != null)
