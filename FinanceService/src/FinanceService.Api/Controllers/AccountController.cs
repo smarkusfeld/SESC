@@ -3,6 +3,7 @@ using FinanceService.Application.DTOs;
 using FinanceService.Application.Interfaces;
 using FinanceService.Application.Services;
 using Microsoft.AspNetCore.Mvc;
+using MySqlX.XDevAPI.Common;
 
 namespace FinanceService.Api.Controllers
 {
@@ -24,12 +25,10 @@ namespace FinanceService.Api.Controllers
         /// </summary>
         /// <returns><seealso cref="IActionResult"/></returns>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<AccountDTO>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]       
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var accountDTOList = _service.GetAllAccounts().Result;
-            return accountDTOList == null ? BadRequest() : Ok(accountDTOList);
+            var response = await _service.GetAllAccounts();
+            return response == null ? NotFound() : Ok(response);
         }
         /// <summary>
         /// Find an account by passing the account id
@@ -37,25 +36,21 @@ namespace FinanceService.Api.Controllers
         /// <param name="id">account id</param>
         /// <returns><seealso cref="IActionResult"/></returns> 
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AccountDTO))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var accountDTO = _service.GetAccountById(id).Result;
-            return accountDTO == null ? NotFound() : Ok(accountDTO);
+            var response = await _service.GetAccountById(id);
+            return response == null ? BadRequest() : Ok(response);
         }
         /// <summary>
         /// Find an account by passing the student id 
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns><seealso cref="IActionResult"/></returns>
-        [HttpGet("{student}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AccountDTO))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetStudentAccount(string studentId)
+        [HttpGet("{studentId}")]
+        public async Task<IActionResult> GetStudentAccount(string studentId)
         {
-            var accountDTO = _service.GetStudentAccount(studentId).Result;
-            return accountDTO == null ? NotFound("Account Does Not Exist") : Ok(accountDTO);
+            var response = await _service.GetStudentAccount(studentId);
+            return response == null ? BadRequest("Account Does Not Exist") : Ok(response);
         }
         /// <summary>
         /// Create a new account by passing the student id
@@ -63,38 +58,28 @@ namespace FinanceService.Api.Controllers
         /// <remarks>If the account already exists <seealso cref="StatusCodes.Status400BadRequest"/> is returned</remarks>
         /// <param name="studentId"></param>
         /// <returns><seealso cref="IActionResult"/></returns>
-        [HttpPost("{student}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult CreateAccount(string studentId)
+        [HttpPost("{studentid}")]
+        public async Task<IActionResult> CreateAccount(string studentid)
         {
             AccountDTO accountDTO = new AccountDTO
             {
-                StudentID = studentId,
+                StudentID = studentid,
                 HasOutstandingBalance = false,
             };
-            var result = _service.CreateAccount(accountDTO).Result;
-            return result == true ? Ok(result) : BadRequest();
 
+            var response = await _service.CreateAccount(accountDTO);
+            return response == true ? Ok(response) : BadRequest();
         }
         /// <summary>
-        /// Delete an account
+        /// Delete account by id
         /// </summary>
         /// <param name="id">account id</param>
         /// <returns><seealso cref="IActionResult"/></returns>
         [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var existingItem = _service.GetAccountById(id);
-            if (existingItem == null)
-            {
-                return NotFound("Account Does Not Exist");
-            }
-            var response = _service.DeleteAccount(id).Result;
-            return response == true ? Ok() : BadRequest();
+            var response = await _service.DeleteAccount(id);
+            return response == true ? Ok(response) : BadRequest();
         }
     }
 }

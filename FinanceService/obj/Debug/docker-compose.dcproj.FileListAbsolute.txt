@@ -53,7 +53,6 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\D
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\FinanceService.Infastructure.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\FinanceService.Application.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\Microsoft.EntityFrameworkCore.dll
@@ -86,3 +85,4 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\D
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\FinanceService.Domain.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\obj\Debug\docker-compose.dcproj.CopyComplete
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\Swashbuckle.AspNetCore.SwaggerUI.dll

@@ -32,7 +32,7 @@ namespace FinanceService.Application.Services
             var invoice = _mapper.Map<Invoice>(invoiceDTO);
             if (invoice != null)
             {
-                await _unitOfWork.Invoices.Create(invoice);
+                await _unitOfWork.Invoices.AddAsync(invoice);
                 var result = _unitOfWork.Save();
                 if (result > 0)
                     return true;
@@ -44,7 +44,7 @@ namespace FinanceService.Application.Services
 
         public async Task<bool> DeleteInvoice(int invoiceID)
         {
-            var invoice = await _unitOfWork.Invoices.Find(invoiceID);
+            var invoice = await _unitOfWork.Invoices.GetAsync(invoiceID);
             if (invoice != null)
             {
                 _unitOfWork.Invoices.Delete(invoice);
@@ -60,7 +60,7 @@ namespace FinanceService.Application.Services
 
         public async Task<IEnumerable<InvoiceDTO>> GetAllInvoices()
         {
-            var invoiceList = await _unitOfWork.Invoices.FindAll();
+            var invoiceList = await _unitOfWork.Invoices.GetAllAsync();
             var invoiceDTOList = new List<InvoiceDTO>();
             foreach (var invoice in invoiceList)
             {
@@ -71,7 +71,7 @@ namespace FinanceService.Application.Services
 
         public async Task<IEnumerable<InvoiceDTO>> GetAllInvoices(string studentID)
         {
-            var invoiceList = await _unitOfWork.Invoices.FindAllWhere(x => x.Account.StudentID == studentID);
+            var invoiceList = await _unitOfWork.Invoices.GetAllWhereAsync(x => x.Account.StudentID == studentID);
             var invoiceDTOList = new List<InvoiceDTO>();
             foreach (var invoice in invoiceList)
             {
@@ -82,7 +82,7 @@ namespace FinanceService.Application.Services
 
         public async Task<IEnumerable<InvoiceDTO>> GetAllInvoices(int accountID)
         {
-            var invoiceList = await _unitOfWork.Invoices.FindAllWhere(x => x.Account.ID == accountID);
+            var invoiceList = await _unitOfWork.Invoices.GetAllWhereAsync(x => x.Account.ID == accountID);
             var invoiceDTOList = new List<InvoiceDTO>();
             foreach (var invoice in invoiceList)
             {
@@ -93,7 +93,7 @@ namespace FinanceService.Application.Services
 
         public async Task<IEnumerable<InvoiceDTO>> GetAllOutstandingInvoices()
         {
-            var invoiceList = await _unitOfWork.Invoices.FindAllWhere(x => x.Status == InvoiceStatus.Outstanding);
+            var invoiceList = await _unitOfWork.Invoices.GetAllWhereAsync(x => x.Status == InvoiceStatus.Outstanding);
             var invoiceDTOList = new List<InvoiceDTO>();
             foreach (var invoice in invoiceList)
             {
@@ -112,7 +112,7 @@ namespace FinanceService.Application.Services
         }
         public async Task<IEnumerable<InvoiceDTO>> GetAllOverdueInvoices()
         {
-            var invoiceList = await _unitOfWork.Invoices.FindAllWhere(x => x.DueDate < DateTime.Now);
+            var invoiceList = await _unitOfWork.Invoices.GetAllWhereAsync(x => x.DueDate < DateTime.Now);
             var invoiceDTOList = new List<InvoiceDTO>();
             foreach (var invoice in invoiceList)
             {
@@ -128,13 +128,13 @@ namespace FinanceService.Application.Services
 
         public async Task<InvoiceDTO> GetInvoiceByReference(string reference)
         {
-            var invoiceDTO = await _unitOfWork.Invoices.FindWhere(x => x.Reference == reference);
+            var invoiceDTO = await _unitOfWork.Invoices.GetByAsync(x => x.Reference == reference);
             return _mapper.Map<InvoiceDTO>(invoiceDTO);
         }    
 
         public async Task<bool> UpdateInvoice(InvoiceDTO invoiceDTO)
         {
-            var check = await _unitOfWork.Invoices.Find(invoiceDTO.ID);
+            var check = await _unitOfWork.Invoices.GetAsync(invoiceDTO.ID);
             if (check != null)
             {
                 var invoice = _mapper.Map<Invoice>(invoiceDTO);
@@ -151,7 +151,7 @@ namespace FinanceService.Application.Services
         private async Task<bool> CheckStudentAccountExists(string studentID)
         {
 
-            var account = await _unitOfWork.Accounts.FindWhere(x => x.StudentID == studentID);
+            var account = await _unitOfWork.Accounts.GetByAsync(x => x.StudentID == studentID);
             return account != null ? true : false ;
         }
     }

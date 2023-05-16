@@ -178,7 +178,7 @@ namespace FinanceMicroservice.UnitTests
             Assert.Equal(200, actionResult.StatusCode);
         }
         [Fact]
-        public void CreateAccount_False_ReturnsOkResult()
+        public void CreateAccount_False_ReturnsBadRequestResult()
         {
             //arrange
             AccountDTO accountDTO = new AccountDTO

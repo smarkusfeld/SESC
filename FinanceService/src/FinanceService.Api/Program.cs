@@ -12,6 +12,7 @@ builder.Services.AddDIServices(builder.Configuration);
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 //builder.Services.AddScoped<IPaymentService, PaymentService>();
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -27,6 +28,7 @@ builder.Services.AddSwaggerGen(options =>
     //var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     //options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
+
 
 
 var app = builder.Build();
@@ -55,10 +57,10 @@ app.UseSwaggerUI(options =>
     options.RoutePrefix = string.Empty;
 });
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 //app.UseAuthorization();
 
-//app.MapControllers();
+app.MapControllers();
 
 app.Run();

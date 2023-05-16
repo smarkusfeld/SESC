@@ -13,14 +13,7 @@ namespace FinanceService.Application.Interfaces
     public interface IAccountService
     {
 
-        /// <summary>
-        /// This method creates a new account using the student id
-        /// </summary>
-        /// <param name="studentID"></param>
-        /// <returns>
-        /// A task that represents the asynchronous operation.
-        /// The task result contains a boolean value
-        /// </returns>
+        
         Task<bool> CreateAccount(AccountDTO AccountDTO);
         /// <summary>
         /// This method returns all accounts  

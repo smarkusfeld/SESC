@@ -35,7 +35,7 @@ namespace FinanceMicroservice.UnitTests
                 HasOutstandingBalance = false,
             };
 
-            unitOfWork.Setup(x => x.Accounts.Find(1))
+            unitOfWork.Setup(x => x.Accounts.GetAsync(1))
                 .ReturnsAsync(account);
             var accountService = new AccountService(unitOfWork.Object, mapper);
             //act
@@ -54,7 +54,7 @@ namespace FinanceMicroservice.UnitTests
             //arrange
             var accounts = GetAccountList();
 
-            unitOfWork.Setup(x => x.Accounts.FindAll())
+            unitOfWork.Setup(x => x.Accounts.GetAllAsync())
                 .ReturnsAsync(accounts);
             var accountService = new AccountService(unitOfWork.Object, mapper);
             //act

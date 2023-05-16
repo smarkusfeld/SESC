@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections;
 using AutoMapper.Execution;
 using FinanceService.Application.Services;
+using AutoMapper.Internal;
 
 
 namespace FinanceService.UnitTests
@@ -112,11 +113,73 @@ namespace FinanceService.UnitTests
             Assert.Equal(200, actionResult.StatusCode);
         }
         [Fact]
-        public void Get_TaskResultReturnsInvoiceDTO() { }
+        public void Get_TaskResultReturnsInvoiceDTO()
+        { //arrange
+            InvoiceDTO invoiceDTO = new InvoiceDTO
+            {
+                ID = 1,
+                StudentID = "c1234567",
+                Reference = "inv1234567",
+                InvoiceDate = new DateTime(2022, 09, 01),
+                DueDate = new DateTime(2023, 01, 01),
+                Total = 5000,
+                Balance = 5000,
+                Type = Domain.Entities.InvoiceType.Tutition,
+                Status = Domain.Entities.InvoiceStatus.Outstanding
+            };
+
+            invoiceService.Setup(x => x.GetInvoiceById(1))
+                .ReturnsAsync(invoiceDTO);
+            var invoiceController = new InvoiceController(invoiceService.Object);
+            //act
+            var result = invoiceController.GetInvoice(1).Result;
+            var actionResult = result as ObjectResult;
+
+            //assert
+            Assert.IsType<InvoiceDTO>(actionResult.Value);
+            Assert.Equal(invoiceDTO, actionResult.Value);
+        }
         [Fact]
-        public void Get_ReturnsBadRequestResult() { }
+        public void Get_ReturnsBadRequestResult()
+        {  //arrange
+            invoiceService.Setup(x => x.GetInvoiceById(1))
+                .Returns(Task.FromResult<InvoiceDTO>(null));
+            var invoiceController = new InvoiceController(invoiceService.Object);
+            //act
+            var result = invoiceController.GetInvoice(1).Result;
+            var actionResult = result as BadRequestResult;
+
+            //assert
+            Assert.NotNull(result);
+            Assert.IsType<BadRequestResult>(result);
+        }
         [Fact]
-        public void CreateInvoice_ReturnsOkResult() { }
+        public void CreateInvoice_ReturnsBadRequest()
+        { //arrange
+            InvoiceDTO invoiceDTO = new InvoiceDTO
+            {
+                ID = 1,
+                StudentID = "c1234567",
+                Reference = "inv1234567",
+                InvoiceDate = new DateTime(2022, 09, 01),
+                DueDate = new DateTime(2023, 01, 01),
+                Total = 5000,
+                Balance = 5000,
+                Type = Domain.Entities.InvoiceType.Tutition,
+                Status = Domain.Entities.InvoiceStatus.Outstanding
+            };
+
+            invoiceService.Setup(x => x.CreateInvoice(invoiceDTO))
+                .ReturnsAsync(false);
+            var invoiceController = new InvoiceController(invoiceService.Object);
+            //act
+            var result = invoiceController.CreateInvoice(invoiceDTO);
+            var actionResult = result as BadRequestObjectResult;
+
+            //assert
+            Assert.NotNull(result);
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
         [Fact]
         public void CreateInvoice_ReturnsBadModelState() { }
     

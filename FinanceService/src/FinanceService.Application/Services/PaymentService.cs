@@ -24,7 +24,7 @@ namespace FinanceService.Application.Services
         
         public async Task<bool> CancelPayment(PaymentDTO paymentDTO)
         {
-            var check = await _unitOfWork.Payments.Find(paymentDTO.ID);
+            var check = await _unitOfWork.Payments.GetAsync(paymentDTO.ID);
             if (check != null)
             {
 
@@ -45,7 +45,7 @@ namespace FinanceService.Application.Services
         {
             paymentDTO.Status = PaymentStatus.Recieved;
             var payment = _mapper.Map<Payment>(paymentDTO);
-            await _unitOfWork.Payments.Create(payment);
+            await _unitOfWork.Payments.AddAsync(payment);
             var result = _unitOfWork.Save();
 
             if (result > 0)
@@ -56,7 +56,7 @@ namespace FinanceService.Application.Services
 
         public async Task<IEnumerable<PaymentDTO>> PaymentsToBeProcessed()
         {
-            var paymentList = await _unitOfWork.Payments.FindAllWhere(x => x.Status == PaymentStatus.Recieved);
+            var paymentList = await _unitOfWork.Payments.GetAllWhereAsync(x => x.Status == PaymentStatus.Recieved);
             var paymentDTOList = new List<PaymentDTO>();
             foreach (var payment in paymentList)
             {
@@ -67,7 +67,7 @@ namespace FinanceService.Application.Services
 
         public async  Task<bool> ProcessPayment(PaymentDTO paymentDTO)
         {
-            var check = await _unitOfWork.Payments.Find(paymentDTO.ID);
+            var check = await _unitOfWork.Payments.GetAsync(paymentDTO.ID);
             if (check != null)
             {
 
@@ -86,12 +86,12 @@ namespace FinanceService.Application.Services
 
         public async Task<PaymentDTO> FindPaymentByReference(string reference)
         {
-            var paymentDTO = await _unitOfWork.Payments.FindWhere(x => x.PaymentReference == reference);
+            var paymentDTO = await _unitOfWork.Payments.GetByAsync(x => x.PaymentReference == reference);
             return _mapper.Map<PaymentDTO>(paymentDTO);
         }
         public async Task<int> FindInvoiceID(string reference)
         {
-            var all = await _unitOfWork.Invoices.FindWhere(x => x.Reference == reference);
+            var all = await _unitOfWork.Invoices.GetByAsync(x => x.Reference == reference);
             if (all != null)
             {
                 return all.ID;
