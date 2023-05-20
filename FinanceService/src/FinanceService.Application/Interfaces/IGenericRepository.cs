@@ -19,11 +19,8 @@ namespace FinanceService.Application.Interfaces
         
         Task<T> GetAsync(int id);
         Task<T> GetByAsync(Expression<Func<T, bool>> predicate);  
-        Task<IEnumerable<T>> GetAllAsync();       
-        Task<IEnumerable<T>> GetAllOrderedAsync(
-            Expression<Func<T, bool>>? filter = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
-            params Expression<Func<T, object>>[] includes);      
+        Task<IEnumerable<T>> GetAllAsync();    
+    
         Task<IEnumerable<T>> GetAllWhereAsync(Expression<Func<T, bool>> predicate);
         Task<T> AddAsync(T entity);
         void Delete(T entity);

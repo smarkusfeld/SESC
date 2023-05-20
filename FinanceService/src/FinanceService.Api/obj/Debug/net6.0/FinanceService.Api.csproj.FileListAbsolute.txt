@@ -214,3 +214,4 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\src\F
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.genruntimeconfig.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\src\FinanceService.Api\obj\Debug\net6.0\ref\FinanceService.Api.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\src\FinanceService.Api\bin\Debug\net6.0\NLog.dll

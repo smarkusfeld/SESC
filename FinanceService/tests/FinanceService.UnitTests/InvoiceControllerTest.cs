@@ -8,7 +8,7 @@ using System.Collections;
 using AutoMapper.Execution;
 using FinanceService.Application.Services;
 using AutoMapper.Internal;
-
+using Microsoft.Extensions.Logging;
 
 namespace FinanceService.UnitTests
 {
@@ -16,21 +16,24 @@ namespace FinanceService.UnitTests
     {
         private readonly Mock<IInvoiceService> invoiceService;
 
+        private readonly Mock<ILogger<InvoiceController>> logger;
+
         public InvoiceControllerTest()
         {
             invoiceService = new Mock<IInvoiceService>();
+            logger = new Mock<ILogger<InvoiceController>>();
         }
 
         [Fact]
-        public void GetAll_ReturnsOkResult() 
+        public async Task GetAll_ReturnsOkResult() 
         {
             //arrange
             var invoiceDTOs = GetInvoiceDTOList();
             invoiceService.Setup(x => x.GetAllInvoices())
                 .ReturnsAsync(invoiceDTOs);
-            var invoiceController = new InvoiceController(invoiceService.Object);
+            var invoiceController = new InvoiceController(invoiceService.Object, logger.Object);
             //act
-            var result = invoiceController.GetAll();
+            var result = await invoiceController.GetAll();
             var actionResult = result as OkObjectResult;
 
             //assert
@@ -38,15 +41,15 @@ namespace FinanceService.UnitTests
             Assert.Equal(200, actionResult.StatusCode);
         }
         [Fact]
-        public void GetAll_TaskResultReturnsInvoiceDTOList()
+        public async Task GetAll_TaskResultReturnsInvoiceDTOList()
         {
             //arrange
             var invoiceDTOs = GetInvoiceDTOList();
             invoiceService.Setup(x => x.GetAllInvoices())
                 .ReturnsAsync(invoiceDTOs);
-            var invoiceController = new InvoiceController(invoiceService.Object);
+            var invoiceController = new InvoiceController(invoiceService.Object, logger.Object);
             //act
-            var result = invoiceController.GetAll();
+            var result = await invoiceController.GetAll();
             var actionResult = result as OkObjectResult;
 
             //assert
@@ -54,15 +57,15 @@ namespace FinanceService.UnitTests
             Assert.Equal(invoiceDTOs, actionResult.Value);
         }
         [Fact]
-        public void GetAll_ReturnsOkResultNoRecords() 
+        public async Task GetAll_ReturnsOkResultNoRecords() 
         {
             //arrange
             IEnumerable<InvoiceDTO> invoiceDTOs = new List<InvoiceDTO>();
             invoiceService.Setup(x => x.GetAllInvoices())
                 .ReturnsAsync(invoiceDTOs);
-            var invoiceController = new InvoiceController(invoiceService.Object);
+            var invoiceController = new InvoiceController(invoiceService.Object, logger.Object);
             //act
-            var result = invoiceController.GetAll();
+            var result = await invoiceController.GetAll();
             var actionResult = result as OkObjectResult;
 
             //assert
@@ -70,15 +73,15 @@ namespace FinanceService.UnitTests
             Assert.Equal(200, actionResult.StatusCode);
         }
         [Fact]
-        public void GetAll_TaskNoRecords()
+        public async Task GetAll_TaskNoRecords()
         {
             //arrange
             IEnumerable<InvoiceDTO> invoiceDTOs = new List<InvoiceDTO>();
             invoiceService.Setup(x => x.GetAllInvoices())
                 .ReturnsAsync(invoiceDTOs);
-            var invoiceController = new InvoiceController(invoiceService.Object);
+            var invoiceController = new InvoiceController(invoiceService.Object, logger.Object);
             //act
-            var result = invoiceController.GetAll();
+            var result = await invoiceController.GetAll();
             var actionResult = result as OkObjectResult;
 
             //assert
@@ -86,7 +89,7 @@ namespace FinanceService.UnitTests
             Assert.Equal(invoiceDTOs, actionResult.Value);
         }
         [Fact]
-        public void Get_ReturnsOkResult() 
+        public async Task Get_ReturnsOkResult() 
         {
             //arrange
             InvoiceDTO invoiceDTO = new InvoiceDTO
@@ -104,16 +107,16 @@ namespace FinanceService.UnitTests
             };
             invoiceService.Setup(x => x.GetInvoiceById(1))
                 .ReturnsAsync(invoiceDTO);
-            var invoiceController = new InvoiceController(invoiceService.Object);
+            var invoiceController = new InvoiceController(invoiceService.Object, logger.Object);
             //act
-            var result = invoiceController.GetInvoice(1).Result;
+            var result = await invoiceController.Get(1);
             var actionResult = result as OkObjectResult;
             //assert
             Assert.NotNull(actionResult);
             Assert.Equal(200, actionResult.StatusCode);
         }
         [Fact]
-        public void Get_TaskResultReturnsInvoiceDTO()
+        public async Task Get_TaskResultReturnsInvoiceDTO()
         { //arrange
             InvoiceDTO invoiceDTO = new InvoiceDTO
             {
@@ -130,9 +133,9 @@ namespace FinanceService.UnitTests
 
             invoiceService.Setup(x => x.GetInvoiceById(1))
                 .ReturnsAsync(invoiceDTO);
-            var invoiceController = new InvoiceController(invoiceService.Object);
+            var invoiceController = new InvoiceController(invoiceService.Object, logger.Object);
             //act
-            var result = invoiceController.GetInvoice(1).Result;
+            var result = await invoiceController.Get(1);
             var actionResult = result as ObjectResult;
 
             //assert
@@ -140,13 +143,13 @@ namespace FinanceService.UnitTests
             Assert.Equal(invoiceDTO, actionResult.Value);
         }
         [Fact]
-        public void Get_ReturnsBadRequestResult()
+        public async Task Get_ReturnsBadRequestResult()
         {  //arrange
             invoiceService.Setup(x => x.GetInvoiceById(1))
                 .Returns(Task.FromResult<InvoiceDTO>(null));
-            var invoiceController = new InvoiceController(invoiceService.Object);
+            var invoiceController = new InvoiceController(invoiceService.Object, logger.Object);
             //act
-            var result = invoiceController.GetInvoice(1).Result;
+            var result = await invoiceController.Get(1);
             var actionResult = result as BadRequestResult;
 
             //assert
@@ -154,7 +157,7 @@ namespace FinanceService.UnitTests
             Assert.IsType<BadRequestResult>(result);
         }
         [Fact]
-        public void CreateInvoice_ReturnsBadRequest()
+        public async Task CreateInvoice_ReturnsBadRequest()
         { //arrange
             InvoiceDTO invoiceDTO = new InvoiceDTO
             {
@@ -171,9 +174,9 @@ namespace FinanceService.UnitTests
 
             invoiceService.Setup(x => x.CreateInvoice(invoiceDTO))
                 .ReturnsAsync(false);
-            var invoiceController = new InvoiceController(invoiceService.Object);
+            var invoiceController = new InvoiceController(invoiceService.Object, logger.Object);
             //act
-            var result = invoiceController.CreateInvoice(invoiceDTO);
+            var result = await invoiceController.Create(invoiceDTO);
             var actionResult = result as BadRequestObjectResult;
 
             //assert
@@ -181,7 +184,7 @@ namespace FinanceService.UnitTests
             Assert.IsType<BadRequestObjectResult>(result);
         }
         [Fact]
-        public void CreateInvoice_ReturnsBadModelState() { }
+        public async Task CreateInvoice_ReturnsBadModelState() { }
     
     private IEnumerable<InvoiceDTO> GetInvoiceDTOList()
     {

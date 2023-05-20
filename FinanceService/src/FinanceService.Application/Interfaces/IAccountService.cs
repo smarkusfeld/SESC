@@ -14,7 +14,7 @@ namespace FinanceService.Application.Interfaces
     {
 
         
-        Task<bool> CreateAccount(AccountDTO AccountDTO);
+        Task<bool> CreateAccount(string studentID);
         /// <summary>
         /// This method returns all accounts  
         /// </summary>
@@ -73,7 +73,7 @@ namespace FinanceService.Application.Interfaces
 
         //private populate account balance
 
-        
+        Task<bool> StudentAccountExists(string studentID);
 
     }
 }

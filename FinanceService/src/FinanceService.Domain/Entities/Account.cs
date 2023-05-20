@@ -12,11 +12,10 @@ namespace FinanceService.Domain.Entities
     public class Account : IEntity
     {
     
-        public string StudentID { get; set; }
-
+        public string StudentID { get; set; }      
         public bool HasOutstandingBalance { get; set; }
 
-        public ICollection<Invoice>? Invoices { get; set; }
-        public ICollection<Payment>? Payments { get; set; }
+        public ICollection<Invoice> Invoices { get; } = new List <Invoice>();
+        public ICollection<Payment> Payments { get; } = new List<Payment>();
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NqIyL3LGsllkvjLTWrOpi/ylqMy7yiqpNSzbHwBXu+tYQRWKArmJrtrRxFmOMar+bckdv/56WEsPUU7bU4wAow==",
+  "dgSpecHash": "D6uRSmIFpvjoniAiSgm8FD76CUWLGykWnl2xPdC9bxoN/lqK3tQuFqyA1pTgHgpzmF1fRRPYUPAI75YogLJ4fA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\src\\FinanceService.Api\\FinanceService.Api.csproj",
   "expectedPackageFiles": [
@@ -53,6 +53,7 @@
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\mysql.data\\8.0.33\\mysql.data.8.0.33.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\mysql.entityframeworkcore\\7.0.2\\mysql.entityframeworkcore.7.0.2.nupkg.sha512",
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\nlog\\5.1.4\\nlog.5.1.4.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",

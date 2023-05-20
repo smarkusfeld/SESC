@@ -953,6 +953,14 @@
           }
         }
       },
+      "NLog/5.1.4": {
+        "runtime": {
+          "lib/netstandard2.0/NLog.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.1.4.1703"
+          }
+        }
+      },
       "NuGet.Frameworks/5.11.0": {
         "runtime": {
           "lib/netstandard2.0/NuGet.Frameworks.dll": {
@@ -1873,6 +1881,7 @@
           "Microsoft.EntityFrameworkCore": "7.0.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.5",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.17.2",
+          "NLog": "5.1.4",
           "Swashbuckle.AspNetCore": "6.2.3"
         },
         "runtime": {
@@ -2326,6 +2335,13 @@
       "sha512": "sha512-U82mHQSKaIk+lpSVCbWYKNavmNH1i5xrExDEquU1i6I5pV6UMOqRnJRSlKO3cMPfcpp0RgDY+8jUXHdQ4IfXvw==",
       "path": "newtonsoft.json/9.0.1",
       "hashPath": "newtonsoft.json.9.0.1.nupkg.sha512"
+    },
+    "NLog/5.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ki0XThITEd//RrQ21yi1HB/Uid4pzTRE5YLvEpk91d0vDXp3OPtVCvWgrYsqqcpTwiipFSOLSsU1RblaexrFiA==",
+      "path": "nlog/5.1.4",
+      "hashPath": "nlog.5.1.4.nupkg.sha512"
     },
     "NuGet.Frameworks/5.11.0": {
       "type": "package",

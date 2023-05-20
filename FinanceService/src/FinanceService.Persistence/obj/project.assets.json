@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\src\\FinanceService.Persistence\\FinanceService.Persistence.csproj",
-      "projectName": "FinanceService.Persistence",
-      "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\src\\FinanceService.Persistence\\FinanceService.Persistence.csproj",
+      "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\src\\FinanceService.Persistence\\FinanceService.Contracts.csproj",
+      "projectName": "FinanceService.Contracts",
+      "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\src\\FinanceService.Persistence\\FinanceService.Contracts.csproj",
       "packagesPath": "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\src\\FinanceService.Persistence\\obj\\",
       "projectStyle": "PackageReference",

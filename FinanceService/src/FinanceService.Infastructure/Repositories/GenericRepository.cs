@@ -39,7 +39,7 @@ namespace FinanceService.Infastructure.Repositories
         /// </summary>
         /// <param name="predicate">Where clause.<example><code>x => x.ID == id</code></example></param>
         ///<returns>The entity object if found, otherwise null</returns>
-        public async Task<T> GetByAsync(Expression<Func<T, bool>> predicate) => await _set.SingleOrDefaultAsync(T => T.ID.Equals(predicate));
+        public async Task<T> GetByAsync(Expression<Func<T, bool>> predicate) => await _set.SingleOrDefaultAsync(predicate);
 
         /// <summary>
         /// Retrives a collection of all entities
@@ -50,33 +50,35 @@ namespace FinanceService.Infastructure.Repositories
         /// <summary>
         /// Retrieves a filtered and orderd collection of entities 
         /// </summary>
-        /// <param name="filter">Condition the entities must fullfill</param>
+        /// <param name="predicate">Condition the entities must fullfill</param>
         /// <param name="orderBy">Collection order</param>
         /// <param name="includes">Any additional properies to be included</param>
         /// <returns>An ordered collection of entities</returns>
-        public async Task<IEnumerable<T>> GetAllOrderedAsync(Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, params Expression<Func<T, object>>[] includes)
-        {
+        //public async Task<IEnumerable<T>> GetAllOrderedAsync(Expression<Func<T, bool>>? predicate = null, Func<IQueryable<T>, 
+        //                                                        IOrderedQueryable<T>>? orderBy = null, 
+        //                                                        params Expression<Func<T, object>>[] includes)
+        //{
            
-            IQueryable<T> query = _context.Set<T>();
-            foreach (Expression<Func<T, object>> include in includes)
-                query = query.Include(include);
-            if (filter != null)
-            {
+        //    IQueryable<T> query = _context.Set<T>();
+        //    foreach (Expression<Func<T, object>> include in includes)
+        //        query = query.Include(include);
+        //    if (predicate != null)
+        //    {
               
-                query = query.Where(filter);
-            }               
+        //        query = query.Where(predicate);
+        //    }               
 
-            if (orderBy != null)
-            {
-                await orderBy(query).ToListAsync();
-            }
-            else
-            {
-                await query.ToListAsync();
-            }
-            return null;
+        //    if (orderBy != null)
+        //    {
+        //        await orderBy(query).ToListAsync();
+        //    }
+        //    else
+        //    {
+        //        await query.ToListAsync();
+        //    }
+        //    return null;
             
-        }
+        //}
         
 
         

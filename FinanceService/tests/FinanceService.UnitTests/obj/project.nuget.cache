@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jpEuziU7+rJe6UxezzzUEKUg6k5yF1pm+Qz+bB4woBxutQvyGT/N29sW3WCEGBA29o85/P4JVKRQdduJQA8mrA==",
+  "dgSpecHash": "Hw6f3cfbsT0WI8pv7j2GfWSG9zgzPvov4Z6Qg7CNKHUnuEruaywe4Gw+Z2JldytxIpuIaGaDGtJkZEQsao6Jpg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\tests\\FinanceService.UnitTests\\FinanceService.UnitTests.csproj",
   "expectedPackageFiles": [
@@ -63,6 +63,7 @@
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\mysql.entityframeworkcore\\7.0.2\\mysql.entityframeworkcore.7.0.2.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\nlog\\5.1.4\\nlog.5.1.4.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\nuget.frameworks\\5.11.0\\nuget.frameworks.5.11.0.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

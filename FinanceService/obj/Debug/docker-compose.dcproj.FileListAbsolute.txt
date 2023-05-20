@@ -60,7 +60,6 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\D
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\Microsoft.OpenApi.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\FinanceService.Domain.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\MySql.EntityFrameworkCore.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\Microsoft.Extensions.Options.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\bin\Debug\System.Text.Json.dll

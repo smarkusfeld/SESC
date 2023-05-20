@@ -1,52 +1,65 @@
-﻿using FinanceService.Application.DTOs;
+﻿using Azure;
+using FinanceService.Application.DTOs;
 using FinanceService.Application.Interfaces;
 using FinanceService.Application.Services;
 using FinanceService.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices;
 
 namespace FinanceService.Api.Controllers
 {
+    /// <summary>
+    /// Controller for all invoice logic
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class InvoiceController : Controller
     {
         private readonly IInvoiceService _service;
-        public InvoiceController(IInvoiceService service)
+
+        private readonly ILogger<InvoiceController> _logger;
+        public InvoiceController(IInvoiceService service, ILogger<InvoiceController> logger)
         {
             _service = service;
+            _logger = logger;
         }
         /// <summary>
-        /// Get all accounts
+        /// Get all invoices
         /// </summary>
-        /// <returns><seealso cref="IActionResult"/></returns>
+        /// <returns>A collection of invoices or bad request response</returns>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<AccountDTO>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var invoiceDTOList = _service.GetAllInvoices().Result;
-            return invoiceDTOList == null ? BadRequest() : Ok(invoiceDTOList);
-            
+            try
+            {
+                var response = await _service.GetAllInvoices();
+                int count = response.Count();
+                return count == 0 ? BadRequest("No Records Found") : Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Something went wrong inside the GetAll action: " + ex);
+                return StatusCode(500, "Internal server error");
+            }
+
         }
         /// <summary>
         /// Find an invoice by passing the account id
         /// </summary>
         /// <param name="id">account id</param>
-        /// <returns><seealso cref="IActionResult"/></returns> 
+        /// <returns>Invoice Record</returns> 
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(InvoiceDTO))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetInvoice(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var invoiceDTO = await _service.GetInvoiceById(id);
-
-            if (invoiceDTO != null)
+            try
             {
-                return Ok(invoiceDTO);
+                var response = await _service.GetInvoiceById(id);
+                return response == null ? NotFound() : Ok(response);
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest();
+                _logger.LogError("Something went wrong inside the Get action: " + ex);
+                return StatusCode(500, "Internal server error");
             }
         }
         /// <summary>
@@ -55,36 +68,64 @@ namespace FinanceService.Api.Controllers
         /// <param name="invoiceDTO"></param>
         /// <returns><seealso cref="IActionResult"/></returns>
         [HttpPost()]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(InvoiceDTO))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult CreateInvoice([FromBody] InvoiceDTO invoiceDTO)
+        public async Task<IActionResult> Create([FromBody] InvoiceDTO invoiceDTO)
         {
             //add valiation logic
-            if (!ModelState.IsValid)
+            if (invoiceDTO == null) { return BadRequest("Invoice object is null"); }
+            if(!ModelState.IsValid) { return BadRequest("Invalid Invoice Object"); }
+            var check = await _service.ReferenceCheck(invoiceDTO.Reference);
+            if(check) { return BadRequest("Invoice Reference Must Be Unique"); }
+            try
             {
-                _service.CreateInvoice(invoiceDTO);
-                return Ok(invoiceDTO);
-
+                var response = await _service.CreateInvoice(invoiceDTO);
+                return response == true
+                   ? Ok(invoiceDTO)
+                   : BadRequest();
             }
-            return BadRequest(ModelState);
+            catch (Exception ex)
+            {
+                _logger.LogError("Something went wrong inside the CreateInvoice action: " + ex);
+                return StatusCode(500, "Internal server error");
+            }
+           
         }
         /// <summary>
         /// Cancel an invoice 
         /// </summary>
         /// <param name="reference"></param>
         /// <returns><seealso cref="IActionResult"/></returns>
-        [HttpPut("[action]/{reference}")]
-        public IActionResult Cancel(string reference)
+        [HttpPut("cancel/{reference}")]
+        public async Task<IActionResult> Cancel(string reference)
         {
-            var invoice = _service.GetInvoiceByReference(reference).Result;
-            if (invoice != null && invoice.Status == InvoiceStatus.Outstanding)
+            try
             {
-                invoice.Status = InvoiceStatus.Cancelled;
-                var result = _service.UpdateInvoice(invoice).Result;
-                return result == true ? Ok() : BadRequest();
+                var invoice = await _service.GetInvoiceByReference(reference);
+                if (invoice == null)
+                {
+                    return BadRequest("Invoice Not Found");
+                }
+                else
+                {
+                    try
+                    {
+                        var result = await _service.CancelInvoice(invoice);
+                        return result == true ? Ok() : BadRequest();
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError("Something went wrong inside the Cancel invoice action:  " + ex);
+                        return StatusCode(500, "Internal server error");
+                    }
+                }
             }
-            return BadRequest();
+            catch (Exception ex) 
+            {
+                _logger.LogError("Something went wrong inside the GetInvoiceByReference action: "  + ex);
+                return StatusCode(500, "Internal server error");
+            }
         }
-        
+
     }
+        
 }
+

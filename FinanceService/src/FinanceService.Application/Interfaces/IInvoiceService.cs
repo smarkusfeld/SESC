@@ -12,8 +12,11 @@ namespace FinanceService.Application.Interfaces
     ///</summary>
     public interface IInvoiceService
     {
-        // get invoice by id
-        //get all invoices
+        //view invoice by invoice id
+        //view all invlices
+        //create invoice
+        //pay invoice
+        //cancel invoice
 
         /// <summary>
         /// This method creates a new invoice
@@ -110,16 +113,12 @@ namespace FinanceService.Application.Interfaces
         /// A task that represents the asynchronous operation.
         /// The task result contains a boolean value
         /// </returns>
-        Task<bool> UpdateInvoice(InvoiceDTO invoiceDTO);
-        /// <summary>
-        /// Method to delete an invoice
-        /// </summary>
-        /// <param name="invoiceID"></param>
-        /// <returns>
-        /// A task that represents the asynchronous operation.
-        /// The task result contains a boolean value
-        /// </returns>
+    
+
+        Task<bool> CancelInvoice(InvoiceDTO invoiceDTO);
         Task<bool> DeleteInvoice(int invoiceID);
+
+        Task<bool>ReferenceCheck(string reference);
         
 
 

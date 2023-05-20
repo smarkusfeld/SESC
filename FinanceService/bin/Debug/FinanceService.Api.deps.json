@@ -13,6 +13,7 @@
           "Microsoft.EntityFrameworkCore": "7.0.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.5",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.17.2",
+          "NLog": "5.1.4",
           "Swashbuckle.AspNetCore": "6.2.3"
         },
         "runtime": {
@@ -579,6 +580,14 @@
           "lib/net6.0/MySql.EntityFrameworkCore.dll": {
             "assemblyVersion": "7.0.2.0",
             "fileVersion": "7.0.2.0"
+          }
+        }
+      },
+      "NLog/5.1.4": {
+        "runtime": {
+          "lib/netstandard2.0/NLog.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.1.4.1703"
           }
         }
       },
@@ -1271,6 +1280,13 @@
       "sha512": "sha512-ySIsMm7VqZTc685eGT9FAMkS73qbRwx80L/3/cAsnfTOqRNQc+pBj8OO9k275wBfcE2DRJTgPC5LJcPF/58KMw==",
       "path": "mysql.entityframeworkcore/7.0.2",
       "hashPath": "mysql.entityframeworkcore.7.0.2.nupkg.sha512"
+    },
+    "NLog/5.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ki0XThITEd//RrQ21yi1HB/Uid4pzTRE5YLvEpk91d0vDXp3OPtVCvWgrYsqqcpTwiipFSOLSsU1RblaexrFiA==",
+      "path": "nlog/5.1.4",
+      "hashPath": "nlog.5.1.4.nupkg.sha512"
     },
     "Portable.BouncyCastle/1.9.0": {
       "type": "package",
