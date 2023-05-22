@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\LibraryService.Api",
+    "\\LibraryService.Application",
+    "\\LibraryService.Infastructure"
+  ],
+  "SelectedNode": "\\LibraryService.Api\\LibraryService.Api.csproj",
+  "PreviewInSolutionExplorer": false
+}
