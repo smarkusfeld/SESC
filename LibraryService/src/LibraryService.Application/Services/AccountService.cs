@@ -15,7 +15,7 @@ namespace LibraryService.Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<string> Register(AccountDTO AccountDTO)
+        public Task<string> Register(string studentid)
         {
             throw new NotImplementedException();
         }
