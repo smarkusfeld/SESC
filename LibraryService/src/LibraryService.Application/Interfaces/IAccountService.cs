@@ -15,7 +15,7 @@ namespace LibraryService.Application.Interfaces
         /// <summary>
         /// Method to register new student account
         /// </summary>
-        Task<string> Register(AccountDTO AccountDTO);
+        Task<string> Register(string studentID);
         /// <summary>
         /// Method to register new admin account
         /// </summary>
