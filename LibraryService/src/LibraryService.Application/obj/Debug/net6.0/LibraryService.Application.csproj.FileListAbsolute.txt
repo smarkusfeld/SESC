@@ -1,0 +1,15 @@
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Application\bin\Debug\net6.0\LibraryService.Application.deps.json
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Application\bin\Debug\net6.0\LibraryService.Application.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Application\bin\Debug\net6.0\LibraryService.Application.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Application\bin\Debug\net6.0\LibraryService.Domain.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Application\bin\Debug\net6.0\LibraryService.Domain.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Application\obj\Debug\net6.0\LibraryService.Application.csproj.AssemblyReference.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Application\obj\Debug\net6.0\LibraryService.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Application\obj\Debug\net6.0\LibraryService.Application.AssemblyInfoInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Application\obj\Debug\net6.0\LibraryService.Application.AssemblyInfo.cs
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Application\obj\Debug\net6.0\LibraryService.Application.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Application\obj\Debug\net6.0\LibraryService.Application.csproj.CopyComplete
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Application\obj\Debug\net6.0\LibraryService.Application.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Application\obj\Debug\net6.0\refint\LibraryService.Application.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Application\obj\Debug\net6.0\LibraryService.Application.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Application\obj\Debug\net6.0\ref\LibraryService.Application.dll

@@ -11,5 +11,7 @@ namespace LibraryService.Domain.Entities
     [Table("BookItems")]
     public class BookItem : IEntity
     {
+        public Book Book { get; set; }
+        public ICollection<Loan> Loans { get; set; } 
     }
 }
