@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "LibraryService.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/LibraryService.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LibraryService.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "LibraryService.Domain/1.0.0": {
+      "type": "project",
+      "path": "../LibraryService.Domain/LibraryService.Domain.csproj",
+      "msbuildProject": "../LibraryService.Domain/LibraryService.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "LibraryService.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\": {},
@@ -39,7 +58,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\LibraryService\\src\\LibraryService.Domain\\LibraryService.Domain.csproj": {
+              "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\LibraryService\\src\\LibraryService.Domain\\LibraryService.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

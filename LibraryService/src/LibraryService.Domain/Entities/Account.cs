@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinanceService.Domain.Entities
+namespace LibraryService.Domain.Entities
 {
     [Table("Accounts")]
     public class Account : IEntity
