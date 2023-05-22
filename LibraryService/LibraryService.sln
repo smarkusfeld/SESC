@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryService.Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryService.Domain", "src\LibraryService.Domain\LibraryService.Domain.csproj", "{4A1774CE-8308-48BF-9F55-EE790EAD1495}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryService.UnitTests", "tests\LibraryService.UnitTests\LibraryService.UnitTests.csproj", "{B965743C-7D4E-412C-83B6-3A743051CBC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,8 +35,15 @@ Global
 		{4A1774CE-8308-48BF-9F55-EE790EAD1495}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A1774CE-8308-48BF-9F55-EE790EAD1495}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A1774CE-8308-48BF-9F55-EE790EAD1495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B965743C-7D4E-412C-83B6-3A743051CBC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B965743C-7D4E-412C-83B6-3A743051CBC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B965743C-7D4E-412C-83B6-3A743051CBC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B965743C-7D4E-412C-83B6-3A743051CBC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34ADFFEC-0AE9-431C-88A4-FE6EA104FB8D}
 	EndGlobalSection
 EndGlobal
