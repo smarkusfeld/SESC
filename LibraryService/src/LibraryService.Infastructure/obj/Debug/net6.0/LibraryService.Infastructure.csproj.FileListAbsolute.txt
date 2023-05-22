@@ -3,3 +3,17 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\L
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\obj\Debug\net6.0\LibraryService.Infastructure.AssemblyInfoInputs.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\obj\Debug\net6.0\LibraryService.Infastructure.AssemblyInfo.cs
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\obj\Debug\net6.0\LibraryService.Infastructure.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\bin\Debug\net6.0\LibraryService.Infastructure.deps.json
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\bin\Debug\net6.0\LibraryService.Infastructure.runtimeconfig.json
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\bin\Debug\net6.0\LibraryService.Infastructure.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\bin\Debug\net6.0\LibraryService.Infastructure.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\bin\Debug\net6.0\LibraryService.Application.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\bin\Debug\net6.0\LibraryService.Domain.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\bin\Debug\net6.0\LibraryService.Application.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\bin\Debug\net6.0\LibraryService.Domain.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\obj\Debug\net6.0\LibraryService.Infastructure.csproj.CopyComplete
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\obj\Debug\net6.0\LibraryService.Infastructure.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\obj\Debug\net6.0\refint\LibraryService.Infastructure.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\obj\Debug\net6.0\LibraryService.Infastructure.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\obj\Debug\net6.0\LibraryService.Infastructure.genruntimeconfig.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\obj\Debug\net6.0\ref\LibraryService.Infastructure.dll
