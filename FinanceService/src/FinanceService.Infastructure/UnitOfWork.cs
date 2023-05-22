@@ -1,6 +1,7 @@
 ﻿using FinanceService.Application.Interfaces;
 using FinanceService.Infastructure.Context;
 using FinanceService.Infastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,17 +57,29 @@ namespace FinanceService.Infastructure
             _payments = Payments;
         }
 
-        public int Save()
-        {
-            return _dbContext.SaveChanges();
-        }
+        /// <summary>
+        /// Completes the unit of work, saving all repository changes to the underlying data-store.
+        /// </summary>
+        /// <returns><see cref="Task"/></returns>
+        public int Save() =>_dbContext.SaveChanges();
+      
 
+
+
+        /// <summary>
+        /// Cleans up any resources being used.
+        /// </summary>
+        /// <returns><see cref="ValueTask"/></returns>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
+        /// <summary>
+        /// Cleans up any resources being used.
+        /// </summary>
+        /// <param name="disposing"></param> 
+        /// <returns><see cref="ValueTask"/></returns>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

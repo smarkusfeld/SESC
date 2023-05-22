@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rpOvLcuDjIyPRQKnv/LmY2N7eX0INEqmhW6fcaBySTta3GrTTgWp9wqx8WglWs8y6LQ6vY6QFoF1uswY8yjYiw==",
+  "dgSpecHash": "KRuYJUSx57KHQxXj096BVh0qwiGxD2lIogxOX+nFEhbfTSC88LniJDWHK5WSxTHt993F3neAVeV/VQFc2vh5fw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\src\\FinanceService.Persistence\\FinanceService.Persistence.csproj",
+  "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\src\\FinanceService.Persistence\\FinanceService.Contracts.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

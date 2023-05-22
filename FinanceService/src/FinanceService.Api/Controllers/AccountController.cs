@@ -2,7 +2,10 @@
 using FinanceService.Application.DTOs;
 using FinanceService.Application.Interfaces;
 using FinanceService.Application.Services;
+using FinanceService.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MySqlX.XDevAPI.Common;
 
 namespace FinanceService.Api.Controllers
 {
@@ -14,48 +17,65 @@ namespace FinanceService.Api.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService _service;
-        public AccountController(IAccountService service)
+        private readonly ILogger<AccountController> _logger;
+
+        public AccountController(IAccountService service, ILogger<AccountController> logger)
         {
-            _service = service;
+            _service= service;
+            _logger = logger;
         }
+
+     
 
         /// <summary>
         /// Get all accounts 
         /// </summary>
-        /// <returns><seealso cref="IActionResult"/></returns>
+        /// <returns>A collection of accounts or bad request response</returns>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<AccountDTO>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]       
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var accountDTOList = _service.GetAllAccounts().Result;
-            return accountDTOList == null ? BadRequest() : Ok(accountDTOList);
-        }
-        /// <summary>
-        /// Find an account by passing the account id
-        /// </summary>
-        /// <param name="id">account id</param>
-        /// <returns><seealso cref="IActionResult"/></returns> 
-        [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AccountDTO))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult Get(int id)
-        {
-            var accountDTO = _service.GetAccountById(id).Result;
-            return accountDTO == null ? NotFound() : Ok(accountDTO);
-        }
+            var response = await _service.GetAllAccounts();
+            int count = response.Count();
+            return count == 0 ? BadRequest("No Records Found") : Ok(response);
+
+        } 
+        ///// <summary>
+        ///// Find an account by passing the account id
+        ///// </summary>
+        ///// <param name="id">account id</param>
+        ///// <returns><seealso cref="IActionResult"/></returns> 
+        //[HttpGet("id/{id}")]
+        //public async Task<IActionResult> Get(int id)
+        //{
+        //    try
+        //    {
+        //        var response = await _service.GetAccountById(id);
+        //        return response == null ? NotFound() : Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError("Something went wrong inside the Get action: " + ex);
+        //        return StatusCode(500, "Internal server error");
+        //    }
+        //}
         /// <summary>
         /// Find an account by passing the student id 
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns><seealso cref="IActionResult"/></returns>
-        [HttpGet("{student}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AccountDTO))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetStudentAccount(string studentId)
+        [HttpGet("{studentId}")]
+        public async Task<IActionResult> GetStudentAccount(string studentId)
         {
-            var accountDTO = _service.GetStudentAccount(studentId).Result;
-            return accountDTO == null ? NotFound("Account Does Not Exist") : Ok(accountDTO);
+            try
+            {
+                var response = await _service.GetStudentAccount(studentId);
+                return response == null ? BadRequest("Account Does Not Exist") : Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Something went wrong inside the GetStudentAccount action: " + ex);
+                return StatusCode(500, "Internal server error");
+            }
         }
         /// <summary>
         /// Create a new account by passing the student id
@@ -63,38 +83,50 @@ namespace FinanceService.Api.Controllers
         /// <remarks>If the account already exists <seealso cref="StatusCodes.Status400BadRequest"/> is returned</remarks>
         /// <param name="studentId"></param>
         /// <returns><seealso cref="IActionResult"/></returns>
-        [HttpPost("{student}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult CreateAccount(string studentId)
+        [HttpPost("{studentid}")]
+        public async Task<IActionResult> CreateAccount(string studentid)
         {
-            AccountDTO accountDTO = new AccountDTO
+            if(studentid == null)
             {
-                StudentID = studentId,
-                HasOutstandingBalance = false,
-            };
-            var result = _service.CreateAccount(accountDTO).Result;
-            return result == true ? Ok(result) : BadRequest();
-
+                return BadRequest();
+            }
+            var check = await _service.StudentAccountExists(studentid);
+            if (check)
+            {
+                return BadRequest("Account Already Associated with student id: " + studentid);
+            }
+                                             
+            try
+            {
+                var response = await _service.CreateAccount(studentid);
+                return response == true
+                ? Ok("Finaance Account Created for Student: " + studentid)
+                : BadRequest();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Something went wrong inside the CreateAccount action: " + ex);
+                return StatusCode(500, "Internal server error");
+            }
         }
         /// <summary>
-        /// Delete an account
+        /// Delete account by id
         /// </summary>
         /// <param name="id">account id</param>
         /// <returns><seealso cref="IActionResult"/></returns>
         [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var existingItem = _service.GetAccountById(id);
-            if (existingItem == null)
+            try
             {
-                return NotFound("Account Does Not Exist");
+                var response = await _service.DeleteAccount(id);
+                return response == true ? Ok("Account Deleted") : BadRequest();
             }
-            var response = _service.DeleteAccount(id).Result;
-            return response == true ? Ok() : BadRequest();
+            catch (Exception ex)
+            {
+                _logger.LogError("Something went wrong inside the Delete account action: " + ex);
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }

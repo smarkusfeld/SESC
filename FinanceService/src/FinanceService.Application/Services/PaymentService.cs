@@ -5,6 +5,7 @@ using FinanceService.Application.Mapper;
 using FinanceService.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace FinanceService.Application.Services
         
         public async Task<bool> CancelPayment(PaymentDTO paymentDTO)
         {
-            var check = await _unitOfWork.Payments.Find(paymentDTO.ID);
+            var check = await _unitOfWork.Payments.GetAsync(paymentDTO.ID);
             if (check != null)
             {
 
@@ -34,29 +35,56 @@ namespace FinanceService.Application.Services
                 var result = _unitOfWork.Save();
 
                 if (result > 0)
+                {
+                    var dto = await UpdateInvoice(paymentDTO.InvoiceID);
+                    var updated = _mapper.Map<Invoice>(dto);
+                    _unitOfWork.Invoices.Update(updated);
+                    _unitOfWork.Save();
                     return true;
-                else
-                    return false;
+                }
+                return false;
             }
             return false;
         }
 
         public async Task<bool> MakePayment(PaymentDTO paymentDTO)
         {
+            //create reference number
+            DateTime date = DateTime.Now;
+            string refnum = date.ToString("YYmmddHHmmssff") + paymentDTO.InvoiceID.ToString();
+            string refalpha = "p";
+            string payref = refalpha + refnum;
+            //check reference
+            var refcheck = await _unitOfWork.Payments.GetByAsync(x => x.PaymentReference == payref);
+            while (refcheck != null)
+            {
+                int x = 0;
+                payref = payref + x;
+                x++;
+                refcheck = await _unitOfWork.Payments.GetByAsync(x => x.PaymentReference == payref);
+            }
+
+            paymentDTO.PaymentReference = payref;
             paymentDTO.Status = PaymentStatus.Recieved;
-            var payment = _mapper.Map<Payment>(paymentDTO);
-            await _unitOfWork.Payments.Create(payment);
+            var payment = _mapper.Map<Payment>(paymentDTO);            
+            await _unitOfWork.Payments.AddAsync(payment);
             var result = _unitOfWork.Save();
 
             if (result > 0)
+            {
+                var dto = await UpdateInvoice(paymentDTO.InvoiceID);
+                var updated = _mapper.Map<Invoice>(dto);
+                _unitOfWork.Invoices.Update(updated);
+                _unitOfWork.Save();
                 return true;
-            else
-                return false;
+            }
+            return false;
+
         }
 
         public async Task<IEnumerable<PaymentDTO>> PaymentsToBeProcessed()
         {
-            var paymentList = await _unitOfWork.Payments.FindAllWhere(x => x.Status == PaymentStatus.Recieved);
+            var paymentList = await _unitOfWork.Payments.GetAllWhereAsync(x => x.Status == PaymentStatus.Recieved);
             var paymentDTOList = new List<PaymentDTO>();
             foreach (var payment in paymentList)
             {
@@ -67,7 +95,7 @@ namespace FinanceService.Application.Services
 
         public async  Task<bool> ProcessPayment(PaymentDTO paymentDTO)
         {
-            var check = await _unitOfWork.Payments.Find(paymentDTO.ID);
+            var check = await _unitOfWork.Payments.GetAsync(paymentDTO.ID);
             if (check != null)
             {
 
@@ -77,21 +105,27 @@ namespace FinanceService.Application.Services
                 var result = _unitOfWork.Save();
 
                 if (result > 0)
+                {
+                    var dto = await UpdateInvoice(paymentDTO.InvoiceID);
+                    var updated = _mapper.Map<Invoice>(dto);
+                    _unitOfWork.Invoices.Update(updated);
+                    _unitOfWork.Save();
                     return true;
-                else
-                    return false;
+                }
+                return false;
+
             }
             return false;
         }
 
         public async Task<PaymentDTO> FindPaymentByReference(string reference)
         {
-            var paymentDTO = await _unitOfWork.Payments.FindWhere(x => x.PaymentReference == reference);
+            var paymentDTO = await _unitOfWork.Payments.GetByAsync(x => x.PaymentReference == reference);
             return _mapper.Map<PaymentDTO>(paymentDTO);
         }
-        public async Task<int> FindInvoiceID(string reference)
+        public async Task<int> GetInvoiceID(string reference)
         {
-            var all = await _unitOfWork.Invoices.FindWhere(x => x.Reference == reference);
+            var all = await _unitOfWork.Invoices.GetByAsync(x => x.Reference == reference);
             if (all != null)
             {
                 return all.ID;
@@ -100,6 +134,42 @@ namespace FinanceService.Application.Services
             {
                 return 0;
             }
+        }
+
+        private async Task<InvoiceDTO> UpdateInvoice(int id)
+        {
+            var invoice = await _unitOfWork.Invoices.GetAsync(id);
+            InvoiceDTO dto = _mapper.Map<InvoiceDTO>(invoice);
+
+            decimal paid = await TotalPaid(id);
+            dto.Balance = dto.Total - paid;
+            UpdateStatus(dto);
+            return dto;
+
+        }
+        private InvoiceDTO UpdateStatus(InvoiceDTO dto)
+        {
+            if (dto.Balance == 0 && dto.Status != InvoiceStatus.Cancelled)
+            {
+                dto.Status = InvoiceStatus.Paid;
+            }
+            return dto;
+        }
+        private async Task<decimal> TotalPaid(int id)
+        {
+            
+            try
+            {
+                var payments = await _unitOfWork.Payments.GetAllWhereAsync(x => x.InvoiceID == id
+                                                                       && x.Status != PaymentStatus.Declined
+                                                                       && x.Status != PaymentStatus.Cancelled);
+                return payments.Select(x => x.Amount).Sum();
+            }
+            catch
+            {
+                return 0;
+            }
+
         }
 
     }

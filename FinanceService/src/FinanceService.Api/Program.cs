@@ -1,9 +1,10 @@
+
 using FinanceService.Application.Interfaces;
 using FinanceService.Application.Services;
 using FinanceService.Infastructure.Context;
 using FinanceService.Infastructure.Extensions;
 using Microsoft.OpenApi.Models;
-
+using NLog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDIServices(builder.Configuration);
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
+
 //builder.Services.AddScoped<IPaymentService, PaymentService>();
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -29,6 +32,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 
+
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
@@ -43,8 +47,8 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception ex)
     {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An error occurred creating the DB.");
+        var log = services.GetRequiredService<ILogger<Program>>();
+        log.LogError(ex, "An error occurred creating the DB.");
     }
 }
 
@@ -59,6 +63,6 @@ app.UseSwaggerUI(options =>
 
 //app.UseAuthorization();
 
-//app.MapControllers();
+app.MapControllers();
 
 app.Run();

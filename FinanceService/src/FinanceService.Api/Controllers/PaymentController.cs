@@ -6,14 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceService.Api.Controllers
 {
+    /// <summary>
+    /// Controller for all payment logic
+    /// </summary>
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class PaymentController : Controller
     {
         private readonly IPaymentService _service;
-        public PaymentController(PaymentService service)
+        private readonly ILogger<PaymentController> _logger;
+        public PaymentController(PaymentService service, ILogger<PaymentController> logger)
         {
             _service = service;
+            _logger = logger;
         }
         /// <summary>
         /// Make a payment
@@ -21,36 +26,70 @@ namespace FinanceService.Api.Controllers
         /// <param name="paymentDTO"></param>
         /// <returns><seealso cref="IActionResult"/></returns>
         [HttpPost("{reference}")]
-        public IActionResult Pay(string reference, [FromBody] PaymentDTO paymentDTO)
+        public async Task<IActionResult> Pay(string reference, [FromBody] PaymentDTO paymentDTO)
         {
-            var invoiceID = _service.FindInvoiceID(reference).Result;
-            if (invoiceID == 0) { return BadRequest("Invoice Not Found"); }
-            paymentDTO.InvoiceID = invoiceID;
-            
             //add valiation logic
             if (!ModelState.IsValid)
             {
-                var result = _service.MakePayment(paymentDTO).Result;
-                return result == true ? Ok() : BadRequest();
+                try
+                {
+                    var invoiceID = _service.GetInvoiceID(reference).Result;
+                    if(invoiceID == 0) { return BadRequest("Invoice Not Found"); }
+                    try
+                    {
+                        var result = _service.MakePayment(paymentDTO).Result;
+                         return result == true ? Ok() : BadRequest();
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError("Something went wrong inside the make payment action: " + ex);
+                        return StatusCode(500, "Internal server error");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError("Something went wrong inside the GetInvoiceID action: " + ex);
+                    return StatusCode(500, "Internal server error");
+                }
 
             }
             return BadRequest(ModelState);
+           
         }
         /// <summary>
         /// Cancel a payment
         /// </summary>
-        /// <param name="paymentDTO"></param>
+        /// <param name="reference"></param>
         /// <returns><seealso cref="IActionResult"/></returns>
         [HttpPut("{reference}")]
-        public IActionResult Cancel(string reference)
+        public async Task<IActionResult> Cancel(string reference)
         {
-            var payment = _service.FindPaymentByReference(reference).Result;
-            if (payment != null && payment.Status == PaymentStatus.Recieved)
+            try
             {
-                var result = _service.CancelPayment(payment).Result;
-                return result == true ? Ok() : BadRequest();
+                var payment = await _service.FindPaymentByReference(reference);
+                if (payment == null)
+                {
+                    return BadRequest("Payment Not Found");
+                }                
+                else
+                {
+                    try
+                    {
+                        var result = await _service.CancelPayment(payment);
+                        return result == true ? Ok() : BadRequest();
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError("Something went wrong inside the Cancel payment action:  " + ex);
+                        return StatusCode(500, "Internal server error");
+                    }
+                }
             }
-            return BadRequest("Payment Not Found");
+            catch (Exception ex)
+            {
+                _logger.LogError("Something went wrong inside the FindPaymentByReference action: " + ex);
+                return StatusCode(500, "Internal server error");
+            }
         }
         /// <summary>
         /// Process a payment 
@@ -58,15 +97,34 @@ namespace FinanceService.Api.Controllers
         /// <param name="paymentDTO"></param>
         /// <returns><seealso cref="IActionResult"/></returns>
         [HttpPut("{reference}")]
-        public IActionResult Process(string reference)
+        public async Task<IActionResult> Process(string reference)
         {
-            var payment = _service.FindPaymentByReference(reference).Result;
-            if (payment != null && payment.Status == PaymentStatus.Recieved)
+            try
             {
-                var result = _service.CancelPayment(payment).Result;
-                return result == true ? Ok() : BadRequest();
+                var payment = await _service.FindPaymentByReference(reference);
+                if (payment == null)
+                {
+                    return BadRequest("Payment Not Found");
+                }
+                else
+                {
+                    try
+                    {
+                        var result = await _service.ProcessPayment(payment);
+                        return result == true ? Ok() : BadRequest();
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError("Something went wrong inside the Process payment action:  " + ex);
+                        return StatusCode(500, "Internal server error");
+                    }
+                }
             }
-            return BadRequest("Payment Not Found");
+            catch (Exception ex)
+            {
+                _logger.LogError("Something went wrong inside the FindPaymentByReference action: " + ex);
+                return StatusCode(500, "Internal server error");
+            }
         }
 
     }

@@ -376,3 +376,4 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\tests
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\tests\FinanceService.UnitTests\obj\Debug\net6.0\FinanceService.UnitTests.csproj.CopyComplete
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\tests\FinanceService.UnitTests\obj\Debug\net6.0\FinanceService.UnitTests.genruntimeconfig.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\tests\FinanceService.UnitTests\obj\Debug\net6.0\ref\FinanceService.UnitTests.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\tests\FinanceService.UnitTests\bin\Debug\net6.0\NLog.dll

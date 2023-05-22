@@ -20,60 +20,70 @@ namespace FinanceService.Application.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-
-        public async Task<bool> CreateAccount(AccountDTO accountDTO)
+        /// <summary>
+        /// Create a new account
+        /// </summary>
+        /// <param name="studentID"></param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// The task result contains a boolean value
+        /// </returns>
+        public async Task<bool> CreateAccount(string studentID)
         {
-            // Validation logic
-            
-            var account = _mapper.Map<Account>(accountDTO);
-            if (account != null)
+            AccountDTO dto = new AccountDTO
             {
-                await _unitOfWork.Accounts.Create(account);
+                StudentID = studentID,
+                HasOutstandingBalance = false,
+            };
+            var account = _mapper.Map<Account>(dto);
+            var newAccount = await _unitOfWork.Accounts.AddAsync(account);
+            if (newAccount != null)
+            {
                 var result = _unitOfWork.Save();
-                if (result > 0)
-                    return true;
-                else
-                    return false;
+                return result > 0;
             }
             return false;
         }
 
         public async Task<bool> DeleteAccount(int accountID)
         {
-            var account = await _unitOfWork.Accounts.Find(accountID);
-            if (account != null)
-            {
-                _unitOfWork.Accounts.Delete(account);
-                var result = _unitOfWork.Save();
-
-                if (result > 0)
-                    return true;
-                else
-                    return false;
-            }
-            return false;
+            var account = await _unitOfWork.Accounts.GetAsync(accountID);
+            _unitOfWork.Accounts.Delete(account);
+            var result = _unitOfWork.Save();
+            return result > 0 ? true : false;
         }
 
         public async Task<AccountDTO> GetAccountById(int accountID)
         {
-            var account = await _unitOfWork.Accounts.Find(accountID);
-            
-            return _mapper.Map<AccountDTO>(account);
+            var account = await _unitOfWork.Accounts.GetAsync(accountID);
+            AccountDTO dto = _mapper.Map<AccountDTO>(account);
+            dto.HasOutstandingBalance = await AccountHasOutstandingBalance(dto);
+            return dto;
         }
         public async Task<AccountDTO> GetStudentAccount(string studentID)
         {
-            
-            var account = await _unitOfWork.Accounts.FindWhere(x => x.StudentID == studentID);
-            return _mapper.Map<AccountDTO>(account);
-        }
+            var account = await _unitOfWork.Accounts.GetByAsync(x => x.StudentID == studentID);
+            AccountDTO dto = _mapper.Map<AccountDTO>(account);
+            dto.HasOutstandingBalance = await AccountHasOutstandingBalance(dto);
+            return dto;
 
+
+        }
+        public async Task<bool> StudentAccountExists(string studentID)
+        {
+            var account = await _unitOfWork.Accounts.GetByAsync(x => x.StudentID == studentID);
+            return account != null? true: false;
+        }
+        
         public async Task<IEnumerable<AccountDTO>> GetAllAccounts()
         {
-            var accountList = await _unitOfWork.Accounts.FindAll();
+            var accountList = await _unitOfWork.Accounts.GetAllAsync();
             var accountDTOList = new List<AccountDTO>();
             foreach (var account in accountList)
             {
-                accountDTOList.Add(_mapper.Map<AccountDTO>(account));
+                AccountDTO dto = _mapper.Map<AccountDTO>(account);
+                dto.HasOutstandingBalance = await AccountHasOutstandingBalance(dto);
+                accountDTOList.Add(dto);
             }
             return accountDTOList.AsEnumerable();
         }
@@ -81,17 +91,13 @@ namespace FinanceService.Application.Services
       
         public async Task<bool> UpdateAccount(AccountDTO accountDTO)
         {
-            var check = await _unitOfWork.Accounts.Find(accountDTO.ID);
+            var check = await _unitOfWork.Accounts.GetAsync(accountDTO.ID);
             if (check != null)
             {
                 var account = _mapper.Map<Account>(accountDTO);
                 _unitOfWork.Accounts.Update(account);
                 var result = _unitOfWork.Save();
-
-                if (result > 0)
-                    return true;
-                else
-                    return false;
+                return result > 0 ? true : false;
             }
             return false;
         }
@@ -99,23 +105,13 @@ namespace FinanceService.Application.Services
         {
             throw new NotImplementedException();
         }
-        private AccountDTO checkBalance(AccountDTO accountDTO)
+
+        private async Task<bool> AccountHasOutstandingBalance(AccountDTO dto)
         {
-            var balance = GetAccountBalance(accountDTO.ID).Result;
-            if (balance > 0)
-            {
-                accountDTO.HasOutstandingBalance = false;
-            }
-            else
-            {
-                accountDTO.HasOutstandingBalance = true;
-            }
-            return accountDTO;
+            var invoices = await _unitOfWork.Invoices.GetAllWhereAsync(x => x.AccountID == dto.ID);
+            decimal total = invoices.Sum(x => x.Balance);
+            return total > 0;
         }
-        private async Task<decimal> GetAccountBalance(int accountID)
-        {
-            var all = await _unitOfWork.Invoices.FindAllWhere(x => x.Account.ID == accountID);
-            return all.Sum(x => x.Balance);
-        }
+        
     }
 }

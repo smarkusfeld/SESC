@@ -8,94 +8,23 @@ using System.Threading.Tasks;
 
 namespace FinanceService.Application.Interfaces
 {
-    ///<summary>
-    /// This generic interface defines a contract for all repositories 
-    ///</summary>
-    ///<remarks>
-    ///<see cref="IGenericRepository{T}"/>
-    ///</remarks>
+    /// <summary>
+    /// Generic Repository Interface.
+    /// </summary>
+    /// <typeparam name="T">The Type of <see cref="IEntity"/> to operate on</typeparam>
     public interface IGenericRepository<T> where T : IEntity
     {
 
 
-        /// <summary>
-        /// This method retrvies a single record from the database
-        /// </summary>
-        /// <param name="id">Database id</param>
-        /// <returns> 
-        /// A task that represents the asynchronous operation.
-        /// The task result contains the database record of an arbirary  type, <typeparamref name="T"/>
-        /// </returns>
-        Task<T?> Find(int id);
-
-        /// <summary>
-        /// This method retrvies a single record from the database
-        /// </summary>
-        /// <param name="predicate">Where clause.
-        /// <example><code>x => x.ID == id</code></example>
-        /// </param>
-        /// <returns> 
-        /// A task that represents the asynchronous operation.
-        /// The task result contains the database record of an arbirary  type, <typeparamref name="T"/>
-        /// </returns>
-        Task<T?> FindWhere(Expression<Func<T, bool>> predicate);
-
-        /// <summary>
-        /// This method retrvies all records from the database
-        /// </summary>
-        /// <returns> 
-        /// A task that represents the asynchronous operation.
-        /// The task result contains a <see cref="List{T}" /> 
-        /// </returns>
-        Task<IEnumerable<T>?> FindAll();
-        /// <summary>
-        /// This method retrvies all records from the database
-        /// </summary>
-        /// <param name="filter"></param>
-        /// <param name="orderBy"></param>
-        /// <param name="includes"></param>
-        /// <returns></returns>
-        Task<IEnumerable<T>?> FindAll(
-            Expression<Func<T, bool>>? filter = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
-            params Expression<Func<T, object>>[] includes);
-
-        /// <summary>
-        /// This method retrvies all records of an arbirary type, <typeparamref name="T"/>, using the <paramref name="predicate" /> 
-        /// </summary>
-        /// <param name="predicate">Example: x => x.ID == id</param>
-        /// <returns> 
-        /// A task that represents the asynchronous operation.
-        /// The task result contains a <see cref="List{T}" /> 
-        /// </returns>
-        Task<IEnumerable<T>?> FindAllWhere(Expression<Func<T, bool>> predicate);
         
-
-        /// <summary>
-        /// This method creates a new record in the database
-        /// </summary>
-        /// <typeparamref name="T"/>
-        /// <returns> 
-        /// A task that represents the asynchronous operation.
-        /// </returns>
-        Task Create(T entity);
-
-        /// <summary>
-        /// This method deletes the specified record from the database 
-        /// </summary>
-        /// <typeparamref name="T"/>
+        Task<T> GetAsync(int id);
+        Task<T> GetByAsync(Expression<Func<T, bool>> predicate);  
+        Task<IEnumerable<T>> GetAllAsync();    
+    
+        Task<IEnumerable<T>> GetAllWhereAsync(Expression<Func<T, bool>> predicate);
+        Task<T> AddAsync(T entity);
         void Delete(T entity);
-
-        /// <summary>
-        /// This method updates the specified entity in the database 
-        /// </summary>
-        /// <typeparamref name="T"/>
         void Update(T entity);
-
-        /// <summary>
-        /// This method updates the specified entity in the database 
-        /// </summary>
-        /// <param><see cref="IEnumerable{T}" /></param>
         void Update(IEnumerable<T> entities);
 
 

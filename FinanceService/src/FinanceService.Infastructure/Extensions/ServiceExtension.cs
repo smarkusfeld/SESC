@@ -8,6 +8,7 @@ using FinanceService.Application.Mapper;
 using FinanceService.Application.Interfaces;
 using FinanceService.Infastructure.Repositories;
 
+
 namespace FinanceService.Infastructure.Extensions
 { 
     public static class ServiceExtension
@@ -25,9 +26,10 @@ namespace FinanceService.Infastructure.Extensions
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IInvoiceRepository, InvoiceRepository>();
             services.AddScoped<IPaymentRepository, PaymentRepository>();
-
+            
             return services;
         }
+       
 
     }
 }
