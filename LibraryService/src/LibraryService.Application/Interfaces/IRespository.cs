@@ -11,6 +11,10 @@ namespace LibraryService.Application.Interfaces
     {
 
     }
+    public interface ITitleAuthorRepository : IGenericRepository<TitleAuthor>
+    {
+
+    }
     public interface IAuthorRepository : IGenericRepository<Author>
     {
 
