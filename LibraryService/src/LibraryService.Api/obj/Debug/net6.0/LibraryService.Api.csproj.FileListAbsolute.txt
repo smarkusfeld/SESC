@@ -1,0 +1,7 @@
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Api\obj\Debug\net6.0\LibraryService.Api.csproj.AssemblyReference.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Api\obj\Debug\net6.0\LibraryService.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Api\obj\Debug\net6.0\LibraryService.Api.AssemblyInfoInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Api\obj\Debug\net6.0\LibraryService.Api.AssemblyInfo.cs
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Api\obj\Debug\net6.0\LibraryService.Api.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Api\obj\Debug\net6.0\LibraryService.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Api\obj\Debug\net6.0\LibraryService.Api.MvcApplicationPartsAssemblyInfo.cs
