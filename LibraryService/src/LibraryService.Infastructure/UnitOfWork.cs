@@ -1,9 +1,11 @@
 ﻿using LibraryService.Application.Interfaces;
+using LibraryService.Domain.Entities;
 using LibraryService.Infastructure.Context;
 using LibraryService.Infastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,57 +16,83 @@ namespace LibraryService.Infastructure
     {
         private readonly DataContext _dbContext;
         private IAccountRepository _accounts;
-        private IInvoiceRepository _invoices;
-        private IPaymentRepository _payments;
+        private IAuthorRepository _authors;
+        private ITitleAuthorRepository _titleauthors;
+        private IBookRepository _books;
+        private IBookItemRepository _bookitems;
+        private ILoanRepository _loans;
+
         public IAccountRepository Accounts
         {
             get
             {
-                if (_accounts == null)
-                {
-                    _accounts = new AccountRepository(_dbContext);
-                }
+                _accounts ??= new AccountRepository(_dbContext);
                 return _accounts;
             }
         }
-        public IInvoiceRepository Invoices
+
+        public IBookRepository Books
         {
             get
             {
-                if (_invoices == null)
-                {
-                    _invoices = new InvoiceRepository(_dbContext);
-                }
-                return _invoices;
+                _books ??= new BookRepository(_dbContext);
+                return _books;
             }
         }
-        public IPaymentRepository Payments
+
+        public IAuthorRepository Authors
         {
             get
             {
-                if (_payments == null)
-                {
-                    _payments = new PaymentRepository(_dbContext);
-                }
-                return _payments;
+                _authors ??= new AuthorRepository(_dbContext);
+                return _authors;
             }
         }
+
+        public ITitleAuthorRepository TitleAuthors
+        {
+            get
+            {
+                _titleauthors ??= new TitleAuthorRepository(_dbContext);
+                return _titleauthors;
+            }
+        }
+
+
+        public IBookItemRepository BookItems
+        {
+            get
+            {
+                _bookitems ??= new BookItemRepository(_dbContext);
+                return _bookitems;
+            }
+        }
+
+        public ILoanRepository Loans
+        {
+            get
+            {
+                _loans ??= new LoanRepository(_dbContext);
+                return _loans;
+            }
+        }
+
         public UnitOfWork(DataContext dbContext)
         {
             _dbContext = dbContext;
             _accounts = Accounts;
-            _invoices = Invoices;
-            _payments = Payments;
+            _books = Books;
+            _bookitems = BookItems;
+            _loans = Loans;
+            _authors = Authors;
+            _titleauthors = TitleAuthors;
         }
 
         /// <summary>
         /// Completes the unit of work, saving all repository changes to the underlying data-store.
         /// </summary>
         /// <returns><see cref="Task"/></returns>
-        public int Save() =>_dbContext.SaveChanges();
-      
-
-
+        public int Save() =>_dbContext.SaveChanges();   
 
         /// <summary>
         /// Cleans up any resources being used.

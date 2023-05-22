@@ -1,0 +1,5 @@
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\obj\Debug\net6.0\LibraryService.Infastructure.csproj.AssemblyReference.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\obj\Debug\net6.0\LibraryService.Infastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\obj\Debug\net6.0\LibraryService.Infastructure.AssemblyInfoInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\obj\Debug\net6.0\LibraryService.Infastructure.AssemblyInfo.cs
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Infastructure\obj\Debug\net6.0\LibraryService.Infastructure.csproj.CoreCompileInputs.cache

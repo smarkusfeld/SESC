@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "QxALufLvgbOr4D0SdNPmyGqx85rQ8PJHDBp98i4i5e3y2/B5ByPeGxREWvi9OT6LaYBZ6te6XNYHPNPxWhQXCw==",
+  "dgSpecHash": "4A3lOHm0cwfq6RL+Z3qf72fLt1w8AU6oNsAkSu3mrc0IAlhvPtRdx6nYiy9cSENMQXycgu9SBPHIVu9xGrcdmQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\LibraryService\\src\\LibraryService.Application\\LibraryService.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
