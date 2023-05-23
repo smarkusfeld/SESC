@@ -21,20 +21,37 @@ namespace LibraryService.Application.Interfaces
         /// <summary>
         /// Method to add new books to the database using the barcode scanner
         /// </summary>
-        Task<bool> AddBook(string isbn);
+        Task<bool> AddBook(int isbn);
 
         /// <summary>
         /// Method to borrow a book using isbn barcode
         /// </summary>
-        Task<LoanDTO> CreateNewLoan(string isbn);
+        Task<bool> CreateNewLoan(int accountid, int bookitemid);
 
         /// <summary>
         /// Method to borrow return book using isbn barcode
         /// </summary>
-        Task<LoanDTO> ReturnBook(string isbn);
-        
+        Task<bool> ReturnLoan(LoanDTO dto);
 
+        /// <summary>
+        /// Method to check available copies of a book
+        /// </summary>
+        Task<BookItemDTO> GetAvailableBookItem(int isbn);
 
-        
+        ///<summary>
+        ///Method to get library account id
+        /// </summary>
+        Task<AccountDTO> GetLibraryAccount(string studentid);
+
+        /// <summary>
+        /// Method to check available copies of a book
+        /// </summary>
+        Task<int> CheckBookCount(int isbn);
+
+        /// <summary>
+        /// Method to get existing loan using isbn barcode
+        /// </summary>
+        Task<LoanDTO> FindLoan(string studentid, int isbn);
+
     }
 }

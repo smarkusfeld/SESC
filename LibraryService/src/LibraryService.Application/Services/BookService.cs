@@ -8,6 +8,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Reflection.Metadata.BlobBuilder;
@@ -60,21 +63,142 @@ namespace LibraryService.Application.Services
             }
             return false;
         }
-
-        public Task<LoanDTO> CreateNewLoan(int isbn)
+        public async Task<int> CheckBookCount(int isbn)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var copies = await _unitOfWork.BookItems.GetAllWhereAsync(x => x.ISBN == isbn && x.IsAvailable == true);
+                return copies.Count();
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+        public async Task<BookItemDTO> GetAvailableBookItem(int isbn)
+        {
+            try
+            {
+                var item = await _unitOfWork.BookItems.GetByAsync(x => x.ISBN == isbn && x.IsAvailable == true);
+                return new BookItemDTO
+                {
+                    ID = item.ID,
+                    ISBN = item.ISBN,
+                    IsAvailable = item.IsAvailable,
+                };
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+        private void UpdateBookItem(BookItem bookItem, bool IsAvailable)
+        {
+            
+            bookItem.IsAvailable = IsAvailable;
+            _unitOfWork.BookItems.Update(bookItem);
+            _unitOfWork.Save();
+        }
+        public async Task<AccountDTO> GetLibraryAccount(string studentid)
+        {
+            try
+            {
+                var account = await _unitOfWork.Accounts.GetByAsync(x => x.StudentID == studentid);
+                return new AccountDTO
+                {
+                    ID = account.ID,
+                    StudentID = account.StudentID,
+                    Pin = account.Pin,
+
+                };
+
+            }
+            catch
+            {
+                return null;
+            }
+            
+        }
+        public async Task<bool> CreateNewLoan(int accountID, int bookItemID)
+        {
+            try
+            {                
+                Loan newLoan = new Loan
+                {
+                    AccountID = accountID,
+                    BookItemID = bookItemID,
+                    DateBorrowed = DateTime.Now,
+
+                };
+                var result = await _unitOfWork.Loans.AddAsync(newLoan);
+                if(result!=null)
+                {
+                    _unitOfWork.Save();
+                    var bookItem = await _unitOfWork.BookItems.GetByAsync(x => x.ID == bookItemID);
+                    UpdateBookItem(bookItem, false);
+                    
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }            
         }
 
-        public Task<IEnumerable<BookDTO>> GetAllBooks()
+        public async Task<IEnumerable<BookDTO>> GetAllBooks()
         {
-            throw new NotImplementedException();
+            var books = await _unitOfWork.Books.GetAllAsync();
+            var booklist = new List<BookDTO>();
+            foreach (var book in books)
+            {
+                booklist.Add(new BookDTO()
+                {
+                    Title = book.Title,
+                    Copies = book.Copies,
+                    Year = book.Year,
+                    ISBN = book.ISBN,
+                    //add authors
+                });
+            }
+            return booklist.AsEnumerable();
+        }
+        public async Task<LoanDTO> FindLoan(string studentid, int isbn)
+        {
+            try
+            {
+                var loanList = await _unitOfWork.Loans.GetAllWhereAsync(x => x.BookItem.ISBN == isbn && x.Account.StudentID == studentid);
+                var loan = loanList.Where(x => x.DateReturned == null).FirstOrDefault();
+                return new LoanDTO
+                {
+                    ID = loan.ID,
+                    AccountID = loan.Account.ID,
+                    BookItemID = loan.ID,
+                    DateBorrowed = loan.DateBorrowed,
+                    DateReturned = loan.DateReturned,
+                };
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
+        public async Task<bool> ReturnLoan(LoanDTO dto)
+        {
+            try
+            {
+                var loan = await _unitOfWork.Loans.GetAsync(dto.ID);
+                loan.DateReturned = DateTime.Now;
+                _unitOfWork.Loans.Update(loan);
+                _unitOfWork.Save();
+                UpdateBookItem(loan.BookItem, true);
+                return true;
+            }
+            catch { return false; }
         }
 
-        public Task<LoanDTO> ReturnBook(int isbn)
-        {
-            throw new NotImplementedException();
-        }
         private async Task<bool> AddBookItem(int isbn)
         {
             try

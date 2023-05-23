@@ -11,6 +11,8 @@ namespace LibraryService.Domain.Entities
     [Table("BookItems")]
     public class BookItem : IEntity
     {
+        public int ISBN { get; set; }
+        public bool IsAvailable { get; set; }
         public Book Book { get; set; }
         public ICollection<Loan> Loans { get; set; } 
     }
