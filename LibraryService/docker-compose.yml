@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  db:
+   image: mysql
+   volumes:
+     - library-mysql-data:/var/lib/mysql
+   environment:
+     MYSQL_DATABASE: ${MYSQL_DATABASE:?database name not set}
+     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?database root password not set}  
+
+  adminer:
+   image: adminer
+   restart: always
+   ports:
+     - 8080:8080
+  
+   
+  libraryservice.api:
+    image: ${DOCKER_REGISTRY-}libraryserviceapi
+    build:
+      context: .
+      dockerfile: src/LibraryService.Api/Dockerfile
+    ports:
+     - 5003:80
+    depends_on:
+     - db
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD:?database root password not set}
+      MYSQL_DB: ${MYSQL_DATABASE:?database name not set}
+
+volumes:
+   library-mysql-data:
