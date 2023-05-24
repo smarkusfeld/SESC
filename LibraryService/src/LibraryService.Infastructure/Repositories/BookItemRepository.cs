@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Infastructure.Repositories
 {
-    public class BookItemRepository : GenericRepository<BookItem>, IBookItemRepository
+    public class BookCopyRepository : GenericRepository<BookCopy>, IBookCopyRepository
     {
-        public BookItemRepository(DataContext dbContext) : base(dbContext)
+        public BookCopyRepository(DataContext dbContext) : base(dbContext)
         {
 
         }

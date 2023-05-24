@@ -14,7 +14,7 @@ namespace LibraryService.Application.DTOs
 
         public string BookTitle { get; set; }
         public int AccountID { get; set; }
-        public int BookItemID { get; set; }
+        public int BookCopyID { get; set; }
         public DateTime DateBorrowed { get; set; }
         public DateTime? DateReturned { get; set; } = null;
 

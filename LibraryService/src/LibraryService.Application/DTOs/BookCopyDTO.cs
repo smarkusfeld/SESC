@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Application.DTOs
 {
-    public class BookItemDTO
+    public class BookCopyDTO
     {
         int ID { get; set; }
         public bool IsAvailable { get; set; }

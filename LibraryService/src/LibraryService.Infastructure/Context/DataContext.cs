@@ -17,10 +17,10 @@ namespace LibraryService.Infastructure.Context
 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Book> Books { get; set; }
-        public DbSet<BookItem> BookItems { get; set; }
+        public DbSet<BookCopy> BookCopys { get; set; }
         public DbSet<Loan> Loans { get; set; }
         public DbSet<Author> Authors { get; set; }
-        public DbSet<TitleAuthor> TitleAuthors { get; set; }
+        public DbSet<BookAuthor>BookAuthors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,21 +29,53 @@ namespace LibraryService.Infastructure.Context
                 .HasMany(y => y.Loans)
                 .WithOne(x => x.Account);
 
-            modelBuilder.Entity<BookItem>()
+            modelBuilder.Entity<BookCopy>()
                 .HasMany(y => y.Loans)
-                .WithOne(x => x.BookItem);
+                .WithOne(x => x.BookCopy);
 
             modelBuilder.Entity<Book>()
-              .HasMany(y => y.BookItems)
+              .HasMany(y => y.BookCopys)
               .WithOne(x => x.Book);
 
             modelBuilder.Entity<Book>()
-               .HasMany(y => y.TitleAuthors)
+               .HasMany(y => y.BookAuthors)
               .WithOne(x => x.Book);
+
+            modelBuilder.Entity<Book>()
+              .HasMany(y => y.BookSubjects)
+             .WithOne(x => x.Book);
+
+            modelBuilder.Entity<Book>()
+             .HasMany(y => y.BookClassifiers)
+            .WithOne(x => x.Book);
+
+            modelBuilder.Entity<Book>()
+             .HasMany(y => y.BookIdentifiers)
+            .WithOne(x => x.Book);
+
+            modelBuilder.Entity<Book>()
+             .HasMany(y => y.BookPublishers)
+            .WithOne(x => x.Book);
 
             modelBuilder.Entity<Author>()
-               .HasMany(y => y.TitleAuthors)
+               .HasMany(y => y.BookAuthors)
               .WithOne(x => x.Author);
+
+            modelBuilder.Entity<Subject>()
+                .HasMany(y => y.BookSubjects)
+                .WithOne(x => x.Subject);
+
+            modelBuilder.Entity<Classifier>()
+             .HasMany(y => y.BookClassifiers)
+            .WithOne(x => x.Classifier);
+
+            modelBuilder.Entity<Identifier>()
+             .HasMany(y => y.BookIdentifiers)
+            .WithOne(x => x.Identifier);
+
+            modelBuilder.Entity<Publisher>()
+             .HasMany(y => y.BookPublishers)
+            .WithOne(x => x.Publisher);
         }
     }
 }

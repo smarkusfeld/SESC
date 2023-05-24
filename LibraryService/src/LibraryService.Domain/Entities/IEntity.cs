@@ -10,9 +10,12 @@ namespace LibraryService.Domain.Entities
 {
     public class IEntity
     {
-        [Key]
+        [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public DateTime CreatedDate { get; set; }
 
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime UpdatedDate { get; set; }
     }
 }

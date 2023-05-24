@@ -9,9 +9,13 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Domain.Entities
 {
-    [Table("Accounts")]
+    [Table("account")]
     public class Account : IEntity
-    {    
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
+
         public string StudentID { get; set; }
 
         public int Pin { get; set; } = 000000;

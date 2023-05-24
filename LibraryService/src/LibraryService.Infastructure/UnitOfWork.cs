@@ -18,7 +18,7 @@ namespace LibraryService.Infastructure
         private IAuthorRepository _authors;
         private ITitleAuthorRepository _titleauthors;
         private IBookRepository _books;
-        private IBookItemRepository _bookitems;
+        private IBookCopyRepository _bookitems;
         private ILoanRepository _loans;
 
         public IAccountRepository Accounts
@@ -48,21 +48,21 @@ namespace LibraryService.Infastructure
             }
         }
 
-        public ITitleAuthorRepository TitleAuthors
+        public ITitleAuthorRepositoryBookAuthors
         {
             get
             {
-                _titleauthors ??= new TitleAuthorRepository(_dbContext);
+                _titleauthors ??= newBookAuthorRepository(_dbContext);
                 return _titleauthors;
             }
         }
 
 
-        public IBookItemRepository BookItems
+        public IBookCopyRepository BookCopys
         {
             get
             {
-                _bookitems ??= new BookItemRepository(_dbContext);
+                _bookitems ??= new BookCopyRepository(_dbContext);
                 return _bookitems;
             }
         }
@@ -81,10 +81,10 @@ namespace LibraryService.Infastructure
             _dbContext = dbContext;
             _accounts = Accounts;
             _books = Books;
-            _bookitems = BookItems;
+            _bookitems = BookCopys;
             _loans = Loans;
             _authors = Authors;
-            _titleauthors = TitleAuthors;
+            _titleauthors =BookAuthors;
         }
 
         /// <summary>

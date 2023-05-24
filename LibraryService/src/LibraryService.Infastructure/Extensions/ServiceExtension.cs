@@ -24,10 +24,10 @@ namespace LibraryService.Infastructure.Extensions
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IBookRepository, BookRepository>();
-            services.AddScoped<IBookItemRepository, BookItemRepository>();
+            services.AddScoped<IBookCopyRepository, BookCopyRepository>();
             services.AddScoped<ILoanRepository, LoanRepository>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
-            services.AddScoped<ITitleAuthorRepository, TitleAuthorRepository>();
+            services.AddScoped<ITitleAuthorRepository,BookAuthorRepository>();
 
             return services;
         }

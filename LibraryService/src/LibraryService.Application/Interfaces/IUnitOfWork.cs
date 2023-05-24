@@ -14,8 +14,8 @@ namespace LibraryService.Application.Interfaces
         IAccountRepository Accounts { get; }
         IBookRepository Books { get; }
         IAuthorRepository Authors { get; }
-        ITitleAuthorRepository TitleAuthors { get; }
-        IBookItemRepository BookItems { get; }
+        ITitleAuthorRepositoryBookAuthors { get; }
+        IBookCopyRepository BookCopys { get; }
         ILoanRepository Loans { get; }
         int Save();
 

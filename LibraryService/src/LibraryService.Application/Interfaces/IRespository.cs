@@ -11,7 +11,7 @@ namespace LibraryService.Application.Interfaces
     {
 
     }
-    public interface ITitleAuthorRepository : IGenericRepository<TitleAuthor>
+    public interface ITitleAuthorRepository : IGenericRepository<BookAuthor>
     {
 
     }
@@ -23,7 +23,7 @@ namespace LibraryService.Application.Interfaces
     {
 
     }
-    public interface IBookItemRepository : IGenericRepository<BookItem>
+    public interface IBookCopyRepository : IGenericRepository<BookCopy>
     {
 
     }
