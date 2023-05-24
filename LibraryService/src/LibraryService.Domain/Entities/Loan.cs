@@ -12,11 +12,13 @@ namespace LibraryService.Domain.Entities
     public class Loan : IEntity
     {
         public DateTime DateBorrowed { get; set; }
+
+        public DateTime DueDate { get; set; }
         public DateTime? DateReturned { get; set; } = null;
         public int AccountID { get; set; }
 
-        public int BookItemID { get; set; }
-        public BookItem BookItem { get; set; }
+        public int BookCopyID { get; set; }
+        public BookCopy BookCopy { get; set; }
 
         public Account Account { get; set; }
     }

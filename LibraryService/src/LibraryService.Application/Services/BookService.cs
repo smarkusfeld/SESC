@@ -35,7 +35,7 @@ namespace LibraryService.Application.Services
             if (check)
             {
                 //add new copy of exisitng book 
-                var add = await AddBookItem(isbn);
+                var add = await AddBookCopy(isbn);
                 return add;
             }
             //create new book record
@@ -56,7 +56,7 @@ namespace LibraryService.Application.Services
                     var result = _unitOfWork.Save();
                     if (result > 0)
                     {
-                        var addCopy = await AddBookItem(isbn);
+                        var addCopy = await AddBookCopy(isbn);
                         return addCopy;
                     }
                 }
@@ -69,7 +69,7 @@ namespace LibraryService.Application.Services
         {
             try
             {
-                var copies = await _unitOfWork.BookItems.GetAllWhereAsync(x => x.ISBN == isbn && x.IsAvailable == true);
+                var copies = await _unitOfWork.BookCopys.GetAllWhereAsync(x => x.ISBN == isbn && x.IsAvailable == true);
                 return copies.Count();
             }
             catch
@@ -77,12 +77,12 @@ namespace LibraryService.Application.Services
                 return 0;
             }
         }
-        public async Task<BookItemDTO> GetAvailableBookItem(int isbn)
+        public async Task<BookCopyDTO> GetAvailableBookCopy(int isbn)
         {
             try
             {
-                var item = await _unitOfWork.BookItems.GetByAsync(x => x.ISBN == isbn && x.IsAvailable == true);
-                return new BookItemDTO
+                var item = await _unitOfWork.BookCopys.GetByAsync(x => x.ISBN == isbn && x.IsAvailable == true);
+                return new BookCopyDTO
                 {
                     ID = item.ID,
                     ISBN = item.ISBN,
@@ -94,11 +94,11 @@ namespace LibraryService.Application.Services
                 return 0;
             }
         }
-        private void UpdateBookItem(BookItem bookItem, bool IsAvailable)
+        private void UpdateBookCopy(BookCopy bookCopy, bool IsAvailable)
         {
 
-            bookItem.IsAvailable = IsAvailable;
-            _unitOfWork.BookItems.Update(bookItem);
+            bookCopy.IsAvailable = IsAvailable;
+            _unitOfWork.BookCopys.Update(bookCopy);
             _unitOfWork.Save();
         }
         public async Task<AccountDTO> GetLibraryAccount(string studentid)
@@ -121,14 +121,14 @@ namespace LibraryService.Application.Services
             }
 
         }
-        public async Task<bool> CreateNewLoan(int accountID, int bookItemID)
+        public async Task<bool> CreateNewLoan(int accountID, int bookCopyID)
         {
             try
             {
                 Loan newLoan = new Loan
                 {
                     AccountID = accountID,
-                    BookItemID = bookItemID,
+                    BookCopyID = bookCopyID,
                     DateBorrowed = DateTime.Now,
 
                 };
@@ -136,8 +136,8 @@ namespace LibraryService.Application.Services
                 if (result != null)
                 {
                     _unitOfWork.Save();
-                    var bookItem = await _unitOfWork.BookItems.GetByAsync(x => x.ID == bookItemID);
-                    UpdateBookItem(bookItem, false);
+                    var bookCopy = await _unitOfWork.BookCopys.GetByAsync(x => x.ID == bookCopyID);
+                    UpdateBookCopy(bookCopy, false);
 
                     return true;
                 }
@@ -170,13 +170,13 @@ namespace LibraryService.Application.Services
         {
             try
             {
-                var loanList = await _unitOfWork.Loans.GetAllWhereAsync(x => x.BookItem.ISBN == isbn && x.Account.StudentID == studentid);
+                var loanList = await _unitOfWork.Loans.GetAllWhereAsync(x => x.BookCopy.ISBN == isbn && x.Account.StudentID == studentid);
                 var loan = loanList.Where(x => x.DateReturned == null).FirstOrDefault();
                 return new LoanDTO
                 {
                     ID = loan.ID,
                     AccountID = loan.Account.ID,
-                    BookItemID = loan.ID,
+                    BookCopyID = loan.ID,
                     DateBorrowed = loan.DateBorrowed,
                     DateReturned = loan.DateReturned,
                 };
@@ -195,21 +195,21 @@ namespace LibraryService.Application.Services
                 loan.DateReturned = DateTime.Now;
                 _unitOfWork.Loans.Update(loan);
                 _unitOfWork.Save();
-                UpdateBookItem(loan.BookItem, true);
+                UpdateBookCopy(loan.BookCopy, true);
                 return true;
             }
             catch { return false; }
         }
 
-        private async Task<bool> AddBookItem(int isbn)
+        private async Task<bool> AddBookCopy(int isbn)
         {
             try
             {
-                BookItem bookItem = new BookItem
+                BookCopy bookCopy = new BookCopy
                 {
                     ISBN = isbn
                 };
-                var add = await _unitOfWork.BookItems.AddAsync(bookItem);
+                var add = await _unitOfWork.BookCopys.AddAsync(bookCopy);
                 if (add != null)
                 {
                     var result = _unitOfWork.Save();

@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Infastructure.Repositories
 {
-    public class TitleAuthorRepository : GenericRepository<TitleAuthor>, ITitleAuthorRepository
+    public classBookAuthorRepository : GenericRepository<BookAuthor>, ITitleAuthorRepository
     {
-        public TitleAuthorRepository(DataContext dbContext) : base(dbContext)
+        publicBookAuthorRepository(DataContext dbContext) : base(dbContext)
         {
 
         }

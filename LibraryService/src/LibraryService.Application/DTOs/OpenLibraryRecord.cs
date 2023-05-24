@@ -14,52 +14,52 @@ namespace LibraryService.Application.DTOs
    
     public class OpenLibraryRecord
     {
-        public string Url { get; set; }
-        public string key { get; set; }
-        public string title { get; set; }
-        public List<Author> authors { get; set; }
-        public int number_of_pages { get; set; }
-        public string pagination { get; set; }
-        public string weight { get; set; }
-        public string by_statement { get; set; }
-        public Identifiers identifiers { get; set; }
-        public Classifications classifications { get; set; }
-        public List<Publisher> publishers { get; set; }
-        public List<PublishPlace> publish_places { get; set; }
-        public string publish_date { get; set; }
-        public List<Subject> subjects { get; set; }
-        public string notes { get; set; }
-        public List<TableOfContent> table_of_contents { get; set; }
-        public List<Link> links { get; set; }
-        public List<Ebook> ebooks { get; set; }
-        public Cover cover { get; set; }
+        public string? Url { get; set; }
+        public string Key { get; set; }
+        public string Title { get; set; }
+        public List<Author> Authors { get; set; }
+        public int Number_of_pages { get; set; }
+        public string Pagination { get; set; }
+        public string Weight { get; set; }
+        public string By_statement { get; set; }
+        public Identifiers Identifiers { get; set; }
+        public Classifications Classifications { get; set; }
+        public List<Publisher> Publishers { get; set; }
+        public List<PublishPlace> Publish_places { get; set; }
+        public string Publish_date { get; set; }
+        public List<Subject> Subjects { get; set; }
+        public string Notes { get; set; }
+        public List<TableOfContent> Table_of_contents { get; set; }
+        public List<Link> Links { get; set; }
+        public List<Ebook> Ebooks { get; set; }
+        public Cover Cover { get; set; }
     }
     public class Author
     {
-        public string url { get; set; }
-        public string name { get; set; }
+        public string Url { get; set; }
+        public string Name { get; set; }
     }
 
     public class Classifications
     {
-        public List<string> lc_classifications { get; set; }
-        public List<string> dewey_decimal_class { get; set; }
+        public List<string> Lc_classifications { get; set; }
+        public List<string> Dewey_decimal_class { get; set; }
     }
 
     public class Cover
     {
-        public string small { get; set; }
-        public string medium { get; set; }
-        public string large { get; set; }
+        public string Small { get; set; }
+        public string Medium { get; set; }
+        public string Large { get; set; }
     }
 
     public class Ebook
     {
-        public string preview_url { get; set; }
-        public string availability { get; set; }
-        public Formats formats { get; set; }
-        public string borrow_url { get; set; }
-        public bool checkedout { get; set; }
+        public string Preview_url { get; set; }
+        public string Availability { get; set; }
+        public Formats Formats { get; set; }
+        public string Borrow_url { get; set; }
+        public bool Checkedout { get; set; }
     }
 
     public class Formats
@@ -68,43 +68,43 @@ namespace LibraryService.Application.DTOs
 
     public class Identifiers
     {
-        public List<string> amazon { get; set; }
-        public List<string> google { get; set; }
-        public List<string> librarything { get; set; }
-        public List<string> goodreads { get; set; }
-        public List<string> isbn_10 { get; set; }
-        public List<string> isbn_13 { get; set; }
-        public List<string> lccn { get; set; }
-        public List<string> oclc { get; set; }
-        public List<string> openlibrary { get; set; }
+        public List<string> Amazon { get; set; }
+        public List<string> Google { get; set; }
+        public List<string> Librarything { get; set; }
+        public List<string> Boodreads { get; set; }
+        public List<string> Isbn_10 { get; set; }
+        public List<string> Isbn_13 { get; set; }
+        public List<string> Lccn { get; set; }
+        public List<string> Oclc { get; set; }
+        public List<string> Openlibrary { get; set; }
     }
     public class Link
     {
-        public string title { get; set; }
-        public string url { get; set; }
+        public string Title { get; set; }
+        public string Url { get; set; }
     }
 
     public class Publisher
     {
-        public string name { get; set; }
+        public string Name { get; set; }
     }
 
     public class PublishPlace
     {
-        public string name { get; set; }
+        public string Name { get; set; }
     }
     public class Subject
     {
-        public string name { get; set; }
-        public string url { get; set; }
+        public string Name { get; set; }
+        public string Url { get; set; }
     }
 
     public class TableOfContent
     {
-        public int level { get; set; }
-        public string label { get; set; }
-        public string title { get; set; }
-        public string pagenum { get; set; }
+        public int Level { get; set; }
+        public string Label { get; set; }
+        public string Title { get; set; }
+        public string Pagenum { get; set; }
     }
 
 

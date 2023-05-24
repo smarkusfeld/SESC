@@ -36,7 +36,7 @@ namespace LibraryService.Application.Interfaces
         /// <summary>
         /// Method to check available copies of a book
         /// </summary>
-        Task<BookItemDTO> GetAvailableBookItem(int isbn);
+        Task<BookCopyDTO> GetAvailableBookCopy(int isbn);
 
         ///<summary>
         ///Method to get library account id
