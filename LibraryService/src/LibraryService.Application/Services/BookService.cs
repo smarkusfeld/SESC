@@ -1,6 +1,7 @@
 ﻿using LibraryService.Application.DTOs;
 using LibraryService.Application.Interfaces;
 using LibraryService.Domain.Entities;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using static System.Reflection.Metadata.BlobBuilder;
 
@@ -94,7 +96,7 @@ namespace LibraryService.Application.Services
         }
         private void UpdateBookItem(BookItem bookItem, bool IsAvailable)
         {
-            
+
             bookItem.IsAvailable = IsAvailable;
             _unitOfWork.BookItems.Update(bookItem);
             _unitOfWork.Save();
@@ -117,12 +119,12 @@ namespace LibraryService.Application.Services
             {
                 return null;
             }
-            
+
         }
         public async Task<bool> CreateNewLoan(int accountID, int bookItemID)
         {
             try
-            {                
+            {
                 Loan newLoan = new Loan
                 {
                     AccountID = accountID,
@@ -131,12 +133,12 @@ namespace LibraryService.Application.Services
 
                 };
                 var result = await _unitOfWork.Loans.AddAsync(newLoan);
-                if(result!=null)
+                if (result != null)
                 {
                     _unitOfWork.Save();
                     var bookItem = await _unitOfWork.BookItems.GetByAsync(x => x.ID == bookItemID);
                     UpdateBookItem(bookItem, false);
-                    
+
                     return true;
                 }
                 return false;
@@ -144,7 +146,7 @@ namespace LibraryService.Application.Services
             catch
             {
                 return false;
-            }            
+            }
         }
 
         public async Task<IEnumerable<BookDTO>> GetAllBooks()
@@ -228,30 +230,20 @@ namespace LibraryService.Application.Services
 
         private async Task<BookDTO> GetDetails(int isbn)
         {
-            String url = "http://openlibrary.org/api/books?bibkeys=ISBN:" + isbn + "&jscmd=details&format=json";
+            String url = "http://openlibrary.org/api/books?bibkeys=ISBN:" + isbn + "&jscmd=data&format=json";
             String json = new WebClient().DownloadString(url);
             JObject jsonObject = JObject.Parse(json);
-            JToken details = jsonObject.SelectToken("ISBN:" + isbn + ".details");
-            String title = (string)details["title"];
-            int year = (int)details["publishDate"];
-            List<string>authorList = new List<string>();
-            var authors= jsonObject.SelectToken("authors");
-            foreach (var author in authors) {
+            var data = jsonObject.SelectToken("ISBN:" + isbn).ToString();
 
-                string name = (string)authors["name"];
-                authorList.Add(name);
-            }
-            //todo add author functionality
-            return new BookDTO()
-            {
-                ISBN = isbn,
-                Title = title,
-                Year = year,
-                Copies = 1,
-                Authors = authorList
+            var record = JsonConvert.DeserializeObject<OpenLibraryRecord>(data);
 
-            };
+            return new BookDTO();
 
         }
+
     }
-}
+        //clean up 
+
+    
+    }
+
