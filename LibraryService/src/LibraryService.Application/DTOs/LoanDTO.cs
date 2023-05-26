@@ -8,7 +8,7 @@ namespace LibraryService.Application.DTOs
 {
     public class LoanDTO
     {
-        public int ID { get; set; } 
+        public new int ID { get; set; } 
         public int ISBN { get; set; }
         public string StudentID { get; set; }
 

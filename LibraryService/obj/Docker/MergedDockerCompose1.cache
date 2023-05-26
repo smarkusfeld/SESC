@@ -1,5 +1,27 @@
 name: dockercompose10189594079601422213
 services:
+  adminer:
+    image: adminer
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 8080
+      published: "8080"
+      protocol: tcp
+    restart: always
+  db:
+    environment:
+      MYSQL_DATABASE: librarydb
+      MYSQL_ROOT_PASSWORD: tiaspbiqe2r
+    image: mysql
+    networks:
+      default: null
+    volumes:
+    - type: volume
+      source: library-mysql-data
+      target: /var/lib/mysql
+      volume: {}
   libraryservice.api:
     build:
       context: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService
@@ -9,6 +31,9 @@ services:
         com.microsoft.visual-studio.project-name: LibraryService.Api
       target: base
     container_name: LibraryService.Api
+    depends_on:
+      db:
+        condition: service_started
     entrypoint:
     - tail
     - -f
@@ -18,11 +43,15 @@ services:
       ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
       ASPNETCORE_URLS: https://+:443;http://+:80
       DOTNET_USE_POLLING_FILE_WATCHER: "1"
+      MYSQL_DB: librarydb
+      MYSQL_HOST: db
+      MYSQL_PASSWORD: tiaspbiqe2r
+      MYSQL_USER: root
       NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
     image: libraryserviceapi:dev
     labels:
       com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
-        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/net6.0/LibraryService.Api.dll"'
+        --additionalProbingPath /root/.nuget/fallbackpackages  ""'
       com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
         dotnet); then kill $$PID; fi"
       com.microsoft.visualstudio.debuggee.program: dotnet
@@ -32,6 +61,10 @@ services:
     ports:
     - mode: ingress
       target: 80
+      protocol: tcp
+    - mode: ingress
+      target: 80
+      published: "5003"
       protocol: tcp
     - mode: ingress
       target: 443
@@ -80,3 +113,6 @@ services:
 networks:
   default:
     name: dockercompose10189594079601422213_default
+volumes:
+  library-mysql-data:
+    name: dockercompose10189594079601422213_library-mysql-data

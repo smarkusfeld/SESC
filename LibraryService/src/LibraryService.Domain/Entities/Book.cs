@@ -13,7 +13,7 @@ namespace LibraryService.Domain.Entities
     [Table("book")]
     public class Book :IEntity
     {
-        [Key]
+       
         public int ISBN { get; set; }
         public string Title { get; set; }
         public string Weight { get; set; }
@@ -21,11 +21,11 @@ namespace LibraryService.Domain.Entities
         public string Pagination { get; set; }
         public int Year { get; set; }    
         public int Copies { get; set; }
-        public List<string> PlaceofPublication { get; set; }
+        public string PublicationLocation { get; set; }
         public ICollection<BookSubject> BookSubjects { get; set; }
         public ICollection<BookPublisher> BookPublishers { get; set; }
         public ICollection<BookIdentifier> BookIdentifiers { get; set; }
-        public ICollection<BookClassifier> BookClassifiers { get; set; }
+        public ICollection<BookClassification> BookClassifications { get; set; }
         public ICollection<BookAuthor>BookAuthors { get; set; }
         public ICollection<BookCopy> BookCopys { get; set; }
 

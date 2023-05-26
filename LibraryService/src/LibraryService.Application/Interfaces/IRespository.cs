@@ -11,7 +11,7 @@ namespace LibraryService.Application.Interfaces
     {
 
     }
-    public interface ITitleAuthorRepository : IGenericRepository<BookAuthor>
+    public interface IBookAuthorRepository : IGenericRepository<BookAuthor>
     {
 
     }
@@ -28,6 +28,38 @@ namespace LibraryService.Application.Interfaces
 
     }
     public interface ILoanRepository : IGenericRepository<Loan>
+    {
+
+    }
+    public interface ISubjectRepository : IGenericRepository<Subject>
+    {
+
+    }
+    public interface IBookSubjectRepository : IGenericRepository<BookSubject>
+    {
+
+    }
+    public interface IPublisherRepository : IGenericRepository<Publisher>
+    {
+
+    }
+    public interface IClassificationRepository : IGenericRepository<Classification>
+    {
+
+    }
+    public interface IIdentifierRepository : IGenericRepository<Identifier>
+    {
+
+    }
+    public interface IBookPublisherRepository : IGenericRepository<BookPublisher>
+    {
+
+    }
+    public interface IBookClassificationRepository : IGenericRepository<BookClassification>
+    {
+
+    }
+    public interface IBookIdentifierRepository : IGenericRepository<BookIdentifier>
     {
 
     }

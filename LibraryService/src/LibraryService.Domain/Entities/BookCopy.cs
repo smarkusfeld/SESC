@@ -12,13 +12,13 @@ namespace LibraryService.Domain.Entities
     [Table("bookcopy")]
     public class BookCopy : IEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
-
-        [ForeignKey("Book")]
+        
         public int ISBN { get; set; }
         public bool IsAvailable { get; set; }
+        public int BookID { get; set; }
+
+        [Required]
+        [ForeignKey("BookID")]
         public Book Book { get; set; }
         public ICollection<Loan> Loans { get; set; } 
     }

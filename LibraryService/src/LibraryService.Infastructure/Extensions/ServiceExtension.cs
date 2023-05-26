@@ -19,7 +19,7 @@ namespace LibraryService.Infastructure.Extensions
             {
                 options.UseMySQL(connection);
 
-            });
+        });
             //services.AddAutoMapper(typeof(AccountProfile), typeof(InvoiceProfile), typeof(PaymentProfile));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAccountRepository, AccountRepository>();
@@ -27,7 +27,7 @@ namespace LibraryService.Infastructure.Extensions
             services.AddScoped<IBookCopyRepository, BookCopyRepository>();
             services.AddScoped<ILoanRepository, LoanRepository>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
-            services.AddScoped<ITitleAuthorRepository,BookAuthorRepository>();
+            services.AddScoped<IBookAuthorRepository,BookAuthorRepository>();
 
             return services;
         }

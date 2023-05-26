@@ -1,5 +1,6 @@
 ﻿using LibraryService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,21 @@ namespace LibraryService.Infastructure.Context
         {
 
         }
-
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Book> Books { get; set; }
-        public DbSet<BookCopy> BookCopys { get; set; }
+        public DbSet<BookCopy> BookCopies { get; set; }
         public DbSet<Loan> Loans { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<BookAuthor>BookAuthors { get; set; }
-
+        public DbSet<Publisher> Publishers { get; set; }
+        public DbSet<BookPublisher> BookPublishers { get; set; }
+        public DbSet<Identifier> Identifiers { get; set; }
+        public DbSet<BookIdentifier> BookIdentifiers { get; set; }
+        public DbSet<Classification> Classifications { get; set; }
+        public DbSet<BookClassification> BookClassifications { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<BookSubject> BookSubjects { get; set; }
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -46,7 +54,7 @@ namespace LibraryService.Infastructure.Context
              .WithOne(x => x.Book);
 
             modelBuilder.Entity<Book>()
-             .HasMany(y => y.BookClassifiers)
+             .HasMany(y => y.BookClassifications)
             .WithOne(x => x.Book);
 
             modelBuilder.Entity<Book>()
@@ -65,17 +73,19 @@ namespace LibraryService.Infastructure.Context
                 .HasMany(y => y.BookSubjects)
                 .WithOne(x => x.Subject);
 
-            modelBuilder.Entity<Classifier>()
-             .HasMany(y => y.BookClassifiers)
-            .WithOne(x => x.Classifier);
+            modelBuilder.Entity<Classification>()
+             .HasMany(y => y.BookClassifications)
+             .WithOne(x => x.Classification);
 
             modelBuilder.Entity<Identifier>()
              .HasMany(y => y.BookIdentifiers)
-            .WithOne(x => x.Identifier);
+             .WithOne(x => x.Identifier);
 
             modelBuilder.Entity<Publisher>()
              .HasMany(y => y.BookPublishers)
-            .WithOne(x => x.Publisher);
+              .WithOne(x => x.Publisher);
+
+
         }
     }
 }

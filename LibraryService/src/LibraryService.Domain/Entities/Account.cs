@@ -12,14 +12,12 @@ namespace LibraryService.Domain.Entities
     [Table("account")]
     public class Account : IEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
-
+        [Required]
         public string StudentID { get; set; }
 
+        [Required]
         public int Pin { get; set; } = 000000;
 
-        public ICollection<Loan> Loans { get; set; }
+        public ICollection<Loan>? Loans { get; set; }
     }
 }

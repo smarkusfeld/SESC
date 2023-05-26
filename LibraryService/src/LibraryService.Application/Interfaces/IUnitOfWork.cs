@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryService.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,17 @@ namespace LibraryService.Application.Interfaces
     {
         IAccountRepository Accounts { get; }
         IBookRepository Books { get; }
+        IBookSubjectRepository BookSubjects { get; }
+        IBookPublisherRepository BookPublishers { get; }
+        IBookIdentifierRepository BookIdentifers { get; }
+        IBookClassificationRepository BookClassifications { get; }
+        ISubjectRepository Subjects { get; }
+        IPublisherRepository Publishers { get; }
+        IIdentifierRepository Identifers { get; }
+        IClassificationRepository Classifications { get; }
         IAuthorRepository Authors { get; }
-        ITitleAuthorRepositoryBookAuthors { get; }
-        IBookCopyRepository BookCopys { get; }
+        IBookAuthorRepository BookAuthors { get; }
+        IBookCopyRepository BookCopies { get; }
         ILoanRepository Loans { get; }
         int Save();
 

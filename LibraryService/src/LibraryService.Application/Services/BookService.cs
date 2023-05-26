@@ -69,7 +69,7 @@ namespace LibraryService.Application.Services
         {
             try
             {
-                var copies = await _unitOfWork.BookCopys.GetAllWhereAsync(x => x.ISBN == isbn && x.IsAvailable == true);
+                var copies = await _unitOfWork.BookCopies.GetAllWhereAsync(x => x.ISBN == isbn && x.IsAvailable == true);
                 return copies.Count();
             }
             catch
@@ -81,7 +81,7 @@ namespace LibraryService.Application.Services
         {
             try
             {
-                var item = await _unitOfWork.BookCopys.GetByAsync(x => x.ISBN == isbn && x.IsAvailable == true);
+                var item = await _unitOfWork.BookCopies.GetByAsync(x => x.ISBN == isbn && x.IsAvailable == true);
                 return new BookCopyDTO
                 {
                     ID = item.ID,
@@ -91,14 +91,14 @@ namespace LibraryService.Application.Services
             }
             catch
             {
-                return 0;
+                return null;
             }
         }
         private void UpdateBookCopy(BookCopy bookCopy, bool IsAvailable)
         {
 
             bookCopy.IsAvailable = IsAvailable;
-            _unitOfWork.BookCopys.Update(bookCopy);
+            _unitOfWork.BookCopies.Update(bookCopy);
             _unitOfWork.Save();
         }
         public async Task<AccountDTO> GetLibraryAccount(string studentid)
@@ -136,7 +136,7 @@ namespace LibraryService.Application.Services
                 if (result != null)
                 {
                     _unitOfWork.Save();
-                    var bookCopy = await _unitOfWork.BookCopys.GetByAsync(x => x.ID == bookCopyID);
+                    var bookCopy = await _unitOfWork.BookCopies.GetByAsync(x => x.ID == bookCopyID);
                     UpdateBookCopy(bookCopy, false);
 
                     return true;
@@ -209,7 +209,7 @@ namespace LibraryService.Application.Services
                 {
                     ISBN = isbn
                 };
-                var add = await _unitOfWork.BookCopys.AddAsync(bookCopy);
+                var add = await _unitOfWork.BookCopies.AddAsync(bookCopy);
                 if (add != null)
                 {
                     var result = _unitOfWork.Save();
@@ -235,7 +235,11 @@ namespace LibraryService.Application.Services
             JObject jsonObject = JObject.Parse(json);
             var data = jsonObject.SelectToken("ISBN:" + isbn).ToString();
 
-            var record = JsonConvert.DeserializeObject<OpenLibraryRecord>(data);
+            var record = JsonConvert.DeserializeObject<OpenLibraryRecord>(data, new JsonSerializerSettings
+            {
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            });
+        
 
             return new BookDTO();
 
