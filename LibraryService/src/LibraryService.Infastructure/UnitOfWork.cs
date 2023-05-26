@@ -16,11 +16,18 @@ namespace LibraryService.Infastructure
         private readonly DataContext _dbContext;
         private IAccountRepository _accounts;
         private IAuthorRepository _authors;
-        private ITitleAuthorRepository _titleauthors;
+        private IBookAuthorRepository _bookauthors;
         private IBookRepository _books;
         private IBookCopyRepository _bookitems;
         private ILoanRepository _loans;
-
+        private IClassificationRepository _classifications;
+        private IBookClassificationRepository _bookclassifications;
+        private IIdentifierRepository _identifiers;
+        private IBookIdentifierRepository _bookidentifiers;
+        private ISubjectRepository _subjects;
+        private IBookSubjectRepository _booksubjects;
+        private IPublisherRepository _publishers;
+        private IBookPublisherRepository _bookpublishers;
         public IAccountRepository Accounts
         {
             get
@@ -48,17 +55,17 @@ namespace LibraryService.Infastructure
             }
         }
 
-        public ITitleAuthorRepositoryBookAuthors
+        public IBookAuthorRepository BookAuthors
         {
             get
             {
-                _titleauthors ??= newBookAuthorRepository(_dbContext);
-                return _titleauthors;
+                _bookauthors ??= new BookAuthorRepository(_dbContext);
+                return _bookauthors;
             }
         }
 
 
-        public IBookCopyRepository BookCopys
+        public IBookCopyRepository BookCopies
         {
             get
             {
@@ -76,15 +83,98 @@ namespace LibraryService.Infastructure
             }
         }
 
+        public IBookSubjectRepository BookSubjects
+        {
+            get
+            {
+                _booksubjects ??= new BookSubjectRepository(_dbContext);
+                return _booksubjects;
+            }
+        }
+
+        public IBookPublisherRepository BookPublishers
+        {
+            get
+            {
+                _bookpublishers ??= new BookPublisherRepository(_dbContext);
+                return _bookpublishers;
+            }
+        }
+
+        public IBookIdentifierRepository BookIdentifers
+        {
+            get
+            {
+                _bookidentifiers ??= new BookIdentifierRepository(_dbContext);
+                return _bookidentifiers;
+            }
+        }
+
+        public IBookClassificationRepository BookClassifications
+        {
+            get
+            {
+                _bookclassifications ??= new BookClassificationRepository(_dbContext);
+                return _bookclassifications;
+            }
+        }
+
+
+        public ISubjectRepository Subjects
+        {
+            get
+            {
+                
+               _subjects ??= new SubjectRepository(_dbContext);
+                return _subjects;
+            }
+        }
+
+
+
+        public IPublisherRepository Publishers
+        {
+            get
+            {
+                _publishers ??= new PublisherRepository(_dbContext);
+                return _publishers;
+            }
+        }
+
+
+        public IIdentifierRepository Identifers
+        {
+            get
+            {
+                _identifiers ??= new IdentifierRepository(_dbContext);
+                return _identifiers;
+            }
+        }
+
+        public IClassificationRepository Classifications
+        {
+            get
+            {
+                _classifications ??= new ClassificationRepository(_dbContext);
+                return _classifications;
+            }
+        }
+
+
         public UnitOfWork(DataContext dbContext)
         {
             _dbContext = dbContext;
             _accounts = Accounts;
             _books = Books;
-            _bookitems = BookCopys;
+            _bookitems = BookCopies;
             _loans = Loans;
             _authors = Authors;
-            _titleauthors =BookAuthors;
+            _bookauthors = BookAuthors;
+            _classifications = Classifications;
+            _bookclassifications = BookClassifications;
+            _identifiers = Identifers;
+            _bookidentifiers = BookIdentifers;
+
         }
 
         /// <summary>

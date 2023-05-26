@@ -8,7 +8,7 @@ namespace LibraryService.Application.DTOs
 {
     public class BookCopyDTO
     {
-        int ID { get; set; }
+        public int ID { get; set; }
         public bool IsAvailable { get; set; }
 
         public int ISBN { get; set; }
