@@ -21,7 +21,7 @@ namespace LibraryService.Application.Interfaces
         /// <summary>
         /// Method to add new books to the database using the barcode scanner
         /// </summary>
-        Task<bool> AddBook(int isbn);
+        Task<bool> AddBook(string isbn);
 
         /// <summary>
         /// Method to borrow a book using isbn barcode
@@ -36,7 +36,7 @@ namespace LibraryService.Application.Interfaces
         /// <summary>
         /// Method to check available copies of a book
         /// </summary>
-        Task<BookCopyDTO> GetAvailableBookCopy(int isbn);
+        Task<BookCopyDTO> GetAvailableBookCopy(string isbn);
 
         ///<summary>
         ///Method to get library account id
@@ -46,12 +46,12 @@ namespace LibraryService.Application.Interfaces
         /// <summary>
         /// Method to check available copies of a book
         /// </summary>
-        Task<int> CheckBookCount(int isbn);
+        Task<int> CheckBookCount(string isbn);
 
         /// <summary>
         /// Method to get existing loan using isbn barcode
         /// </summary>
-        Task<LoanDTO> FindLoan(string studentid, int isbn);
+        Task<LoanDTO> FindLoan(string studentid, string isbn);
 
     }
 }

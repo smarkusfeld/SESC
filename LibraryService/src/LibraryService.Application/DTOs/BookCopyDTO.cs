@@ -11,6 +11,6 @@ namespace LibraryService.Application.DTOs
         public int ID { get; set; }
         public bool IsAvailable { get; set; }
 
-        public int ISBN { get; set; }
+        public string ISBN { get; set; }
     }
 }

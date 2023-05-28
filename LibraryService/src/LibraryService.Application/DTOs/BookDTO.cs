@@ -17,6 +17,6 @@ namespace LibraryService.Application.DTOs
         public int Copies { get; set; }
 
         
-        public int ISBN { get; set; }
+        public string ISBN { get; set; }
     }
 }

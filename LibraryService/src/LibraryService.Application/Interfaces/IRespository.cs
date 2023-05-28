@@ -21,6 +21,7 @@ namespace LibraryService.Application.Interfaces
     }
     public interface IBookRepository : IGenericRepository<Book>
     {
+     
 
     }
     public interface IBookCopyRepository : IGenericRepository<BookCopy>

@@ -1,4 +1,5 @@
 ﻿using LibraryService.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,9 +13,12 @@ namespace LibraryService.Domain.Entities
     [Table("account")]
     public class Account : IEntity
     {
+        public User User { get; set; }
         [Required]
         public string StudentID { get; set; }
-
+        
+        public string UserID { get; set; }
+       
         [Required]
         public int Pin { get; set; } = 000000;
 

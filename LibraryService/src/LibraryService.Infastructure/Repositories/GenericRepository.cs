@@ -32,20 +32,20 @@ namespace LibraryService.Infastructure.Repositories
         /// </summary>
         /// <param name="id">Id of the entity to recievce </param>
         ///<returns>The entity object if found, otherwise null</returns>
-        public async Task<T> GetAsync(int id) => await _set.SingleOrDefaultAsync(T => T.ID.Equals(id));
+        public async Task<T> GetAsync(int id) => await _set.AsNoTracking().SingleOrDefaultAsync(T => T.ID.Equals(id));
 
         /// <summary>
         /// Gets a single according that fullfills the <paramref name="predicate" />
         /// </summary>
         /// <param name="predicate">Where clause.<example><code>x => x.ID == id</code></example></param>
         ///<returns>The entity object if found, otherwise null</returns>
-        public async Task<T> GetByAsync(Expression<Func<T, bool>> predicate) => await _set.SingleOrDefaultAsync(predicate);
+        public async Task<T> GetByAsync(Expression<Func<T, bool>> predicate) => await _set.AsNoTracking().SingleOrDefaultAsync(predicate);
 
         /// <summary>
         /// Retrives a collection of all entities
         /// </summary>
         /// <returns>A collections of all entities</returns>
-        public async Task<IEnumerable<T>> GetAllAsync() => await _set.ToListAsync();
+        public async Task<IEnumerable<T>> GetAllAsync() => await _set.AsNoTracking().ToListAsync();
 
         /// <summary>
         /// Retrieves a filtered and orderd collection of entities 
@@ -54,34 +54,38 @@ namespace LibraryService.Infastructure.Repositories
         /// <param name="orderBy">Collection order</param>
         /// <param name="includes">Any additional properies to be included</param>
         /// <returns>An ordered collection of entities</returns>
-        //public async Task<IEnumerable<T>> GetAllOrderedAsync(Expression<Func<T, bool>>? predicate = null, Func<IQueryable<T>, 
-        //                                                        IOrderedQueryable<T>>? orderBy = null, 
-        //                                                        params Expression<Func<T, object>>[] includes)
-        //{
-           
-        //    IQueryable<T> query = _context.Set<T>();
-        //    foreach (Expression<Func<T, object>> include in includes)
-        //        query = query.Include(include);
-        //    if (predicate != null)
-        //    {
-              
-        //        query = query.Where(predicate);
-        //    }               
+        public async Task<IEnumerable<T>> GetAllOrderedAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>,
+                                                                IOrderedQueryable<T>> orderBy = null,
+                                                                string includeProperties = "")
+        {
 
-        //    if (orderBy != null)
-        //    {
-        //        await orderBy(query).ToListAsync();
-        //    }
-        //    else
-        //    {
-        //        await query.ToListAsync();
-        //    }
-        //    return null;
+            IQueryable<T> query = _context.Set<T>();
             
-        //}
-        
+            if (predicate != null)
+            {
 
-        
+                query = query.Where(predicate);
+            }
+            foreach (var includeProperty in includeProperties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
+            if (orderBy != null)
+            {
+                await orderBy(query).ToListAsync();
+            }
+            else
+            {
+                await query.AsNoTracking().ToListAsync();
+            }
+            return null;
+
+        }
+
+
+
 
         /// <summary>
         /// Retrieves a collection of entities that fullfills the <paramref name="predicate" />

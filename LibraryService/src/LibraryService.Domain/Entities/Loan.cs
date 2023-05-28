@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Domain.Entities
 {
-    [Table("Loans")]
+    [Table("loan")]
     public class Loan : IEntity
     {
         
@@ -19,12 +19,8 @@ namespace LibraryService.Domain.Entities
         public DateTime? DateReturned { get; set; } = null;
         public int AccountID { get; set; }
         public int BookCopyID { get; set; }
-
-        [Required]
-        [ForeignKey("BookCopyID")]
+        public string ISBN { get; set; }
         public BookCopy BookCopy { get; set; }
-        [Required]
-        [ForeignKey("AccountID")]
         public Account Account { get; set; }
     }
 

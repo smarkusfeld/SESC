@@ -19,8 +19,10 @@ namespace LibraryService.Application.Interfaces
         
         Task<T> GetAsync(int id);
         Task<T> GetByAsync(Expression<Func<T, bool>> predicate);  
-        Task<IEnumerable<T>> GetAllAsync();    
-    
+        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllOrderedAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>,
+                                                                IOrderedQueryable<T>> orderBy = null,
+                                                                string includeProperties = "");
         Task<IEnumerable<T>> GetAllWhereAsync(Expression<Func<T, bool>> predicate);
         Task<T> AddAsync(T entity);
         void Delete(T entity);
