@@ -1,15 +1,14 @@
 ﻿using LibraryService.Domain.Entities;
+using LibraryService.Infastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Asn1.X509;
+using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace LibraryService.Infastructure.Context
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<User, IdentityRole, string>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
@@ -32,60 +31,49 @@ namespace LibraryService.Infastructure.Context
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //configure identity schema
+            base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Account>()
-                .HasMany(y => y.Loans)
-                .WithOne(x => x.Account);
+            modelBuilder.Entity<User>().HasMany(x => x.Claims).WithOne().HasForeignKey(y => y.UserId).IsRequired();
+            modelBuilder.Entity<User>().HasMany(x => x.UserRoles).WithOne().HasForeignKey(y => y.UserId).IsRequired();
+            modelBuilder.Entity<User>().HasMany(x => x.Logins).WithOne().HasForeignKey(y => y.UserId).IsRequired();
+            modelBuilder.Entity<User>().HasMany(x => x.Tokens).WithOne().HasForeignKey(y => y.UserId).IsRequired();
 
-            modelBuilder.Entity<BookCopy>()
-                .HasMany(y => y.Loans)
-                .WithOne(x => x.BookCopy);
-
-            modelBuilder.Entity<Book>()
-              .HasMany(y => y.BookCopys)
-              .WithOne(x => x.Book);
-
-            modelBuilder.Entity<Book>()
-               .HasMany(y => y.BookAuthors)
-              .WithOne(x => x.Book);
-
-            modelBuilder.Entity<Book>()
-              .HasMany(y => y.BookSubjects)
-             .WithOne(x => x.Book);
-
-            modelBuilder.Entity<Book>()
-             .HasMany(y => y.BookClassifications)
-            .WithOne(x => x.Book);
-
-            modelBuilder.Entity<Book>()
-             .HasMany(y => y.BookIdentifiers)
-            .WithOne(x => x.Book);
-
-            modelBuilder.Entity<Book>()
-             .HasMany(y => y.BookPublishers)
-            .WithOne(x => x.Book);
-
-            modelBuilder.Entity<Author>()
-               .HasMany(y => y.BookAuthors)
-              .WithOne(x => x.Author);
-
-            modelBuilder.Entity<Subject>()
-                .HasMany(y => y.BookSubjects)
-                .WithOne(x => x.Subject);
-
-            modelBuilder.Entity<Classification>()
-             .HasMany(y => y.BookClassifications)
-             .WithOne(x => x.Classification);
-
-            modelBuilder.Entity<Identifier>()
-             .HasMany(y => y.BookIdentifiers)
-             .WithOne(x => x.Identifier);
-
-            modelBuilder.Entity<Publisher>()
-             .HasMany(y => y.BookPublishers)
-              .WithOne(x => x.Publisher);
+            modelBuilder.Entity<Account>().HasOne(x => x.User).WithOne(y => y.Account).HasForeignKey<Account>(x => x.UserID).IsRequired();
 
 
+            modelBuilder.Entity<Account>().HasMany(y => y.Loans).WithOne(x => x.Account).HasForeignKey(x => x.AccountID);
+
+        
+            modelBuilder.Entity<BookCopy>().HasMany(y => y.Loans).WithOne(x => x.BookCopy).HasForeignKey(x=>x.BookCopyID);
+
+           
+            modelBuilder.Entity<Book>().HasMany(y => y.BookCopys).WithOne(x => x.Book).HasForeignKey(x =>x.BookID);
+            modelBuilder.Entity<Book>().HasMany(y => y.BookAuthors).WithOne(x => x.Book).HasForeignKey(x => x.BookID);
+            modelBuilder.Entity<Book>().HasMany(y => y.BookSubjects).WithOne(x => x.Book).HasForeignKey(x => x.BookID);
+            modelBuilder.Entity<Book>().HasMany(y => y.BookClassifications).WithOne(x => x.Book).HasForeignKey(x => x.BookID);
+            modelBuilder.Entity<Book>().HasMany(y => y.BookIdentifiers).WithOne(x => x.Book).HasForeignKey(x => x.BookID); 
+            modelBuilder.Entity<Book>().HasMany(y => y.BookPublishers).WithOne(x => x.Book).HasForeignKey(x => x.BookID);
+
+            modelBuilder.Entity<Author>().HasMany(y => y.BookAuthors).WithOne(x => x.Author).HasForeignKey(x => x.AuthorID);
+
+
+            
+
+            modelBuilder.Entity<Subject>().HasMany(y => y.BookSubjects).WithOne(x => x.Subject).HasForeignKey(x => x.SubjectID);
+
+            modelBuilder.Entity<Classification>().HasMany(y => y.BookClassifications).WithOne(x => x.Classification).HasForeignKey(x => x.ClassificationID);
+
+            modelBuilder.Entity<Identifier>().HasMany(y => y.BookIdentifiers).WithOne(x => x.Identifier).HasForeignKey(x => x.IndentifierID);
+
+            modelBuilder.Entity<Publisher>().HasMany(y => y.BookPublishers).WithOne(x => x.Publisher).HasForeignKey(x => x.PublisherID);
+            
+            
+            modelBuilder.ApplyConfiguration(new ClassificationConfiguration());
+
+            modelBuilder.ApplyConfiguration(new IndentifierConfiguration());
+
+            
         }
     }
 }

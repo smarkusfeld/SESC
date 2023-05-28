@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Reflection.Metadata.Ecma335;
@@ -28,7 +29,7 @@ namespace LibraryService.Application.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<bool> AddBook(int isbn)
+        public async Task<bool> AddBook(string isbn)
         {
             //see if book already exists in the library 
             var check = await (ISBNCheck(isbn));
@@ -65,11 +66,12 @@ namespace LibraryService.Application.Services
             }
             return false;
         }
-        public async Task<int> CheckBookCount(int isbn)
+        public async Task<int> CheckBookCount(string isbn)
         {
             try
             {
-                var copies = await _unitOfWork.BookCopies.GetAllWhereAsync(x => x.ISBN == isbn && x.IsAvailable == true);
+                string value = isbn.ToString();
+                var copies = await _unitOfWork.BookCopies.GetAllWhereAsync(x => x.Book.BookIdentifiers.Any(y => y.Value == value && y.Identifier.Name.StartsWith("isbn")) && x.IsAvailable == true);
                 return copies.Count();
             }
             catch
@@ -77,11 +79,12 @@ namespace LibraryService.Application.Services
                 return 0;
             }
         }
-        public async Task<BookCopyDTO> GetAvailableBookCopy(int isbn)
+        public async Task<BookCopyDTO> GetAvailableBookCopy(string isbn)
         {
             try
             {
-                var item = await _unitOfWork.BookCopies.GetByAsync(x => x.ISBN == isbn && x.IsAvailable == true);
+                string value = isbn.ToString();
+                var item = await _unitOfWork.BookCopies.GetByAsync(x => x.Book.BookIdentifiers.Any(y => y.Value == value && y.Identifier.Name.StartsWith("isbn")) && x.IsAvailable == true);
                 return new BookCopyDTO
                 {
                     ID = item.ID,
@@ -166,7 +169,7 @@ namespace LibraryService.Application.Services
             }
             return booklist.AsEnumerable();
         }
-        public async Task<LoanDTO> FindLoan(string studentid, int isbn)
+        public async Task<LoanDTO> FindLoan(string studentid, string isbn)
         {
             try
             {
@@ -201,7 +204,7 @@ namespace LibraryService.Application.Services
             catch { return false; }
         }
 
-        private async Task<bool> AddBookCopy(int isbn)
+        private async Task<bool> AddBookCopy(string isbn)
         {
             try
             {
@@ -222,13 +225,14 @@ namespace LibraryService.Application.Services
                 return false;
             }
         }
-        private async Task<bool> ISBNCheck(int isbn)
+        private async Task<bool> ISBNCheck(string isbn)
         {
-            var book = await _unitOfWork.Books.GetByAsync(x => x.ISBN == isbn);
+            string value = isbn.ToString();
+            var book = await _unitOfWork.Books.GetByAsync(x => x.BookIdentifiers.Any(y=> y.Value == value && y.Identifier.Name.StartsWith("isbn")));
             return book != null;
         }
 
-        private async Task<BookDTO> GetDetails(int isbn)
+        private async Task<BookDTO> GetDetails(string isbn)
         {
             String url = "http://openlibrary.org/api/books?bibkeys=ISBN:" + isbn + "&jscmd=data&format=json";
             String json = new WebClient().DownloadString(url);
@@ -244,6 +248,29 @@ namespace LibraryService.Application.Services
             return new BookDTO();
 
         }
+
+        public async Task<BookDTO> GetBookByISBN(string isbn)
+        {
+            string value = isbn.ToString();
+            var book = await _unitOfWork.Books.GetByAsync(x => x.BookIdentifiers.Any(y => y.Value == value && y.Identifier.Name.StartsWith("isbn")));
+
+            if (book != null)
+            {
+                return new BookDTO()
+                {
+                    Title = book.Title,
+                    //add rest
+                };
+            }
+            return null; 
+
+        }
+
+       // private async Task<IEnumerable<BookIdentifier>> BookIdentifiers()
+        //{
+           // string value = isbn.ToString();
+            //return await _unitOfWork.BookIdentifers.GetAllOrderedAsync(predicate: x => x.Value == value, includeProperties: "Book, Identifier");
+       // }
 
     }
         //clean up 

@@ -12,7 +12,7 @@ namespace LibraryService.Domain.Entities
     [Table("identifier")]
     public class Identifier : IEntity
     {
-            
+        public string Label { get; set; }
         public string Name { get; set; }
         public ICollection<BookIdentifier> BookIdentifiers { get; set; }
     }

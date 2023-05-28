@@ -1,5 +1,6 @@
 ﻿using LibraryService.Application.DTOs;
 using LibraryService.Application.Interfaces;
+using LibraryService.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,27 @@ namespace LibraryService.Application.Services
 {
     public class AccountService : IAccountService
     {
-        public Task<IEnumerable<AccountDTO>> GetAllStudentAccounts()
+        private readonly IUnitOfWork _unitOfWork;
+
+        public AccountService(IUnitOfWork unitOfWork)
         {
-            throw new NotImplementedException();
+            _unitOfWork = unitOfWork;
+        }
+        public async Task<IEnumerable<AccountDTO>> GetAllStudentAccounts()
+        {
+            var accounts = await _unitOfWork.Accounts.GetAllAsync();
+            List<AccountDTO> studentacccounts = new List<AccountDTO>();
+            foreach (var account in accounts) 
+            {
+                ///add conversion
+
+                studentacccounts.Add(new AccountDTO());
+
+            }
+            return studentacccounts;
         }
 
-        public Task<string> Register(string studentid)
+        public async Task<string> Register(string studentid)
         {
             throw new NotImplementedException();
         }

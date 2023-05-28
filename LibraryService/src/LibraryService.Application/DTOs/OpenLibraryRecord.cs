@@ -61,8 +61,6 @@ namespace LibraryService.Application.DTOs
     {
         public List<string> lc_classifications { get; set; }
         public List<string> dewey_decimal_class { get; set; }
-        public List<string> udc { get; set; }
-        public List<string> rvk { get; set; }
     }
 
     public class PublisherDTO

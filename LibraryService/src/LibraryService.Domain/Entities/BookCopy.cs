@@ -13,12 +13,9 @@ namespace LibraryService.Domain.Entities
     public class BookCopy : IEntity
     {
         
-        public int ISBN { get; set; }
+        public string ISBN { get; set; }
         public bool IsAvailable { get; set; }
         public int BookID { get; set; }
-
-        [Required]
-        [ForeignKey("BookID")]
         public Book Book { get; set; }
         public ICollection<Loan> Loans { get; set; } 
     }

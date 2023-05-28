@@ -41,3 +41,8 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\D
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\obj\Debug\docker-compose.dcproj.CopyComplete
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.dll
