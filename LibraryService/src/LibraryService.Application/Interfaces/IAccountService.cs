@@ -1,4 +1,5 @@
 ﻿using LibraryService.Application.DTOs;
+using LibraryService.Application.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,26 +14,33 @@ namespace LibraryService.Application.Interfaces
     public interface IAccountService
     {
         /// <summary>
-        /// Method to register new student account
+        /// Method to create new student account
         /// </summary>
-        Task<string> Register(string studentID);
+        Task<bool> CreateAccount(string studentID);
         /// <summary>
-        /// Method to register new admin account
+        /// Method to register User
         /// </summary>
+        Task<bool> RegisterUser(string studentID);
+        
 
         /// <summary>
-        /// Method for student login
+        /// Method for user login
         /// </summary>
-        /// 
+        Task<bool>Login(UserLoginModel userLoginModel);
 
         /// <summary>
         /// Method for admin login
         /// </summary>
-        
+
         /// <summary>
         /// Method to display all students and the number of books on loan/overdue
         /// </summary>
         Task<IEnumerable<AccountDTO>> GetAllStudentAccounts();
+
+        /// <summary>
+        /// Validate Account
+        /// </summary>
+        bool ValidateAccount(StudentRegistrationModel model);
 
     }
 }

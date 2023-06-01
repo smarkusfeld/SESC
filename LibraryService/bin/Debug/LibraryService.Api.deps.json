@@ -1099,6 +1099,7 @@
       "LibraryService.Application/1.0.0": {
         "dependencies": {
           "LibraryService.Domain": "1.0.0",
+          "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
           "Newtonsoft.Json": "13.0.3"
         },

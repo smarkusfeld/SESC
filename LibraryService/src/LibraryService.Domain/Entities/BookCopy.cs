@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 namespace LibraryService.Domain.Entities
 {
     [Table("bookcopy")]
-    public class BookCopy : IEntity
+    public class BookCopy : BaseEntity
     {
         
         public string ISBN { get; set; }
         public bool IsAvailable { get; set; }
-        public int BookID { get; set; }
+        public int BookId { get; set; }
         public Book Book { get; set; }
         public ICollection<Loan> Loans { get; set; } 
     }

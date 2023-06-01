@@ -11,12 +11,8 @@ namespace LibraryService.Application.Interfaces
     /// <summary>
     /// Generic Repository Interface.
     /// </summary>
-    /// <typeparam name="T">The Type of <see cref="IEntity"/> to operate on</typeparam>
-    public interface IGenericRepository<T> where T : IEntity
-    {
-
-
-        
+    public interface IGenericRepository<T> where T : class
+    {        
         Task<T> GetAsync(int id);
         Task<T> GetByAsync(Expression<Func<T, bool>> predicate);  
         Task<IEnumerable<T>> GetAllAsync();
@@ -28,7 +24,6 @@ namespace LibraryService.Application.Interfaces
         void Delete(T entity);
         void Update(T entity);
         void Update(IEnumerable<T> entities);
-
 
     }
 }

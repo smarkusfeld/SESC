@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace LibraryService.Domain.Entities
 {
     [Table("publisher")]
-    public class Publisher : IEntity
+    public class Publisher : BaseEntity
     {
         
         public string Name { get; set; }

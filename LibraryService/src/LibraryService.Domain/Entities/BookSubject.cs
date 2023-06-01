@@ -9,18 +9,17 @@ using System.Threading.Tasks;
 namespace LibraryService.Domain.Entities
 {
     [Table("booksubject")]
-    public class BookSubject : IEntity
+    public class BookSubject : BaseEntity
     {
-        public int BookID { get; set; }
-        public int SubjectID { get; set; }
-
-        [Required]
-        [ForeignKey("SubjectID")]
+        
+       
+        public int BookId { get; set; }
+        public int SubjectId { get; set; }
         public Subject Subject { get; set; }
-
-        [Required]
-        [ForeignKey("BookID")]
+                
         public Book Book { get; set; }
+
+        
 
     }
 }

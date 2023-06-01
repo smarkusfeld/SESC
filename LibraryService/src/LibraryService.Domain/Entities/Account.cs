@@ -11,17 +11,18 @@ using System.Threading.Tasks;
 namespace LibraryService.Domain.Entities
 {
     [Table("account")]
-    public class Account : IEntity
+    public class Account : BaseEntity
     {
-        public User User { get; set; }
-        [Required]
-        public string StudentID { get; set; }
-        
-        public string UserID { get; set; }
        
+        public string? StudentId { get; set; }
+        public string? EmployeeId { get; set; }       
+
         [Required]
         public int Pin { get; set; } = 000000;
-
         public ICollection<Loan>? Loans { get; set; }
+        
+        public User User { get; set; }
+
+        
     }
 }

@@ -2,6 +2,7 @@
 using LibraryService.Domain.Entities;
 using LibraryService.Infastructure.Context;
 using LibraryService.Infastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,9 @@ namespace LibraryService.Infastructure.Repositories
     {
         public AccountRepository(DataContext dbContext) : base(dbContext)
         {
-
+           
         }
+        public async Task<Account> GetAsync(int id) => await _context.Set<Account>().AsNoTracking().SingleOrDefaultAsync(T => T.Id.Equals(id));
     }
    
 }

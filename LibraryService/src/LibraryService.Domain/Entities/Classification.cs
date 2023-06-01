@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace LibraryService.Domain.Entities
 {
     [Table("classification")]
-    public class Classification :IEntity
+    public class Classification :BaseEntity
     {
         
         public string Label { get; set; }

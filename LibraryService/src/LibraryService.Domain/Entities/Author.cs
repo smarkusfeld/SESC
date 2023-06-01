@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace LibraryService.Domain.Entities
 {
     [Table("author")]
-    public class Author : IEntity
+    public class Author : BaseEntity
     {      
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
