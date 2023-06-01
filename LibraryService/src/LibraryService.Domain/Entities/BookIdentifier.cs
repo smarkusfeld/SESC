@@ -10,17 +10,15 @@ namespace LibraryService.Domain.Entities
 {
      [Table("bookidentifier")]
 
-    public class BookIdentifier : IEntity
+    public class BookIdentifier : BaseEntity
     {
         public string Value { get; set; }
-        public int BookID { get; set; }
-        public int IndentifierID { get; set; }
+        public int BookId { get; set; }
+        public int IndentifierId { get; set; }
 
-        [Required]
-        [ForeignKey("IndentifierID")]
+       
         public Identifier Identifier { get; set; }
-        [Required]
-        [ForeignKey("BookID")]
+
         public Book Book { get; set; }
     }
 }

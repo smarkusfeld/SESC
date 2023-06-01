@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace LibraryService.Domain.Entities
 {
     [Table("identifier")]
-    public class Identifier : IEntity
+    public class Identifier : BaseEntity
     {
         public string Label { get; set; }
         public string Name { get; set; }

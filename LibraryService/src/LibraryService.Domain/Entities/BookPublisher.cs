@@ -9,16 +9,14 @@ using System.Threading.Tasks;
 namespace LibraryService.Domain.Entities
 {
     [Table("bookpublisher")]
-    public class BookPublisher : IEntity
+    public class BookPublisher : BaseEntity
     {
-        public int BookID { get; set; }
-        public int PublisherID { get; set; }
+        public int BookId { get; set; }
+        public int PublisherId { get; set; }
 
-        [Required]
-        [ForeignKey("PublisherID")]
+        
         public Publisher Publisher { get; set; }
-        [Required]
-        [ForeignKey("BookID")]
+       
         public Book Book { get; set; }
 
     }

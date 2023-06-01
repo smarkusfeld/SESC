@@ -19,7 +19,7 @@ namespace LibraryService.Infastructure.Repositories
         {
         }
 
-        
-        
+        public async Task<Book> GetAsync(int id) => await _context.Set<Book>().AsNoTracking().SingleOrDefaultAsync(T => T.Id.Equals(id));
+
     }
 }

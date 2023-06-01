@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryService.Infastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230526135821_ClassifierandIdentificationConfig")]
-    partial class ClassifierandIdentificationConfig
+    [Migration("20230529185245_InitialCommit")]
+    partial class InitialCommit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace LibraryService.Infastructure.Migrations
 
             modelBuilder.Entity("LibraryService.Domain.Entities.Account", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -32,25 +32,27 @@ namespace LibraryService.Infastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("EmployeeId")
+                        .HasColumnType("longtext");
+
                     b.Property<int>("Pin")
                         .HasColumnType("int");
 
-                    b.Property<string>("StudentID")
-                        .IsRequired()
+                    b.Property<string>("StudentId")
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("UpdatedDate")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("account");
                 });
 
             modelBuilder.Entity("LibraryService.Domain.Entities.Author", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -74,14 +76,14 @@ namespace LibraryService.Infastructure.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("author");
                 });
 
             modelBuilder.Entity("LibraryService.Domain.Entities.Book", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -92,8 +94,13 @@ namespace LibraryService.Infastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("ISBN")
-                        .HasColumnType("int");
+                    b.Property<string>("Edition")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("PageCount")
                         .HasColumnType("int");
@@ -121,21 +128,21 @@ namespace LibraryService.Infastructure.Migrations
                     b.Property<int>("Year")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("book");
                 });
 
             modelBuilder.Entity("LibraryService.Domain.Entities.BookAuthor", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("AuthorID")
+                    b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BookID")
+                    b.Property<int>("BookId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -146,22 +153,22 @@ namespace LibraryService.Infastructure.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("AuthorID");
+                    b.HasIndex("AuthorId");
 
-                    b.HasIndex("BookID");
+                    b.HasIndex("BookId");
 
                     b.ToTable("bookauthor");
                 });
 
             modelBuilder.Entity("LibraryService.Domain.Entities.BookClassification", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("BookID")
+                    b.Property<int>("BookId")
                         .HasColumnType("int");
 
                     b.Property<int>("ClassificationID")
@@ -179,9 +186,9 @@ namespace LibraryService.Infastructure.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("BookID");
+                    b.HasIndex("BookId");
 
                     b.HasIndex("ClassificationID");
 
@@ -190,19 +197,20 @@ namespace LibraryService.Infastructure.Migrations
 
             modelBuilder.Entity("LibraryService.Domain.Entities.BookCopy", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("BookID")
+                    b.Property<int>("BookId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("ISBN")
-                        .HasColumnType("int");
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("tinyint(1)");
@@ -211,27 +219,27 @@ namespace LibraryService.Infastructure.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("BookID");
+                    b.HasIndex("BookId");
 
                     b.ToTable("bookcopy");
                 });
 
             modelBuilder.Entity("LibraryService.Domain.Entities.BookIdentifier", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("BookID")
+                    b.Property<int>("BookId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("IndentifierID")
+                    b.Property<int>("IndentifierId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedDate")
@@ -242,76 +250,76 @@ namespace LibraryService.Infastructure.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("BookID");
+                    b.HasIndex("BookId");
 
-                    b.HasIndex("IndentifierID");
+                    b.HasIndex("IndentifierId");
 
                     b.ToTable("bookidentifier");
                 });
 
             modelBuilder.Entity("LibraryService.Domain.Entities.BookPublisher", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("BookID")
+                    b.Property<int>("BookId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("PublisherID")
+                    b.Property<int>("PublisherId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedDate")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("BookID");
+                    b.HasIndex("BookId");
 
-                    b.HasIndex("PublisherID");
+                    b.HasIndex("PublisherId");
 
                     b.ToTable("bookpublisher");
                 });
 
             modelBuilder.Entity("LibraryService.Domain.Entities.BookSubject", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("BookID")
+                    b.Property<int>("BookId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("SubjectID")
+                    b.Property<int>("SubjectId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedDate")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("BookID");
+                    b.HasIndex("BookId");
 
-                    b.HasIndex("SubjectID");
+                    b.HasIndex("SubjectId");
 
                     b.ToTable("booksubject");
                 });
 
             modelBuilder.Entity("LibraryService.Domain.Entities.Classification", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -331,14 +339,14 @@ namespace LibraryService.Infastructure.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("classification");
 
                     b.HasData(
                         new
                         {
-                            ID = 1000,
+                            Id = 1000,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Label = "Dewey Decimal Class",
                             Name = "dewey_decimal_class",
@@ -346,7 +354,7 @@ namespace LibraryService.Infastructure.Migrations
                         },
                         new
                         {
-                            ID = 1001,
+                            Id = 1001,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Label = " Library of Congress",
                             Name = "lc_classifications",
@@ -354,7 +362,7 @@ namespace LibraryService.Infastructure.Migrations
                         },
                         new
                         {
-                            ID = 1002,
+                            Id = 1002,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Label = "Universal Decimal Classification",
                             Name = "udc",
@@ -364,7 +372,7 @@ namespace LibraryService.Infastructure.Migrations
 
             modelBuilder.Entity("LibraryService.Domain.Entities.Identifier", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -384,14 +392,14 @@ namespace LibraryService.Infastructure.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("identifier");
 
                     b.HasData(
                         new
                         {
-                            ID = 1001,
+                            Id = 1001,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Label = "Amazon",
                             Name = "amazon",
@@ -399,7 +407,7 @@ namespace LibraryService.Infastructure.Migrations
                         },
                         new
                         {
-                            ID = 1002,
+                            Id = 1002,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Label = "Goolge",
                             Name = "google",
@@ -407,7 +415,7 @@ namespace LibraryService.Infastructure.Migrations
                         },
                         new
                         {
-                            ID = 1003,
+                            Id = 1003,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Label = "Library Thing",
                             Name = "librarything",
@@ -415,7 +423,7 @@ namespace LibraryService.Infastructure.Migrations
                         },
                         new
                         {
-                            ID = 1004,
+                            Id = 1004,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Label = "Goodreads",
                             Name = "goodreads",
@@ -423,15 +431,15 @@ namespace LibraryService.Infastructure.Migrations
                         },
                         new
                         {
-                            ID = 1005,
+                            Id = 1005,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Label = "ISBN 10",
-                            Name = "isbn_13",
+                            Name = "isbn_10",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            ID = 1006,
+                            Id = 1006,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Label = "ISBN 13",
                             Name = "isbn_13",
@@ -439,7 +447,7 @@ namespace LibraryService.Infastructure.Migrations
                         },
                         new
                         {
-                            ID = 1007,
+                            Id = 1007,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Label = "ISSN",
                             Name = "issn",
@@ -447,7 +455,7 @@ namespace LibraryService.Infastructure.Migrations
                         },
                         new
                         {
-                            ID = 1008,
+                            Id = 1008,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Label = "LCCN",
                             Name = "lccn",
@@ -455,7 +463,7 @@ namespace LibraryService.Infastructure.Migrations
                         },
                         new
                         {
-                            ID = 1009,
+                            Id = 1009,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Label = "OCLC/WorldCat",
                             Name = "oclc",
@@ -463,7 +471,7 @@ namespace LibraryService.Infastructure.Migrations
                         },
                         new
                         {
-                            ID = 1010,
+                            Id = 1010,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Label = "British Library",
                             Name = "british_library",
@@ -471,7 +479,7 @@ namespace LibraryService.Infastructure.Migrations
                         },
                         new
                         {
-                            ID = 1011,
+                            Id = 1011,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Label = "OpenLibrary",
                             Name = "openlibrary",
@@ -479,7 +487,7 @@ namespace LibraryService.Infastructure.Migrations
                         },
                         new
                         {
-                            ID = 1012,
+                            Id = 1012,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Label = "british_national_bibliography",
                             Name = " British National Bibliography",
@@ -489,14 +497,14 @@ namespace LibraryService.Infastructure.Migrations
 
             modelBuilder.Entity("LibraryService.Domain.Entities.Loan", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("AccountID")
+                    b.Property<int>("AccountId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BookCopyID")
+                    b.Property<int>("BookCopyId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -512,22 +520,26 @@ namespace LibraryService.Infastructure.Migrations
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("UpdatedDate")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("AccountID");
+                    b.HasIndex("AccountId");
 
-                    b.HasIndex("BookCopyID");
+                    b.HasIndex("BookCopyId");
 
-                    b.ToTable("Loans");
+                    b.ToTable("loan");
                 });
 
             modelBuilder.Entity("LibraryService.Domain.Entities.Publisher", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -543,14 +555,14 @@ namespace LibraryService.Infastructure.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("publisher");
                 });
 
             modelBuilder.Entity("LibraryService.Domain.Entities.Subject", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -566,22 +578,244 @@ namespace LibraryService.Infastructure.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("subject");
+                });
+
+            modelBuilder.Entity("LibraryService.Domain.Entities.User", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId")
+                        .IsUnique();
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex");
+
+                    b.ToTable("user", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex");
+
+                    b.ToTable("role", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "8539ee16-b3c5-40c2-9b21-62188fc92b42",
+                            ConcurrencyStamp = "a67671a2-beb3-448a-81c8-a4a3f87e1d8e",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
+                        },
+                        new
+                        {
+                            Id = "c55a8e04-74ce-4e98-9a2a-55fb860a4075",
+                            ConcurrencyStamp = "bdbb8581-65d4-46e0-854d-d4316f828704",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("role_claim", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("user_login", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("user_role", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("user_token", (string)null);
                 });
 
             modelBuilder.Entity("LibraryService.Domain.Entities.BookAuthor", b =>
                 {
                     b.HasOne("LibraryService.Domain.Entities.Author", "Author")
                         .WithMany("BookAuthors")
-                        .HasForeignKey("AuthorID")
+                        .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("LibraryService.Domain.Entities.Book", "Book")
                         .WithMany("BookAuthors")
-                        .HasForeignKey("BookID")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -594,7 +828,7 @@ namespace LibraryService.Infastructure.Migrations
                 {
                     b.HasOne("LibraryService.Domain.Entities.Book", "Book")
                         .WithMany("BookClassifications")
-                        .HasForeignKey("BookID")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -613,7 +847,7 @@ namespace LibraryService.Infastructure.Migrations
                 {
                     b.HasOne("LibraryService.Domain.Entities.Book", "Book")
                         .WithMany("BookCopys")
-                        .HasForeignKey("BookID")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -624,13 +858,13 @@ namespace LibraryService.Infastructure.Migrations
                 {
                     b.HasOne("LibraryService.Domain.Entities.Book", "Book")
                         .WithMany("BookIdentifiers")
-                        .HasForeignKey("BookID")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("LibraryService.Domain.Entities.Identifier", "Identifier")
                         .WithMany("BookIdentifiers")
-                        .HasForeignKey("IndentifierID")
+                        .HasForeignKey("IndentifierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -643,13 +877,13 @@ namespace LibraryService.Infastructure.Migrations
                 {
                     b.HasOne("LibraryService.Domain.Entities.Book", "Book")
                         .WithMany("BookPublishers")
-                        .HasForeignKey("BookID")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("LibraryService.Domain.Entities.Publisher", "Publisher")
                         .WithMany("BookPublishers")
-                        .HasForeignKey("PublisherID")
+                        .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -662,13 +896,13 @@ namespace LibraryService.Infastructure.Migrations
                 {
                     b.HasOne("LibraryService.Domain.Entities.Book", "Book")
                         .WithMany("BookSubjects")
-                        .HasForeignKey("BookID")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("LibraryService.Domain.Entities.Subject", "Subject")
                         .WithMany("BookSubjects")
-                        .HasForeignKey("SubjectID")
+                        .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -681,13 +915,13 @@ namespace LibraryService.Infastructure.Migrations
                 {
                     b.HasOne("LibraryService.Domain.Entities.Account", "Account")
                         .WithMany("Loans")
-                        .HasForeignKey("AccountID")
+                        .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("LibraryService.Domain.Entities.BookCopy", "BookCopy")
                         .WithMany("Loans")
-                        .HasForeignKey("BookCopyID")
+                        .HasForeignKey("BookCopyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -696,9 +930,74 @@ namespace LibraryService.Infastructure.Migrations
                     b.Navigation("BookCopy");
                 });
 
+            modelBuilder.Entity("LibraryService.Domain.Entities.User", b =>
+                {
+                    b.HasOne("LibraryService.Domain.Entities.Account", "Account")
+                        .WithOne("User")
+                        .HasForeignKey("LibraryService.Domain.Entities.User", "AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("LibraryService.Domain.Entities.User", null)
+                        .WithMany("Claims")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("LibraryService.Domain.Entities.User", null)
+                        .WithMany("Logins")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LibraryService.Domain.Entities.User", null)
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("LibraryService.Domain.Entities.User", null)
+                        .WithMany("Tokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("LibraryService.Domain.Entities.Account", b =>
                 {
                     b.Navigation("Loans");
+
+                    b.Navigation("User")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("LibraryService.Domain.Entities.Author", b =>
@@ -744,6 +1043,17 @@ namespace LibraryService.Infastructure.Migrations
             modelBuilder.Entity("LibraryService.Domain.Entities.Subject", b =>
                 {
                     b.Navigation("BookSubjects");
+                });
+
+            modelBuilder.Entity("LibraryService.Domain.Entities.User", b =>
+                {
+                    b.Navigation("Claims");
+
+                    b.Navigation("Logins");
+
+                    b.Navigation("Tokens");
+
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

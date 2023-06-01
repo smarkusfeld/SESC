@@ -87,7 +87,7 @@ namespace LibraryService.Application.Services
                 var item = await _unitOfWork.BookCopies.GetByAsync(x => x.Book.BookIdentifiers.Any(y => y.Value == value && y.Identifier.Name.StartsWith("isbn")) && x.IsAvailable == true);
                 return new BookCopyDTO
                 {
-                    ID = item.ID,
+                    Id = item.Id,
                     ISBN = item.ISBN,
                     IsAvailable = item.IsAvailable,
                 };
@@ -108,11 +108,11 @@ namespace LibraryService.Application.Services
         {
             try
             {
-                var account = await _unitOfWork.Accounts.GetByAsync(x => x.StudentID == studentid);
+                var account = await _unitOfWork.Accounts.GetByAsync(x => x.StudentId == studentid);
                 return new AccountDTO
                 {
-                    ID = account.ID,
-                    StudentID = account.StudentID,
+                    Id = account.Id,
+                    StudentId = account.StudentId,
                     Pin = account.Pin,
 
                 };
@@ -124,14 +124,14 @@ namespace LibraryService.Application.Services
             }
 
         }
-        public async Task<bool> CreateNewLoan(int accountID, int bookCopyID)
+        public async Task<bool> CreateNewLoan(int accountId, int bookCopyId)
         {
             try
             {
                 Loan newLoan = new Loan
                 {
-                    AccountID = accountID,
-                    BookCopyID = bookCopyID,
+                    AccountId = accountId,
+                    BookCopyId = bookCopyId,
                     DateBorrowed = DateTime.Now,
 
                 };
@@ -139,7 +139,7 @@ namespace LibraryService.Application.Services
                 if (result != null)
                 {
                     _unitOfWork.Save();
-                    var bookCopy = await _unitOfWork.BookCopies.GetByAsync(x => x.ID == bookCopyID);
+                    var bookCopy = await _unitOfWork.BookCopies.GetByAsync(x => x.Id == bookCopyId);
                     UpdateBookCopy(bookCopy, false);
 
                     return true;
@@ -173,13 +173,13 @@ namespace LibraryService.Application.Services
         {
             try
             {
-                var loanList = await _unitOfWork.Loans.GetAllWhereAsync(x => x.BookCopy.ISBN == isbn && x.Account.StudentID == studentid);
+                var loanList = await _unitOfWork.Loans.GetAllWhereAsync(x => x.BookCopy.ISBN == isbn && x.Account.StudentId == studentid);
                 var loan = loanList.Where(x => x.DateReturned == null).FirstOrDefault();
                 return new LoanDTO
                 {
-                    ID = loan.ID,
-                    AccountID = loan.Account.ID,
-                    BookCopyID = loan.ID,
+                    Id = loan.Id,
+                    AccountId = loan.Account.Id,
+                    BookCopyID = loan.Id,
                     DateBorrowed = loan.DateBorrowed,
                     DateReturned = loan.DateReturned,
                 };
@@ -194,7 +194,7 @@ namespace LibraryService.Application.Services
         {
             try
             {
-                var loan = await _unitOfWork.Loans.GetAsync(dto.ID);
+                var loan = await _unitOfWork.Loans.GetAsync(dto.Id);
                 loan.DateReturned = DateTime.Now;
                 _unitOfWork.Loans.Update(loan);
                 _unitOfWork.Save();

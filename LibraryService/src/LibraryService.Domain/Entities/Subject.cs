@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace LibraryService.Domain.Entities
 {
     [Table("subject")]
-    public class Subject : IEntity
+    public class Subject : BaseEntity
     {
    
         public string Name { get; set; }

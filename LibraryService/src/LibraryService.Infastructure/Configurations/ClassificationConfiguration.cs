@@ -16,20 +16,20 @@ namespace LibraryService.Infastructure.Configurations
             builder.HasData(
                 new Classification
                 {
-                    ID = 1000,
+                    Id = 1000,
                     Name = "dewey_decimal_class",
                     Label = "Dewey Decimal Class"
                 },
                 new Classification
                 {
-                    ID = 1001,
+                    Id = 1001,
                     Name = "lc_classifications",
                     Label = " Library of Congress"
                 },
                 new Classification
                 {
 
-                    ID = 1002,
+                    Id = 1002,
                     Name = "udc",
                     Label = "Universal Decimal Classification"
                 }); 

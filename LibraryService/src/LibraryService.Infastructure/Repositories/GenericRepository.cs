@@ -16,7 +16,7 @@ namespace LibraryService.Infastructure.Repositories
     /// Generic Abstract Repository class for performing Database Entity Operations.
     /// </summary>
     /// <typeparam name="T">The Type of Entity to operate on</typeparam>
-    public abstract class GenericRepository<T> : IGenericRepository<T> where T : IEntity
+    public abstract class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         protected readonly DataContext _context;
         protected readonly DbSet<T> _set;
@@ -28,16 +28,15 @@ namespace LibraryService.Infastructure.Repositories
         }
 
         /// <summary>
-        /// Gets an entity by ID.
+        /// Gets an entity by Id.
         /// </summary>
         /// <param name="id">Id of the entity to recievce </param>
         ///<returns>The entity object if found, otherwise null</returns>
-        public async Task<T> GetAsync(int id) => await _set.AsNoTracking().SingleOrDefaultAsync(T => T.ID.Equals(id));
-
+        public virtual async Task<T> GetAsync(int id) => throw new NotImplementedException();
         /// <summary>
         /// Gets a single according that fullfills the <paramref name="predicate" />
         /// </summary>
-        /// <param name="predicate">Where clause.<example><code>x => x.ID == id</code></example></param>
+        /// <param name="predicate">Where clause.<example><code>x => x.Id == id</code></example></param>
         ///<returns>The entity object if found, otherwise null</returns>
         public async Task<T> GetByAsync(Expression<Func<T, bool>> predicate) => await _set.AsNoTracking().SingleOrDefaultAsync(predicate);
 
@@ -91,7 +90,7 @@ namespace LibraryService.Infastructure.Repositories
         /// Retrieves a collection of entities that fullfills the <paramref name="predicate" />
         /// </summary>
         /// <param name="predicate">Condition the entities must fullfill
-        /// <example>Example: x => x.ID == id</example>
+        /// <example>Example: x => x.Id == id</example>
         /// </param>
         /// <returns>A collection of entities</returns>
         public async Task<IEnumerable<T>> GetAllWhereAsync(Expression<Func<T, bool>> predicate) => await _set.Where(predicate).ToListAsync();

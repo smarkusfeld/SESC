@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace LibraryService.Domain.Entities
 {
     [Table("book")]
-    public class Book :IEntity
+    public class Book :BaseEntity
     {
        
         public string ISBN { get; set; }

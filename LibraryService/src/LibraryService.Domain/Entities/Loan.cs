@@ -10,15 +10,14 @@ using System.Threading.Tasks;
 namespace LibraryService.Domain.Entities
 {
     [Table("loan")]
-    public class Loan : IEntity
+    public class Loan : BaseEntity
     {
         
         public DateTime DateBorrowed { get; set; }
-
         public DateTime DueDate { get; set; }
         public DateTime? DateReturned { get; set; } = null;
-        public int AccountID { get; set; }
-        public int BookCopyID { get; set; }
+        public int AccountId { get; set; }
+        public int BookCopyId { get; set; }
         public string ISBN { get; set; }
         public BookCopy BookCopy { get; set; }
         public Account Account { get; set; }
