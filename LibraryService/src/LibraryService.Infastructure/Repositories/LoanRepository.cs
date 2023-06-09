@@ -1,5 +1,5 @@
 ﻿using LibraryService.Application.Interfaces;
-using LibraryService.Domain.Entities;
+using LibraryService.Domain.Models;
 using LibraryService.Infastructure.Context;
 using LibraryService.Infastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Infastructure.Repositories
 {
-    public class LoanRepository : GenericRepository<Loan>, ILoanRepository
+    public class LoanRepository : GenericRepository<LoanModel>, ILoanRepository
     {
         public LoanRepository(DataContext dbContext) : base(dbContext)
         {
 
         }
-        public async Task<Loan> GetAsync(int id) => await _context.Set<Loan>().AsNoTracking().SingleOrDefaultAsync(T => T.Id.Equals(id));
+        public async Task<LoanModel> GetAsync(int id) => await _context.Set<LoanModel>().AsNoTracking().SingleOrDefaultAsync(T => T.Id.Equals(id));
     }
 }

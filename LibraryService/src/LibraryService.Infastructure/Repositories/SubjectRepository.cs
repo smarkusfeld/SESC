@@ -2,7 +2,7 @@
 using global::LibraryService.Domain.Entities;
 using global::LibraryService.Infastructure.Context;
 using LibraryService.Application.Interfaces;
-using LibraryService.Domain.Entities;
+using LibraryService.Domain.Models;
 using LibraryService.Infastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using System;

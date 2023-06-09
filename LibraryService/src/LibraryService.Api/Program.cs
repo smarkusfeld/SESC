@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDIServices(builder.Configuration);
+builder.Services.AddHttpClient<OpenLibraryService>();
 builder.Services.AddScoped<ILoanService, LoanService>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
@@ -22,7 +23,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "LibraryMicroservice",
         Version = "v1",
-        Description = "todo",
+        Description = "Library Service",
     });
     // allow xml comments to be seen on swagger UI
     //var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

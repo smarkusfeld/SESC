@@ -1,22 +1,36 @@
-﻿using LibraryService.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LibraryService.Domain.Common;
+using LibraryService.Domain.Common.Enums;
+using LibraryService.Domain.DataModels;
+using LibraryService.Domain.ValueObjects;
 
 namespace LibraryService.Domain.Entities
 {
-    [Table("bookcopy")]
-    public class BookCopy : BaseEntity
+    public class BookCopy : BaseAuditableEntity
     {
+        public BookCopy(string isbn, int copyNum)
+        {
+            IsAvailable = true;
+            ISBN = isbn;
+            Status = BookCopyStatus.Available;
+            CopyNum = copyNum;
+        }
         
+        public override object Key => Id;
+        public int Id { get; private set; }
+        public int CopyNum { get; set; }
+        public BookFormat Format { get; set; } 
+        public BookCopyStatus Status { get; set; }
         public string ISBN { get; set; }
-        public bool IsAvailable { get; set; }
-        public int BookId { get; set; }
-        public Book Book { get; set; }
-        public ICollection<Loan> Loans { get; set; } 
+        public bool IsReferenceOnly { get; set; }
+        public bool IsAvailable { get; set; }        
+        public BookModel Book { get; set; } = null!;
+        public Rack? Rack { get; set; }
+
+        //backing fields for collections
+        private readonly List<Loan> _loans = new();
+        private readonly List<Reservation> _reservations = new();
+        public ICollection<Loan> Loans => _loans;       
+        public ICollection<Reservation> Reservations  => _reservations;
+
     }
 }

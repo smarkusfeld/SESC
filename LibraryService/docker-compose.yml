@@ -17,6 +17,7 @@ services:
   
    
   libraryservice.api:
+    container_name: libraryservice-api
     image: ${DOCKER_REGISTRY-}libraryserviceapi
     build:
       context: .

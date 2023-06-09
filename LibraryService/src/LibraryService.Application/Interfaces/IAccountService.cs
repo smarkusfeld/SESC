@@ -1,10 +1,4 @@
 ﻿using LibraryService.Application.DTOs;
-using LibraryService.Application.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryService.Application.Interfaces
 {
@@ -26,7 +20,7 @@ namespace LibraryService.Application.Interfaces
         /// <summary>
         /// Method for user login
         /// </summary>
-        Task<bool>Login(UserLoginModel userLoginModel);
+       // Task<bool>Login();
 
         /// <summary>
         /// Method for admin login
@@ -40,7 +34,7 @@ namespace LibraryService.Application.Interfaces
         /// <summary>
         /// Validate Account
         /// </summary>
-        bool ValidateAccount(StudentRegistrationModel model);
+        //bool ValidateAccount();
 
     }
 }

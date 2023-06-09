@@ -1,5 +1,6 @@
 ﻿using LibraryService.Application.Interfaces;
 using LibraryService.Domain.Entities;
+using LibraryService.Domain.RepositoryInterfaces;
 using LibraryService.Infastructure.Context;
 using LibraryService.Infastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +20,14 @@ namespace LibraryService.Infastructure.Repositories
         {
         }
 
-        public async Task<Book> GetAsync(int id) => await _context.Set<Book>().AsNoTracking().SingleOrDefaultAsync(T => T.Id.Equals(id));
+        public async Task<Book?> GetAsync(string ISBN)
+        {
+
+            throw new NotImplementedException();
+        }
+        
+
+       
 
     }
 }

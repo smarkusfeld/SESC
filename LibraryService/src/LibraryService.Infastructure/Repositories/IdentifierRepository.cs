@@ -1,5 +1,5 @@
 using LibraryService.Application.Interfaces;
-using LibraryService.Domain.Entities;
+using LibraryService.Domain.Models;
 using LibraryService.Infastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Infastructure.Repositories
 {
-    public class IdentifierRepository : GenericRepository<Identifier>, IIdentifierRepository
+    public class IdentifierRepository : GenericRepository<IdentifierModel>, IIdentifierRepository
     {
         public IdentifierRepository(DataContext dbContext) : base(dbContext)
         {
 
         }
-        public async Task<Identifier> GetAsync(int id) => await _context.Set<Identifier>().AsNoTracking().SingleOrDefaultAsync(T => T.Id.Equals(id));
+        public async Task<IdentifierModel> GetAsync(int id) => await _context.Set<IdentifierModel>().AsNoTracking().SingleOrDefaultAsync(T => T.Id.Equals(id));
     }
 }

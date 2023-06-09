@@ -1,9 +1,11 @@
-﻿using LibraryService.Domain.Entities;
+﻿
+using LibraryService.Domain.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LibraryService.Domain.Entities;
 
 namespace LibraryService.Application.Interfaces
 {
@@ -15,15 +17,12 @@ namespace LibraryService.Application.Interfaces
     {
 
     }
-    public interface IAuthorRepository : IGenericRepository<Author>
+    public interface IAuthorRepository : IGenericRepository<Author
+        >
     {
 
     }
-    public interface IBookRepository : IGenericRepository<Book>
-    {
-     
 
-    }
     public interface IBookCopyRepository : IGenericRepository<BookCopy>
     {
 
@@ -36,31 +35,7 @@ namespace LibraryService.Application.Interfaces
     {
 
     }
-    public interface IBookSubjectRepository : IGenericRepository<BookSubject>
-    {
-
-    }
     public interface IPublisherRepository : IGenericRepository<Publisher>
-    {
-
-    }
-    public interface IClassificationRepository : IGenericRepository<Classification>
-    {
-
-    }
-    public interface IIdentifierRepository : IGenericRepository<Identifier>
-    {
-
-    }
-    public interface IBookPublisherRepository : IGenericRepository<BookPublisher>
-    {
-
-    }
-    public interface IBookClassificationRepository : IGenericRepository<BookClassification>
-    {
-
-    }
-    public interface IBookIdentifierRepository : IGenericRepository<BookIdentifier>
     {
 
     }

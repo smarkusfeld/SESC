@@ -1,21 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LibraryService.Domain.Common;
 
 namespace LibraryService.Domain.Entities
 {
-    [Table("subject")]
-    public class Subject : BaseEntity
+    public class Subject : BaseAuditableEntity
     {
-   
+        public override object Key { get => Id; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<BookSubject> BookSubjects { get; set; }
-    }
 
-   
+    }
 }

@@ -1,5 +1,5 @@
 using LibraryService.Application.Interfaces;
-using LibraryService.Domain.Entities;
+using LibraryService.Domain.BookAggregate;
 using LibraryService.Infastructure.Context;
 using System;
 using System.Collections.Generic;

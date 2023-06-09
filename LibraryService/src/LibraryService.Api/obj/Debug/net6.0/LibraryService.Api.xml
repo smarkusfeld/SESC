@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LibraryService.Api</name>
+    </assembly>
+    <members>
+        <member name="M:LibraryService.Api.Controllers.AccountController.GetAll">
+            <summary>
+            Get All Accounts
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.AccountController.Register(System.String)">
+            <summary>
+            New Student Account
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.AccountController.Update(LibraryService.Application.DTOs.AccountDTO)">
+            <summary>
+            Update Account Pin
+            </summary>
+            <param name="accountDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.BookController.GetAll">
+            <summary>
+            Get All Accounts
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.BookController.Add(System.String)">
+            <summary>
+            Add Book to Library. If book already exists, a new copy is added
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.BookController.check(System.String)">
+            <summary>
+            Add Book to Library. If book already exists, a new copy is added
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

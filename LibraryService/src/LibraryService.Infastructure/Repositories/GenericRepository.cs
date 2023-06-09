@@ -1,6 +1,7 @@
 ﻿using Azure;
 using LibraryService.Application.Interfaces;
-using LibraryService.Domain.Entities;
+using LibraryService.Domain.Common;
+using LibraryService.Domain.RepositoryInterfaces;
 using LibraryService.Infastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,44 +17,28 @@ namespace LibraryService.Infastructure.Repositories
     /// Generic Abstract Repository class for performing Database Entity Operations.
     /// </summary>
     /// <typeparam name="T">The Type of Entity to operate on</typeparam>
-    public abstract class GenericRepository<T> : IGenericRepository<T> where T : class
+    public abstract class GenericRepository<T> : IGenericRepository<T> where T : BaseAuditableEntity
     {
         protected readonly DataContext _context;
         protected readonly DbSet<T> _set;
 
+     
         protected GenericRepository(DataContext context)
         {
             _context = context;
             _set = _context.Set<T>();
         }
 
-        /// <summary>
-        /// Gets an entity by Id.
-        /// </summary>
-        /// <param name="id">Id of the entity to recievce </param>
-        ///<returns>The entity object if found, otherwise null</returns>
-        public virtual async Task<T> GetAsync(int id) => throw new NotImplementedException();
-        /// <summary>
-        /// Gets a single according that fullfills the <paramref name="predicate" />
-        /// </summary>
-        /// <param name="predicate">Where clause.<example><code>x => x.Id == id</code></example></param>
-        ///<returns>The entity object if found, otherwise null</returns>
-        public async Task<T> GetByAsync(Expression<Func<T, bool>> predicate) => await _set.AsNoTracking().SingleOrDefaultAsync(predicate);
+        
+        public virtual async Task<T?> GetAsync(object key) => await _set.AsNoTracking().SingleOrDefaultAsync(x =>x.Key==key);
+        
+        public virtual async Task<T?> GetByAsync(Expression<Func<T, bool>> predicate) => await _set.AsNoTracking().SingleOrDefaultAsync(predicate);
 
-        /// <summary>
-        /// Retrives a collection of all entities
-        /// </summary>
-        /// <returns>A collections of all entities</returns>
-        public async Task<IEnumerable<T>> GetAllAsync() => await _set.AsNoTracking().ToListAsync();
+        
+        public virtual async Task<IEnumerable<T?>> GetAllAsync() => await _set.AsNoTracking().ToListAsync();
 
-        /// <summary>
-        /// Retrieves a filtered and orderd collection of entities 
-        /// </summary>
-        /// <param name="predicate">Condition the entities must fullfill</param>
-        /// <param name="orderBy">Collection order</param>
-        /// <param name="includes">Any additional properies to be included</param>
-        /// <returns>An ordered collection of entities</returns>
-        public async Task<IEnumerable<T>> GetAllOrderedAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>,
+        
+        public virtual async Task<IEnumerable<T?>> GetAllOrderedAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>,
                                                                 IOrderedQueryable<T>> orderBy = null,
                                                                 string includeProperties = "")
         {
@@ -86,44 +71,36 @@ namespace LibraryService.Infastructure.Repositories
 
 
 
-        /// <summary>
-        /// Retrieves a collection of entities that fullfills the <paramref name="predicate" />
-        /// </summary>
-        /// <param name="predicate">Condition the entities must fullfill
-        /// <example>Example: x => x.Id == id</example>
-        /// </param>
-        /// <returns>A collection of entities</returns>
-        public async Task<IEnumerable<T>> GetAllWhereAsync(Expression<Func<T, bool>> predicate) => await _set.Where(predicate).ToListAsync();
+        
+        public virtual async Task<IEnumerable<T?>> GetAllWhereAsync(Expression<Func<T, bool>> predicate) => await _set.Where(predicate).ToListAsync();
 
-        /// <summary>
-        /// Add an entity to the database
-        /// </summary>
-        /// <param name="entity">The entity to add</param>
-        /// <returns>The entity that was added</returns>
-        public async Task<T> AddAsync(T entity) 
+       
+        public virtual async Task<T> AddAsync(T entity) 
         {
             await _set.AddAsync(entity);
             return entity;
         }
 
-        /// <summary>
-        /// Update the specified entity 
-        /// </summary>
-        /// <param name="entity">The entity to update</param>
-        public void Update(T entity) => _set.Entry(entity).State = EntityState.Modified;
         
+        public virtual void Update(T entity) => _set.Entry(entity).State = EntityState.Modified;
 
-        /// <summary>
-        /// Update multiple entities 
-        /// </summary>
-        /// <param name="entities">A collection of entities to update</param>
+      
+        public virtual async Task<T?> UpdateAsync(T entity, object key)
+        {
+            if (entity == null)
+                return null;
+            T exist = await _set.SingleOrDefaultAsync(x => x.Key == key);
+            if (exist != null)            
+            {
+                _context.Entry(exist).CurrentValues.SetValues(entity);
+            }
+            return exist;
+
+        }
+        
         public void Update(IEnumerable<T> entities) => _set.UpdateRange(entities);
        
-        /// <summary>
-        /// This method deletes the specified record from the database 
-        /// </summary>
-        /// <param name="entity">The entity to delete</param>
-        /// <returns><see cref="Task"/></returns
+        
         public void Delete(T entity) => _set.Remove(entity);
        
 
