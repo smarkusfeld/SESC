@@ -1,78 +1,75 @@
-﻿using LibraryService.Domain.Entities;
+﻿using LibraryService.Domain.Common.Enums;
+using LibraryService.Domain.DataModels;
+using LibraryService.Domain.Entities;
+using LibraryService.Domain.ValueObjects;
 using LibraryService.Infastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using System;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using System.Reflection.Emit;
 
 namespace LibraryService.Infastructure.Context
 {
-    public class DataContext : IdentityDbContext<User, IdentityRole, string>
+    public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
         }
-        public DbSet<Account> Accounts { get; set; }
-        public DbSet<Book> Books { get; set; }
-        public DbSet<BookCopy> BookCopies { get; set; }
-        public DbSet<Loan> Loans { get; set; }
-        public DbSet<Author> Authors { get; set; }
+        public DbSet<AccountModel> Accounts { get; set; }
+        public DbSet<BookModel> Books { get; set; }
+        public DbSet<BookModel> BookCopies { get; set; }
+        public DbSet<Rack> Racks { get; set; }
+        public DbSet<LoanModel> Loans { get; set; }
+        public DbSet<ReservationModel> Reservations { get; set; }
+        public DbSet<AuthorModel> Authors { get; set; }
         public DbSet<BookAuthor>BookAuthors { get; set; }
-        public DbSet<Publisher> Publishers { get; set; }
+        public DbSet<PublisherModel> Publishers { get; set; }
         public DbSet<BookPublisher> BookPublishers { get; set; }
-        public DbSet<Identifier> Identifiers { get; set; }
-        public DbSet<BookIdentifier> BookIdentifiers { get; set; }
-        public DbSet<Classification> Classifications { get; set; }
-        public DbSet<BookClassification> BookClassifications { get; set; }
-        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<SubjectModel> Subjects { get; set; }
         public DbSet<BookSubject> BookSubjects { get; set; }
-       
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //configure identity schema
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<User>().ToTable("user");
-            modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("user_login");
-            modelBuilder.Entity<IdentityUserToken<string>>().ToTable("user_token");
-            modelBuilder.Entity<IdentityRole>().ToTable("role");
-            modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("role_claim");
-            modelBuilder.Entity<IdentityUserRole<string>>().ToTable("user_role");
+            // configure alternate keys
+            modelBuilder.Entity<AccountModel>().HasAlternateKey(x => x.AccountNum);
+
+            //configure composite keys
+            modelBuilder.Entity<BookSubjectModel>().HasKey(x => new { x.ISBN, x.SubjectId });
+            modelBuilder.Entity<BookAuthorModel>().HasKey(x => new { x.ISBN, x.AuthorId });
+            modelBuilder.Entity<BookPublisherModel>().HasKey(x => new { x.ISBN, x.PublisherId });
+
+            //enum to string conversions
+            modelBuilder.Entity<LoanModel>()
+                .Property(l => l.Status)
+                .HasConversion(s => s.ToString(), s => (LoanStatus)Enum.Parse(typeof(LoanStatus), s));
+
+            modelBuilder.Entity<ReservationModel>()
+                .Property(l => l.Status)
+                .HasConversion(s => s.ToString(), s => (ReservationStatus)Enum.Parse(typeof(ReservationStatus), s));
 
 
-            modelBuilder.Entity<User>().HasMany(x => x.Claims).WithOne().HasForeignKey(y => y.UserId).IsRequired();
-            modelBuilder.Entity<User>().HasMany(x => x.UserRoles).WithOne().HasForeignKey(y => y.UserId).IsRequired();
-            modelBuilder.Entity<User>().HasMany(x => x.Logins).WithOne().HasForeignKey(y => y.UserId).IsRequired();
-            modelBuilder.Entity<User>().HasMany(x => x.Tokens).WithOne().HasForeignKey(y => y.UserId).IsRequired();
+            //configure owned types
+            modelBuilder.Entity<AccountModel>().OwnsOne(a => a.AccountType);
+            modelBuilder.Entity<BookModel>().OwnsOne(b => b.Detail);
+            modelBuilder.Entity<BookModel>().OwnsOne(b => b.Identifier);
+            modelBuilder.Entity<BookModel>().OwnsOne(b => b.Classification);
+            modelBuilder.Entity<BookCopyModel>().OwnsOne(b => b.Rack, b => { b.ToTable("rack"); });
 
-            modelBuilder.Entity<User>().HasOne(x => x.Account).WithOne(y => y.User).HasForeignKey<User>(x => x.AccountId);
+            //add foreign keys
+            modelBuilder.Entity<AccountModel>().HasMany(y => y.Loans).WithOne(x => x.Account).HasForeignKey(x => x.AccountId);
+            modelBuilder.Entity<AccountModel>().HasMany(y => y.Reservations).WithOne(x => x.Account).HasForeignKey(x => x.AccountId);
+            modelBuilder.Entity<BookCopyModel>().HasMany(y => y.Loans).WithOne(x => x.BookCopy).HasForeignKey(x => x.BookCopyId);
+            modelBuilder.Entity<BookCopyModel>().HasMany(y => y.Reservations).WithOne(x => x.BookCopy).HasForeignKey(x => x.BookCopyId);
 
-            modelBuilder.Entity<Account>().HasMany(y => y.Loans).WithOne(x => x.Account).HasForeignKey(x => x.AccountId);        
-            modelBuilder.Entity<BookCopy>().HasMany(y => y.Loans).WithOne(x => x.BookCopy).HasForeignKey(x=>x.BookCopyId);           
-            modelBuilder.Entity<Book>().HasMany(y => y.BookCopys).WithOne(x => x.Book).HasForeignKey(x =>x.BookId);
-            modelBuilder.Entity<Book>().HasMany(y => y.BookAuthors).WithOne(x => x.Book).HasForeignKey(x => x.BookId);
-            modelBuilder.Entity<Book>().HasMany(y => y.BookSubjects).WithOne(x => x.Book).HasForeignKey(x => x.BookId);
-            modelBuilder.Entity<Book>().HasMany(y => y.BookClassifications).WithOne(x => x.Book).HasForeignKey(x => x.BookId);
-            modelBuilder.Entity<Book>().HasMany(y => y.BookIdentifiers).WithOne(x => x.Book).HasForeignKey(x => x.BookId); 
-            modelBuilder.Entity<Book>().HasMany(y => y.BookPublishers).WithOne(x => x.Book).HasForeignKey(x => x.BookId);
+            //add foreign keys for many to many relationships
+            modelBuilder.Entity<BookModel>().HasMany(y => y.BookSubjects).WithOne(x => x.Book).HasForeignKey(x => x.ISBN);
+            modelBuilder.Entity<BookModel>().HasMany(y => y.BookAuthors).WithOne(x => x.Book).HasForeignKey(x => x.ISBN);            
+            modelBuilder.Entity<BookModel>().HasMany(y => y.BookPublishers).WithOne(x => x.Book).HasForeignKey(x => x.ISBN);
 
-            modelBuilder.Entity<Author>().HasMany(y => y.BookAuthors).WithOne(x => x.Author).HasForeignKey(x => x.AuthorId);          
+            modelBuilder.Entity<SubjectModel>().HasMany(y => y.BookSubjects).WithOne(x => x.Subject).HasForeignKey(x => x.SubjectId);
+            modelBuilder.Entity<AuthorModel>().HasMany(y => y.BookAuthors).WithOne(x => x.Author).HasForeignKey(x => x.AuthorId);
+            modelBuilder.Entity<PublisherModel>().HasMany(y => y.BookPublishers).WithOne(x => x.Publisher).HasForeignKey(x => x.PublisherId);
 
-            modelBuilder.Entity<Subject>().HasMany(y => y.BookSubjects).WithOne(x => x.Subject).HasForeignKey(x => x.SubjectId);
-
-            modelBuilder.Entity<Classification>().HasMany(y => y.BookClassifications).WithOne(x => x.Classification).HasForeignKey(x => x.ClassificationID);
-
-            modelBuilder.Entity<Identifier>().HasMany(y => y.BookIdentifiers).WithOne(x => x.Identifier).HasForeignKey(x => x.IndentifierId);
-
-            modelBuilder.Entity<Publisher>().HasMany(y => y.BookPublishers).WithOne(x => x.Publisher).HasForeignKey(x => x.PublisherId);
             
-            
-            modelBuilder.ApplyConfiguration(new ClassificationConfiguration());
-
-            modelBuilder.ApplyConfiguration(new IndentifierConfiguration());
-
-            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+                     
 
             
         }

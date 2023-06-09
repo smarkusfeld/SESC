@@ -1,28 +1,30 @@
-﻿using LibraryService.Domain.Entities;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LibraryService.Domain.Common;
 
 namespace LibraryService.Domain.Entities
 {
-    [Table("account")]
-    public class Account : BaseEntity
+    /// <summary>
+    /// Library Account Entity
+    /// </summary>
+    public class Account : BaseAuditableEntity
     {
-       
-        public string? StudentId { get; set; }
-        public string? EmployeeId { get; set; }       
-
-        [Required]
+        public Account( string id) 
+        { 
+            AccountId = id;
+        }
+        public override object Key => AccountId;
+        public string AccountId { get; private set; }
+        public int AccountNum { get; private set; }
         public int Pin { get; set; } = 000000;
-        public ICollection<Loan>? Loans { get; set; }
-        
-        public User User { get; set; }
+        public AccountType AccountType { get; set; } = null!;
 
-        
+        private readonly List<Loan> _loans = new();
+        private readonly List<Reservation> _reservations = new();
+        public ICollection<Loan> Loans => _loans;
+        public ICollection<Reservation> Reservations => _reservations;
+
+        public ICollection<Loan> OverdueLoans => _loans.FindAll(x => x.Status == Common.Enums.LoanStatus.Overdue);
+        public ICollection<Loan> ActiveLoans => _loans.FindAll(x => x.IsComplete==false);
+
+
     }
 }

@@ -1,11 +1,6 @@
-﻿using LibraryService.Application.Interfaces;
-using LibraryService.Application.Models;
-using LibraryService.Application.Services;
-using LibraryService.Domain.Entities;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
+﻿using LibraryService.Application.DTOs;
+using LibraryService.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace LibraryService.Api.Controllers
 {
@@ -41,8 +36,8 @@ namespace LibraryService.Api.Controllers
         /// New Student Account
         /// </summary>
         /// <returns></returns>
-        [HttpPost("{studentid}")]
-        public async Task<IActionResult> Register(StudentRegistrationModel userModel)
+        [HttpPost("register/{studentid}")]
+        public async Task<IActionResult> Register(string studentid)
         {
             throw new NotImplementedException();
             //var user = _mapper.Map<User>(userModel);
@@ -51,13 +46,12 @@ namespace LibraryService.Api.Controllers
         }
 
         /// <summary>
-        /// Login
+        /// Update Account Pin
         /// </summary>
-        /// <param name="userModel"></param>
+        /// <param name="accountDTO"></param>
         /// <returns></returns>
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(UserLoginModel userModel)
+        [HttpPut("firstlogin")]
+        public async Task<IActionResult> Update([FromBody] AccountDTO accountdto)
         {
             //if (!ModelState.IsValid)
             //{

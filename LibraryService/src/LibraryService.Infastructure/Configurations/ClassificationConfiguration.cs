@@ -1,4 +1,4 @@
-﻿using LibraryService.Domain.Entities;
+﻿using LibraryService.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Infastructure.Configurations
 {
-    public class ClassificationConfiguration : IEntityTypeConfiguration<Classification>
+    public class ClassificationConfiguration : IEntityTypeConfiguration<ClassificationModel>
     {
-        public void Configure(EntityTypeBuilder<Classification> builder)
+        public void Configure(EntityTypeBuilder<ClassificationModel> builder)
         {
             builder.HasData(
-                new Classification
+                new ClassificationModel
                 {
                     Id = 1000,
                     Name = "dewey_decimal_class",
                     Label = "Dewey Decimal Class"
                 },
-                new Classification
+                new ClassificationModel
                 {
                     Id = 1001,
                     Name = "lc_classifications",
                     Label = " Library of Congress"
                 },
-                new Classification
+                new ClassificationModel
                 {
 
                     Id = 1002,

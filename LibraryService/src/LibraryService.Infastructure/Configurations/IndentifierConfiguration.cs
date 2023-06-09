@@ -1,4 +1,4 @@
-﻿using LibraryService.Domain.Entities;
+﻿using LibraryService.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MySql.EntityFrameworkCore.Extensions;
@@ -11,81 +11,81 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Infastructure.Configurations
 {
-    public class IndentifierConfiguration : IEntityTypeConfiguration<Identifier>
+    public class IndentifierConfiguration : IEntityTypeConfiguration<IdentifierModel>
     {
-        public void Configure(EntityTypeBuilder<Identifier> builder)
+        public void Configure(EntityTypeBuilder<IdentifierModel> builder)
         {
             builder.HasData(
-                new Identifier
+                new IdentifierModel
                 {
                     Id=1001,
                     Name = "amazon",
                     Label = "Amazon"
                 },
-                new Identifier
+                new IdentifierModel
                 {
                     Id = 1002,
                     Name = "google",
                      Label = "Goolge"
                 },
-                new Identifier
+                new IdentifierModel
                 {
                     Id = 1003,
                     Name = "librarything",
                     Label = "Library Thing"
                 },
-                new Identifier
+                new IdentifierModel
                 {
                     Id = 1004,
                     Name = "goodreads",
                     Label = "Goodreads"
                 },
-                new Identifier
+                new IdentifierModel
                 {
 
                     Id = 1005,
                     Name = "isbn_10",
                     Label = "ISBN 10"
                 },
-                new Identifier
+                new IdentifierModel
                 {
                     Id = 1006,
                     Name = "isbn_13",
                     Label = "ISBN 13"
                 },
-                new Identifier
+                new IdentifierModel
                 {
                     Id = 1007,
                     Name = "issn",
                     Label = "ISSN"
                 },
-                new Identifier
+                new IdentifierModel
                 {
 
                     Id = 1008,
                     Name = "lccn",
                     Label = "LCCN"
                 },
-                new Identifier
+                new IdentifierModel
                 {
                     Id = 1009,
                     Name = "oclc",
                     Label = "OCLC/WorldCat"
                 },
-                new Identifier
+                new IdentifierModel
                 {
                     Id = 1010,
                     Name = "british_library",
                     Label = "British Library"
                 },
-                new Identifier
+                new IdentifierModel
                 {
 
                     Id = 1011,
                     Name = "openlibrary",
                     Label = "OpenLibrary"
                 },
-                 new Identifier
+                 new IdentifierModel
                  {
                      Id = 1012,
                      Name = " British National Bibliography",

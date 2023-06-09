@@ -1,5 +1,5 @@
 using LibraryService.Application.Interfaces;
-using LibraryService.Domain.Entities;
+using LibraryService.Domain.Models;
 using LibraryService.Infastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Infastructure.Repositories
 {
-    public class PublisherRepository : GenericRepository<Publisher>, IPublisherRepository
+    public class PublisherRepository : GenericRepository<PublisherModel>, IPublisherRepository
     {
         public PublisherRepository(DataContext dbContext) : base(dbContext)
         {
 
         }
-        public async Task<Publisher> GetAsync(int id) => await _context.Set<Publisher>().AsNoTracking().SingleOrDefaultAsync(T => T.Id.Equals(id));
+        public async Task<PublisherModel> GetAsync(int id) => await _context.Set<PublisherModel>().AsNoTracking().SingleOrDefaultAsync(T => T.Id.Equals(id));
     }
 }

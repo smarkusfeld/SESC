@@ -29,7 +29,7 @@ namespace LibraryService.Application.DTOs
             {
                 FirstName = names[0];
                 LastName = names[1];
-                MiddleName = "";
+                MiddleName = " ";
             }
             else if (name.Length > 2)
             {

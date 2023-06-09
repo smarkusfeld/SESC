@@ -1,6 +1,9 @@
 ﻿using LibraryService.Application.DTOs;
 using LibraryService.Application.Interfaces;
 using LibraryService.Domain.Entities;
+using LibraryService.Domain.Entities.LoanAggregate;
+using LibraryService.Domain.Models;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -9,8 +12,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.Text;
@@ -28,8 +33,7 @@ namespace LibraryService.Application.Services
         {
             _unitOfWork = unitOfWork;
         }
-
-        public async Task<bool> AddBook(string isbn)
+        public async Task<bool> AddBook(string isbn, OpenLibraryRecord bookdetail)
         {
             //see if book already exists in the library 
             var check = await (ISBNCheck(isbn));
@@ -39,15 +43,20 @@ namespace LibraryService.Application.Services
                 var add = await AddBookCopy(isbn);
                 return add;
             }
+
+        }
+        public async Task<bool> AddBook(string isbn)
+        {
+           
             //create new book record
-            BookDTO dto = await GetDetails(isbn);
-            if (dto != null)
+            OpenLibraryRecord record = await GetDetails(isbn);
+            if (record != null)
             {
                 Book newBook = new Book()
                 {
-                    Title = dto.Title,
-                    Copies = dto.Copies,
-                    Year = dto.Year,
+                    Title = record.Title,
+                    //Copies = .Copies,
+                    //Year = dto.Year,
                     //add author logic
 
                 };
@@ -128,7 +137,7 @@ namespace LibraryService.Application.Services
         {
             try
             {
-                Loan newLoan = new Loan
+                LoanModel newLoan = new LoanModel
                 {
                     AccountId = accountId,
                     BookCopyId = bookCopyId,
@@ -225,27 +234,39 @@ namespace LibraryService.Application.Services
                 return false;
             }
         }
-        private async Task<bool> ISBNCheck(string isbn)
+        public async Task<bool> ISBNCheck(string isbn)
         {
             string value = isbn.ToString();
             var book = await _unitOfWork.Books.GetByAsync(x => x.BookIdentifiers.Any(y=> y.Value == value && y.Identifier.Name.StartsWith("isbn")));
             return book != null;
         }
 
-        private async Task<BookDTO> GetDetails(string isbn)
+         public async Task<OpenLibraryRecord> GetDetails(string isbn)
         {
             String url = "http://openlibrary.org/api/books?bibkeys=ISBN:" + isbn + "&jscmd=data&format=json";
-            String json = new WebClient().DownloadString(url);
-            JObject jsonObject = JObject.Parse(json);
-            var data = jsonObject.SelectToken("ISBN:" + isbn).ToString();
-
-            var record = JsonConvert.DeserializeObject<OpenLibraryRecord>(data, new JsonSerializerSettings
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("http://openlibrary.org/");
+            client.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage Res = await client.GetAsync("api/books?bibkeys=ISBN:" + isbn + "&jscmd=data&format=json");
+            //String json = new HttpClient().DownloadString(url);
+            if (Res.IsSuccessStatusCode)
             {
-                MissingMemberHandling = MissingMemberHandling.Ignore
-            });
-        
+               
+                //Storing the response details recieved from web api
+                var json = Res.Content.ReadAsStringAsync().Result;
+                //Deserializing the response recieved from web api 
+                JObject jsonObject = JObject.Parse(json);
+                var data = jsonObject.SelectToken("ISBN:" + isbn).ToString();
+                
+                var record = JsonConvert.DeserializeObject<OpenLibraryRecord>(data, new JsonSerializerSettings
+                {
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                });
+                return record;
 
-            return new BookDTO();
+            }
+            return null;
 
         }
 

@@ -1,5 +1,6 @@
 ﻿using LibraryService.Application.Interfaces;
 using LibraryService.Domain.Entities;
+using LibraryService.Domain.RepositoryInterfaces;
 using LibraryService.Infastructure.Context;
 using LibraryService.Infastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -16,18 +17,11 @@ namespace LibraryService.Infastructure
         private readonly DataContext _dbContext;
         private IAccountRepository _accounts;
         private IAuthorRepository _authors;
-        private IBookAuthorRepository _bookauthors;
         private IBookRepository _books;
-        private IBookCopyRepository _bookitems;
+        private IBookCopyRepository _bookcopies;
         private ILoanRepository _loans;
-        private IClassificationRepository _classifications;
-        private IBookClassificationRepository _bookclassifications;
-        private IIdentifierRepository _identifiers;
-        private IBookIdentifierRepository _bookidentifiers;
         private ISubjectRepository _subjects;
-        private IBookSubjectRepository _booksubjects;
         private IPublisherRepository _publishers;
-        private IBookPublisherRepository _bookpublishers;
         public IAccountRepository Accounts
         {
             get
@@ -55,22 +49,14 @@ namespace LibraryService.Infastructure
             }
         }
 
-        public IBookAuthorRepository BookAuthors
-        {
-            get
-            {
-                _bookauthors ??= new BookAuthorRepository(_dbContext);
-                return _bookauthors;
-            }
-        }
 
 
         public IBookCopyRepository BookCopies
         {
             get
             {
-                _bookitems ??= new BookCopyRepository(_dbContext);
-                return _bookitems;
+                _bookcopies ??= new BookCopyRepository(_dbContext);
+                return _bookcopies;
             }
         }
 
@@ -83,41 +69,7 @@ namespace LibraryService.Infastructure
             }
         }
 
-        public IBookSubjectRepository BookSubjects
-        {
-            get
-            {
-                _booksubjects ??= new BookSubjectRepository(_dbContext);
-                return _booksubjects;
-            }
-        }
 
-        public IBookPublisherRepository BookPublishers
-        {
-            get
-            {
-                _bookpublishers ??= new BookPublisherRepository(_dbContext);
-                return _bookpublishers;
-            }
-        }
-
-        public IBookIdentifierRepository BookIdentifers
-        {
-            get
-            {
-                _bookidentifiers ??= new BookIdentifierRepository(_dbContext);
-                return _bookidentifiers;
-            }
-        }
-
-        public IBookClassificationRepository BookClassifications
-        {
-            get
-            {
-                _bookclassifications ??= new BookClassificationRepository(_dbContext);
-                return _bookclassifications;
-            }
-        }
 
 
         public ISubjectRepository Subjects
@@ -142,23 +94,7 @@ namespace LibraryService.Infastructure
         }
 
 
-        public IIdentifierRepository Identifers
-        {
-            get
-            {
-                _identifiers ??= new IdentifierRepository(_dbContext);
-                return _identifiers;
-            }
-        }
-
-        public IClassificationRepository Classifications
-        {
-            get
-            {
-                _classifications ??= new ClassificationRepository(_dbContext);
-                return _classifications;
-            }
-        }
+       
 
 
         public UnitOfWork(DataContext dbContext)
@@ -166,14 +102,10 @@ namespace LibraryService.Infastructure
             _dbContext = dbContext;
             _accounts = Accounts;
             _books = Books;
-            _bookitems = BookCopies;
+            _bookcopies = BookCopies;
             _loans = Loans;
             _authors = Authors;
-            _bookauthors = BookAuthors;
-            _classifications = Classifications;
-            _bookclassifications = BookClassifications;
-            _identifiers = Identifers;
-            _bookidentifiers = BookIdentifers;
+            
 
         }
 
@@ -181,7 +113,10 @@ namespace LibraryService.Infastructure
         /// Completes the unit of work, saving all repository changes to the underlying data-store.
         /// </summary>
         /// <returns><see cref="Task"/></returns>
-        public int Save() =>_dbContext.SaveChanges();   
+        public int Save() =>_dbContext.SaveChanges();
+
+        public Task<int> SaveAsync() => _dbContext.SaveChangesAsync();
+
 
         /// <summary>
         /// Cleans up any resources being used.

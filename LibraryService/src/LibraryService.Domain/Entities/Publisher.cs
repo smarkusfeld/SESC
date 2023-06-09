@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using LibraryService.Domain.Common;
 
 namespace LibraryService.Domain.Entities
 {
-    [Table("publisher")]
-    public class Publisher : BaseEntity
+    public class Publisher :BaseAuditableEntity
     {
-        
+        public override object Key { get => Id; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<BookPublisher> BookPublishers { get; set; }
-    }
 
-   
+
+        public ICollection<BookAuthor> BookPublishers { get; set; }
+    }
 }
