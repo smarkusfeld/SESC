@@ -1,18 +1,17 @@
+using LibraryService.Api.Middleware;
 using LibraryService.Application.Interfaces;
 using LibraryService.Application.Services;
 using LibraryService.Infastructure.Context;
 using LibraryService.Infastructure.Extensions;
 using Microsoft.OpenApi.Models;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDIServices(builder.Configuration);
 builder.Services.AddHttpClient<OpenLibraryService>();
-builder.Services.AddScoped<ILoanService, LoanService>();
-builder.Services.AddScoped<IBookService, BookService>();
-builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.ConfigureLoggerService();
+builder.Services.AddTransient<ExceptionMiddleware>();
 
 builder.Services.AddControllers();
 
@@ -31,6 +30,10 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var app = builder.Build();
+var logger = app.Services.GetRequiredService<ILoggerManager>();
+
+
+//check that the database is created
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -44,8 +47,8 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception ex)
     {
-        var log = services.GetRequiredService<ILogger<Program>>();
-        log.LogError(ex, "An error occurred creating the DB.");
+        //var log = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred creating the DB.");
     }
 }
 // Configure the HTTP request pipeline.

@@ -1,4 +1,4 @@
-﻿using LibraryService.Application.DTOs;
+﻿using LibraryService.Application.Models;
 
 namespace LibraryService.Application.Interfaces
 {
@@ -32,9 +32,58 @@ namespace LibraryService.Application.Interfaces
         Task<IEnumerable<AccountDTO>> GetAllStudentAccounts();
 
         /// <summary>
-        /// Validate Account
+        /// Method to display all current loans
         /// </summary>
-        //bool ValidateAccount();
+        Task<IEnumerable<LoanDTO>> GetAllCurrentLoans();
+
+        /// <summary>
+        /// Method to display all overdue loans
+        /// </summary>
+        Task<IEnumerable<LoanDTO>> GetAllOverdueLoans();
+
+        /// <summary>
+        /// Method to view loan history
+        /// </summary>
+        Task<IEnumerable<LoanDTO>> GetLoanHistory(int accountID);
+
+        /// <summary>
+        /// Method to create new loan
+        /// </summary>
+        /// <param name="studentID"></param>
+        /// <param name="ISBN"></param>
+        /// <param name="pin"></param>
+        /// <returns></returns>
+        Task<LoanDTO> CreateLoan(string studentID, string ISBN, int pin);
+
+        /// <summary>
+        /// Method to create new reservation
+        /// </summary>
+        /// <param name="studentID"></param>
+        /// <param name="ISBN"></param>
+        /// <param name="pin"></param>
+        /// <returns></returns>
+        Task<ReservationDTO> CreateReservation(string studentID, string ISBN, int pin);
+
+        /// <summary>
+        /// Method to return book
+        /// </summary>
+        /// <param name="studentID"></param>
+        /// <param name="ISBN"></param>
+        /// <param name="pin"></param>
+        /// <returns></returns>
+        Task<LoanDTO> ReturnBook(string studentID, string ISBN, int pin);
+
+        /// <summary>
+        /// Method to issue fine
+        /// </summary>
+        /// <param name="loanDTO"></param>
+        /// <returns></returns>
+        Task<bool> IssueFine(LoanDTO loanDTO);
+
+        /// <summary>
+        /// Method to get available copy a book
+        /// </summary>
+        Task<BookCopyDTO> GetAvailableBookCopy(string isbn);
 
     }
 }

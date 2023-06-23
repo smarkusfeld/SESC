@@ -1,16 +1,26 @@
 ﻿using LibraryService.Domain.Common;
-using LibraryService.Domain.DataModels;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibraryService.Domain.Entities
 {
+    [Table("author")]
     public class Author : BaseAuditableEntity
     {
-        public override object Key { get => Id; }
+        public override object Key => Id;
+        public Author(string lastName)
+        {
+            LastName = lastName.Trim();
+        }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
+        public string? FirstName { get; set; } 
+        public string? MiddleName { get; set; }
+
+        [Required]
         public string LastName { get; set; }
 
-        public ICollection<BookAuthor> BookAuthors { get; set; }
+        public ICollection<BookAuthor> BookAuthors { get; set; } = new List<BookAuthor>();
     }
 }

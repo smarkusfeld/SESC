@@ -1,16 +1,9 @@
-﻿using Azure;
+﻿
 using LibraryService.Application.Interfaces;
 using LibraryService.Domain.Common;
-using LibraryService.Domain.RepositoryInterfaces;
 using LibraryService.Infastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace LibraryService.Infastructure.Repositories
 {
     /// <summary>
@@ -81,10 +74,11 @@ namespace LibraryService.Infastructure.Repositories
             return entity;
         }
 
-        
-        public virtual void Update(T entity) => _set.Entry(entity).State = EntityState.Modified;
-
-      
+        public virtual async Task<T> UpdateAsync(T entity)
+        {
+            await _set.AddAsync(entity);
+            return entity;
+        }
         public virtual async Task<T?> UpdateAsync(T entity, object key)
         {
             if (entity == null)
@@ -97,11 +91,19 @@ namespace LibraryService.Infastructure.Repositories
             return exist;
 
         }
-        
-        public void Update(IEnumerable<T> entities) => _set.UpdateRange(entities);
-       
-        
-        public void Delete(T entity) => _set.Remove(entity);
+
+        public virtual Task UpdateRange(IEnumerable<T> entities)
+        {
+            _set.UpdateRange(entities);
+            return Task.CompletedTask;
+        }
+
+
+        public virtual Task Delete(T entity)
+        {
+            _set.Remove(entity);
+            return Task.CompletedTask;
+        }
        
 
 

@@ -1,14 +1,6 @@
 ﻿using LibraryService.Application.Interfaces;
-using LibraryService.Domain.Entities;
-using LibraryService.Domain.RepositoryInterfaces;
 using LibraryService.Infastructure.Context;
 using LibraryService.Infastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryService.Infastructure
 { 
@@ -16,106 +8,113 @@ namespace LibraryService.Infastructure
     {
         private readonly DataContext _dbContext;
         private IAccountRepository _accounts;
-        private IAuthorRepository _authors;
         private IBookRepository _books;
-        private IBookCopyRepository _bookcopies;
-        private ILoanRepository _loans;
-        private ISubjectRepository _subjects;
+        //private IBookCopyRepository _copies;
+        private IAuthorRepository _authors;
         private IPublisherRepository _publishers;
-        public IAccountRepository Accounts
-        {
-            get
-            {
-                _accounts ??= new AccountRepository(_dbContext);
-                return _accounts;
-            }
-        }
-
-        public IBookRepository Books
-        {
-            get
-            {
-                _books ??= new BookRepository(_dbContext);
-                return _books;
-            }
-        }
-
-        public IAuthorRepository Authors
-        {
-            get
-            {
-                _authors ??= new AuthorRepository(_dbContext);
-                return _authors;
-            }
-        }
-
-
-
-        public IBookCopyRepository BookCopies
-        {
-            get
-            {
-                _bookcopies ??= new BookCopyRepository(_dbContext);
-                return _bookcopies;
-            }
-        }
-
-        public ILoanRepository Loans
-        {
-            get
-            {
-                _loans ??= new LoanRepository(_dbContext);
-                return _loans;
-            }
-        }
-
-
-
-
-        public ISubjectRepository Subjects
-        {
-            get
-            {
-                
-               _subjects ??= new SubjectRepository(_dbContext);
-                return _subjects;
-            }
-        }
-
-
-
-        public IPublisherRepository Publishers
-        {
-            get
-            {
-                _publishers ??= new PublisherRepository(_dbContext);
-                return _publishers;
-            }
-        }
-
-
-       
-
-
+        private ISubjectRepository _subjects;
+        private ILoanRepository _loans;
+        private IReservationRepository _reservations;
+        private bool disposed;
         public UnitOfWork(DataContext dbContext)
         {
             _dbContext = dbContext;
             _accounts = Accounts;
             _books = Books;
-            _bookcopies = BookCopies;
-            _loans = Loans;
             _authors = Authors;
+            _publishers = Publishers;
+            _subjects = Subjects;
+            _reservations = Reservations;
+            _loans = Loans;
             
-
+           
         }
-
+        public IAccountRepository Accounts
+        {
+            get
+            {
+                if (_accounts == null)
+                {
+                    _accounts = new AccountRepository(_dbContext);
+                }
+                return _accounts;
+            }
+        }
+        public IBookRepository Books
+        {
+            get
+            {
+                if (_books == null)
+                {
+                    _books = new BookRepository(_dbContext);
+                }
+                return _books;
+            }
+        }
+        public IAuthorRepository Authors
+        {
+            get
+            {
+                if (_authors == null)
+                {
+                    _authors = new AuthorRepository(_dbContext);
+                }
+                return _authors;
+            }
+        }
+        public IPublisherRepository Publishers
+        {
+            get
+            {
+                if (_publishers == null)
+                {
+                    _publishers = new PublisherRepository(_dbContext);
+                }
+                return _publishers;
+            }
+        }
+        public ISubjectRepository Subjects
+        {
+            get
+            {
+                if (_subjects == null)
+                {
+                    _subjects = new SubjectRepository(_dbContext);
+                }
+                return _subjects;
+            }
+        }
+        public ILoanRepository Loans
+        {
+            get
+            {
+                if (_loans == null)
+                {
+                    _loans = new LoanRepository(_dbContext);
+                }
+                return _loans;
+            }
+        }
+        public IReservationRepository Reservations
+        {
+            get
+            {
+                if (_reservations == null)
+                {
+                    _reservations = new ReservationRepository(_dbContext);
+                }
+                return _reservations;
+            }
+        }
         /// <summary>
         /// Completes the unit of work, saving all repository changes to the underlying data-store.
         /// </summary>
         /// <returns><see cref="Task"/></returns>
-        public int Save() =>_dbContext.SaveChanges();
-
-        public Task<int> SaveAsync() => _dbContext.SaveChangesAsync();
+        public async Task<int> Save(CancellationToken cancellationToken)
+        {
+            return await _dbContext.SaveChangesAsync(cancellationToken);
+        }
+       
 
 
         /// <summary>
@@ -134,11 +133,28 @@ namespace LibraryService.Infastructure
         /// <returns><see cref="ValueTask"/></returns>
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposed)
             {
-                _dbContext.Dispose();
+                if (disposing)
+                {
+                    //dispose managed resources
+                    _dbContext.Dispose();
+                }
             }
+            //dispose unmanaged resources
+            disposed = true;
         }
 
+
+
+        /// <summary>
+        /// Method to rollback database changes to its previous state
+        /// </summary>
+        /// <returns></returns>
+        public Task Rollback()
+        {
+            _dbContext.ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+            return Task.CompletedTask;
+        }
     }
 }

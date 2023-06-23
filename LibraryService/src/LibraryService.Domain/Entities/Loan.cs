@@ -1,21 +1,19 @@
 ﻿using LibraryService.Domain.Common;
 using LibraryService.Domain.Common.Enums;
-using LibraryService.Domain.DataModels;
 using LibraryService.Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibraryService.Domain.Entities
 {
+    /// <summary>
+    /// Loan Entity
+    /// </summary>
+    [Table("loan")]
     public class Loan : BaseAuditableEntity
-    {
-        public Loan(int id, DateTime dueDate, string bookISBN, string bookTitle, string accountId, int bookCopyId)
-        {
-            Id = id;
+    {              
+        public Loan(DateTime dueDate, string bookISBN, string bookTitle, string accountId, int bookCopyId)
+        {            
             DateBorrowed = DateTime.Now;
             DueDate = dueDate;
             BookISBN = bookISBN;
@@ -26,6 +24,9 @@ namespace LibraryService.Domain.Entities
         }
 
         public override object Key => Id;
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
         public bool IsComplete { get;set; } = false;
         public DateTime DateBorrowed { get; private set; }
@@ -36,8 +37,8 @@ namespace LibraryService.Domain.Entities
         public string AccountId { get; private set; }
         public int BookCopyId { get; private set; }
         public Fine? Fine { get; private set; }
-        public AccountModel Account { get; set; } = null!;
-        public BookCopyModel BookCopy { get; set; } = null!;
+        public Account Account { get; set; } = null!;
+        public BookCopy BookCopy { get; set; } = null!;
 
         public LoanStatus Status
         {
@@ -64,8 +65,7 @@ namespace LibraryService.Domain.Entities
                 }
                 return LoanStatus.Completed;
             }            
-        }
-        
+        }        
         public void AddFine(DateTime date, Decimal amount)
         {
             //fix up and add validatiors

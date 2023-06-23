@@ -1,5 +1,4 @@
-﻿using LibraryService.Domain.Entities;
-using LibraryService.Domain.RepositoryInterfaces;
+﻿using LibraryService.Domain.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +16,13 @@ namespace LibraryService.Application.Interfaces
         IBookRepository Books { get; }
         ISubjectRepository Subjects { get; }
         IPublisherRepository Publishers { get; }
-
         IAuthorRepository Authors { get; }
-
-        IBookCopyRepository BookCopies { get; }
+        //IBookCopyRepository BookCopies { get; }
         ILoanRepository Loans { get; }
-        int Save();
+        IReservationRepository Reservations { get; }
 
+        //IGenericRepository<T> Repository<T>() where T : BaseAuditableEntity;
+        Task<int> Save(CancellationToken cancellationToken);
+        Task Rollback();
     }
 }

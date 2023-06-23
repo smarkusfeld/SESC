@@ -1,4 +1,4 @@
-﻿using LibraryService.Application.DTOs;
+﻿using LibraryService.Application.Models;
 using LibraryService.Application.Interfaces;
 using LibraryService.Domain.Entities;
 using LibraryService.Domain.Entities.LoanAggregate;

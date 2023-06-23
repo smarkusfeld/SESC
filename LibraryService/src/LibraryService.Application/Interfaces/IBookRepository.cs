@@ -11,16 +11,8 @@ namespace LibraryService.Application.Interfaces
     /// Repository Interface for the book entity
     /// </summary>
     public interface IBookRepository : IGenericRepository<Book>
-    {
-        Task<Book?> GetAsync(string ISBN);
-
-        Task<bool> AddBookAuthor(Author author);
-
-        Task<bool> AddBookSubject(Subject subject);
-
-        Task<bool> AddBookPublisher(Publisher publisher);
-
-        Task<bool> AddBookCopy(Book copy);
+    {        
+        Task<bool> AddCopy(Book book);
 
     }
 }

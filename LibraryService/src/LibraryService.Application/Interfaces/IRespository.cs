@@ -1,24 +1,12 @@
-﻿
-using LibraryService.Domain.DataModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LibraryService.Domain.Entities;
+﻿using LibraryService.Domain.Entities;
 
 namespace LibraryService.Application.Interfaces
 {
     public interface IAccountRepository : IGenericRepository<Account>
     {
 
-    }
-    public interface IBookAuthorRepository : IGenericRepository<BookAuthor>
-    {
-
-    }
-    public interface IAuthorRepository : IGenericRepository<Author
-        >
+    }    
+    public interface IAuthorRepository : IGenericRepository<Author>
     {
 
     }
@@ -36,6 +24,10 @@ namespace LibraryService.Application.Interfaces
 
     }
     public interface IPublisherRepository : IGenericRepository<Publisher>
+    {
+
+    }
+    public interface IReservationRepository : IGenericRepository<Reservation>
     {
 
     }

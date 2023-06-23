@@ -1,16 +1,7 @@
 ﻿using LibraryService.Application.Interfaces;
 using LibraryService.Domain.Entities;
-using LibraryService.Domain.RepositoryInterfaces;
 using LibraryService.Infastructure.Context;
-using LibraryService.Infastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Utilities.Collections;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryService.Infastructure.Repositories
 {
@@ -20,14 +11,52 @@ namespace LibraryService.Infastructure.Repositories
         {
         }
 
-        public async Task<Book?> GetAsync(string ISBN)
+        public override async Task<Book> UpdateAsync(Book book)
         {
+            //no need to include owned types -- eager loading performed automatically 
+            var attached = await _set
+                .Include(x=>x.BookAuthors)
+                .Include(x => x.BookPublishers)
+                .Include(x => x.BookAuthors)
+                .SingleAsync(x=>x.ISBN==book.ISBN);
 
-            throw new NotImplementedException();
+            _set.Entry(attached).State = EntityState.Detached;
+            foreach (var bPub in attached.BookPublishers.ToList())
+            {
+                _context.Entry(bPub).State = EntityState.Detached;
+            }
+            foreach (var bAut in attached.BookAuthors.ToList())
+            {
+                _context.Entry(bAut).State = EntityState.Detached;
+            }
+            foreach (var bSub in attached.BookSubjects.ToList())
+            {
+                _context.Entry(bSub).State = EntityState.Detached;
+            }
+            
+            var entry = _set.Attach(book);
+            return book;
+
         }
-        
 
-       
+        public async Task<bool> AddCopy(Book book)
+        {
+            var attached = await _set
+                .Include(x => x.BookCopies)
+                .SingleAsync(x => x.ISBN == book.ISBN);
+
+            _set.Entry(attached).State = EntityState.Detached;
+            foreach (var copy in attached.BookCopies.ToList())
+            {
+                _context.Entry(copy).State = EntityState.Detached;
+            }
+            var entry = _set.Attach(book);
+            return true; 
+            
+        }
+
+
+
 
     }
 }

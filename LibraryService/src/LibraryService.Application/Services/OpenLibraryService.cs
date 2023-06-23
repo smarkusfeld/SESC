@@ -1,4 +1,4 @@
-﻿using LibraryService.Application.DTOs;
+﻿using LibraryService.Application.Models;
 using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
@@ -35,6 +35,7 @@ namespace LibraryService.Application.Services
                 var json = Res.Content.ReadAsStringAsync().Result;
                 //Deserializing the response recieved from web api 
                 JObject jsonObject = JObject.Parse(json);
+                //add validation for missing
                 var data = jsonObject.SelectToken("ISBN:" + isbn).ToString();
                 return JsonConvert.DeserializeObject<OpenLibraryRecord>(data, new JsonSerializerSettings
                 {
@@ -57,7 +58,6 @@ namespace LibraryService.Application.Services
                 return null;
             }
         }
-        public as
         
     }
 }
