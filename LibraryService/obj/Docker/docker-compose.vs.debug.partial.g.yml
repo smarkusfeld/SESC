@@ -3,7 +3,6 @@ version: '3.4'
 services:
   libraryservice.api:
     image: libraryserviceapi:dev
-    container_name: LibraryService.Api
     build:
       target: base
       labels:

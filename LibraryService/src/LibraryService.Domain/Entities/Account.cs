@@ -1,29 +1,47 @@
 ﻿using LibraryService.Domain.Common;
+using LibraryService.Domain.Common.Enums;
+using LibraryService.Domain.Interfaces;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibraryService.Domain.Entities
 {
     /// <summary>
     /// Library Account Entity
     /// </summary>
-    public class Account : BaseAuditableEntity
+    [Table("account")]
+    public class Account : BaseAuditableEntity, IAggregateRoot
     {
-        public Account( string id) 
+        
+        public override object Key => AccountId;
+
+        /// <summary>
+        /// Constructor for Account Entity
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="accountType"></param>
+        public Account( string id, AccountType accountType) 
         { 
             AccountId = id;
-        }
-        public override object Key => AccountId;
+            AccountType = accountType;
+        }           
+      
         public string AccountId { get; private set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AccountNum { get; private set; }
+
         public int Pin { get; set; } = 000000;
-        public AccountType AccountType { get; set; } = null!;
+        public AccountType AccountType { get; set; }
+        public ICollection<Loan> Loans { get; private set; } = new List<Loan>();
+        public ICollection<Reservation> Reservations { get; private set; } = new List<Reservation>();
 
-        private readonly List<Loan> _loans = new();
-        private readonly List<Reservation> _reservations = new();
-        public ICollection<Loan> Loans => _loans;
-        public ICollection<Reservation> Reservations => _reservations;
 
-        public ICollection<Loan> OverdueLoans => _loans.FindAll(x => x.Status == Common.Enums.LoanStatus.Overdue);
-        public ICollection<Loan> ActiveLoans => _loans.FindAll(x => x.IsComplete==false);
+        
+
+        //not mapped properties and methods
+        public ICollection<Loan> OverdueLoans => Loans.ToList().FindAll(x => x.Status == Common.Enums.LoanStatus.Overdue);
+        public ICollection<Loan> ActiveLoans => Loans.ToList().FindAll(x => x.IsComplete==false);
 
 
     }

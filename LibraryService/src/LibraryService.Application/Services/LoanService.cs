@@ -1,4 +1,4 @@
-﻿using LibraryService.Application.DTOs;
+﻿using LibraryService.Application.Models;
 using LibraryService.Application.Interfaces;
 using System;
 using System.Collections.Generic;

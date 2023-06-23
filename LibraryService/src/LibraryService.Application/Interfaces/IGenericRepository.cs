@@ -63,26 +63,23 @@ namespace LibraryService.Application.Interfaces
         /// <param name="entity">The entity to update</param>
         /// /// <param name="entity">enity key</param>
         /// <returns>The entity updated entity</returns>
-        Task<T?> UpdateAsync(T entity, object key);
+        Task<T> UpdateAsync(T entity);
 
-        /// <summary>
-        /// Update the specified entity 
-        /// </summary>
-        /// <param name="entity">The entity to update</param>
-        void Update(T entity);
+        Task<T?> UpdateAsync(T entity, object key);
 
         /// <summary>
         /// Update multiple entities 
         /// </summary>
         /// <param name="entities">A collection of entities to update</param>
-        void Update(IEnumerable<T> entities);
+        /// <returns><see cref="Task"/></returns
+        Task UpdateRange(IEnumerable<T> entities);
 
         /// <summary>
         /// This method deletes the specified record from the database 
         /// </summary>
         /// <param name="entity">The entity to delete</param>
         /// <returns><see cref="Task"/></returns
-        void Delete(T entity);
+        Task Delete(T entity);
 
 
 

@@ -1,24 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LibraryService.Domain.Common;
-using LibraryService.Domain.DataModels;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibraryService.Domain.Entities
 {
-
-    public class BookPublisher 
+    [Table("bookpublisher")]
+    public class BookPublisher : BaseEntity
     {
         internal byte Order { get; set; }
         public string ISBN { get; private set; }
         public int PublisherId { get; private set; }
         public string PublisherName { get; private set; }
-        public Book Book { get; private set; } = null!;
-        public Publisher Publisher { get; private set; } = null!;
+        public Book? Book { get; set; } 
+        public Publisher Publisher { get; private set; } 
         public BookPublisher(int num, string isbn, int publisherId, string name)
         {
             byte order = (byte)num;

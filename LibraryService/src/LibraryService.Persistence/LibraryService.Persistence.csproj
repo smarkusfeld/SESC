@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LibraryService.Application\LibraryService.Application.csproj" />
     <ProjectReference Include="..\LibraryService.Domain\LibraryService.Domain.csproj" />
   </ItemGroup>
 
