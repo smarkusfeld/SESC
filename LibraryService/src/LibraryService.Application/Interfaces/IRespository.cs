@@ -15,10 +15,7 @@ namespace LibraryService.Application.Interfaces
     {
 
     }
-    public interface ILoanRepository : IGenericRepository<Loan>
-    {
-
-    }
+    
     public interface ISubjectRepository : IGenericRepository<Subject>
     {
 

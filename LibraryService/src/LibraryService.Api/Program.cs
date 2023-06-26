@@ -9,9 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDIServices(builder.Configuration);
-builder.Services.AddHttpClient<OpenLibraryService>();
-builder.Services.ConfigureLoggerService();
+
+// add openlibrary service typed client class
+
+
+//register typed clients
+builder.Services.AddHttpClient<ICatalogueService, CatalogueService>();
+builder.Services.AddHttpClient<IFeeService, FeeService>();
+
 builder.Services.AddTransient<ExceptionMiddleware>();
+builder.Services.ConfigureLoggerService();
+
 
 builder.Services.AddControllers();
 

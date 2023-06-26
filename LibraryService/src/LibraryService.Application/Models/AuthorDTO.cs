@@ -16,38 +16,35 @@ namespace LibraryService.Application.Models
         public string LastName { get; private set; }
         public string MiddleName { get; private set; }
 
-        public string Name
-        {
-            get => string.Concat(FirstName, MiddleName, LastName);
-            set => ParseName(value);
-        }
+        public string FullName => string.Concat(FirstName, MiddleName, LastName);
 
-        public void ParseName(string name)
-        {
-            string[] names = name.Split(' ');
-            if (names.Length == 2)
-            {
-                FirstName = names[0];
-                LastName = names[1];
-                MiddleName = " ";
-            }
-            else if (name.Length > 2)
-            {
-                int last = name.Length - 1;
-                FirstName = names[0];
-                LastName = names[last];
-                for (int i = 1; i < last; i++)
-                {
-                    MiddleName += name[i] + " ";
-                }
-            }
-            else
-            {
-                LastName = names[0];
-                FirstName = "";
-                MiddleName = "";
-            }
-        }
+
+        //public void ParseName(string name)
+        //{
+        //    string[] names = name.Split(' ');
+        //    if (names.Length == 2)
+        //    {
+        //        FirstName = names[0];
+        //        LastName = names[1];
+        //        MiddleName = " ";
+        //    }
+        //    else if (name.Length > 2)
+        //    {
+        //        int last = name.Length - 1;
+        //        FirstName = names[0];
+        //        LastName = names[last];
+        //        for (int i = 1; i < last; i++)
+        //        {
+        //            MiddleName += name[i] + " ";
+        //        }
+        //    }
+        //    else
+        //    {
+        //        LastName = names[0];
+        //        FirstName = "";
+        //        MiddleName = "";
+        //    }
+        //}
        
        
     }

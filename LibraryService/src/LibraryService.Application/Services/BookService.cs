@@ -33,7 +33,7 @@ namespace LibraryService.Application.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<bool> AddBook(string isbn, OpenLibraryRecord bookdetail)
+        public async Task<bool> AddBook(string isbn, NewBookRecordDTO bookdetail)
         {
             //see if book already exists in the library 
             var check = await (ISBNCheck(isbn));
@@ -49,7 +49,7 @@ namespace LibraryService.Application.Services
         {
            
             //create new book record
-            OpenLibraryRecord record = await GetDetails(isbn);
+            NewBookRecordDTO record = await GetDetails(isbn);
             if (record != null)
             {
                 Book newBook = new Book()
@@ -241,7 +241,7 @@ namespace LibraryService.Application.Services
             return book != null;
         }
 
-         public async Task<OpenLibraryRecord> GetDetails(string isbn)
+         public async Task<NewBookRecordDTO> GetDetails(string isbn)
         {
             String url = "http://openlibrary.org/api/books?bibkeys=ISBN:" + isbn + "&jscmd=data&format=json";
             var client = new HttpClient();
@@ -259,7 +259,7 @@ namespace LibraryService.Application.Services
                 JObject jsonObject = JObject.Parse(json);
                 var data = jsonObject.SelectToken("ISBN:" + isbn).ToString();
                 
-                var record = JsonConvert.DeserializeObject<OpenLibraryRecord>(data, new JsonSerializerSettings
+                var record = JsonConvert.DeserializeObject<NewBookRecordDTO>(data, new JsonSerializerSettings
                 {
                     MissingMemberHandling = MissingMemberHandling.Ignore
                 });

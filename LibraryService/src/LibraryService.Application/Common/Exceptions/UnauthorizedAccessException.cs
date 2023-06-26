@@ -7,12 +7,17 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Application.Common.Exceptions
 {
-    public sealed class  UnauthorizedAccessException : CustomException
+    public abstract class  UnauthorizedAccessException : CustomException
     {
-        public UnauthorizedAccessException(string message, List<string>? errors = default)
-            : base(message, errors, HttpStatusCode.InternalServerError) { }
+        protected UnauthorizedAccessException(string message, List<string>? errors = default)
+            : base(message, errors, HttpStatusCode.Unauthorized) { }
 
-        public UnauthorizedAccessException(List<string>? errors = default)
-            : base("Unauthorized Access", errors, HttpStatusCode.InternalServerError) { }
+       
+    }
+    public sealed class IncorrectPinException : UnauthorizedAccessException
+    {
+        public IncorrectPinException(string id)
+           : base($"UnauthorizedAccess. Incorrect Pin for {id}") { }
+
     }
 }

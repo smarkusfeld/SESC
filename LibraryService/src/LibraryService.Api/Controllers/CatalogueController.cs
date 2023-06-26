@@ -1,22 +1,31 @@
 ﻿using LibraryService.Application.Interfaces;
+using LibraryService.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryService.Api.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/[controller]")]
-    public class BookController : Controller
+    public class CatalogueController : Controller
     {
-        private readonly IBookService _service;
-        private readonly ILogger<BookController> _logger;
+        private readonly ICatalogueService _service;
+        private readonly ILogger<CatalogueController> _logger;
 
-        public BookController(ILogger<BookController> logger, IBookService service)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="service"></param>
+        public CatalogueController(ILogger<CatalogueController> logger, CatalogueService service)
         {
             _logger = logger;
             _service = service;
         }
 
-        /// <summary>
-        /// Get All Accounts
+        /// <summary> 
+        /// Get All Books from library catalogue
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -31,23 +40,14 @@ namespace LibraryService.Api.Controllers
         /// Add Book to Library. If book already exists, a new copy is added
         /// </summary>
         /// <returns></returns>
-        [HttpGet("{isbn}")]
+        [HttpGet("add/book/{isbn}")]
         public async Task<IActionResult> Add(string isbn)
         {
-            var response = await _service.ISBNCheck(isbn);
+            var response = await _service.AddBookByISBN(isbn);
+            _logger.LogInformation($"New Book Added for ISBN {isbn}");
             return Ok(response);
         }
 
-        /// <summary>
-        /// Add Book to Library. If book already exists, a new copy is added
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("add/{isbn}")]
-        public async Task<IActionResult> check(string isbn)
-        {
-            var response = await _service.GetDetails(isbn);
         
-            return Ok(response);
-        }
     }
 }

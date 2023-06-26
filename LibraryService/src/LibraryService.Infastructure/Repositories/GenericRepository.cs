@@ -3,6 +3,8 @@ using LibraryService.Application.Interfaces;
 using LibraryService.Domain.Common;
 using LibraryService.Infastructure.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 namespace LibraryService.Infastructure.Repositories
 {
@@ -23,15 +25,15 @@ namespace LibraryService.Infastructure.Repositories
         }
 
         
-        public virtual async Task<T?> GetAsync(object key) => await _set.AsNoTracking().SingleOrDefaultAsync(x =>x.Key==key);
+        public virtual async Task<T> GetAsync(object key) => await _set.AsNoTracking().SingleAsync(x =>x.Key==key);
         
-        public virtual async Task<T?> GetByAsync(Expression<Func<T, bool>> predicate) => await _set.AsNoTracking().SingleOrDefaultAsync(predicate);
+        public virtual async Task<T> GetByAsync(Expression<Func<T, bool>> predicate) => await _set.AsNoTracking().SingleAsync(predicate);
 
-        
-        public virtual async Task<IEnumerable<T?>> GetAllAsync() => await _set.AsNoTracking().ToListAsync();
 
+        public virtual async Task<IEnumerable<T>> GetAllAsync() => await _set.AsNoTracking().ToListAsync();
         
-        public virtual async Task<IEnumerable<T?>> GetAllOrderedAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>,
+        
+        public virtual async Task<IEnumerable<T>> GetAllOrderedAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>,
                                                                 IOrderedQueryable<T>> orderBy = null,
                                                                 string includeProperties = "")
         {
@@ -65,9 +67,11 @@ namespace LibraryService.Infastructure.Repositories
 
 
         
-        public virtual async Task<IEnumerable<T?>> GetAllWhereAsync(Expression<Func<T, bool>> predicate) => await _set.Where(predicate).ToListAsync();
+        public virtual async Task<IEnumerable<T>> GetAllWhereAsync(Expression<Func<T, bool>> predicate) => await _set.Where(predicate).ToListAsync();
+
 
        
+
         public virtual async Task<T> AddAsync(T entity) 
         {
             await _set.AddAsync(entity);
@@ -79,7 +83,7 @@ namespace LibraryService.Infastructure.Repositories
             await _set.AddAsync(entity);
             return entity;
         }
-        public virtual async Task<T?> UpdateAsync(T entity, object key)
+        public virtual async Task<T> UpdateAsync(T entity, object key)
         {
             if (entity == null)
                 return null;

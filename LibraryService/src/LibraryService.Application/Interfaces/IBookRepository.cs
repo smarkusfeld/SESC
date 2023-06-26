@@ -12,7 +12,7 @@ namespace LibraryService.Application.Interfaces
     /// </summary>
     public interface IBookRepository : IGenericRepository<Book>
     {        
-        Task<bool> AddCopy(Book book);
-
+        Task<Book> AddCopyAsync(Book book);
+        Task<bool> UpdateCopiesAsync(Book book);
     }
 }

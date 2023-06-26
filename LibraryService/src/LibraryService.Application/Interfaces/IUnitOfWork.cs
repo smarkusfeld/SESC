@@ -22,7 +22,7 @@ namespace LibraryService.Application.Interfaces
         IReservationRepository Reservations { get; }
 
         //IGenericRepository<T> Repository<T>() where T : BaseAuditableEntity;
-        Task<int> Save(CancellationToken cancellationToken);
+        Task<int> Save();
         Task Rollback();
     }
 }

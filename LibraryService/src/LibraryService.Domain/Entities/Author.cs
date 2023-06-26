@@ -21,6 +21,7 @@ namespace LibraryService.Domain.Entities
         [Required]
         public string LastName { get; set; }
 
+        public string FullName => string.Concat(FirstName, MiddleName, LastName);
         public ICollection<BookAuthor> BookAuthors { get; set; } = new List<BookAuthor>();
     }
 }

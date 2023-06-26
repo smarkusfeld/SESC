@@ -36,11 +36,11 @@ namespace LibraryService.Application.Common.Mapper
                 .ForPath(dest => dest.BookPublishers, opt => opt.Ignore())
                 .ReverseMap();
 
+
             CreateMap<AuthorDTO, Author>()
                 .ForPath(dest => dest.Key, opt => opt.Ignore())
                 .ForPath(dest => dest.BookAuthors, opt => opt.Ignore())
-                .ReverseMap()
-                .ForPath(dest => dest.Name, opt => opt.Ignore());
+                .ReverseMap();
 
             CreateMap<BookIdentifierDTO, BookIdentifier>()
                 .ReverseMap()
@@ -56,16 +56,28 @@ namespace LibraryService.Application.Common.Mapper
                .ForPath(dest => dest.lc_classifications, opt => opt.Ignore());
 
 
-            CreateMap<OpenLibraryRecord, Book>()
-                .ForMember(dest => dest.Key, opt => opt.Ignore())
-                .ForMember(dest => dest.Detail, opt => opt.Ignore())
-                .ForMember(dest => dest.Classification, opt => opt.Ignore())
-                .ForMember(dest => dest.Identifier, opt => opt.Ignore())
+            CreateMap<NewBookRecordDTO, Book>()
+                .ForMember(dest => dest.Key, opt => opt.Ignore())                
                 .ForMember(dest => dest.BookCopies, opt => opt.Ignore())
                 .ForMember(dest => dest.BookSubjects, opt => opt.Ignore())
                 .ForMember(dest => dest.BookAuthors, opt => opt.Ignore())
                 .ForMember(dest => dest.BookPublishers, opt => opt.Ignore());
 
+            CreateMap<BookDTO, Book>()
+                .ForMember(dest => dest.Key, opt => opt.Ignore())
+                .ForMember(dest => dest.BookCopies, opt => opt.Ignore())
+                .ForMember(dest => dest.BookSubjects, opt => opt.Ignore())
+                .ForMember(dest => dest.BookAuthors, opt => opt.Ignore())
+                .ForMember(dest => dest.BookPublishers, opt => opt.Ignore())
+                .ForMember(dest => dest.Subjects, opt => opt.Ignore())
+                .ForMember(dest => dest.Authors, opt => opt.Ignore())
+                .ForMember(dest => dest.Publishers, opt => opt.Ignore())
+                .ReverseMap();
+
+
+            //CreateMap<BookAuthor, AuthorDTO>();
+            //CreateMap<BookSubject, SubjectDTO>();
+            //CreateMap<BookPublisher, PublisherDTO>();
 
         }
         

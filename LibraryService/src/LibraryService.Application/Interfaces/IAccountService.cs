@@ -10,26 +10,23 @@ namespace LibraryService.Application.Interfaces
         /// <summary>
         /// Method to create new student account
         /// </summary>
-        Task<bool> CreateAccount(string studentID);
+        Task<AccountDTO> CreateAccount(string Id, string type);
+
         /// <summary>
-        /// Method to register User
+        /// ChangePin
         /// </summary>
-        Task<bool> RegisterUser(string studentID);
+        Task<bool> UpdateAccountPin(string id, string oldPin, string newPin);
         
 
         /// <summary>
-        /// Method for user login
+        /// Method to display all accounts and the number of books on loan/overdue
         /// </summary>
-       // Task<bool>Login();
+        Task<IEnumerable<AccountDTO>> GetAllAccounts();
 
         /// <summary>
-        /// Method for admin login
+        /// Method to display all accounts and the number of books on loan/overdue
         /// </summary>
-
-        /// <summary>
-        /// Method to display all students and the number of books on loan/overdue
-        /// </summary>
-        Task<IEnumerable<AccountDTO>> GetAllStudentAccounts();
+        Task<IEnumerable<AccountDTO>> GetAllAccountsByType(string type);       
 
         /// <summary>
         /// Method to display all current loans
@@ -44,46 +41,17 @@ namespace LibraryService.Application.Interfaces
         /// <summary>
         /// Method to view loan history
         /// </summary>
-        Task<IEnumerable<LoanDTO>> GetLoanHistory(int accountID);
+        Task<IEnumerable<LoanDTO>> GetLoanHistory(string accountID);
 
         /// <summary>
-        /// Method to create new loan
+        /// Method to view loan history
         /// </summary>
-        /// <param name="studentID"></param>
-        /// <param name="ISBN"></param>
-        /// <param name="pin"></param>
-        /// <returns></returns>
-        Task<LoanDTO> CreateLoan(string studentID, string ISBN, int pin);
+        Task<IEnumerable<LoanDTO>> GetAccountActiveLoans(string accountID);
 
         /// <summary>
-        /// Method to create new reservation
+        /// Method to view loan history
         /// </summary>
-        /// <param name="studentID"></param>
-        /// <param name="ISBN"></param>
-        /// <param name="pin"></param>
-        /// <returns></returns>
-        Task<ReservationDTO> CreateReservation(string studentID, string ISBN, int pin);
-
-        /// <summary>
-        /// Method to return book
-        /// </summary>
-        /// <param name="studentID"></param>
-        /// <param name="ISBN"></param>
-        /// <param name="pin"></param>
-        /// <returns></returns>
-        Task<LoanDTO> ReturnBook(string studentID, string ISBN, int pin);
-
-        /// <summary>
-        /// Method to issue fine
-        /// </summary>
-        /// <param name="loanDTO"></param>
-        /// <returns></returns>
-        Task<bool> IssueFine(LoanDTO loanDTO);
-
-        /// <summary>
-        /// Method to get available copy a book
-        /// </summary>
-        Task<BookCopyDTO> GetAvailableBookCopy(string isbn);
-
+        Task<IEnumerable<LoanDTO>> GetAccountOverdueLoans(string accountID);
+       
     }
 }

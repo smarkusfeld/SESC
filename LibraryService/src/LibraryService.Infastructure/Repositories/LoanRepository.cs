@@ -1,4 +1,5 @@
 ﻿using LibraryService.Application.Interfaces;
+using LibraryService.Domain.Common.Enums;
 using LibraryService.Domain.Entities;
 using LibraryService.Infastructure.Context;
 using LibraryService.Infastructure.Repositories;
@@ -15,7 +16,9 @@ namespace LibraryService.Infastructure.Repositories
     {
         public LoanRepository(DataContext dbContext) : base(dbContext)
         {
-
+            
         }
+        public async Task<IEnumerable<Loan>> GetAllActiveAsync() => await GetAllWhereAsync(x => x.IsComplete == false);
+        public async Task<IEnumerable<Loan>> GetAllOverdueAsync() => await GetAllWhereAsync(x => x.Status == LoanStatus.Overdue);
     }
 }

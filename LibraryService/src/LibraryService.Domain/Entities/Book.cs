@@ -3,6 +3,7 @@ using LibraryService.Domain.Common.Enums;
 using LibraryService.Domain.Interfaces;
 using LibraryService.Domain.ValueObjects;
 using MediatR;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,24 +25,29 @@ namespace LibraryService.Domain.Entities
     [Table("book")]
     public class Book : BaseAuditableEntity, IAggregateRoot
     {
-        public override object Key  => ISBN;
+        public override object Key => ISBN;
 
-        public Book(string isbn, string title, BookDetail detail, BookClassification classification, BookIdentifier identifier) 
+        public Book(string isbn, string title, BookClassification classification, BookIdentifier identifier)
         {
-                ISBN = isbn;
-                Title = title;
-                Detail = detail;
-                Classification = classification;
-                Identifier = identifier;
+            ISBN = isbn;
+            Title = title;
+            Classification = classification;
+            Identifier = identifier;
         }
 
         [Key]
         public string ISBN { get; private set; }
         public int BookNum { get; set; }
-        public string Title { get;set; }
+        public string Title { get; set; }
         public int Year { get; set; }
-        public BookDetail Detail { get;  private set; }
-        public BookClassification Classification { get; private set; } 
+        //public string Edition { get; set; }
+        public string Weight { get; set; }
+        public int PageCount { get; set; }
+        public string Pagination { get; set; }
+        public string PublicationLocation { get; set; }
+        public string PublicationDate { get; set; } = string.Empty;
+        //public BookDetail Detail { get;  private set; }
+        public BookClassification Classification { get; private set; }
         public BookIdentifier Identifier { get; private set; }
 
         //backing fields for collections
@@ -60,9 +66,47 @@ namespace LibraryService.Domain.Entities
         public ICollection<BookPublisher> BookPublishers { get; private set; } = new List<BookPublisher>();
         public ICollection<BookAuthor> BookAuthors { get; private set; } = new List<BookAuthor>();
 
+
         //not mapped properties and methods
         public int TotalCount => BookCopies.Count();
         public int AvailableCopies => BookCopies.Where(x => x.IsAvailable == true).Count();
+
+        public string[] Authors => BookAuthors.OrderBy(x => x.Order).Select(x => x.AuthorName).ToArray();
+        public string[] Publishers => BookPublishers.OrderBy(x => x.Order).Select(x => x.PublisherName).ToArray();
+
+        public string[] Subjects => BookSubjects.Select(x => x.SubjectName).ToArray();
+        /// <summary>
+        /// Method to Loan Available Book Copy
+        /// </summary>
+        /// <returns></returns>
+        public int LoanBookCopy()
+        {
+            var copy = BookCopies.Where(x => x.IsAvailable == true).First();
+            if(copy != null)
+            {
+                copy.IsAvailable = false;
+                copy.Status = BookCopyStatus.OnLoan;
+                return copy.Id; 
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// Method to Return Book Copy
+        /// </summary>
+        /// <param name="bookCopyID"></param>
+        /// <returns></returns>
+        public bool ReturnBookCopy(int bookCopyID)
+        {
+            var copy = BookCopies.Where(x => x.Id == bookCopyID).First();
+            if (copy != null)
+            {
+                copy.IsAvailable = false;
+                copy.Status = BookCopyStatus.OnLoan;
+                return true;
+            }
+            return false;
+        }
 
         /// <summary>
         /// Method to create new bookauthor record and attach to the book entity
@@ -139,18 +183,18 @@ namespace LibraryService.Domain.Entities
         /// Method to Update Book Detail
         /// </summary>
         /// <param name="newDetail"></param>
-        public void UpdateDetail(BookDetail newDetail)
-        {
-            if (newDetail == Detail)
-            {
-                return;
-            }
-            else
-            {
-                //add validation
-                Detail = newDetail;
-            }
-        }
+        //public void UpdateDetail(BookDetail newDetail)
+        //{
+        //    if (newDetail == Detail)
+        //    {
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        //add validation
+        //        Detail = newDetail;
+        //    }
+        //}
         /// <summary>
         /// Method to Update Book Classification
         /// </summary>
