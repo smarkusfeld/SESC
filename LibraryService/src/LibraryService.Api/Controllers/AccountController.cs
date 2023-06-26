@@ -10,13 +10,13 @@ namespace LibraryService.Api.Controllers
     {
         private readonly IAccountService _service;
         private readonly ILogger<AccountController> _logger;
-      
-       
 
-        public AccountController(ILogger<AccountController> logger, IAccountService service)
+
+        public AccountController(IAccountService service, ILogger<AccountController> logger)
         {
-            _logger = logger;
+           
             _service = service;
+            _logger = logger;
         }
 
         /// <summary>
@@ -26,9 +26,9 @@ namespace LibraryService.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var response = await _service.GetAllStudentAccounts();
-            int count = response.Count();
-            return count == 0 ? BadRequest("No Records Found") : Ok(response);
+            var accountDtos = await _service.GetAllAccounts();
+            _logger.LogInformation($"Returned all accounts from database.");
+            return Ok(accountDtos);
         }
         
         
@@ -39,42 +39,25 @@ namespace LibraryService.Api.Controllers
         [HttpPost("register/{studentid}")]
         public async Task<IActionResult> Register(string studentid)
         {
-            throw new NotImplementedException();
-            //var user = _mapper.Map<User>(userModel);
-            //map modeul to user
-            //var role = await _userManager.AddToRoleAsync(user, "Visitor");
+            var result = await _service.CreateAccount(studentid,"student");
+            _logger.LogInformation($"New account created for student {studentid}");
+            return Ok(result);
+
         }
 
         /// <summary>
         /// Update Account Pin
         /// </summary>
-        /// <param name="accountDTO"></param>
+        /// <param name="accountPinDTO"></param>
         /// <returns></returns>
         [HttpPut("firstlogin")]
-        public async Task<IActionResult> Update([FromBody] AccountDTO accountdto)
+        public async Task<IActionResult> Update([FromBody] UpdatePinDTO accountPinDTO)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(userModel);
-            //}
-            //var user = await _userManager.FindByEmailAsync(userModel.Email);
-            //if (user != null &&
-            //    await _userManager.CheckPasswordAsync(user, userModel.Pin))
-            //{
-            //    var identity = new ClaimsIdentity(IdentityConstants.ApplicationScheme);
-            //    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
-            //    identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
-            //    await HttpContext.SignInAsync(IdentityConstants.ApplicationScheme,
-            //        new ClaimsPrincipal(identity));
-            //    //return RedirectToAction(nameof(HomeController.Index), "Home");
-            //    return View();
-            //}
-            //else
-            //{
-            //    ModelState.AddModelError("", "Invalid UserName or Password");
-            //    return View();
-            //}
-            return View();
+            
+            var result = await _service.UpdateAccountPin(accountPinDTO.AccountId, accountPinDTO.OldPin, accountPinDTO.NewPin);
+            _logger.LogInformation($"Pin Updated for {accountPinDTO.AccountId}");
+            return Ok(result);
+
         }
 
     }

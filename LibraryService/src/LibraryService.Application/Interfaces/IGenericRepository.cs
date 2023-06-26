@@ -14,20 +14,24 @@ namespace LibraryService.Application.Interfaces
         /// </summary>
         /// <param name="predicate">Where clause.<example><code>x => x.Id == id</code></example></param>
         ///<returns>The entity object if found, otherwise null</returns>
-        Task<T?> GetAsync(object key);
+        /// <exception cref="NullReferenceException"></exception> 
+        Task<T> GetAsync(object key);
 
         /// <summary>
         /// Gets a single according that fullfills the <paramref name="predicate" />
         /// </summary>
         /// <param name="predicate">Where clause.<example><code>x => x.Id == id</code></example></param>
         ///<returns>The entity object if found, otherwise null</returns>
-        Task<T?> GetByAsync(Expression<Func<T, bool>> predicate);
+        /// <exception cref="NullReferenceException"></exception> 
+        Task<T> GetByAsync(Expression<Func<T, bool>> predicate);
 
         /// <summary>
         /// Retrives a collection of all entities
         /// </summary>
-        /// <returns>A collections of all entities</returns>
-        Task<IEnumerable<T?>> GetAllAsync();
+        /// <returns>An ordered collection of entities or empty collection of entities
+        /// Expection returned if source is null</returns>
+        /// <exception cref="NullReferenceException"></exception> 
+        Task<IEnumerable<T>> GetAllAsync();
 
         /// <summary>
         /// Retrieves a filtered and orderd collection of entities 
@@ -35,8 +39,10 @@ namespace LibraryService.Application.Interfaces
         /// <param name="predicate">Condition the entities must fullfill</param>
         /// <param name="orderBy">Collection order</param>
         /// <param name="includes">Any additional properies to be included</param>
-        /// <returns>An ordered collection of entities</returns>
-        Task<IEnumerable<T?>> GetAllOrderedAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>,
+        /// <returns>An ordered collection of entities or empty collection of entities
+        /// Expection returned if source is null</returns>
+        /// <exception cref="NullReferenceException"></exception> 
+        Task<IEnumerable<T>> GetAllOrderedAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>,
                                                                 IOrderedQueryable<T>> orderBy = null,
                                                                 string includeProperties = "");
 
@@ -48,7 +54,7 @@ namespace LibraryService.Application.Interfaces
         /// <example>Example: x => x.Id == id</example>
         /// </param>
         /// <returns>A collection of entities</returns>
-        Task<IEnumerable<T?>> GetAllWhereAsync(Expression<Func<T, bool>> predicate);
+        Task<IEnumerable<T>> GetAllWhereAsync(Expression<Func<T, bool>> predicate);
 
         /// <summary>
         /// Add an entity to the database
@@ -65,7 +71,7 @@ namespace LibraryService.Application.Interfaces
         /// <returns>The entity updated entity</returns>
         Task<T> UpdateAsync(T entity);
 
-        Task<T?> UpdateAsync(T entity, object key);
+        Task<T> UpdateAsync(T entity, object key);
 
         /// <summary>
         /// Update multiple entities 

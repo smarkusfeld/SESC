@@ -16,7 +16,7 @@ namespace LibraryService.Domain.ValueObjects
     /// </summary>
     public class Fine : ValueObject
     {
-        public DateTime? DateIssued { get; private set; } = null!;
+        public DateTime? FineDate { get; private set; } = null!;
 
         [Column(TypeName = "decimal(6, 2)")]
         public decimal Amount { get; private set; } = new decimal(0);
@@ -25,17 +25,21 @@ namespace LibraryService.Domain.ValueObjects
         public Fine() { }
         public Fine(DateTime date, Decimal amount, string accountId)
         {
-            DateIssued = date;
+            FineDate = date;
             Amount = amount;
             FineIssued = true;
             AccountId = accountId;
         }
         protected override IEnumerable<object> GetEqualityComponents()
         {
-            if(DateIssued != null) { yield return DateIssued; }            
+            if(FineDate != null) { yield return FineDate; }            
             yield return Amount;
             yield return FineIssued;
 
+        }
+        public void FineNotIssued()
+        {
+            FineIssued = false;
         }
     }
 }

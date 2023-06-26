@@ -1,4 +1,5 @@
 ﻿using LibraryService.Application.Models;
+using LibraryService.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,14 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Application.Interfaces
 {
-    /// <summary>
-    /// This interface defines a contract for library catalogue services
-    /// </summary>
-    public interface ICatalogueServices
+    public interface ICatalogueService
     {
+        /// <summary>
+        /// Get book details using the open library api
+        /// </summary>
+        /// <param name="isbn"></param>
+        /// <returns></returns>
+        Task<NewBookRecordDTO> GetOpenLibraryBookDetail(string isbn);
         /// <summary>
         /// Method to view all books in the library catalogue
         /// </summary>
@@ -35,7 +39,7 @@ namespace LibraryService.Application.Interfaces
         /// <summary>
         /// Method to add new books to the database using the barcode scanner
         /// </summary>
-        Task<bool> AddBook(string isbn, OpenLibraryRecord bookdetail);
+        Task<BookDTO> AddBookByISBN(string isbn);
 
         /// <summary>
         /// Method to get a book using the barcode scanner
@@ -44,7 +48,7 @@ namespace LibraryService.Application.Interfaces
         /// <returns></returns>
         Task<BookDTO> GetBook(string isbn);
 
-        Task<OpenLibraryRecord> GetDetails(string isbn);
+        
 
         /// <summary>
         /// Method to update book
@@ -74,5 +78,13 @@ namespace LibraryService.Application.Interfaces
         /// <returns></returns>
         Task<PublisherDTO> UpdatePublisher(PublisherDTO dto);
 
+        /// <summary>
+        /// Method to add book copy to exisiting book record
+        /// </summary>
+        /// <param name="bookRecord"></param>
+        /// <returns></returns>
+        Task<BookDTO> AddBookCopy(Book bookRecord);
+
+       
     }
 }

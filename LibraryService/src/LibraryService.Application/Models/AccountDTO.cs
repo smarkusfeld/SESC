@@ -13,7 +13,7 @@ namespace LibraryService.Application.Models
         public int Pin { get; set; }
         public AccountType AccountType { get; set; }
 
-        
-
+        public int OverdueLoanTotal { get; private set; }
+        public int ActiveLoanTotal { get; private set; }
     }
 }

@@ -9,10 +9,14 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
+using LibraryService.Application.Interfaces;
+using LibraryService.Application.Common.Exceptions;
+using System.Linq.Expressions;
+using System.Reflection.Metadata.Ecma335;
 
 namespace LibraryService.Application.Services
 {
-    public class OpenLibraryService
+    public class OpenLibraryService : IOpenLibraryService
     {
         private readonly HttpClient _httpClient;
 
@@ -26,38 +30,40 @@ namespace LibraryService.Application.Services
             _httpClient.DefaultRequestHeaders.Add(
                 HeaderNames.Accept, "application/json");
         }
-        public async Task<OpenLibraryRecord?> GetBookDetailsAsync(string isbn) 
+
+
+
+        public async Task<NewBookRecordDTO> GetOpenLibraryBookDetail(string isbn)
         {
-           HttpResponseMessage Res = await _httpClient.GetAsync("books?bibkeys=ISBN:" + isbn + "&jscmd=data&format=json");
+            HttpResponseMessage Res = await _httpClient.GetAsync("books?bibkeys=ISBN:" + isbn + "&jscmd=data&format=json");
+            List<string> details = new()
+            {
+                "Resquest Message: " + Res.RequestMessage,
+                "Response Header: " + Res.Headers,
+                "Reponse Body: " + Res.Content.ReadAsStringAsync().Result,
+            };
+
             if (Res.IsSuccessStatusCode)
             {
                 //Storing the response details recieved from web api
                 var json = Res.Content.ReadAsStringAsync().Result;
                 //Deserializing the response recieved from web api 
                 JObject jsonObject = JObject.Parse(json);
-                //add validation for missing
                 var data = jsonObject.SelectToken("ISBN:" + isbn).ToString();
-                return JsonConvert.DeserializeObject<OpenLibraryRecord>(data, new JsonSerializerSettings
+                var result = JsonConvert.DeserializeObject<NewBookRecordDTO>(data, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Ignore });
+
+                if (result != null)
                 {
-                    MissingMemberHandling = MissingMemberHandling.Ignore
-                });
-
+                    return result;
+                }
+                throw new ApiFailureException("Unable to parse open library record", details, System.Net.HttpStatusCode.BadRequest);
             }
-            return null;
+
+            string message = Res.ReasonPhrase ?? "Unsuccessful Request to OpenLibraryApi";
+
+            throw new ApiFailureException(message, details, Res.StatusCode);
         }
 
-        public async Task<string> GetBookAsync(string isbn)
-        {
-            try
-            {
-                HttpResponseMessage Res = await _httpClient.GetAsync("books?bibkeys=ISBN:" + isbn + "&jscmd=data&format=json");
-                return Res.Content.ReadAsStringAsync().Result;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-        
+
     }
 }

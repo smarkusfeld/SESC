@@ -43,6 +43,9 @@ namespace LibraryService.Domain.Entities
         public ICollection<Loan> OverdueLoans => Loans.ToList().FindAll(x => x.Status == Common.Enums.LoanStatus.Overdue);
         public ICollection<Loan> ActiveLoans => Loans.ToList().FindAll(x => x.IsComplete==false);
 
+        public int OverdueLoanTotal => Loans.ToList().FindAll(x => x.Status == Common.Enums.LoanStatus.Overdue).Count();
+        public int ActiveLoanTotal => Loans.ToList().FindAll(x => x.IsComplete == false).Count();
+
 
     }
 }

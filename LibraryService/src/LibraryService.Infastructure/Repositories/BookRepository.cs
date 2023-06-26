@@ -37,9 +37,21 @@ namespace LibraryService.Infastructure.Repositories
             var entry = _set.Attach(book);
             return book;
 
+        }        
+        public async Task<bool> UpdateCopiesAsync(Book book)
+        {
+            var attached = await _set
+               .Include(x => x.BookCopies)
+               .SingleAsync(x => x.ISBN == book.ISBN);
+            _set.Entry(attached).State = EntityState.Detached;
+            foreach (var copy in attached.BookCopies.ToList())
+            {
+                _context.Entry(copy).State = EntityState.Detached;
+            }
+            var entry = _set.Attach(book);
+            return true;
         }
-
-        public async Task<bool> AddCopy(Book book)
+        public async Task<Book> AddCopyAsync(Book book)
         {
             var attached = await _set
                 .Include(x => x.BookCopies)
@@ -51,11 +63,11 @@ namespace LibraryService.Infastructure.Repositories
                 _context.Entry(copy).State = EntityState.Detached;
             }
             var entry = _set.Attach(book);
-            return true; 
+            return book; 
             
         }
 
-
+       
 
 
     }

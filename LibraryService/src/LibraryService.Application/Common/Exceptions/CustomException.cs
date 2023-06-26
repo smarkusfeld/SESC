@@ -19,7 +19,7 @@ namespace LibraryService.Application.Common.Exceptions
         /// <param name="message">Exception Message</param>
         /// <param name="responseMessage">Reponse for controller</param>
         /// <param name="statusCode">Deafault Status code is internal service error</param>
-        public CustomException(string message, List<string>? errors = default, HttpStatusCode statusCode = HttpStatusCode.InternalServerError)
+        public CustomException(string message, List<string>? details = default, HttpStatusCode statusCode = HttpStatusCode.InternalServerError)
                 : base(message)
         {
             Details = details;

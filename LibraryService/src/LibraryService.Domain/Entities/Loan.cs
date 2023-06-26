@@ -20,7 +20,8 @@ namespace LibraryService.Domain.Entities
             BookTitle = bookTitle;
             AccountId = accountId;
             BookCopyId = bookCopyId;
-            
+
+
         }
 
         public override object Key => Id;

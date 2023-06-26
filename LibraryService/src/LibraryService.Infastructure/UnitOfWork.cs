@@ -110,9 +110,9 @@ namespace LibraryService.Infastructure
         /// Completes the unit of work, saving all repository changes to the underlying data-store.
         /// </summary>
         /// <returns><see cref="Task"/></returns>
-        public async Task<int> Save(CancellationToken cancellationToken)
+        public async Task<int> Save()
         {
-            return await _dbContext.SaveChangesAsync(cancellationToken);
+            return await _dbContext.SaveChangesAsync();
         }
        
 

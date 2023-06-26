@@ -15,7 +15,7 @@ namespace LibraryService.Application.Models
     /// </summary>
     /// 
 
-    public class OpenLibraryRecord
+    public class NewBookRecordDTO
     {
         
 
@@ -47,7 +47,7 @@ namespace LibraryService.Application.Models
         public List<PublishPlaceDTO> Publish_places { get; set; } = new List<PublishPlaceDTO>();
 
         [JsonPropertyName("publish_date")]
-        public string PublicationDate { get; set; } 
+        public string? PublicationDate { get; set; } 
 
         [JsonPropertyName("Subjects")]
         public List<SubjectDTO> Subjects { get; set; } = new List<SubjectDTO>();
@@ -55,10 +55,10 @@ namespace LibraryService.Application.Models
 
 
         private string? _isbn;
-        public string Edition { get; private set; } = string.Empty;
         
-        public int TotalCount { get; private set; }
-        public int AvailableCopies { get; private set; }
+        //public string Edition { get; private set; } = string.Empty;
+        
+        
         
         public int Year
         {

@@ -38,7 +38,8 @@ namespace LibraryService.Infastructure.Extensions
             services.AddScoped<ISubjectRepository, SubjectRepository>();
 
             services.AddScoped<IAccountService, AccountService>();
-            
+            services.AddScoped<ILibraryTransactionService, LibraryTransactionService>();
+
             return services;
         }
 
@@ -46,8 +47,10 @@ namespace LibraryService.Infastructure.Extensions
         {
             services.AddSingleton<ILoggerManager, LoggerManager>();
         }
+
         
-       
-        
+
+
+
     }
 }
