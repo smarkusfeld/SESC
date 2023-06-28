@@ -33,7 +33,7 @@ namespace LibraryService.Portal.Middleware
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
-                    case MySQLNullException e:
+                    case MySQLException e:
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
                         break;

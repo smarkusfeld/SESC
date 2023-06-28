@@ -1,9 +1,13 @@
 ﻿using LibraryService.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 using LibraryService.Application.Interfaces.Services;
+using Azure;
 
 namespace LibraryService.Api.Controllers
 {
+    /// <summary>
+    /// Controller for all account logic
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class AccountController : Controller
@@ -11,7 +15,12 @@ namespace LibraryService.Api.Controllers
         private readonly IAccountService _service;
         private readonly ILogger<AccountController> _logger;
 
-
+        /// <summary>
+        /// Account Controller Constructor. 
+        /// Defines the required logger and service interfaces 
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="logger"></param>
         public AccountController(IAccountService service, ILogger<AccountController> logger)
         {
            
@@ -22,26 +31,41 @@ namespace LibraryService.Api.Controllers
         /// <summary>
         /// Get All Accounts
         /// </summary>
-        /// <returns></returns>
+        /// <returns> 
+        /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with all accounts from the database <br/> 
+        /// A 204 status code prodeced by the <seealso cref="NoContentResult"/> if no records exists in the database <br/> 
+        /// A 404 status code produced by the <seealso cref="NotFoundResult"/> if the account service returns a null task
+        /// </returns>
+        /// 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            _logger.LogInformation("Getting all accounts from database.");
             var accountDtos = await _service.GetAllAccounts();
-            _logger.LogInformation($"Returned all accounts from database.");
-            return Ok(accountDtos);
+            _logger.LogInformation("Returned all accounts from database.");
+            if ( accountDtos == null ) { return NotFound(); }
+            return accountDtos.Any() ? Ok( accountDtos ) : NoContent() ;
         }
-        
-        
+
+
         /// <summary>
         /// New Student Account
         /// </summary>
-        /// <returns></returns>
-        [HttpPost("register/{studentid}")]
+        /// <returns> 
+        /// A 201 status code produced by the <seealso cref="CreatedAtActionResult"/> the new account <br/> 
+        /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if the account was not created<br/> 
+        /// </returns>        
+        [HttpPost("register/{studentid}")]        
         public async Task<IActionResult> Register(string studentid)
         {
-            var result = await _service.CreateAccount(studentid,"student");
-            _logger.LogInformation($"New account created for student {studentid}");
-            return Ok(result);
+            _logger.LogInformation("Creating student account", studentid);
+            var result = await _service.CreateAccount(studentid, "student");
+            _logger.LogInformation("Create account complete", result);
+            return result != null
+                ? CreatedAtAction(nameof(Register), result)
+                : BadRequest();
+                 
+
 
         }
 
@@ -49,14 +73,17 @@ namespace LibraryService.Api.Controllers
         /// Update Account Pin
         /// </summary>
         /// <param name="accountPinDTO"></param>
-        /// <returns></returns>
-        [HttpPut("firstlogin")]
+        /// <returns> 
+        /// A 200 status code produced by the <seealso cref="OkResult"/> if the account was updated successfully<br/> 
+        /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if the account could not be updated<br/> 
+        /// </returns>     
+        [HttpPut("update/pin")]
         public async Task<IActionResult> Update([FromBody] UpdatePinDTO accountPinDTO)
         {
-            
+            _logger.LogInformation("Updating Account Pin", accountPinDTO.AccountId);
             var result = await _service.UpdateAccountPin(accountPinDTO.AccountId, accountPinDTO.OldPin, accountPinDTO.NewPin);
-            _logger.LogInformation($"Pin Updated for {accountPinDTO.AccountId}");
-            return Ok(result);
+            _logger.LogInformation("Update pin complete", result);
+            return result? Ok() : BadRequest();
 
         }
 
