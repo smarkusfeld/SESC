@@ -7,10 +7,7 @@ namespace LibraryService.Application.Interfaces.Services
     /// </summary>
     public interface IAccountService
     {
-        /// <summary>
-        /// Method to create new student account
-        /// </summary>
-        Task<AccountDTO> CreateStudentAccount(string Id);
+       
 
         /// <summary>
         /// Method to create new student account

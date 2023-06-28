@@ -41,7 +41,7 @@ namespace LibraryService.Application.Services
             {
                 LoanDTO dto = _mapper.Map<LoanDTO>(reponse);
                 var result = await _unitOfWork.Save();
-                return result > 0 ? _mapper.Map<LoanDTO>(dto) : throw new MySQLNullException();
+                return result > 0 ? _mapper.Map<LoanDTO>(dto) : throw new MySQLException();
             }
             throw new BadRequestException("Unable to create loan.");
         }
@@ -80,7 +80,7 @@ namespace LibraryService.Application.Services
                 {
                     var result = await _unitOfWork.Save();
                     var dto = _mapper.Map<LoanDTO>(reponse);
-                    return result > 0 ? dto : throw new MySQLNullException();
+                    return result > 0 ? dto : throw new MySQLException();
                 }
                 throw new BadRequestException("Unable to update loan.");
             }
@@ -98,7 +98,7 @@ namespace LibraryService.Application.Services
             if (checkIn)
             {
                 var save = await _unitOfWork.Save();
-                return save > 0 ? copy.Id : throw new MySQLNullException();
+                return save > 0 ? copy.Id : throw new MySQLException();
             }
             throw new BadRequestException($"Unable to return {isbn}");
         }
@@ -119,7 +119,7 @@ namespace LibraryService.Application.Services
             if (checkout)
             {
                 var save = await _unitOfWork.Save();
-                return save > 0 ? bookCopyID : throw new MySQLNullException();
+                return save > 0 ? bookCopyID : throw new MySQLException();
             }
             throw new BadRequestException("Unable to create account.");
         }

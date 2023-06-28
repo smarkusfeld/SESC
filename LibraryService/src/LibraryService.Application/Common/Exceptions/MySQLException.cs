@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Application.Common.Exceptions
 {
-    public class MySQLNullException : Exception
+    public class MySQLException : Exception
     {
-        public MySQLNullException() : base() { }
+        public MySQLException() : base() { }
 
-        public MySQLNullException(string message) : base(message) { }
+        public MySQLException(string message) : base(message) { }
 
-        public MySQLNullException(string message, params object[] args)
+        public MySQLException(string message, params object[] args)
             : base(String.Format(CultureInfo.CurrentCulture, message, args))
         {
         }

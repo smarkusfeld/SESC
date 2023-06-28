@@ -18,26 +18,7 @@ namespace LibraryService.Application.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<AccountDTO> CreateStudentAccount(string id)
-        {
-            AccountType type = AccountType.Student;
-            //check if account exists
-            var check = await _unitOfWork.Accounts.GetAsync(id);
-
-            if (check != null)
-            {
-                throw new BadRequestException($"ID {id} already associated with an account");
-            }
-            Account newAccount = new Account { AccountId = id, AccountType = type };
-            var addAccount = await _unitOfWork.Accounts.AddAsync(newAccount);
-            if (addAccount != null)
-            {
-                var result = await _unitOfWork.Save();
-                AccountDTO newDTO = _mapper.Map<AccountDTO>(addAccount);
-                return result > 0 ? newDTO : null;
-            }
-            throw new BadRequestException("Unable to create account.");
-        }
+        
         public async Task<AccountDTO> CreateAccount(string id, string typename)
         {
             AccountType type;
@@ -59,7 +40,7 @@ namespace LibraryService.Application.Services
             {
                 var result = await _unitOfWork.Save();
                 AccountDTO newDTO = _mapper.Map<AccountDTO>(addAccount);
-                return result > 0 ? newDTO : null;
+                return result > 0 ? newDTO : throw new MySQLException();
             }
             throw new BadRequestException("Unable to create account.");
         }
@@ -101,7 +82,7 @@ namespace LibraryService.Application.Services
                 if (updateAccount != null)
                 {
                     var result = await _unitOfWork.Save();
-                    return result > 0 ? true: throw new MySQLNullException();
+                    return result > 0 ? true: throw new MySQLException();
                 }
                 throw new BadRequestException("Unable to update account.");
             }           
@@ -112,7 +93,7 @@ namespace LibraryService.Application.Services
             var response = await _unitOfWork.Accounts.GetAllAsync();
             if (response is null)
             {
-               throw new MySQLNullException("MySQL data null");
+               throw new MySQLException("MySQL data null");
             }
             else if(!response.Any())
             {
@@ -134,7 +115,7 @@ namespace LibraryService.Application.Services
                 var response = await _unitOfWork.Accounts.GetAllWhereAsync(x=>x.AccountType == type);
                 if (response is null)
                 {
-                    throw new MySQLNullException("MySQL data null");
+                    throw new MySQLException("MySQL data null");
                 }
                 else if (!response.Any())
                 {
@@ -162,7 +143,7 @@ namespace LibraryService.Application.Services
             var response = await _unitOfWork.Loans.GetAllWhereAsync(x => x.IsComplete == false);
             if (response is null)
             {
-                throw new MySQLNullException("MySQL data null");
+                throw new MySQLException("MySQL data null");
             }
             else if (!response.Any())
             {
@@ -181,7 +162,7 @@ namespace LibraryService.Application.Services
             var response = await _unitOfWork.Loans.GetAllWhereAsync(x => x.IsComplete == false);
             if (response is null)
             {
-                throw new MySQLNullException("MySQL data null");
+                throw new MySQLException("MySQL data null");
             }
             else if (!response.Any())
             {
@@ -201,7 +182,7 @@ namespace LibraryService.Application.Services
             var response = await _unitOfWork.Loans.GetAllWhereAsync(x=> x.AccountId == accountID);
             if (response is null)
             {
-                throw new MySQLNullException("MySQL data null");
+                throw new MySQLException("MySQL data null");
             }
             else if (!response.Any())
             {

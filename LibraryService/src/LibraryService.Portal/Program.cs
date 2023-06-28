@@ -5,6 +5,7 @@ using LibraryService.Infastructure.Context;
 using LibraryService.Infastructure.Extensions;
 using LibraryService.Portal.Middleware;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,8 +41,9 @@ builder.Services.AddSwaggerGen(options =>
         Description = "Library Service",
     });
     // allow xml comments to be seen on swagger UI
-    //var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    //options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+    var xmlFile = $"{Assembly.GetEntryAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    options.IncludeXmlComments(xmlPath);
 });
 
 var app = builder.Build();

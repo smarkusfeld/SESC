@@ -53,7 +53,7 @@ namespace LibraryService.Application.Services
             var response =  await _unitOfWork.Authors.GetAllAsync();
             if (response is null)
             {
-                throw new MySQLNullException("MySQL data null");
+                throw new MySQLException("MySQL data null");
             }
             else if (!response.Any())
             {
@@ -72,7 +72,7 @@ namespace LibraryService.Application.Services
             var response = await _unitOfWork.Books.GetAllAsync();
             if (response is null)
             {
-                throw new MySQLNullException("MySQL data null");
+                throw new MySQLException("MySQL data null");
             }
             else if (!response.Any())
             {
@@ -92,7 +92,7 @@ namespace LibraryService.Application.Services
             
             if (response is null)
             {
-                throw new MySQLNullException("MySQL data null");
+                throw new MySQLException("MySQL data null");
             }
             else if (!response.Any())
             {
@@ -111,7 +111,7 @@ namespace LibraryService.Application.Services
             var response = await _unitOfWork.Subjects.GetAllAsync();
             if (response is null)
             {
-                throw new MySQLNullException("MySQL data null");
+                throw new MySQLException("MySQL data null");
             }
             else if (!response.Any())
             {
@@ -152,7 +152,7 @@ namespace LibraryService.Application.Services
             {
                 var result = await _unitOfWork.Save();
                 BookDTO bookDTO = _mapper.Map<BookDTO>(updateRecord);
-                return result > 0 ? bookDTO : throw new MySQLNullException();
+                return result > 0 ? bookDTO : throw new MySQLException();
             }
             throw new BadRequestException("Unable to create account.");
         }
@@ -185,7 +185,7 @@ namespace LibraryService.Application.Services
             {
                 var result = await _unitOfWork.Save();
                 var dto = _mapper.Map<BookDTO>(addedBook);
-                return result > 0 ? dto : throw new MySQLNullException();
+                return result > 0 ? dto : throw new MySQLException();
             }
             throw new BadRequestException("Unable to create account.");
         }
@@ -208,7 +208,7 @@ namespace LibraryService.Application.Services
             if(add != null)
             {
                 var result = await _unitOfWork.Save();
-                return result > 0 ? add : throw new MySQLNullException();
+                return result > 0 ? add : throw new MySQLException();
             }
             throw new BadRequestException("Unable to create author.");
         }
@@ -229,7 +229,7 @@ namespace LibraryService.Application.Services
             if (add != null)
             {
                 var result = await _unitOfWork.Save();
-                return result > 0 ? add : throw new MySQLNullException();
+                return result > 0 ? add : throw new MySQLException();
             }
             throw new BadRequestException("Unable to create publisher.");
         }
@@ -250,7 +250,7 @@ namespace LibraryService.Application.Services
             if (add != null)
             {
                 var result = await _unitOfWork.Save();
-                return result > 0 ? add : throw new MySQLNullException();
+                return result > 0 ? add : throw new MySQLException();
             }
             throw new BadRequestException("Unable to create subject.");
         }
