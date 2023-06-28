@@ -1,9 +1,9 @@
-﻿using LibraryService.Application.Interfaces;
+﻿using LibraryService.Application.Interfaces.Repositories;
 using LibraryService.Infastructure.Context;
 using LibraryService.Infastructure.Repositories;
 
 namespace LibraryService.Infastructure
-{ 
+{
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DataContext _dbContext;

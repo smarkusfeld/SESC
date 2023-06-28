@@ -7,7 +7,7 @@ namespace LibraryService.Domain.Entities
     [Table("booksubject")]
     public class BookSubject 
     {
-
+        public BookSubject() { }
         public string ISBN { get; private set; }
         public int SubjectId { get; private set; }
         public string SubjectName { get; private set; }

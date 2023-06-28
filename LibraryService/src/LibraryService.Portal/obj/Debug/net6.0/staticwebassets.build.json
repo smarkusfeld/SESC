@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "e3zqcvpG8DoIdsRgF4sUC3tDNuPKxmQI6qyNjK6cDcc=",
+  "Source": "LibraryService.Portal",
+  "BasePath": "_content/LibraryService.Portal",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

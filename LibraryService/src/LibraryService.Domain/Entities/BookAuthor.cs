@@ -1,12 +1,13 @@
 ﻿using LibraryService.Domain.Common;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using System.Diagnostics.Contracts;
 
 namespace LibraryService.Domain.Entities
 {
     [Table("bookauthor")]
     public class BookAuthor 
-    { 
+    {
+        public BookAuthor() { }
         internal byte Order { get; set; }
         public string ISBN { get; private set; }
         public int AuthorId { get; private set; }

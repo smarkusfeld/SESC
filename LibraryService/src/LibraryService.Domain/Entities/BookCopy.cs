@@ -11,7 +11,11 @@ namespace LibraryService.Domain.Entities
     [Table("bookcopy")]
     public class BookCopy : BaseAuditableEntity
     {
-      
+        public BookCopy()
+        {
+            
+        }
+
         public BookCopy(string isbn, int copynum) 
         { 
             ISBN = isbn;

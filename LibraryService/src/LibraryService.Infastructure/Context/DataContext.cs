@@ -61,6 +61,7 @@ namespace LibraryService.Infastructure.Context
             //configure owned types
 
             //modelBuilder.Entity<Book>().OwnsOne(b => b.Detail);
+            modelBuilder.Entity<Loan>().OwnsOne(l => l.Fine);
             modelBuilder.Entity<Book>().OwnsOne(b => b.Identifier);
             modelBuilder.Entity<Book>().OwnsOne(b => b.Classification);          
             modelBuilder.Entity<BookCopy>().OwnsOne(b => b.Rack, b => { b.ToTable("rack"); });

@@ -1,28 +1,49 @@
 ﻿using LibraryService.Application.Models;
-using LibraryService.Application.Interfaces;
 using AutoMapper;
 using LibraryService.Domain.Entities;
 using LibraryService.Application.Common.Exceptions;
 using LibraryService.Domain.Common.Enums;
+using LibraryService.Application.Interfaces.Repositories;
+using LibraryService.Application.Interfaces.Services;
+using LibraryService.Application.Interfaces;
+
 namespace LibraryService.Application.Services
 {
     public class AccountService : IAccountService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-       
         public AccountService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
+        public async Task<AccountDTO> CreateStudentAccount(string id)
+        {
+            AccountType type = AccountType.Student;
+            //check if account exists
+            var check = await _unitOfWork.Accounts.GetAsync(id);
 
+            if (check != null)
+            {
+                throw new BadRequestException($"ID {id} already associated with an account");
+            }
+            Account newAccount = new Account { AccountId = id, AccountType = type };
+            var addAccount = await _unitOfWork.Accounts.AddAsync(newAccount);
+            if (addAccount != null)
+            {
+                var result = await _unitOfWork.Save();
+                AccountDTO newDTO = _mapper.Map<AccountDTO>(addAccount);
+                return result > 0 ? newDTO : null;
+            }
+            throw new BadRequestException("Unable to create account.");
+        }
         public async Task<AccountDTO> CreateAccount(string id, string typename)
         {
             AccountType type;
             if (!Enum.TryParse(typename, true, out type))
             {
-                throw new InvalidParameterException("$Bad Request Error.{typename} is not a valid account type");
+                throw new BadRequestException("Invalid Account Type");
             }
             
             //check if account exists
@@ -30,17 +51,17 @@ namespace LibraryService.Application.Services
 
             if (check != null)
             {
-                throw new AccountAlreadyExistsException(id);
+                throw new BadRequestException($"ID {id} already associated with an account");
             }
-            Account newAccount = new(id, type);           
+            Account newAccount = new Account { AccountId = id, AccountType = type };
             var addAccount = await _unitOfWork.Accounts.AddAsync(newAccount);
             if (addAccount != null)
             {
                 var result = await _unitOfWork.Save();
                 AccountDTO newDTO = _mapper.Map<AccountDTO>(addAccount);
-                return result > 0 ? newDTO : throw new UnableToSaveRecordException();
+                return result > 0 ? newDTO : null;
             }
-            throw new InvalidParameterException("Bad Request. Unable to create account.");
+            throw new BadRequestException("Unable to create account.");
         }
         public async Task<bool> UpdateAccountPin(string id, string oldPin, string newPin)
         {
@@ -70,9 +91,9 @@ namespace LibraryService.Application.Services
                 }
                 if (account.Pin != old)
                 {
-                    throw new IncorrectPinException("id");
+                    throw new BadRequestException("Incorrect Pin Number");
                 }
-                if(!errors.Any()) { throw new DataValidationException(errors); }
+                if(!errors.Any()) { throw new BadRequestException("Invalid Request",errors); }
 
                 //update account
                 account.Pin = pin;
@@ -80,23 +101,23 @@ namespace LibraryService.Application.Services
                 if (updateAccount != null)
                 {
                     var result = await _unitOfWork.Save();
-                    return result > 0 ? true: throw new UnableToSaveRecordException();
+                    return result > 0 ? true: throw new MySQLNullException();
                 }
-                throw new InvalidParameterException("Bad Request. Unable to create account.");
+                throw new BadRequestException("Unable to update account.");
             }           
-            throw new BadKeyException("acount", id);
+            throw new KeyNotFoundException($"No account found for id {id}");
         }
         public async Task<IEnumerable<AccountDTO>> GetAllAccounts()
         {
             var response = await _unitOfWork.Accounts.GetAllAsync();
             if (response is null)
             {
-                throw new MysqlDataNullException();
+               throw new MySQLNullException("MySQL data null");
             }
             else if(!response.Any())
             {
 
-                throw new NoRecordsFoundException("Library Account");
+                return Enumerable.Empty<AccountDTO>();
             }
             else                
             {
@@ -113,12 +134,12 @@ namespace LibraryService.Application.Services
                 var response = await _unitOfWork.Accounts.GetAllWhereAsync(x=>x.AccountType == type);
                 if (response is null)
                 {
-                    throw new MysqlDataNullException();
+                    throw new MySQLNullException("MySQL data null");
                 }
                 else if (!response.Any())
                 {
 
-                    throw new NoRecordsFoundException("${typename} Accounts");
+                    return Enumerable.Empty<AccountDTO>();
                 }
                 else
                 {
@@ -130,7 +151,7 @@ namespace LibraryService.Application.Services
             else
             {
 
-                throw new InvalidParameterException("$Bad Request Error.{typename} is not a valid account type");
+                throw new BadRequestException("Invalid Account Type");
             }
             
 
@@ -141,12 +162,12 @@ namespace LibraryService.Application.Services
             var response = await _unitOfWork.Loans.GetAllWhereAsync(x => x.IsComplete == false);
             if (response is null)
             {
-                throw new MysqlDataNullException();
+                throw new MySQLNullException("MySQL data null");
             }
             else if (!response.Any())
             {
 
-                throw new NoRecordsFoundException("Loan");
+                return Enumerable.Empty<LoanDTO>();
             }
             else
             {
@@ -160,12 +181,12 @@ namespace LibraryService.Application.Services
             var response = await _unitOfWork.Loans.GetAllWhereAsync(x => x.IsComplete == false);
             if (response is null)
             {
-                throw new MysqlDataNullException();
+                throw new MySQLNullException("MySQL data null");
             }
             else if (!response.Any())
             {
 
-                throw new NoRecordsFoundException("Loan");
+                return Enumerable.Empty<LoanDTO>();
             }
             else
             {
@@ -180,12 +201,12 @@ namespace LibraryService.Application.Services
             var response = await _unitOfWork.Loans.GetAllWhereAsync(x=> x.AccountId == accountID);
             if (response is null)
             {
-                throw new MysqlDataNullException();
+                throw new MySQLNullException("MySQL data null");
             }
             else if (!response.Any())
             {
 
-                throw new NoRecordsFoundException("Loan");
+                return Enumerable.Empty<LoanDTO>();
             }
             else
             {
@@ -199,7 +220,7 @@ namespace LibraryService.Application.Services
             var accountLoans = await GetLoanHistory(accountID);
             if (!accountLoans.Any())
             {
-                throw new NoRecordsFoundException($"{accountID} loans"); 
+                return Enumerable.Empty<LoanDTO>();
             }
             return accountLoans.Where(x => x.IsComplete == false);             
         }
@@ -209,7 +230,7 @@ namespace LibraryService.Application.Services
             var accountLoans = await GetLoanHistory(accountID);
             if (!accountLoans.Any())
             {
-                throw new NoRecordsFoundException($"{accountID} loans");
+                return Enumerable.Empty<LoanDTO>();
             }
             return accountLoans.Where(x => x.Status == LoanStatus.Overdue);
         }

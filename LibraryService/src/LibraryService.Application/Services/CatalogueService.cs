@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-using LibraryService.Application.Common.Exceptions;
-using LibraryService.Application.Interfaces;
+
 using LibraryService.Application.Models;
-using Microsoft.Net.Http.Headers;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 using LibraryService.Domain.Entities;
-using NotImplementedException = LibraryService.Application.Common.Exceptions.NotImplementedException;
+using LibraryService.Application.Interfaces.Repositories;
+using LibraryService.Application.Interfaces.Services;
+using LibraryService.Application.Common.Exceptions;
 
 namespace LibraryService.Application.Services
 {
@@ -14,12 +12,12 @@ namespace LibraryService.Application.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly HttpClient _httpClient;
-        public CatalogueService(IUnitOfWork unitOfWork, IMapper mapper, HttpClient httpClient)
+       // private readonly IISBNService _openLibrary;
+        public CatalogueService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _httpClient = httpClient;
+            //_openLibrary = openLibrary;
         }
 
         public async Task<BookDTO> AddBookByISBN(string isbn)
@@ -32,13 +30,13 @@ namespace LibraryService.Application.Services
                return await AddBookCopy(bookRecord);  
             }
             //if book does not already exist get details 
-            var newBookRecord = await GetOpenLibraryBookDetail(isbn);
+            //var newBookRecord = await GetOpenLibraryBookDetail(isbn);
             //add new book
-            if(newBookRecord != null)
-            {
-                return await CreateNewBookRecord(newBookRecord);
-            }
-            throw new InvalidParameterException("Bad Request. Unable to resolve isbn");
+            //if(newBookRecord != null)
+            //{
+                //return await CreateNewBookRecord(newBookRecord);
+            //}
+            throw new BadRequestException("Unable to resolve isbn");
         }
         public async Task<BookDTO> GetBook(string isbn)
         {
@@ -47,67 +45,104 @@ namespace LibraryService.Application.Services
             {
                 return _mapper.Map<BookDTO>(book);
             }
-            throw new BadKeyException("book", isbn);
+            throw new KeyNotFoundException($"No book record for {isbn}");
         }
 
         public async Task<IEnumerable<AuthorDTO>> GetAllAuthors()
         {
-            var all =  await _unitOfWork.Authors.GetAllAsync();
-            if(all != null)
+            var response =  await _unitOfWork.Authors.GetAllAsync();
+            if (response is null)
             {
-                return _mapper.Map<IEnumerable<Author>, IEnumerable<AuthorDTO>>(all);
+                throw new MySQLNullException("MySQL data null");
             }
-            throw new NoRecordsFoundException("author");
+            else if (!response.Any())
+            {
+
+                return Enumerable.Empty<AuthorDTO>();
+            }
+            else
+            {
+                
+                return _mapper.Map<IEnumerable<Author>, IEnumerable<AuthorDTO>>(response);
+            }
         }
 
         public async Task<IEnumerable<BookDTO>> GetAllBooks()
         {
-            var all = await _unitOfWork.Books.GetAllAsync();
-            if (all != null)
+            var response = await _unitOfWork.Books.GetAllAsync();
+            if (response is null)
             {
-                return _mapper.Map<IEnumerable<Book>, IEnumerable<BookDTO>>(all);
+                throw new MySQLNullException("MySQL data null");
             }
-            throw new NoRecordsFoundException("book");
+            else if (!response.Any())
+            {
+
+                return Enumerable.Empty<BookDTO>();
+            }
+            else
+            {
+
+                return _mapper.Map<IEnumerable<Book>, IEnumerable<BookDTO>>(response);
+            }
         }
 
         public async Task<IEnumerable<PublisherDTO>> GetAllPublishers()
         {
-            var all = await _unitOfWork.Publishers.GetAllAsync();
-            if (all != null)
+            var response  = await _unitOfWork.Publishers.GetAllAsync();
+            
+            if (response is null)
             {
-                return _mapper.Map<IEnumerable<Publisher>, IEnumerable<PublisherDTO>>(all);
+                throw new MySQLNullException("MySQL data null");
             }
-            throw new NoRecordsFoundException("publisher");
+            else if (!response.Any())
+            {
+
+                return Enumerable.Empty<PublisherDTO>();
+            }
+            else
+            {
+
+                return _mapper.Map<IEnumerable<Publisher>, IEnumerable<PublisherDTO>>(response);
+            }
         }
 
         public async Task<IEnumerable<SubjectDTO>> GetAllSubjects()
         {
-            var all = await _unitOfWork.Subjects.GetAllAsync();
-            if (all != null)
+            var response = await _unitOfWork.Subjects.GetAllAsync();
+            if (response is null)
             {
-                return _mapper.Map<IEnumerable<Subject>, IEnumerable<SubjectDTO>>(all);
+                throw new MySQLNullException("MySQL data null");
             }
-            throw new NoRecordsFoundException("subjects");
+            else if (!response.Any())
+            {
+
+                return Enumerable.Empty<SubjectDTO>();
+            }
+            else
+            {
+
+                return _mapper.Map<IEnumerable<Subject>, IEnumerable<SubjectDTO>>(response);
+            }
         }
 
         public Task<AuthorDTO> UpdateAuthor(AuthorDTO dto)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
         public Task<BookDTO>UpdateBook(BookDTO dto)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
         public Task<PublisherDTO> UpdatePublisher(PublisherDTO dto)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
         public Task<SubjectDTO> UpdateSubject(SubjectDTO dto)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
         public async Task<BookDTO> AddBookCopy(Book bookRecord)
         {
@@ -117,40 +152,14 @@ namespace LibraryService.Application.Services
             {
                 var result = await _unitOfWork.Save();
                 BookDTO bookDTO = _mapper.Map<BookDTO>(updateRecord);
-                return result > 0 ? bookDTO : throw new UnableToSaveRecordException();
+                return result > 0 ? bookDTO : throw new MySQLNullException();
             }
-            throw new InvalidParameterException("Bad Request. Unable to create account.");
+            throw new BadRequestException("Unable to create account.");
         }
-        public async Task<NewBookRecordDTO> GetOpenLibraryBookDetail(string isbn)
-        {
-            HttpResponseMessage Res = await _httpClient.GetAsync("books?bibkeys=ISBN:" + isbn + "&jscmd=data&format=json");
-            List<string> details = new()
-            {
-                "Resquest Message: " + Res.RequestMessage,
-                "Response Header: " + Res.Headers,
-                "Reponse Body: " + Res.Content.ReadAsStringAsync().Result,
-            };
-
-            if (Res.IsSuccessStatusCode)
-            {
-                //Storing the response details recieved from web api
-                var json = Res.Content.ReadAsStringAsync().Result;
-                //Deserializing the response recieved from web api 
-                JObject jsonObject = JObject.Parse(json);
-                var data = jsonObject.SelectToken("ISBN:" + isbn).ToString();
-                var result = JsonConvert.DeserializeObject<NewBookRecordDTO>(data, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Ignore });
-
-                if (result != null)
-                {
-                    return result;
-                }
-                throw new ApiFailureException("Unable to parse open library record", details, System.Net.HttpStatusCode.BadRequest);
-            }
-
-            string message = Res.ReasonPhrase ?? "Unsuccessful Request to OpenLibraryApi";
-
-            throw new ApiFailureException(message, details, Res.StatusCode);
-        }
+        //public async Task<NewBookRecordDTO> GetOpenLibraryBookDetail(string isbn)
+        //{
+           // return await _openLibrary.GetBookDetails(isbn);
+        //}
 
         public async Task<BookDTO> CreateNewBookRecord(NewBookRecordDTO newBookRecord)
         {
@@ -176,9 +185,9 @@ namespace LibraryService.Application.Services
             {
                 var result = await _unitOfWork.Save();
                 var dto = _mapper.Map<BookDTO>(addedBook);
-                return result > 0 ? dto : throw new UnableToSaveRecordException();
+                return result > 0 ? dto : throw new MySQLNullException();
             }
-            throw new UnableToSaveRecordException();
+            throw new BadRequestException("Unable to create account.");
         }
 
         
@@ -199,9 +208,9 @@ namespace LibraryService.Application.Services
             if(add != null)
             {
                 var result = await _unitOfWork.Save();
-                return result > 0 ? add : throw new UnableToSaveRecordException();
+                return result > 0 ? add : throw new MySQLNullException();
             }
-            throw new InvalidParameterException("Bad Request. Unable to create author.");
+            throw new BadRequestException("Unable to create author.");
         }
         private async Task<Publisher> GetBookPublisher(PublisherDTO publisher)
         {
@@ -220,9 +229,9 @@ namespace LibraryService.Application.Services
             if (add != null)
             {
                 var result = await _unitOfWork.Save();
-                return result > 0 ? add : throw new UnableToSaveRecordException();
+                return result > 0 ? add : throw new MySQLNullException();
             }
-            throw new InvalidParameterException("Bad Request. Unable to create publisher.");
+            throw new BadRequestException("Unable to create publisher.");
         }
         private async Task<Subject> GetBookSubject(SubjectDTO subject)
         {
@@ -241,9 +250,9 @@ namespace LibraryService.Application.Services
             if (add != null)
             {
                 var result = await _unitOfWork.Save();
-                return result > 0 ? add : throw new UnableToSaveRecordException();
+                return result > 0 ? add : throw new MySQLNullException();
             }
-            throw new InvalidParameterException("Bad Request. Unable to create subject.");
+            throw new BadRequestException("Unable to create subject.");
         }
     }
 }

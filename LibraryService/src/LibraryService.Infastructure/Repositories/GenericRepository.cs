@@ -1,5 +1,4 @@
-﻿
-using LibraryService.Application.Interfaces;
+﻿using LibraryService.Application.Interfaces.Repositories;
 using LibraryService.Domain.Common;
 using LibraryService.Infastructure.Context;
 using Microsoft.EntityFrameworkCore;

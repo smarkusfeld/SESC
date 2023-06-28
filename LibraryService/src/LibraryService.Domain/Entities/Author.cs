@@ -8,6 +8,7 @@ namespace LibraryService.Domain.Entities
     public class Author : BaseAuditableEntity
     {
         public override object Key => Id;
+        public Author() { }
         public Author(string lastName)
         {
             LastName = lastName.Trim();

@@ -12,6 +12,7 @@ namespace LibraryService.Domain.Entities
     public class Publisher :BaseAuditableEntity
     {
         public override object Key { get => Id; }
+        public Publisher() { }
         public Publisher(string name) 
         { 
             Name = name;

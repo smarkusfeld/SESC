@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LibraryService.Portal</name>
+    </assembly>
+    <members>
+        <member name="M:LibraryService.Api.Controllers.AccountController.GetAll">
+            <summary>
+            Get All Accounts
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.AccountController.Register(System.String)">
+            <summary>
+            New Student Account
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.AccountController.Update(LibraryService.Application.Models.UpdatePinDTO)">
+            <summary>
+            Update Account Pin
+            </summary>
+            <param name="accountPinDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LibraryService.Api.Controllers.CatalogueController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.CatalogueController.#ctor(Microsoft.Extensions.Logging.ILogger{LibraryService.Api.Controllers.CatalogueController},LibraryService.Application.Services.CatalogueService)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="service"></param>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.CatalogueController.GetAll">
+            <summary> 
+            Get All Books from library catalogue
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.CatalogueController.Add(System.String)">
+            <summary>
+            Add Book to Library. If book already exists, a new copy is added
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LibraryService.Api.Controllers.TransactionController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.TransactionController.#ctor(Microsoft.Extensions.Logging.ILogger{LibraryService.Api.Controllers.TransactionController},LibraryService.Application.Services.LoanService)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="service"></param>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.TransactionController.NewLoan(LibraryService.Application.Models.AccountDTO,System.String)">
+            <summary>
+            Create new loan
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.TransactionController.ReturnLoan(LibraryService.Application.Models.AccountDTO,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="account"></param>
+            <param name="isbn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.TransactionController.RenewLoan(LibraryService.Application.Models.AccountDTO,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="account"></param>
+            <param name="isbn"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.TransactionController.GetAllActiveLoans">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.TransactionController.GetAllOverdueLoans">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LibraryService.Portal.Middleware.ErrorHandlerMiddleware">
+            <summary>
+            https://jasonwatmore.com/post/2022/01/17/net-6-global-error-handler-tutorial-with-example 
+            </summary>
+        </member>
+    </members>
+</doc>

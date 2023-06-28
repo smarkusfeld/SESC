@@ -23,7 +23,7 @@ namespace LibraryService.Domain.ValueObjects
         public string AccountId { get; private set; }
         public bool FineIssued { get; private set; } = false;
         public Fine() { }
-        public Fine(DateTime date, Decimal amount, string accountId)
+        public Fine(DateTime date, decimal amount, string accountId)
         {
             FineDate = date;
             Amount = amount;
@@ -32,7 +32,7 @@ namespace LibraryService.Domain.ValueObjects
         }
         protected override IEnumerable<object> GetEqualityComponents()
         {
-            if(FineDate != null) { yield return FineDate; }            
+            if (FineDate != null) { yield return FineDate; }
             yield return Amount;
             yield return FineIssued;
 

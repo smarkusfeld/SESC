@@ -3,13 +3,12 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>9ba0b6b2-c3af-4a0e-8557-1c518f4df713</ProjectGuid>
+    <ProjectGuid>6054d2b7-c784-44ce-8022-9a4880eb9516</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>libraryservice.api</DockerServiceName>
+    <DockerServiceName>libraryservice.portal</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
-    <None Include=".env" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>

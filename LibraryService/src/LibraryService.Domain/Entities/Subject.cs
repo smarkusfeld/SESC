@@ -7,6 +7,7 @@ namespace LibraryService.Domain.Entities
     [Table("subject")]
     public class Subject : BaseAuditableEntity
     {
+        public Subject() { }
         public override object Key { get => Id; }
         public Subject(string name) 
         { 
