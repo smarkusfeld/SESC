@@ -1,5 +1,4 @@
-﻿using LibraryService.Domain.Entities;
-using LibraryService.Domain.RepositoryInterfaces;
+﻿
 using LibraryService.Infastructure.RepositoryInterfaces;
 using System;
 using System.Collections.Generic;

@@ -4,7 +4,8 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "libraryservice.api": "StartDebugging"
+        "libraryservice.api": "StartDebugging",
+        "libraryservice.portal": "StartDebugging"
       }
     }
   }

@@ -13,20 +13,9 @@ namespace LibraryService.Domain.Entities
     public class Account : BaseAuditableEntity, IAggregateRoot
     {
         
-        public override object Key => AccountId;
-
-        /// <summary>
-        /// Constructor for Account Entity
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="accountType"></param>
-        public Account( string id, AccountType accountType) 
-        { 
-            AccountId = id;
-            AccountType = accountType;
-        }           
+        public override object Key => AccountId;          
       
-        public string AccountId { get; private set; }
+        public string AccountId { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AccountNum { get; private set; }
@@ -37,12 +26,15 @@ namespace LibraryService.Domain.Entities
         public ICollection<Reservation> Reservations { get; private set; } = new List<Reservation>();
 
 
-        
+
 
         //not mapped properties and methods
+        [NotMapped]
         public ICollection<Loan> OverdueLoans => Loans.ToList().FindAll(x => x.Status == Common.Enums.LoanStatus.Overdue);
-        public ICollection<Loan> ActiveLoans => Loans.ToList().FindAll(x => x.IsComplete==false);
 
+        [NotMapped]
+        public ICollection<Loan> ActiveLoans => Loans.ToList().FindAll(x => x.IsComplete==false);
+       
         public int OverdueLoanTotal => Loans.ToList().FindAll(x => x.Status == Common.Enums.LoanStatus.Overdue).Count();
         public int ActiveLoanTotal => Loans.ToList().FindAll(x => x.IsComplete == false).Count();
 

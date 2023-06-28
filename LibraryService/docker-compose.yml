@@ -16,12 +16,12 @@ services:
      - 8080:8080
   
    
-  libraryservice.api:
-    container_name: libraryservice-api
-    image: ${DOCKER_REGISTRY-}libraryserviceapi
+  libraryservice.portal:
+    container_name: libraryservice-portal
+    image: ${DOCKER_REGISTRY-}libraryserviceportal
     build:
       context: .
-      dockerfile: src/LibraryService.Api/Dockerfile
+      dockerfile: src/LibraryService.Portal/Dockerfile
     ports:
      - 5003:80
     depends_on:
@@ -34,3 +34,4 @@ services:
 
 volumes:
    library-mysql-data:
+

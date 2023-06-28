@@ -1,4 +1,4 @@
-﻿using LibraryService.Application.Interfaces;
+﻿using LibraryService.Application.Interfaces.Repositories;
 using LibraryService.Domain.Entities;
 using LibraryService.Infastructure.Context;
 

@@ -1,19 +1,19 @@
 version: '3.4'
 
 services:
-  libraryservice.api:
-    image: libraryserviceapi:dev
+  libraryservice.portal:
+    image: libraryserviceportal:dev
     build:
       target: base
       labels:
         com.microsoft.created-by: "visual-studio"
-        com.microsoft.visual-studio.project-name: "LibraryService.Api"
+        com.microsoft.visual-studio.project-name: "LibraryService.Portal"
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Api:/app
+      - C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Portal:/app
       - C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService:/src
       - C:\Users\Sofia Markusfeld\vsdbg\vs2017u5:/remote_debugger:rw
       - C:\Users\Sofia Markusfeld\.nuget\packages\:/root/.nuget/packages:ro
@@ -24,7 +24,7 @@ services:
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  \"/app/bin/Debug/net6.0/LibraryService.Api.dll\""
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  \"\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true

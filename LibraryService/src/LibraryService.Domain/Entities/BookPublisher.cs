@@ -6,6 +6,7 @@ namespace LibraryService.Domain.Entities
     [Table("bookpublisher")]
     public class BookPublisher : BaseEntity
     {
+        public BookPublisher() { }
         internal byte Order { get; set; }
         public string ISBN { get; private set; }
         public int PublisherId { get; private set; }

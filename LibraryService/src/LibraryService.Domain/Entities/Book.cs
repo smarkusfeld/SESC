@@ -26,7 +26,9 @@ namespace LibraryService.Domain.Entities
     public class Book : BaseAuditableEntity, IAggregateRoot
     {
         public override object Key => ISBN;
-
+        public Book()
+        {
+        }
         public Book(string isbn, string title, BookClassification classification, BookIdentifier identifier)
         {
             ISBN = isbn;

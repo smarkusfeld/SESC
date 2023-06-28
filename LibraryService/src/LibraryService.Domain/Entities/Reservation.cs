@@ -1,14 +1,7 @@
 ﻿using LibraryService.Domain.Common;
 using LibraryService.Domain.Common.Enums;
-using LibraryService.Domain.DataModels;
-using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryService.Domain.Entities
 {
@@ -19,6 +12,7 @@ namespace LibraryService.Domain.Entities
     public class Reservation : BaseAuditableEntity
     {
         public override object Key => Id;
+        public Reservation() { }
         public Reservation(DateTime neededBy, string bookISBN, string bookTitle, string accountId, int bookCopyId)
         {
             RequestDate = DateTime.Now;

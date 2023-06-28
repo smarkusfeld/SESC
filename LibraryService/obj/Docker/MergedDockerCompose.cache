@@ -22,10 +22,11 @@ services:
       source: library-mysql-data
       target: /var/lib/mysql
       volume: {}
-  libraryservice.api:
+  libraryservice.portal:
     build:
       context: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService
-      dockerfile: src/LibraryService.Api/Dockerfile
+      dockerfile: src/LibraryService.Portal/Dockerfile
+    container_name: libraryservice-portal
     depends_on:
       db:
         condition: service_started
@@ -36,7 +37,7 @@ services:
       MYSQL_HOST: db
       MYSQL_PASSWORD: tiaspbiqe2r
       MYSQL_USER: root
-    image: libraryserviceapi
+    image: libraryserviceportal
     networks:
       default: null
     ports:
