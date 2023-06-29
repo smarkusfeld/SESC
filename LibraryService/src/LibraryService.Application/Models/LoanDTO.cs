@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Application.Models
 {
-    public class LoanDTO
+    public class LoanDTO : BaseAuditableModel
     {
         public int Id { get; private set; }
         public bool IsComplete { get; set; } = false;
@@ -19,7 +19,7 @@ namespace LibraryService.Application.Models
         public string BookTitle { get; private set; }
         public string AccountId { get; private set; }
         public int BookCopyId { get; private set; }
-        public int BookCopyID { get; set; }
+        
 
         public FineDTO? Fine { get; private set; }
         public LoanStatus Status

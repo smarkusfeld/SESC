@@ -46,7 +46,24 @@ namespace LibraryService.Api.Controllers
             if ( accountDtos == null ) { return NotFound(); }
             return accountDtos.Any() ? Ok( accountDtos ) : NoContent() ;
         }
-
+        /// <summary>
+        /// Get user borrowing history
+        /// </summary>
+        /// <returns> 
+        /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with all accounts from the database <br/> 
+        /// A 204 status code prodeced by the <seealso cref="NoContentResult"/> if no records exists in the database <br/> 
+        /// A 404 status code produced by the <seealso cref="NotFoundResult"/> if the account service returns a null task
+        /// </returns>
+        /// 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetLoanHistory(string id)
+        {
+            _logger.LogInformation("Getting account history from database.");
+            var accountHistory = await _service.GetLoanHistory(id);
+            _logger.LogInformation("Returned account history  from database.");
+            if (accountHistory == null) { return NotFound(); }
+            return accountHistory.Any() ? Ok(accountHistory) : NoContent();
+        }
 
         /// <summary>
         /// New Student Account

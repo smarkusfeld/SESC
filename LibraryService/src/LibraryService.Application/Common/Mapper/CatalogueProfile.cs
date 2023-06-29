@@ -57,11 +57,12 @@ namespace LibraryService.Application.Common.Mapper
 
 
             CreateMap<NewBookRecordDTO, Book>()
-                .ForMember(dest => dest.Key, opt => opt.Ignore())                
+                .ForMember(dest => dest.Key, opt => opt.Ignore())
                 .ForMember(dest => dest.BookCopies, opt => opt.Ignore())
                 .ForMember(dest => dest.BookSubjects, opt => opt.Ignore())
                 .ForMember(dest => dest.BookAuthors, opt => opt.Ignore())
-                .ForMember(dest => dest.BookPublishers, opt => opt.Ignore());
+                .ForMember(dest => dest.BookPublishers, opt => opt.Ignore())
+                .ForMember(dest => dest.BookNum, opt => opt.Ignore());
 
             CreateMap<BookDTO, Book>()
                 .ForMember(dest => dest.Key, opt => opt.Ignore())
@@ -72,6 +73,8 @@ namespace LibraryService.Application.Common.Mapper
                 .ForMember(dest => dest.Subjects, opt => opt.Ignore())
                 .ForMember(dest => dest.Authors, opt => opt.Ignore())
                 .ForMember(dest => dest.Publishers, opt => opt.Ignore())
+                .ForMember(dest => dest.Identifier, opt => opt.Ignore())
+                .ForMember(dest => dest.Classification, opt => opt.Ignore())
                 .ReverseMap();
 
 

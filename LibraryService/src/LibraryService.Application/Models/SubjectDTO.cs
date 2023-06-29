@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryService.Application.Models
 {
-    public class SubjectDTO
+    public class SubjectDTO : BaseAuditableModel
     {
         public string Id { get; set; }
         public string Name { get; set; }
