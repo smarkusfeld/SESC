@@ -1,8 +1,11 @@
 ﻿using LibraryService.Domain.Common;
 using LibraryService.Domain.Common.Enums;
 using LibraryService.Domain.Interfaces;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace LibraryService.Domain.Entities
 {
@@ -12,9 +15,9 @@ namespace LibraryService.Domain.Entities
     [Table("account")]
     public class Account : BaseAuditableEntity, IAggregateRoot
     {
-        
-        public override object Key => AccountId;          
-      
+
+        public override object Key => AccountId;
+
         public string AccountId { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -30,13 +33,16 @@ namespace LibraryService.Domain.Entities
 
         //not mapped properties and methods
         [NotMapped]
-        public ICollection<Loan> OverdueLoans => Loans.ToList().FindAll(x => x.Status == Common.Enums.LoanStatus.Overdue);
+        public IEnumerable<Loan> OverdueLoans => Loans != null ? Loans.Where(x => x.Status == LoanStatus.Overdue) : Enumerable.Empty<Loan>();
+   
 
         [NotMapped]
-        public ICollection<Loan> ActiveLoans => Loans.ToList().FindAll(x => x.IsComplete==false);
-       
-        public int OverdueLoanTotal => Loans.ToList().FindAll(x => x.Status == Common.Enums.LoanStatus.Overdue).Count();
-        public int ActiveLoanTotal => Loans.ToList().FindAll(x => x.IsComplete == false).Count();
+        public IEnumerable<Loan> ActiveLoans => Loans!= null ? Loans.Where(x => x.IsComplete==false) :  Enumerable.Empty<Loan>();
+        
+       public int OverdueLoanTotal => OverdueLoans.Count();
+      
+
+        public int ActiveLoanTotal => ActiveLoans.Count();
 
 
     }

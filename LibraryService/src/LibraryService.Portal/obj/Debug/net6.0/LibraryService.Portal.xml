@@ -28,6 +28,17 @@
             </returns>
             
         </member>
+        <member name="M:LibraryService.Api.Controllers.AccountController.GetLoanHistory(System.String)">
+            <summary>
+            Get user borrowing history
+            </summary>
+            <returns> 
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with all accounts from the database <br/> 
+            A 204 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NoContentResult"/> if no records exists in the database <br/> 
+            A 404 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/> if the account service returns a null task
+            </returns>
+            
+        </member>
         <member name="M:LibraryService.Api.Controllers.AccountController.Register(System.String)">
             <summary>
             New Student Account
@@ -52,7 +63,7 @@
             Controller for all book logic 
             </summary>
         </member>
-        <member name="M:LibraryService.Api.Controllers.BookController.#ctor(Microsoft.Extensions.Logging.ILogger{LibraryService.Api.Controllers.BookController},LibraryService.Application.Services.CatalogueService)">
+        <member name="M:LibraryService.Api.Controllers.BookController.#ctor(LibraryService.Application.Interfaces.Services.ICatalogueService,Microsoft.Extensions.Logging.ILogger{LibraryService.Api.Controllers.BookController})">
             <summary>
             Book Controller Constructor. 
             Defines the required logger and service interfaces 

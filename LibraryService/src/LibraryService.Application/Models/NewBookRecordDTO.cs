@@ -15,7 +15,7 @@ namespace LibraryService.Application.Models
     /// </summary>
     /// 
 
-    public class NewBookRecordDTO
+    public class NewBookRecordDTO : BaseAuditableModel
     {
         
 
@@ -32,10 +32,10 @@ namespace LibraryService.Application.Models
         public string? Weight { get; set; } 
 
         [JsonPropertyName("Identifiers")]
-        public BookIdentifierDTO Identifiers { get; set; } = new BookIdentifierDTO();
+        public BookIdentifierDTO Identifier { get; set; } = new BookIdentifierDTO();
 
         [JsonPropertyName("Classifications")]
-        public BookClassificationDTO? Classifications { get; set; }
+        public BookClassificationDTO? Classification { get; set; }
 
         [JsonPropertyName("Authors")]
         public List<AuthorDTO> Authors { get; set; } = new List<AuthorDTO>();
@@ -77,7 +77,7 @@ namespace LibraryService.Application.Models
        /// <summary>
        /// ISBN property, if not set it will return the primary identifier according to the <seealso cref="BookIdentifierDTO"/>
        /// </summary>
-        public string ISBN => _isbn ?? Identifiers.PrimaryIdentifier ?? string.Empty;
+        public string ISBN => _isbn ?? Identifier.PrimaryIdentifier ?? string.Empty;
         
         public string PublicationLocation
         {

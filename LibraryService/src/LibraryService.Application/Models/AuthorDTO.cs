@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace LibraryService.Application.Models
 {
-    public class AuthorDTO
+    public class AuthorDTO : BaseAuditableModel
     {
         public string Id { get; set; }
         public string FirstName { get; private set; }

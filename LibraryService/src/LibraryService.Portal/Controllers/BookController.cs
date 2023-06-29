@@ -22,7 +22,7 @@ namespace LibraryService.Api.Controllers
         /// </summary>
         /// <param name="service"></param>
         /// <param name="logger"></param>
-        public BookController(ILogger<BookController> logger, CatalogueService service)
+        public BookController(ICatalogueService service, ILogger<BookController> logger)
         {
             _logger = logger;
             _service = service;
