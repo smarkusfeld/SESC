@@ -21,10 +21,12 @@ namespace StudentService.Domain.Entities
         public int Id { get; private set; }
 
         public DateTime EnrolDate { get; set; }
-        
         public int CourseOfferingId { get; set; }
+        public int StudentId { get; set; }
+
         //navigation properties
+        public Student Student { get; set; }
+
         public CourseOffering CourseOffering { get; set; }
-        public ICollection<Student> Students { get; private set; } = new List<Student>();
     }
 }

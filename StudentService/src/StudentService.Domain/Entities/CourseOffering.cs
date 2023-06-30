@@ -24,13 +24,14 @@ namespace StudentService.Domain.Entities
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int Credits { get; set; } 
-        public int QualificationLevelId { get; set; }
+        public int QualificationId { get; set; }
         public int CourseId { get; set; }
 
         //navigation properties         
-        public QualificationLevel QualificationLevel { get; set; }
+        public Qualification Qualification { get; set; }
         public Course Course { get; set; }
-        public ICollection<Qualification> Requirements { get; private set; } = new List<Qualification>();
+        public ICollection<Requirement> Requirements { get; private set; } = new List<Requirement>();
+
 
     }
 }

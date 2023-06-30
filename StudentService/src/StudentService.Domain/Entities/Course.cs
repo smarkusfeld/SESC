@@ -21,12 +21,12 @@ namespace StudentService.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
 
+        public bool IsActive { get; set; } = true; 
         public string Title { get; set; }
-
-        public int Duration { get; set; }
 
         public CourseType CourseType { get; set; }
 
+        public int Duration { get; set; }
         public int SchoolId { get; set; }
         public int DegreeId { get; set; }
 
@@ -34,5 +34,7 @@ namespace StudentService.Domain.Entities
         public School School { get; set; }
         public Degree Degree { get; set; }
         public ICollection<CourseOffering> CourseOfferings { get; private set; } = new List<CourseOffering>();
+
+        public ICollection<Offer> Offers { get; private set; } = new List<Offer>();
     }
 }

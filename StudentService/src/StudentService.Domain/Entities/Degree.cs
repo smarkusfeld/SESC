@@ -1,16 +1,17 @@
-﻿using StudentService.Domain.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StudentService.Domain.Common.Enums;
+using StudentService.Domain.Common;
 
 namespace StudentService.Domain.Entities
 {
     /// <summary>
-    /// Degree Entity
+    /// Degree  Entity 
     /// </summary>
     public class Degree : BaseEntity
     {
@@ -18,14 +19,18 @@ namespace StudentService.Domain.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public int DegreeTypeId { get; set; }
+        public string Abbr { get; set; }
+        public int QualificationLevel { get; set; }
+
+        public DegreeCategory DegreeCategory { get; set; }
 
         //navigation properties
-        public DegreeType DegreeType { get; set; }
+
+        public ICollection<Course> Courses { get; private set; } = new List<Course>();
 
     }
 }
