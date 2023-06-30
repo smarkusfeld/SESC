@@ -4,14 +4,78 @@
     "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Infastructure\\StudentService.Infastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Infastructure\\StudentService.Infastructure.csproj": {
+    "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Application\\StudentService.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Infastructure\\StudentService.Infastructure.csproj",
-        "projectName": "StudentService.Infastructure",
-        "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Infastructure\\StudentService.Infastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Application\\StudentService.Application.csproj",
+        "projectName": "StudentService.Application",
+        "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Application\\StudentService.Application.csproj",
         "packagesPath": "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Infastructure\\obj\\",
+        "outputPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Sofia Markusfeld\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Domain\\StudentService.Domain.csproj": {
+                "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Domain\\StudentService.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Domain\\StudentService.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Domain\\StudentService.Domain.csproj",
+        "projectName": "StudentService.Domain",
+        "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Domain\\StudentService.Domain.csproj",
+        "packagesPath": "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,6 +108,86 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Infastructure\\StudentService.Infastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Infastructure\\StudentService.Infastructure.csproj",
+        "projectName": "StudentService.Infastructure",
+        "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Infastructure\\StudentService.Infastructure.csproj",
+        "packagesPath": "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Infastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Sofia Markusfeld\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Application\\StudentService.Application.csproj": {
+                "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Application\\StudentService.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.8, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

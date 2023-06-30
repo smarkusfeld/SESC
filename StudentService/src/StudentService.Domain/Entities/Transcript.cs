@@ -24,6 +24,6 @@ namespace StudentService.Domain.Entities
 
         //navigation properties
         public Student Student { get; private set; }
-        public ICollection<CourseResult> Results { get; private set; } = new List<CourseResult>();
+        public ICollection<CourseResult>? Results { get; private set; } = new List<CourseResult>();
     }
 }

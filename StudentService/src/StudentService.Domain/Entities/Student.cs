@@ -1,4 +1,5 @@
 ﻿using StudentService.Domain.Common;
+using StudentService.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,24 +15,24 @@ namespace StudentService.Domain.Entities
     /// </summary>
     public class Student : BaseAuditableEntity
     {
-        public override object Key => StudentNumber;
+        public override object Key => AccountNumber;
 
-        [Key]  
+         
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int StudentNumber { get; private set; }
+        public int AccountNumber { get; private set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]       
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string StudentId { get; set; }
-
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string MiddleName { get; set; }  
-        public string StudentEmail { get; set; }
-        public string PersonalEmail { get; set; }
+        
         public int TranscriptId { get; set; }
 
         //navigation properties
         public ICollection<Enrolment> Enrolments { get; private set; } = new List<Enrolment>();
         public Transcript Transcript { get; set; }
+        public Contact ContactDetail { get; set; }
     }
 }

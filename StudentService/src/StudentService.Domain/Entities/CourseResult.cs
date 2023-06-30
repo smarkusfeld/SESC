@@ -23,9 +23,9 @@ namespace StudentService.Domain.Entities
         public int Id { get; private set; }
 
         public string CourseTitle { get; set; }
-        public ProgressDecision ProgressDescision { get; set; }
+        public ProgressDecision ProgressDecision { get; set; }
         public DateTime ProgressDate { get; set; }
-        public string ProgressionNotes { get; set; } 
+        public string ProgressNotes { get; set; } 
         public int TranscriptId { get; set; }
         public int QualificationId { get; set; }
         public int CourseOfferingId { get; set; }

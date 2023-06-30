@@ -25,6 +25,7 @@ namespace StudentService.Domain.Entities
         public int QualificationId { get; set;}
 
         //navigation properties
-        public ICollection<QualificationLevel> Level { get; private set; } = new List<QualificationLevel>();
+        public ICollection<Qualification> Level { get; private set; } = new List<Qualification>();
+
     }
 }
