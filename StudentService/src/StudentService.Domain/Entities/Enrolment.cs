@@ -28,5 +28,6 @@ namespace StudentService.Domain.Entities
         public Student Student { get; set; }
 
         public CourseOffering CourseOffering { get; set; }
+        
     }
 }

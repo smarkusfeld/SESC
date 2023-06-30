@@ -1,14 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "wgvzUW/WNzjLCjAykp0buycxl8S0e3lBFu8MOgxZgpGCv/WGr7q+gJhL8zxkbff5xzHVZLMPsf4agvazxNNCjw==",
+  "dgSpecHash": "sK3g7a6u+oRBT2+0G0CnqUodyHqLp38Sbh/tWH15oj7gyY5EKgfTa6g0tmA5ZtIBRY0OHjaUvKzWIuozVm4/2g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Infastructure\\StudentService.Infastructure.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
-    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.2\\microsoft.data.sqlclient.5.0.2.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.0.1\\microsoft.data.sqlclient.sni.runtime.5.0.1.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.8\\microsoft.entityframeworkcore.7.0.8.nupkg.sha512",

@@ -22,7 +22,7 @@ namespace StudentService.Domain.Entities
         public int Id { get; private set; }
 
         public bool IsActive { get; set; } = true; 
-        public string Title { get; set; }
+        public string Name { get; set; }
 
         public CourseType CourseType { get; set; }
 

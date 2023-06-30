@@ -27,7 +27,7 @@ namespace StudentService.Infastructure.Configurations
                  .IsRequired(true);
 
             builder
-                 .Property(x => x.Title)
+                 .Property(x => x.Name)
                  .HasColumnType("varchar(50)")
                  .IsRequired();
 
