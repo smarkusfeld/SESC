@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "N7nTsUqrCEznoEUaFp3OkIC3o+5ngKlWvNTaPbiqSLUdYqvuy9MXACnmXI95PTm3BVb2O3OT0mT4by3LxF+b9g==",
+  "dgSpecHash": "cUhP7K5ufqneG4RWufukl+Gba3xJi9m8BFhLl6HJSsqRifpgARF+oljynZEIZJ+WwqyRyZcB+KrQNaneTYbLIQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\StudentService\\src\\StudentService.Application\\StudentService.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

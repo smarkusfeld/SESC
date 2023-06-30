@@ -8,7 +8,7 @@ namespace StudentService.Domain.Common.Enums
 {
     public enum CourseType
     {
-        Fullime,
+        FullTime,
         Partime,
         Sandwich,
         Other

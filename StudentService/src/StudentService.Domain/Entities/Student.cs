@@ -17,7 +17,7 @@ namespace StudentService.Domain.Entities
     {
         public override object Key => AccountNumber;
 
-         
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AccountNumber { get; private set; }
 
@@ -26,9 +26,11 @@ namespace StudentService.Domain.Entities
         public string StudentId { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
-        public string MiddleName { get; set; }  
-        
+        public string MiddleName { get; set; }
+
         public int TranscriptId { get; set; }
+
+        public string FullName => string.Concat(FirstName, MiddleName, Surname);
 
         //navigation properties
         public ICollection<Enrolment> Enrolments { get; private set; } = new List<Enrolment>();

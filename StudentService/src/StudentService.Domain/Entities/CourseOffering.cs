@@ -20,7 +20,7 @@ namespace StudentService.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
         
-        public string Title { get; set; }
+        public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int Credits { get; set; } 
