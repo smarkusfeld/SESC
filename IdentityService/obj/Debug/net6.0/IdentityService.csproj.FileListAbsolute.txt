@@ -1,0 +1,7 @@
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\IdentityService\obj\Debug\net6.0\IdentityService.csproj.AssemblyReference.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\IdentityService\obj\Debug\net6.0\IdentityService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\IdentityService\obj\Debug\net6.0\IdentityService.AssemblyInfoInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\IdentityService\obj\Debug\net6.0\IdentityService.AssemblyInfo.cs
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\IdentityService\obj\Debug\net6.0\IdentityService.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\IdentityService\obj\Debug\net6.0\IdentityService.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\IdentityService\obj\Debug\net6.0\IdentityService.MvcApplicationPartsAssemblyInfo.cache
