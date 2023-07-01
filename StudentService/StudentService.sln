@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentService.Infastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentService.Portal", "src\StudentService.Portal\StudentService.Portal.csproj", "{DD1377DB-8C5A-4A88-8BE6-3AEFDD9E2D1D}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7AC2E7B1-0AC9-4DA6-B5E9-B1FCECA0E0F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{DD1377DB-8C5A-4A88-8BE6-3AEFDD9E2D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD1377DB-8C5A-4A88-8BE6-3AEFDD9E2D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD1377DB-8C5A-4A88-8BE6-3AEFDD9E2D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AC2E7B1-0AC9-4DA6-B5E9-B1FCECA0E0F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AC2E7B1-0AC9-4DA6-B5E9-B1FCECA0E0F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AC2E7B1-0AC9-4DA6-B5E9-B1FCECA0E0F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AC2E7B1-0AC9-4DA6-B5E9-B1FCECA0E0F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

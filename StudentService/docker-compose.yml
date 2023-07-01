@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  db:
+   image: mysql
+   volumes:
+     - registrar-mysql-data:/var/lib/mysql
+   environment:
+     MYSQL_DATABASE: ${MYSQL_DATABASE:?database name not set}
+     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?database root password not set}  
+
+  adminer:
+   image: adminer
+   restart: always
+   ports:
+     - 8080:8080
+
+  studentservice.portal:
+    image: ${DOCKER_REGISTRY-}studentserviceportal
+    build:
+      context: .
+      dockerfile: src/StudentService.Portal/Dockerfile
