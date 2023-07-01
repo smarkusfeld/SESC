@@ -7,7 +7,7 @@ namespace StudentService.Application.Interfaces.Services
     /// <summary>
     /// Defines a contract for course services
     /// </summary>
-    public interface ICourseService
+    public interface IStudentCourseService
     {
 
         /// <summary>

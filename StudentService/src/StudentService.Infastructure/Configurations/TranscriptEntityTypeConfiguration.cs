@@ -21,8 +21,14 @@ namespace StudentService.Infastructure.Configurations
                 .HasKey(p => p.Id);
 
             builder
-                 .Property(x => x.StudentId);
+                 .Property(x => x.CourseName)
+                 .HasColumnType("varchar(50)")
+                 .IsRequired();
 
+            builder
+                 .Property(x => x.StudentId);
+            builder
+                 .Property(x => x.CourseId);
         }
     }
 }

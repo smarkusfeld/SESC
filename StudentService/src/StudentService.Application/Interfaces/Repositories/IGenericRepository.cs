@@ -7,7 +7,7 @@ namespace StudentService.Application.Interfaces.Repositories
     /// <summary>
     /// Generic Repository Interface.
     /// </summary>
-    public interface IGenericRepository<T> where T : BaseAuditableEntity
+    public interface IGenericRepository<T> where T : BaseEntity
     {
         /// <summary>
         /// Gets an entity by Id.
@@ -71,14 +71,6 @@ namespace StudentService.Application.Interfaces.Repositories
         /// /// <param name="entity">enity key</param>
         /// <returns>The entity updated entity</returns>
         Task<T> UpdateAsync(T entity);
-
-        /// <summary>
-        /// Update the specified entity 
-        /// </summary>
-        /// <param name="entity">The entity to update</param>
-        /// <param name="entity">enity key</param>
-        /// <returns>The entity updated entity</returns>
-        Task<T> UpdateAsync(T entity, object key);
 
         /// <summary>
         /// Update multiple entities 

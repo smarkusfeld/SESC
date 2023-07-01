@@ -16,42 +16,41 @@ namespace StudentService.Application.Interfaces.Services
         /// </summary>
         /// <param name="studentDTO"></param>
         /// <returns><see cref="StudentDTO"/></returns>
-        Task<StudentDTO> UpdateContactInformation(StudentDTO studentDTO);
+        Task<StudentDetailedDTO> UpdateContactInformation(StudentDetailedDTO studentDTO);
 
         /// <summary>
-        /// Get student accouny
+        /// Get student account
         /// </summary>
         /// <param name="studentId"></param>
-        /// <returns><see cref="StudentDTO"/></returns>
+        /// <returns><see cref="StudentDetailedDTO"/></returns>
         Task<StudentDTO> GetStudentAccount(string studentId);
+
+        /// <summary>
+        /// Get detailed student account
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns><see cref="StudentDetailedDTO"/></returns>
+        Task<StudentDetailedDTO> GetStudentAccountDetail(string studentId);
 
         /// <summary>
         /// Get student transcript
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns><see cref="StudentDTO"/></returns>
-        Task<Transcript> GetStudentTranscript(string studentId);
+        Task<StudentTranscriptDTO> GetStudentTranscript(string studentId);
 
         /// <summary>
         /// Check student graduation eligibility
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns>true, if student is eligibile to graduate, false if not</returns>
-        Task<bool> CheckGraduationEligibility(string studentId);
-
-
-        /// <summary>
-        /// Get all outstanding invoices for student
-        /// </summary>
-        /// <param name="studentId"></param>
-        /// <returns></returns>
-        Task<IEnumerable<OutstandingInvoiceDTO>> GetOutstandInvoices(string studentId);
+        Task<bool> CheckGraduationEligibility(string studentId);        
 
         /// <summary>
-        /// Get student outstanding balance
+        /// Validate Student Account Details
         /// </summary>
-        /// <param name="studentId"></param>
-        /// <returns></returns>
-        Task<float> GetOutstandingBalance(string studentId);
+        /// <param name="studentDTO"></param>
+        /// <returns><seealso cref="ErrorDetails"/> if there are any validation errors, otherwise, null Task Result</returns>
+        Task<ErrorDetail?>ValidateStudentAccountDetails (StudentDetailedDTO studentDTO);
     }
 }

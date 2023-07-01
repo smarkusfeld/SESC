@@ -43,6 +43,11 @@ namespace StudentService.Infastructure.Configurations
                  .Property(x => x.Credits)
                  .IsRequired(false);
 
+            builder
+                 .Property(x => x.TuitionFee)
+                 .HasColumnType("decimal(5, 2)")
+                 .IsRequired();
+
         }
     }
 }

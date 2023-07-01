@@ -11,7 +11,7 @@ namespace StudentService.Application.Interfaces.Services
     /// Defines a contract for enrolment services
     /// <br>Enrolmenr</br>
     /// </summary>
-    public interface IEnrolmentService
+    public interface IStudentEnrolService
     {
         /// <summary>
         /// All enrollments for the specified student

@@ -27,8 +27,9 @@ namespace StudentService.Domain.Entities
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string MiddleName { get; set; }
-
         public int TranscriptId { get; set; }
+
+        public int? CurrentCourse { get; set; }
 
         public string FullName => string.Concat(FirstName, MiddleName, Surname);
 
@@ -36,5 +37,9 @@ namespace StudentService.Domain.Entities
         public ICollection<Enrolment> Enrolments { get; private set; } = new List<Enrolment>();
         public Transcript Transcript { get; set; }
         public Contact ContactDetail { get; set; }
+
+
+        public Course? Course { get; set; }
+
     }
 }
