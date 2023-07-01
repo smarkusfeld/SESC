@@ -1,0 +1,66 @@
+#docker-compose.yml (Base)
+version: '3.7'
+
+services:
+
+  mysql-server:
+    image: mysql
+  
+  identity-api:
+    image: ${DOCKER_REGISTRY-}identity.api
+    build:
+        context: .
+        dockerfile: IdentityService/Dockerfile
+    depends_on:
+        - mysql-server
+
+  finance-api:
+    image: ${DOCKER_REGISTRY-}finance.api
+    build:
+        context: .
+        dockerfile: FinanceService/src/FinanceService.Api/Dockerfile
+    depends_on:
+        - mysql-server
+        - identity-api 
+ 
+  student-api:
+    image: ${DOCKER_REGISTRY-}studentserviceapi
+    build:
+      context: .
+      dockerfile: StudentService/src/StudentService.Api/Dockerfile
+
+  library-api:
+    image: ${DOCKER_REGISTRY-}library.api
+    build:
+        context: .
+        dockerfile: LibraryService/src/LibraryService.Api/Dockerfile
+    depends_on:
+        - mysql-server
+        - identity-api 
+        - finance-api
+
+  student-portal:
+    image: ${DOCKER_REGISTRY-}student.portal
+    build:
+      context: .
+      dockerfile: StudentPortal/Dockerfile
+
+  # create seperate api-containers using the base ocelot getway image 
+  student-gateway:
+    image: ${DOCKER_REGISTRY-}student.gateway
+    build:
+      context: .
+      dockerfile: ApiGateways/OcelotApiGateway/Dockerfile
+  
+  finance-gateway:
+    image: ${DOCKER_REGISTRY-}finance.gateway
+    build:
+      context: .
+      dockerfile: ApiGateways/OcelotApiGateway/Dockerfile
+
+  library-gateway:
+    image: ${DOCKER_REGISTRY-}library.gateway
+    build:
+      context: .
+      dockerfile: ApiGateways/OcelotApiGateway/Dockerfile
+  

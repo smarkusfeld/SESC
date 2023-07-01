@@ -1,0 +1,85 @@
+# docker-compose.override.yml 
+# extended configuration for development environment
+version: '3.7'
+
+services:
+  mysql-server:
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+       - ./mysql/init:/docker-entrypoint-initdb.d
+    environment:
+          MYSQL_ROOT_PASSWORD: tiaspbiqe2r
+    ports:
+      - "5433:1433"
+  
+  identity-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "5100:80"
+
+  student-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - IdentityUrl=http://identity-api
+      - IdentityUrlExternal=http://${SESC_PROD_EXTERNAL_DNS_NAME_OR_IP}:5100
+    ports:
+      - "5101:80"
+
+  library-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - IdentityUrl=http://identity-api
+      - IdentityUrlExternal=http://${SESC_PROD_EXTERNAL_DNS_NAME_OR_IP}:5100
+    ports:
+      - "5102:80"
+ 
+  finance-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - IdentityUrl=http://identity-api
+      - IdentityUrlExternal=http://${SESC_PROD_EXTERNAL_DNS_NAME_OR_IP}:5100
+    ports:
+      - "5103:80"
+
+  student-portal:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+
+  # add ocelot configuration files for each gateway  
+  student-gateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - IdentityUrl=http://student-api
+    ports:
+      - "5200:80"
+      - "15200:8001"
+    volumes:
+      - ./ApiGateways/Web.Bff.StudentPortal/ocelot
+  
+  finance-gateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - IdentityUrl=http://finance-api
+    ports:
+      - "5201:80"
+      - "15201:8001"
+    volumes:
+      - ApiGateways/Web.Bff.FinancePortal/ocelot
+
+  library-gateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - IdentityUrl=http://library-api
+    ports:
+      - "5202:80"
+      - "15202:8001"
+    volumes:
+      - ApiGateways/Web.Bff.LibraryPortal/ocelot

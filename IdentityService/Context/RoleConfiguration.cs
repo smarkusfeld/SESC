@@ -16,6 +16,11 @@ namespace IdentityService.DataContext
             },
             new IdentityRole
             {
+                Name = "User",
+                NormalizedName = "USER"
+            },
+            new IdentityRole
+            {
                 Name = "Staff",
                 NormalizedName = "STAFF"
             },
@@ -38,6 +43,16 @@ namespace IdentityService.DataContext
             {
                 Name = "Faculty",
                 NormalizedName = "FACULTY"
+            },
+            new IdentityRole
+            {
+                Name = "Staff",
+                NormalizedName = "STAFF"
+            },
+            new IdentityRole
+            {
+                Name = "Guest",
+                NormalizedName = "GUEST"
             },
             new IdentityRole
             {

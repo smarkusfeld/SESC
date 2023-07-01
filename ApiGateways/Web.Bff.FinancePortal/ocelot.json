@@ -1,0 +1,8 @@
+{
+	"GlobalConfiguration": {
+		"BaseUrl": "FIX!https://localhost:5003"
+	},
+	"Routes": [
+		{}
+	]
+}

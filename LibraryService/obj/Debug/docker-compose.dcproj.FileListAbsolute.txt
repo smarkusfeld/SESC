@@ -36,11 +36,11 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\D
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\obj\Debug\docker-compose.dcproj.CopyComplete
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\LibraryService.Portal.deps.json
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\LibraryService.Portal.runtimeconfig.json
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\LibraryService.Portal.exe
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\LibraryService.Portal.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\AutoMapper.dll
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\LibraryService.Portal.pdb
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\LibraryService.Portal.xml
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\LibraryService.Api.deps.json
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\LibraryService.Api.runtimeconfig.json
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\LibraryService.Api.exe
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\LibraryService.Api.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\LibraryService.Api.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\bin\Debug\LibraryService.Api.xml

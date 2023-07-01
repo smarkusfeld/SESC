@@ -41,8 +41,7 @@
   },
 
   "JWT": {
-    "ValidAudience": "http://localhost:4200",
-    "ValidIssuer": "http://localhost:5000",
-    "Secret": "JWTAuthenticationHIGHsecuredPasswordVVVp1OH7Xzyr"
+    "ValidIssuer": "http://localhost:5100",
+    "Key": "XYnMD5UHEEtbIWeJWTrandomKeyCnp00x17OP6teza"
   }
 }

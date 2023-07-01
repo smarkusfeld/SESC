@@ -16,12 +16,12 @@ services:
      - 8080:8080
   
    
-  libraryservice.portal:
-    container_name: libraryservice-portal
-    image: ${DOCKER_REGISTRY-}libraryserviceportal
+  libraryservice.api:
+    container_name: libraryservice-api
+    image: ${DOCKER_REGISTRY-}libraryserviceapi
     build:
       context: .
-      dockerfile: src/LibraryService.Portal/Dockerfile
+      dockerfile: src/LibraryService.Api/Dockerfile
     ports:
      - 5003:80
     depends_on:

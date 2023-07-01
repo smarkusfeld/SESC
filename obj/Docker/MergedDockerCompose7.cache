@@ -1,0 +1,190 @@
+name: dockercompose2382129476959634653
+services:
+  finance-api:
+    build:
+      context: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC
+      dockerfile: FinanceService/src/FinanceService.Api/Dockerfile
+    depends_on:
+      identity-api:
+        condition: service_started
+      mysql-server:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+      IdentityUrl: http://identity-api
+      IdentityUrlExternal: http://192.168.1.1:5100
+    image: finance.api
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      published: "5103"
+      protocol: tcp
+  finance-gateway:
+    build:
+      context: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC
+      dockerfile: ApiGateways/OcelotApiGateway/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      IdentityUrl: http://finance-api
+    image: finance.gateway
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      published: "5201"
+      protocol: tcp
+    - mode: ingress
+      target: 8001
+      published: "15201"
+      protocol: tcp
+    volumes:
+    - type: volume
+      target: ApiGateways/Web.Bff.FinancePortal/ocelot
+      volume: {}
+  identity-api:
+    build:
+      context: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC
+      dockerfile: IdentityService/Dockerfile
+    depends_on:
+      mysql-server:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+    image: identity.api
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      published: "5100"
+      protocol: tcp
+  library-api:
+    build:
+      context: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC
+      dockerfile: LibraryService/src/LibraryService.Api/Dockerfile
+    depends_on:
+      finance-api:
+        condition: service_started
+      identity-api:
+        condition: service_started
+      mysql-server:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+      IdentityUrl: http://identity-api
+      IdentityUrlExternal: http://192.168.1.1:5100
+    image: library.api
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      published: "5102"
+      protocol: tcp
+  library-gateway:
+    build:
+      context: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC
+      dockerfile: ApiGateways/OcelotApiGateway/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      IdentityUrl: http://library-api
+    image: library.gateway
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      published: "5202"
+      protocol: tcp
+    - mode: ingress
+      target: 8001
+      published: "15202"
+      protocol: tcp
+    volumes:
+    - type: volume
+      target: ApiGateways/Web.Bff.LibraryPortal/ocelot
+      volume: {}
+  mysql-server:
+    command:
+    - mysqld
+    - --character-set-server=utf8mb4
+    - --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: tiaspbiqe2r
+    image: mysql
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 1433
+      published: "5433"
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\mysql\init
+      target: /docker-entrypoint-initdb.d
+      bind:
+        create_host_path: true
+  student-api:
+    build:
+      context: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC
+      dockerfile: StudentService/src/StudentService.Api/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+      IdentityUrl: http://identity-api
+      IdentityUrlExternal: http://192.168.1.1:5100
+    image: studentserviceapi
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      published: "5101"
+      protocol: tcp
+  student-gateway:
+    build:
+      context: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC
+      dockerfile: ApiGateways/OcelotApiGateway/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      IdentityUrl: http://student-api
+    image: student.gateway
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      published: "5200"
+      protocol: tcp
+    - mode: ingress
+      target: 8001
+      published: "15200"
+      protocol: tcp
+    volumes:
+    - type: volume
+      target: ApiGateways/Web.Bff.StudentPortal/ocelot
+      volume: {}
+  student-portal:
+    build:
+      context: C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC
+      dockerfile: StudentPortal/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+    image: student.portal
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      protocol: tcp
+networks:
+  default:
+    name: dockercompose2382129476959634653_default
