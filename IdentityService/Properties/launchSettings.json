@@ -35,6 +35,10 @@
       "sslPort": 44330
     }
   },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "Default": "server=db;port=3306;database=identitydb;userid=root;password=tiaspbiqe2r;"
+  },
 
   "JWT": {
     "ValidAudience": "http://localhost:4200",
