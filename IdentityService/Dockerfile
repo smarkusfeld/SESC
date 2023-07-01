@@ -6,11 +6,11 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
+WORKDIR .
 COPY ["IdentityService.csproj", "."]
 RUN dotnet restore "./IdentityService.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "."
 RUN dotnet build "IdentityService.csproj" -c Release -o /app/build
 
 FROM build AS publish

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcelotApiGateway", "OcelotApiGateway.csproj", "{C11EE0B3-AED8-4ED9-8EB7-7EDFAE17709D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D3E815DF-64FF-4EEB-BF88-47B19BDAAA77}"
+	ProjectSection(SolutionItems) = preProject
+		..\Web.Bff.LibraryPortal\ocelot.json = ..\Web.Bff.LibraryPortal\ocelot.json
+		..\Web.Bff.StudentPortal\ocelot.json = ..\Web.Bff.StudentPortal\ocelot.json
+		..\Web.Bff.FinancePortal\ocelot.json = ..\Web.Bff.FinancePortal\ocelot.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C11EE0B3-AED8-4ED9-8EB7-7EDFAE17709D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C11EE0B3-AED8-4ED9-8EB7-7EDFAE17709D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C11EE0B3-AED8-4ED9-8EB7-7EDFAE17709D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C11EE0B3-AED8-4ED9-8EB7-7EDFAE17709D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {550028D8-7ECD-4F76-B5E3-CE22ADD5B8C3}
+	EndGlobalSection
+EndGlobal

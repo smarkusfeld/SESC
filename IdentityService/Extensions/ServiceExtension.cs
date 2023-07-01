@@ -54,14 +54,11 @@ namespace IdentityService.Extensions
             {
                 o.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidIssuer = configuration["Jwt:Issuer"],
-                    ValidAudience = configuration["Jwt:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey
-                    (Encoding.UTF8.GetBytes(configuration["Jwt:Key"])),
                     ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = false,
-                    ValidateIssuerSigningKey = true
+                    ValidIssuer = configuration["Jwt:Issuer"],
+                    ValidateAudience = false,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
                 };
             });
             return services;
