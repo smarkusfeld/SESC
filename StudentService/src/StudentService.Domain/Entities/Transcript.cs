@@ -19,11 +19,15 @@ namespace StudentService.Domain.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
-
         public int StudentId { get; private set; }
+        public string CourseName { get; private set; }
+        public int? CourseId { get; private set; }
 
         //navigation properties
         public Student Student { get; private set; }
+
+        //current course for the student
+        public Course Course { get; private set; }
         public ICollection<CourseResult>? Results { get; private set; } = new List<CourseResult>();
     }
 }

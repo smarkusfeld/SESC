@@ -15,5 +15,7 @@ namespace StudentService.Application.Models.DTOs
         public string QualificationTitle { get; set; }
         public int QualificationLevel { get; set; }
         public string CourseName { get; set; }
+
+        public float TuitionFee { get; set; }
     }
 }

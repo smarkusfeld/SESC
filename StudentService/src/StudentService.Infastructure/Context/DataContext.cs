@@ -48,6 +48,8 @@ namespace StudentService.Infastructure.Context
 
             //add foreign keys
 
+
+
             modelBuilder.Entity<Offer>()
                .HasOne(y => y.Enrolment)
                .WithOne()
@@ -68,6 +70,13 @@ namespace StudentService.Infastructure.Context
                 .HasOne(y => y.Transcript)
                 .WithOne(x => x.Student)
                 .HasForeignKey<Transcript>(x => x.StudentId);
+
+            //no reverse navigation
+            modelBuilder.Entity<Transcript>()
+                .HasOne(y => y.Course)
+                .WithMany()
+                .HasForeignKey(x => x.CourseId)
+                .OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<Transcript>()
                 .HasMany(y => y.Results)

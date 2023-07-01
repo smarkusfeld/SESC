@@ -22,7 +22,8 @@ namespace StudentService.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
 
-        public string CourseTitle { get; set; }
+        public string CourseName { get; set; }
+        public string CourseOfferingName { get; set; }
         public ProgressDecision ProgressDecision { get; set; }
         public DateTime ProgressDate { get; set; }
         public string ProgressNotes { get; set; } 

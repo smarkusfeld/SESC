@@ -13,5 +13,13 @@ namespace StudentService.Application.Interfaces.Repositories.TypeRepositories
     /// </summary>
     public interface IStudentRepository : IGenericRepository<Student>
     {
+
+        /// <summary>
+        /// Get Student Transcript and the course offering results for the student
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        Task<Transcript> GetTranscriptAsync(string studentId);
+
     }
 }

@@ -1,4 +1,5 @@
 using StudentService.Domain.Entities;
+using System.Threading.Tasks;
 
 
 namespace StudentService.Application.Interfaces.Repositories.TypeRepositories
@@ -9,6 +10,7 @@ namespace StudentService.Application.Interfaces.Repositories.TypeRepositories
     /// </summary>    
     public interface ITranscriptRepository : IGenericRepository<Transcript>
     {
+       
     }
 
 }
