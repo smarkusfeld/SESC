@@ -1,21 +1,29 @@
-# docker-compose.override.yml 
+## docker-compose.override.yml 
 # extended configuration for development environment
 version: '3.7'
 
 services:
+
+  # for development and testing all databases are in the same docker container to keep memory requirements low
+  # for development and testing  all databases have the same root user and password
   mysql-server:
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    # script to create seperate databases 
     volumes:
        - ./mysql/init:/docker-entrypoint-initdb.d
     environment:
-          MYSQL_ROOT_PASSWORD: tiaspbiqe2r
+          MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?database root password not set}
+          
+    # map host port to container port
+    # same port for development and testing because all service databases in one container 
     ports:
-      - "5433:1433"
+      - "3306:3306"
   
   identity-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
+    
     ports:
       - "5100:80"
 
@@ -24,7 +32,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
       - IdentityUrl=http://identity-api
-      - IdentityUrlExternal=http://${SESC_PROD_EXTERNAL_DNS_NAME_OR_IP}:5100
+      - IdentityUrlExternal=http://${EXTERNAL_DNS_NAME_OR_IP}:5100
     ports:
       - "5101:80"
 
@@ -33,7 +41,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
       - IdentityUrl=http://identity-api
-      - IdentityUrlExternal=http://${SESC_PROD_EXTERNAL_DNS_NAME_OR_IP}:5100
+      - IdentityUrlExternal=http://${EXTERNAL_DNS_NAME_OR_IP}:5100
     ports:
       - "5102:80"
  
@@ -42,7 +50,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
       - IdentityUrl=http://identity-api
-      - IdentityUrlExternal=http://${SESC_PROD_EXTERNAL_DNS_NAME_OR_IP}:5100
+      - IdentityUrlExternal=http://${EXTERNAL_DNS_NAME_OR_IP}:5100
     ports:
       - "5103:80"
 
@@ -54,13 +62,15 @@ services:
       - "80"
 
   # add ocelot configuration files for each gateway  
+  # API Gateway redirects and access through the internal port (80)
+  # External Ports(5200-5202) kept for debugging
   student-gateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - IdentityUrl=http://student-api
     ports:
+    
       - "5200:80"
-      - "15200:8001"
     volumes:
       - ./ApiGateways/Web.Bff.StudentPortal/ocelot
   
@@ -70,7 +80,6 @@ services:
       - IdentityUrl=http://finance-api
     ports:
       - "5201:80"
-      - "15201:8001"
     volumes:
       - ApiGateways/Web.Bff.FinancePortal/ocelot
 
@@ -80,6 +89,5 @@ services:
       - IdentityUrl=http://library-api
     ports:
       - "5202:80"
-      - "15202:8001"
     volumes:
       - ApiGateways/Web.Bff.LibraryPortal/ocelot
