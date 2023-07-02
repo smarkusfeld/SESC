@@ -13,12 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDIServices(builder.Configuration);
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
-
-//builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 builder.Services.AddControllers();
-
-builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
@@ -26,7 +23,10 @@ builder.Services.AddSwaggerGen(options =>
         Title = "FinanceMicroservice",
         Version = "v1",
     });
-   
+    // allow xml comments to be seen on swagger UI
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilename);
+    options.IncludeXmlComments(xmlPath);
 });
 
 
@@ -53,7 +53,7 @@ using (var scope = app.Services.CreateScope())
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
-    options.SwaggerEndpoint("/swagger/v1/swagger.json", "FinanceMicroservice v1");
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Finance HTTP API v1");
     options.RoutePrefix = string.Empty;
 });
 

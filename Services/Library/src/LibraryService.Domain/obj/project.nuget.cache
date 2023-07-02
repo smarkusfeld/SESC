@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FzXvk/FtUmGGtWAKsIt59DmRrF8oi/K2mqcfUU1fJhsGzUOl2WPxbdujwCbMshDRewh6EKpImamk+i9l5Qjs9A==",
+  "dgSpecHash": "WQvRtdx0Ophkl9SVS6z9hdJf86UFqFjbzPhYdNme9LBLuxuvVyXcLxwc3qA0tZ74sJYHcr4yn9C39fs5OUge2Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\LibraryService\\src\\LibraryService.Domain\\LibraryService.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

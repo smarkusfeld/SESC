@@ -54,6 +54,7 @@ namespace FinanceService.Domain.Entities
     public enum InvoiceType
     {
         Tutition,
-        Library
+        Library,
+        Fee
     }
 }

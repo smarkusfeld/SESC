@@ -24,9 +24,29 @@ namespace FinanceService.Application.Interfaces
         /// <param name="invoiceDTO"></param>
         /// <returns>
         /// A task that represents the asynchronous operation.
+        /// The task result contains the invoice reference
+        /// </returns>
+        Task<string> CreateInvoice(NewInvoiceDTO invoiceDTO);
+
+        /// <summary>
+        /// This method creates a new invoice for a tuttion fee
+        /// </summary>
+        /// <param name="invoiceDTO"></param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
         /// The task result contains a boolean value
         /// </returns>
-        Task<bool> CreateInvoice(InvoiceDTO invoiceDTO);
+        Task<string> CreateTutitionInvoice(NewInvoiceDTO invoiceDTO);
+
+        /// <summary>
+        /// This method creates a new invoice for a libary fine
+        /// </summary>
+        /// <param name="invoiceDTO"></param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// The task result contains a boolean value
+        /// </returns>
+        Task<string> CreateLibraryInvoice(NewInvoiceDTO invoiceDTO);
         /// <summary>
         /// This method returns all invoices  
         /// </summary>
@@ -115,7 +135,7 @@ namespace FinanceService.Application.Interfaces
         /// </returns>
     
 
-        Task<bool> CancelInvoice(InvoiceDTO invoiceDTO);
+        Task<bool> CancelInvoice(string reference);
         Task<bool> DeleteInvoice(int invoiceID);
 
         Task<bool>ReferenceCheck(string reference);

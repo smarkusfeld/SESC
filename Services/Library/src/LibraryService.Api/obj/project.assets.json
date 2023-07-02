@@ -5652,11 +5652,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\LibraryService\\src\\LibraryService.Api\\LibraryService.Api.csproj",
+      "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Api\\LibraryService.Api.csproj",
       "projectName": "LibraryService.Api",
-      "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\LibraryService\\src\\LibraryService.Api\\LibraryService.Api.csproj",
+      "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Api\\LibraryService.Api.csproj",
       "packagesPath": "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\LibraryService\\src\\LibraryService.Api\\obj\\",
+      "outputPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5678,11 +5678,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\LibraryService\\src\\LibraryService.Application\\LibraryService.Application.csproj": {
-              "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\LibraryService\\src\\LibraryService.Application\\LibraryService.Application.csproj"
+            "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj": {
+              "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj"
             },
-            "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\LibraryService\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj": {
-              "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\LibraryService\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj"
+            "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj": {
+              "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj"
             }
           }
         }

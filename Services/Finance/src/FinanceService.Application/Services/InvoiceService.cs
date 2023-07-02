@@ -25,26 +25,85 @@ namespace FinanceService.Application.Services
         }
 
 
-       
 
-        public async Task<bool> CreateInvoice(InvoiceDTO dto)
-        {            
-            //update model 
-            dto.AccountID = await GetAccountID(dto.StudentID);
-            dto.Balance = dto.Total;
-            dto.Status = InvoiceStatus.Outstanding;
-            if(dto.ID != 0)
+
+        public async Task<string> CreateInvoice(NewInvoiceDTO invoiceDTO)
+        {
+            var invoice = await ProcessNewInvoice(invoiceDTO);
+            if (invoice != null)
             {
-                var invoice = _mapper.Map<Invoice>(dto);
-                var add = await _unitOfWork.Invoices.AddAsync(invoice);
-                if (add != null)
+                var result = _unitOfWork.Save();
+                if (result > 0)
                 {
-                    var result = _unitOfWork.Save();
-                    return result > 0;
+                    return invoice.Reference;
                 }
-            }    
-            return false;
+                return null;
+            }
+            return null;
         }
+        public async Task<string> CreateLibraryInvoice(NewInvoiceDTO invoiceDTO)
+        {
+            var invoice = await ProcessNewInvoice(invoiceDTO, InvoiceType.Library);
+            if (invoice != null)
+            {
+
+                var result = _unitOfWork.Save();
+                if (result > 0)
+                {
+                    return invoice.Reference;
+                }
+                return null;
+            }
+            return null;
+        }
+        public async Task<string> CreateTutitionInvoice(NewInvoiceDTO invoiceDTO)
+        {
+            var invoice = await ProcessNewInvoice(invoiceDTO, InvoiceType.Tutition);
+            if (invoice != null)
+            {
+
+                var result = _unitOfWork.Save();
+                if (result > 0)
+                {
+                    return invoice.Reference;
+                }
+                return null;
+            }
+            return null;
+        }
+        private string CreateReference(NewInvoiceDTO invoiceDTO, string type)
+        {
+            string dateString = DateTime.Now.ToString("yyyyMMddHmmss");
+            string sourceRef = type + "-" + invoiceDTO.Reference;
+            string[] array = { sourceRef, invoiceDTO.StudentId, dateString };
+            return string.Join("-", array);
+
+        }
+        private async Task<Invoice> ProcessNewInvoice(NewInvoiceDTO invoiceDTO, InvoiceType invoiceType = InvoiceType.Fee)
+        {
+            var account = _unitOfWork.Accounts.GetAllWhereAsync(x => x.StudentID == invoiceDTO.StudentId);
+            var type = Enum.GetName(invoiceType) ?? "invoice";
+            if (account != null)
+            {
+                string reference = CreateReference(invoiceDTO, type);
+                var invoice = new InvoiceDTO
+                {
+                    AccountID = account.Id,
+                    Reference = reference,
+                    DueDate = invoiceDTO.DueDate,
+                    InvoiceDate = DateTime.Now,
+                    Total = invoiceDTO.Total,
+                    Type = invoiceType,
+                    Status = InvoiceStatus.Outstanding,
+                    Balance = 0,
+                };
+                var add = _mapper.Map<Invoice>(invoice);
+                var result = await _unitOfWork.Invoices.AddAsync(add);
+                return result;
+            }
+            return null;
+        }
+
 
         public async Task<bool> DeleteInvoice(int invoiceID)
         {
@@ -184,17 +243,20 @@ namespace FinanceService.Application.Services
             return dto;
         }
 
-        public async Task<bool> CancelInvoice(InvoiceDTO dto)
+        public async Task<bool> CancelInvoice(string reference)
         {
-            var check = await _unitOfWork.Invoices.GetAsync(dto.ID);
-            if (check != null)
+            var invoice = await _unitOfWork.Invoices.GetByAsync(x => x.Reference == reference);
+            if (invoice != null)
             {
-                dto.Status = InvoiceStatus.Cancelled;
-                var invoice = _mapper.Map<Invoice>(dto);
+                invoice.Status = InvoiceStatus.Cancelled;
                 _unitOfWork.Invoices.Update(invoice);
                 var result = _unitOfWork.Save();
-                return result > 0 ? true : false;
-            }   
+
+                if (result > 0)
+                    return true;
+                else
+                    return false;
+            }
             return false;
         }
         public async Task<bool> ReferenceCheck(string reference)
