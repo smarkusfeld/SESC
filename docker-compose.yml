@@ -1,51 +1,62 @@
-#docker-compose.yml (Base)
+## docker-compose.yml (Base)
+# contains static configuration settings
+
 version: '3.7'
 
+## containers
 services:
 
+  # database server 
+  # each service should have a seperate database on the server
   mysql-server:
     image: mysql
   
+  # identity api for authorization and user management
   identity-api:
     image: ${DOCKER_REGISTRY-}identity.api
     build:
         context: .
-        dockerfile: IdentityService/Dockerfile
+        dockerfile: Service/Identity/Dockerfile
     depends_on:
         - mysql-server
-
+        
+  # finance api 
   finance-api:
     image: ${DOCKER_REGISTRY-}finance.api
     build:
         context: .
-        dockerfile: FinanceService/src/FinanceService.Api/Dockerfile
+        dockerfile: Service/Finance/src/FinanceService.Api/Dockerfile
     depends_on:
         - mysql-server
         - identity-api 
- 
+        
+  # student api for registrar services
   student-api:
     image: ${DOCKER_REGISTRY-}studentserviceapi
     build:
       context: .
-      dockerfile: StudentService/src/StudentService.Api/Dockerfile
-
+      dockerfile: Service/Student/src/StudentService.Api/Dockerfile
+  
+  # library api 
   library-api:
     image: ${DOCKER_REGISTRY-}library.api
     build:
         context: .
-        dockerfile: LibraryService/src/LibraryService.Api/Dockerfile
+        dockerfile: Service/Library/src/LibraryService.Api/Dockerfile
     depends_on:
         - mysql-server
         - identity-api 
         - finance-api
-
+  
+  # student port for registrar services
   student-portal:
     image: ${DOCKER_REGISTRY-}student.portal
     build:
       context: .
       dockerfile: StudentPortal/Dockerfile
 
-  # create seperate api-containers using the base ocelot getway image 
+  # create gateways
+  # all gateways use the same base image 
   student-gateway:
     image: ${DOCKER_REGISTRY-}student.gateway
     build:

@@ -1,5 +1,0 @@
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Shared\obj\Debug\net6.0\LibraryService.Shared.csproj.AssemblyReference.cache
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Shared\obj\Debug\net6.0\LibraryService.Shared.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Shared\obj\Debug\net6.0\LibraryService.Shared.AssemblyInfoInputs.cache
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Shared\obj\Debug\net6.0\LibraryService.Shared.AssemblyInfo.cs
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Shared\obj\Debug\net6.0\LibraryService.Shared.csproj.CoreCompileInputs.cache
