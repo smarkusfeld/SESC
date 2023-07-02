@@ -10,12 +10,7 @@ namespace LibraryService.Application.Interfaces.Services
 {
     public interface ICatalogueService
     {
-        /// <summary>
-        /// Get book details using the open library api
-        /// </summary>
-        /// <param name="isbn"></param>
-        /// <returns></returns>
-        //Task<NewBookRecordDTO> GetOpenLibraryBookDetail(string isbn);
+        
         /// <summary>
         /// Method to view all books in the library catalogue
         /// </summary>
@@ -35,11 +30,6 @@ namespace LibraryService.Application.Interfaces.Services
         /// Method to view all subject in the library catalogue
         /// </summary>
         Task<IEnumerable<SubjectDTO>> GetAllSubjects();
-
-        /// <summary>
-        /// Method to add new books to the database using the barcode scanner
-        /// </summary>
-        Task<BookDTO> AddBookByISBN(string isbn);
 
         /// <summary>
         /// Method to get a book using the barcode scanner
@@ -78,12 +68,7 @@ namespace LibraryService.Application.Interfaces.Services
         /// <returns></returns>
         Task<PublisherDTO> UpdatePublisher(PublisherDTO dto);
 
-        /// <summary>
-        /// Method to add book copy to exisiting book record
-        /// </summary>
-        /// <param name="bookRecord"></param>
-        /// <returns></returns>
-        Task<BookDTO> AddBookCopy(Book bookRecord);
+      
 
 
     }

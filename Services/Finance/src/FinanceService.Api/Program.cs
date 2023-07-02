@@ -22,6 +22,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "FinanceMicroservice",
         Version = "v1",
+        Description = "Finance Service",
     });
     // allow xml comments to be seen on swagger UI
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

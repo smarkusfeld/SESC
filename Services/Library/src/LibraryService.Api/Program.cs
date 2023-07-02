@@ -4,7 +4,9 @@ using LibraryService.Application.Services;
 using LibraryService.Infastructure.Context;
 using LibraryService.Infastructure.Extensions;
 using LibraryService.Portal.Middleware;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
+using System.Net.Http;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,23 +17,17 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<ILoanService, LoanService>();
 builder.Services.AddScoped<ICatalogueService, CatalogueService>();
 
-// add openlibrary service typed client class
-
-
 //register typed clients
-builder.Services.AddHttpClient<IISBNService, ISBNService>(client =>
+builder.Services.AddHttpClient<IBookService, BookService>(client =>
     {
-    //client.BaseAddress = new UriConfiguration["BaseURL"]);
+        client.BaseAddress = new Uri("http://openlibrary.org/api/");
+
+        // using Microsoft.Net.Http.Headers;
+        client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
     });
 
 
-builder.Services.AddHttpClient<IFeeService, FeeService>();
-
-
-
 builder.Services.AddControllers();
-
-builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
@@ -41,7 +37,10 @@ builder.Services.AddSwaggerGen(options =>
         Description = "Library Service",
     });
     // allow xml comments to be seen on swagger UI
-    
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilename);
+    options.IncludeXmlComments(xmlPath);
+
 });
 
 var app = builder.Build();
@@ -70,7 +69,7 @@ using (var scope = app.Services.CreateScope())
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
-    options.SwaggerEndpoint("/swagger/v1/swagger.json", "LibraryMicroservice v1");
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Library HTTP API v1");
     options.RoutePrefix = string.Empty;
 });
 

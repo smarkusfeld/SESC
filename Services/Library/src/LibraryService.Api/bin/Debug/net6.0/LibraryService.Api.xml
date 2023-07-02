@@ -58,12 +58,12 @@
             A 400 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.BadRequestResult"/> if the account could not be updated<br/> 
             </returns>     
         </member>
-        <member name="T:LibraryService.Api.Controllers.BookController">
+        <member name="T:LibraryService.Api.Controllers.BooksController">
             <summary>
             Controller for all book logic 
             </summary>
         </member>
-        <member name="M:LibraryService.Api.Controllers.BookController.#ctor(LibraryService.Application.Interfaces.Services.ICatalogueService,Microsoft.Extensions.Logging.ILogger{LibraryService.Api.Controllers.BookController})">
+        <member name="M:LibraryService.Api.Controllers.BooksController.#ctor(LibraryService.Application.Interfaces.Services.IBookService,Microsoft.Extensions.Logging.ILogger{LibraryService.Api.Controllers.BooksController})">
             <summary>
             Book Controller Constructor. 
             Defines the required logger and service interfaces 
@@ -71,7 +71,29 @@
             <param name="service"></param>
             <param name="logger"></param>
         </member>
-        <member name="M:LibraryService.Api.Controllers.BookController.GetAll">
+        <member name="M:LibraryService.Api.Controllers.BooksController.AddBook(System.String)">
+            <summary>
+            Add Book to Library. If book already exists, a new copy is added
+            </summary>
+            <returns> 
+            A 201 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.CreatedAtActionResult"/> with the new or updated book record<br/> 
+            A 400 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.BadRequestResult"/> if the book record was not created<br/> 
+            </returns>        
+        </member>
+        <member name="T:LibraryService.Api.Controllers.CatalogueController">
+            <summary>
+            Controller for all book logic 
+            </summary>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.CatalogueController.#ctor(LibraryService.Application.Interfaces.Services.ICatalogueService,Microsoft.Extensions.Logging.ILogger{LibraryService.Api.Controllers.CatalogueController})">
+            <summary>
+            Book Controller Constructor. 
+            Defines the required logger and service interfaces 
+            </summary>
+            <param name="service"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:LibraryService.Api.Controllers.CatalogueController.GetAllBooks">
             <summary> 
             Get All Books from library catalogue
             </summary>
@@ -82,21 +104,56 @@
             </returns>
             
         </member>
-        <member name="M:LibraryService.Api.Controllers.BookController.AddBook(System.String)">
-            <summary>
-            Add Book to Library. If book already exists, a new copy is added
+        <member name="M:LibraryService.Api.Controllers.CatalogueController.GetBookByISBN(System.String)">
+            <summary> 
+            Get All Books from library catalogue
             </summary>
             <returns> 
-            A 201 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.CreatedAtActionResult"/> with the new or updated book record<br/> 
-            A 400 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.BadRequestResult"/> if the book record was not created<br/> 
-            </returns>        
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with book record <br/> 
+            A 204 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NoContentResult"/> if no record exists in the database <br/> 
+            A 404 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/> if the catalogue service returns a null task
+            </returns>
+            
         </member>
-        <member name="T:LibraryService.Api.Controllers.LoanController">
+        <member name="M:LibraryService.Api.Controllers.CatalogueController.GetAllAuthors">
+            <summary> 
+            Get All Authors from Library Catalogue
+            </summary>
+            <returns> 
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with all records from the database <br/> 
+            A 204 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NoContentResult"/> if no records exists in the database <br/> 
+            A 404 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/> if the catalogue service returns a null task
+            </returns>
+            
+        </member>
+        <member name="M:LibraryService.Api.Controllers.CatalogueController.GetAllPublishers">
+            <summary> 
+            Get All Publishers from Library Catalogue
+            </summary>
+            <returns> 
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with all records from the database <br/> 
+            A 204 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NoContentResult"/> if no records exists in the database <br/> 
+            A 404 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/> if the catalogue service returns a null task
+            </returns>
+            
+        </member>
+        <member name="M:LibraryService.Api.Controllers.CatalogueController.GetAllSubjects">
+            <summary> 
+            Get All Subjects from Library Catalogue
+            </summary>
+            <returns> 
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with all records from the database <br/> 
+            A 204 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NoContentResult"/> if no records exists in the database <br/> 
+            A 404 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/> if the catalogue service returns a null task
+            </returns>
+            
+        </member>
+        <member name="T:LibraryService.Api.Controllers.LoansController">
             <summary>
             Controller for all loan logic 
             </summary>
         </member>
-        <member name="M:LibraryService.Api.Controllers.LoanController.#ctor(Microsoft.Extensions.Logging.ILogger{LibraryService.Api.Controllers.LoanController},LibraryService.Application.Services.LoanService)">
+        <member name="M:LibraryService.Api.Controllers.LoansController.#ctor(Microsoft.Extensions.Logging.ILogger{LibraryService.Api.Controllers.LoansController},LibraryService.Application.Services.LoanService)">
             <summary>
             Loan Controller Constructor. 
             Defines the required logger and service interfaces 
@@ -104,7 +161,7 @@
             <param name="service"></param>
             <param name="logger"></param>
         </member>
-        <member name="M:LibraryService.Api.Controllers.LoanController.NewLoan(LibraryService.Application.Models.AccountDTO,System.String)">
+        <member name="M:LibraryService.Api.Controllers.LoansController.NewLoan(LibraryService.Application.Models.AccountDTO,System.String)">
             <summary>
             Create new book loan using isbn
             </summary>
@@ -113,7 +170,7 @@
             A 400 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.BadRequestResult"/> if the book record was not created<br/> 
             </returns>  
         </member>
-        <member name="M:LibraryService.Api.Controllers.LoanController.Return(LibraryService.Application.Models.AccountDTO,System.String)">
+        <member name="M:LibraryService.Api.Controllers.LoansController.Return(LibraryService.Application.Models.AccountDTO,System.String)">
             <summary>
             Return book using isbn
             </summary>
@@ -122,7 +179,7 @@
             A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with the completed loan record<br/> 
             A 400 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.BadRequestResult"/> if the loan was not reutned <br/> 
         </member>
-        <member name="M:LibraryService.Api.Controllers.LoanController.RenewLoan(LibraryService.Application.Models.AccountDTO,System.String)">
+        <member name="M:LibraryService.Api.Controllers.LoansController.RenewLoan(LibraryService.Application.Models.AccountDTO,System.String)">
             <summary>
             
             </summary>
@@ -131,7 +188,7 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:LibraryService.Api.Controllers.LoanController.GetAllActiveLoans">
+        <member name="M:LibraryService.Api.Controllers.LoansController.GetAllActiveLoans">
             <summary>
              Display all books currently on loan
             </summary>
@@ -141,7 +198,7 @@
             A 404 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/> if the loan service returns a null task
             </returns>
         </member>
-        <member name="M:LibraryService.Api.Controllers.LoanController.GetAllOverdueLoans">
+        <member name="M:LibraryService.Api.Controllers.LoansController.GetAllOverdueLoans">
             <summary>
             Display all overdue book loans
             </summary>
