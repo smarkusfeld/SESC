@@ -10,3 +10,15 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\L
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Domain\obj\Debug\net6.0\refint\LibraryService.Domain.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\LibraryService\src\LibraryService.Domain\obj\Debug\net6.0\ref\LibraryService.Domain.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src\LibraryService.Domain\bin\Debug\net6.0\LibraryService.Domain.deps.json
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src\LibraryService.Domain\bin\Debug\net6.0\LibraryService.Domain.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src\LibraryService.Domain\bin\Debug\net6.0\LibraryService.Domain.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.csproj.AssemblyReference.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.AssemblyInfoInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.AssemblyInfo.cs
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\refint\LibraryService.Domain.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\ref\LibraryService.Domain.dll

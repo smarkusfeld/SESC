@@ -94,7 +94,7 @@ namespace LibraryService.Api.Controllers
         /// A 200 status code produced by the <seealso cref="OkResult"/> if the account was updated successfully<br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if the account could not be updated<br/> 
         /// </returns>     
-        [HttpPut("update/pin")]
+        [HttpPut("reset")]
         public async Task<IActionResult> Update([FromBody] UpdatePinDTO accountPinDTO)
         {
             _logger.LogInformation("Updating Account Pin", accountPinDTO.AccountId);

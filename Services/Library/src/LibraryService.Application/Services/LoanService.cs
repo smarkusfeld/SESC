@@ -12,13 +12,11 @@ namespace LibraryService.Application.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly IFeeService _feeService;
 
-        public LoanService(IUnitOfWork unitOfWork, IMapper mapper, IFeeService feeService)
+        public LoanService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _feeService = feeService;
         }
 
         public async Task<LoanDTO> CreateLoan(string id, string isbn, int pin, int duration = 14)
@@ -26,14 +24,13 @@ namespace LibraryService.Application.Services
             //check student account and pin
             var account = await ValidatePin(id, pin);
             //get book record
-            var bookRecord = await _unitOfWork.Books.GetAsync(isbn);
-            if (bookRecord == null) { throw new KeyNotFoundException($"No match for {isbn}"); }
+            var bookRecord = await _unitOfWork.Books.GetAsync(isbn) ?? throw new KeyNotFoundException($"No match for {isbn}");
 
             //checkout book
             var bookCopyId = await CheckOutBook(bookRecord);
             //create new loan for default loan period 
             DateTime dueDate = DateTime.Now.AddDays(duration);
-            Loan loan = new Loan(dueDate, isbn, bookRecord.Title, account.AccountId, bookCopyId);
+            Loan loan = new(dueDate, isbn, bookRecord.Title, account.AccountId, bookCopyId);
 
             //add loan
             var reponse = await _unitOfWork.Loans.AddAsync(loan);
@@ -91,8 +88,7 @@ namespace LibraryService.Application.Services
         private async Task<int> ReturnBook(string isbn)
         {
             var bookRecord = await _unitOfWork.Books.GetAsync(isbn) ?? throw new KeyNotFoundException($"No match for {isbn}");
-            var copy = bookRecord.BookCopies.First(x => x.Status == BookCopyStatus.OnLoan);
-            if (copy == null) { throw new NotFoundException($"No Matching Loans for {isbn}"); }
+            var copy = bookRecord.BookCopies.First(x => x.Status == BookCopyStatus.OnLoan) ?? throw new NotFoundException($"No Matching Loans for {isbn}");
             bookRecord.ReturnBookCopy(copy.Id);
             var checkIn = await _unitOfWork.Books.UpdateCopiesAsync(bookRecord);
             if (checkIn)
@@ -126,7 +122,7 @@ namespace LibraryService.Application.Services
 
         private async Task<AccountDTO> ValidatePin(string id, int pin)
         {
-            List<string> errors = new List<string>();//check if account exists
+            List<string> errors = new();//check if account exists
             var account = await _unitOfWork.Accounts.GetAsync(id);
 
             if (account != null)
