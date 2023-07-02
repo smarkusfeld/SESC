@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mMPzW0kTv5/IWfG0FiAKEKEpoVFQ/pWIv/3LP5qMwGSFAWmXvSF634GmBjCNnVnVylamQAshI+GSvzihDGNCFw==",
+  "dgSpecHash": "VAk4hormfeswwIbE1X1nEOaIwQbbEGzoi2IwBynSEzRaG1oYIs+Z2vZv2IEkVaPY5abRvxp3x0MbrjESQ0SThg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\LibraryService\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj",
+  "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JBM6oxjufhNYh62Etzc3Q++zB9IWDqVoVyeyETvLBsmIjp16tcOd6ZYkaA1LS3eiEcnpAUsbt2OMYUyfHei67w==",
+  "dgSpecHash": "pbMCDs2MEsRhVv0vY3tmII67Zb7J1uag7YdYaraJ/GeLlf9ywN6+FQIyrCYaxiF4eei4Jsl6RF257OgwJKazMw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinanceService\\src\\FinanceService.Domain\\FinanceService.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Finance\\src\\FinanceService.Domain\\FinanceService.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -48,7 +48,5 @@ namespace FinanceService.Application.Interfaces
         /// The task result contains a boolean value
         /// </returns>
         Task<IEnumerable<PaymentDTO>> PaymentsToBeProcessed();
-        Task<PaymentDTO> FindPaymentByReference(string reference);
-        Task<int> GetInvoiceID(string reference);
     }
 }
