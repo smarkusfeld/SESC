@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using IdentityService.Models;
 
 namespace IdentityService.Extensions
 {
@@ -21,6 +22,8 @@ namespace IdentityService.Extensions
         {
             var connection = configuration.GetConnectionString("Default");
             services.AddDbContext<IdentityDataContext>(options => options.UseSqlServer(configuration.GetConnectionString("Default")));
+            //inmemory database for testing
+            //services.AddDbContext<IdentityDataContext>(options => options.UseInMemoryDatabase(databaseName: "registrarDb"));
             return services;
         }
 
@@ -31,9 +34,31 @@ namespace IdentityService.Extensions
         /// <returns></returns>
         public static IServiceCollection AddIdentityService(this IServiceCollection services)
         {
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityDataContext>()
                 .AddDefaultTokenProviders();
+
+            
+            services.Configure<IdentityOptions>(options =>
+            {
+                //add password settings
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+
+                //add lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings.
+                options.User.AllowedUserNameCharacters =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = true;
+            });
             return services;
         }
 

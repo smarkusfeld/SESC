@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace StudentService.Application.Interfaces.Repositories.TypeRepositories
 {
     /// <summary>
-    /// Interface for Enrolment Repository
+    /// Interface for Course Enrolment Repository
     /// <br></br> Implements the <see cref="IGenericRepository{T}"/>
     /// </summary>    
-    public interface IEnrolmentRepository : IGenericRepository<Enrolment>
+    public interface ICourseEnrolmentRepository : IGenericRepository<Enrolment>
     {
     }
     

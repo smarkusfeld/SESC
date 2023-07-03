@@ -1,5 +1,6 @@
 ﻿using StudentService.Application.Interfaces.Repositories;
 using StudentService.Application.Interfaces.Repositories.TypeRepositories;
+using StudentService.Domain.Entities;
 using StudentService.Infastructure.Context;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,20 @@ namespace StudentService.Infastructure.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DataContext _dbContext;
+        private ICourseRepository _courses;
+        private ICourseOfferingRepository _coursesOffering;
+        private IStudentRepository _students;
+        private ICourseResultRepository _results;
+        private IDegreeRepository _degree;
+        private ICourseEnrolmentRepository _courseEnrolments;
+        private IQualificationRepository _qualifications;
+        private IRequirementRepository _requirements;
+        private ITranscriptRepository _transcripts;
+        private ISchoolRepository _schools;
 
         private bool disposed;
         public ICourseRepository Courses => throw new NotImplementedException();
+        //=> _courses ?? new CourseRepository(_dbContext);
 
         public ICourseOfferingRepository CourseOfferings => throw new NotImplementedException();
 
@@ -22,9 +34,9 @@ namespace StudentService.Infastructure.Repositories
 
         public IDegreeRepository Degrees => throw new NotImplementedException();
 
-        public IEnrolmentRepository Enrolments => throw new NotImplementedException();
+        public ICourseEnrolmentRepository CourseEnrolments => throw new NotImplementedException();
 
-        public IOfferRepository OfferResults => throw new NotImplementedException();
+        public IEnrolmentRepository Enrolments => throw new NotImplementedException();
 
         public IQualificationRepository Qualifications => throw new NotImplementedException();
 
@@ -39,7 +51,7 @@ namespace StudentService.Infastructure.Repositories
         public UnitOfWork(DataContext dbContext)
         {
             _dbContext = dbContext;
-
+            _students = Students;
         }
         /// <summary>
         /// Completes the unit of work, saving all repository changes to the underlying data-store.

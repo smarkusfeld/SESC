@@ -13,7 +13,7 @@ namespace StudentService.Application.Models.DTOs
         public DateTime EnrolDate { get; set; }
         public int CourseOfferingId { get; set; }
         public int StudentId { get; set; }
-
+        public int Tutition { get; set; }
         public string StudentName { get; set; }
 
         public string CourseOfferingName { get; set; }

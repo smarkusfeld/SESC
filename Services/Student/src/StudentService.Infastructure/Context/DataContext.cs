@@ -9,12 +9,16 @@ namespace StudentService.Infastructure.Context
     /// </summary>
     public class DataContext : DbContext
     {
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        {
+
+        }
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseOffering> CourseOfferings { get; set; }
         public DbSet<CourseResult> CourseResults { get; set; }
         public DbSet<Degree> Degrees { get; set; }
         public DbSet<Enrolment> Enrolments { get; set; }
-        public DbSet<Offer> Offers { get; set; }
+        public DbSet<CourseRegistration> CourseRegistrations { get; set; }
         public DbSet<Qualification> Qualifications { get; set; }
         public DbSet<Qualification> QualificationLevels { get; set; }
         public DbSet<Student> Students { get; set; }
@@ -33,6 +37,10 @@ namespace StudentService.Infastructure.Context
             //apply all types in the assembly that implment IEntityTypeConfiguration 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+            //configure alternate key for course entity
+            modelBuilder.Entity<Course>()
+                 .HasAlternateKey(x=> new { x.CourseCode, x.IsActive });
+
             //configure owned types
             modelBuilder.Entity<Student>().OwnsOne(
                 x=> x.ContactDetail, cd =>
@@ -48,21 +56,18 @@ namespace StudentService.Infastructure.Context
 
             //add foreign keys
 
-
-
-            modelBuilder.Entity<Offer>()
-               .HasOne(y => y.Enrolment)
-               .WithOne()
-               .HasForeignKey<Offer>(x => x.EnrolmentId)
-               .IsRequired(false);
-
             modelBuilder.Entity<Course>()
-                .HasMany(y => y.Offers)
+                .HasMany(y => y.Enrolments)
                 .WithOne(x => x.Course)
                 .HasForeignKey(x => x.CourseId);
 
             modelBuilder.Entity<Student>()
                 .HasMany(y => y.Enrolments)
+                .WithOne(x => x.Student)
+                .HasForeignKey(x => x.StudentId);
+
+            modelBuilder.Entity<Student>()
+                .HasMany(y => y.Registrations)
                 .WithOne(x => x.Student)
                 .HasForeignKey(x => x.StudentId);
 

@@ -29,17 +29,7 @@ namespace LibraryService.Infastructure
             
            
         }
-        public IAccountRepository Accounts
-        {
-            get
-            {
-                if (_accounts == null)
-                {
-                    _accounts = new AccountRepository(_dbContext);
-                }
-                return _accounts;
-            }
-        }
+        public IAccountRepository Accounts => _accounts ??= new AccountRepository(_dbContext);
         public IBookRepository Books
         {
             get

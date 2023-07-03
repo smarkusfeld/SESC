@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StudentService.Api</name>
+    </assembly>
+    <members>
+        <member name="T:StudentService.Api.Controllers.RegistrarController">
+            <summary>
+            Controller for studen microservice admin
+            Manage students, courses, and grades
+            Students use this controller for copies of transcripts and graduation eligibility
+            </summary>
+        </member>
+        <member name="T:StudentService.Service.Middleware.ErrorHandlerMiddleware">
+            <summary>
+            https://jasonwatmore.com/post/2022/01/17/net-6-global-error-handler-tutorial-with-example 
+            </summary>
+        </member>
+    </members>
+</doc>

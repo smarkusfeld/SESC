@@ -20,7 +20,7 @@ namespace StudentService.Application.Interfaces.Repositories
 
         IDegreeRepository Degrees { get; }
         IEnrolmentRepository Enrolments { get; }
-        IOfferRepository OfferResults { get; }
+        ICourseEnrolmentRepository CourseEnrolments { get; }
         IQualificationRepository Qualifications { get; }
         IRequirementRepository Requirements { get; }
         ITranscriptRepository Transcripts { get; }

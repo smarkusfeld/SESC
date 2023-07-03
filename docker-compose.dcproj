@@ -6,7 +6,7 @@
     <ProjectGuid>df08d662-a44c-45e7-a761-d1d14701d786</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>ocelotapigateway</DockerServiceName>
+
   </PropertyGroup>
   <ItemGroup>
     <None Include=".env" />

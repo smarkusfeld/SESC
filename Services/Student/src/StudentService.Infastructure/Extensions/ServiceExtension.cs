@@ -4,29 +4,33 @@ using StudentService.Application.Common.Mapper;
 using StudentService.Application.Interfaces.Repositories;
 using StudentService.Infastructure.Context;
 using Microsoft.EntityFrameworkCore;
+using StudentService.Infastructure.Repositories;
 
 namespace StudentService.Infastructure.Extensions
 {
-    public static IServiceCollection AddDIServices(this IServiceCollection services, IConfiguration configuration)
+    public static class ServiceExtension
     {
-        var connection = configuration.GetConnectionString("Default");
-        services.AddDbContext<DataContext>(options =>
+        public static IServiceCollection AddDIServices(this IServiceCollection services, IConfiguration configuration)
         {
-            options.UseMySQL(connection);
+            var connection = configuration.GetConnectionString("Default");
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseMySQL(connection);
 
-        });
+            });
 
-        services.AddAutoMapper(typeof(StudentProfile), typeof(TranscriptProfile), typeof(EnrolmentProfile), typeof(CourseProfile));
-
-
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-        //services.AddScoped<IAccountRepository, AccountRepository>();
-        
+            services.AddAutoMapper(typeof(StudentProfile), typeof(TranscriptProfile), typeof(EnrolmentProfile), typeof(CourseProfile));
 
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //services.AddScoped<IAccountRepository, AccountRepository>();
 
-        return services;
+
+
+
+            return services;
         }
     }
-
 }
+
+

@@ -24,6 +24,7 @@ namespace StudentService.Domain.Entities
         public bool IsActive { get; set; } = true; 
         public string Name { get; set; }
 
+        public string CourseCode { get; set; } 
         public CourseType CourseType { get; set; }
 
         public int Duration { get; set; }
@@ -35,6 +36,6 @@ namespace StudentService.Domain.Entities
         public Degree Degree { get; set; }
         public ICollection<CourseOffering> CourseOfferings { get; private set; } = new List<CourseOffering>();
 
-        public ICollection<Offer> Offers { get; private set; } = new List<Offer>();
+        public ICollection<CourseRegistration> Enrolments { get; private set; } = new List<CourseRegistration>();
     }
 }
