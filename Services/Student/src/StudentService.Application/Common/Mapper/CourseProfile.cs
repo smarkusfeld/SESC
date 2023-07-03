@@ -14,7 +14,7 @@ namespace StudentService.Application.Common.Mapper
             CreateMap<CourseDTO, Course>()
               .ForMember(dest => dest.Key, opt => opt.Ignore())
               .ForMember(dest => dest.CourseOfferings, opt => opt.Ignore())
-              .ForMember(dest => dest.Offers, opt => opt.Ignore())
+              .ForMember(dest => dest.Enrolments, opt => opt.Ignore())
               .ForMember(dest => dest.School, opt => opt.Ignore())
               .ForMember(dest => dest.Degree, opt => opt.Ignore())
               .ReverseMap()

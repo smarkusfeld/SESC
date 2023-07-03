@@ -1,8 +1,148 @@
 {
-	"GlobalConfiguration": {
-		"BaseUrl": "FIX!https://localhost:5003"
-	},
+	"GlobalConfiguration": {},
 	"Routes": [
-		{}
+		{
+			"DownstreamPathTemplate": "/api/Invoices",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "finance-api",
+					"Port": 80
+				}
+			],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": [ "admin" ]
+			},
+			"RouteClaimsRequirement": {
+				"role": "finance"
+			},
+			"UpstreamPathTemplate": "/finance/invoices",
+			"UpstreamHttpMethod": [ "GET" ]
+		},
+
+		{
+			"DownstreamPathTemplate": "/api/Invoices/{id}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "finance-api",
+					"Port": 80
+				}
+			],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {},
+			"UpstreamPathTemplate": "/finance/invoices/{id}",
+			"UpstreamHttpMethod": [ "GET" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/Invoices/find/{reference}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "finance-api",
+					"Port": 80
+				}
+			],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {},
+			"UpstreamPathTemplate": "/finance/invoices/find/{reference}",
+			"UpstreamHttpMethod": [ "GET", "POST" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/Invoices/library",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "finance-api",
+					"Port": 80
+				}
+			],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": [ "admin" ]
+			},
+			"RouteClaimsRequirement": {
+				"role": "library"
+			},
+			"UpstreamPathTemplate": "/finance/invoices/library",
+			"UpstreamHttpMethod": [ "POST" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/Invoices/tuition",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "finance-api",
+					"Port": 80
+				}
+			],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": [ "admin" ]
+			},
+			"RouteClaimsRequirement": {
+				"role": "registrar"
+			},
+			"UpstreamPathTemplate": "/finance/invoices/tuition",
+			"UpstreamHttpMethod": [ "POST" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/Accounts",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "finance-api",
+					"Port": 80
+				}
+			],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {},
+			"UpstreamPathTemplate": "/finance/accounts",
+			"UpstreamHttpMethod": [ "GET" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/Accounts/{id}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "finance-api",
+					"Port": 80
+				}
+			],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {},
+			"UpstreamPathTemplate": "/finance/accounts/{id}",
+			"UpstreamHttpMethod": [ "GET", "POST" ]
+		},
+		{
+			"DownstreamPathTemplate": "/api/Payments/{everything}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "finance-api",
+					"Port": 80
+				}
+			],
+			"AuthenticationOptions": {
+				"AuthenticationProviderKey": "Bearer",
+				"AllowedScopes": []
+			},
+			"RouteClaimsRequirement": {},
+			"UpstreamPathTemplate": "/finance/payments/{everything}",
+			"UpstreamHttpMethod": [ "GET", "POST" ]
+
+		}
 	]
-}

@@ -69,14 +69,41 @@ namespace IdentityService.Services
         {
             var existingUser = await _userManager.FindByNameAsync(model.Username); 
             if(existingUser != null){return false;}
-            IdentityUser user = new()
+            User user = new()
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
+                UserName = model.Username,
             };
+
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded) 
+            {
+                return await AddUserRoles(user, roleNames);
+            }
+            return false;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="roleNames"></param>
+        /// <param name="scopes"></param>
+        /// <returns></returns>
+        public async Task<bool> RegisterUser(RegistrationModel model, List<string> roleNames, string[]scopes)
+        {
+            var existingUser = await _userManager.FindByNameAsync(model.Username);
+            if (existingUser != null) { return false; }
+            User user = new()
+            {
+                Email = model.Email,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = model.Username,
+                Scopes = scopes
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
             {
                 return await AddUserRoles(user, roleNames);
             }
@@ -90,12 +117,9 @@ namespace IdentityService.Services
         /// <returns></returns>
         private async Task<bool> AddUserRoles(IdentityUser user, List<string> roleNames)
         {
-            foreach (string roleName in roleNames)
-            {
-                var normalizedRoleName = _userManager.NormalizeName(roleName);
-                var role = _roleManager.FindByNameAsync(normalizedRoleName).Result;
-                if (role == null){return false;}
-                IdentityResult roleresult = await _userManager.AddToRoleAsync(user, role.Name);
+            foreach (string role in roleNames)
+            {                
+                IdentityResult roleresult = await _userManager.AddToRoleAsync(user, role);
                 if (!roleresult.Succeeded) { return false; }
 
             }

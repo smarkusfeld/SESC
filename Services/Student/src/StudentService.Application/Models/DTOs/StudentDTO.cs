@@ -13,7 +13,6 @@ namespace StudentService.Application.Models.DTOs
         public string Surname { get; set; }
         public string MiddleName { get; set; }
 
-        public int TranscriptId { get; set; }
 
         public string FullName => string.Concat(FirstName, MiddleName, Surname);
 

@@ -6,14 +6,23 @@ using System.Threading.Tasks;
 
 namespace StudentService.Domain.Common.Enums
 {
-    public enum ProgressDecision
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    namespace StudentService.Domain.Common.Enums
     {
-        awarded,
-        deffered,
-        reassesment, 
-        failed_complete,
-        failed_repeat,
-        failed_withdraw,
-        contained_award
+        public enum ProgressDecision
+        {
+            awarded,
+            deffered,
+            reassesment,
+            failed_complete,
+            failed_repeat,
+            failed_withdraw,
+            contained_award
+        }
     }
 }

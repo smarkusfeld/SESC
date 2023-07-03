@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection.Emit;
 using StudentService.Domain.Common.Enums;
+using StudentService.Domain.Common.Enums.StudentService.Domain.Common.Enums;
 
 namespace StudentService.Infastructure.Configurations
 {

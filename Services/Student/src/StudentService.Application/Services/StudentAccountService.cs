@@ -14,12 +14,10 @@ namespace StudentService.Application.Services
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly ILibraryService _financeService;
-        public StudentAccountService(IUnitOfWork unitOfWork, IMapper mapper, ILibraryService financeService)
+        public StudentAccountService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _financeService = financeService;
         }
 
         public async Task<StudentDTO> GetStudentAccount(string studentId)
@@ -85,11 +83,7 @@ namespace StudentService.Application.Services
 
         }
 
-        public async Task<bool> CheckGraduationEligibility(string studentId)
-        {
-            //TODO!
-            throw new NotImplementedException();
-        }
+        
 
     }
 }

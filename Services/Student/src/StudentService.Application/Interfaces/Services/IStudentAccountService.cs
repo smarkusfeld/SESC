@@ -37,14 +37,7 @@ namespace StudentService.Application.Interfaces.Services
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns><see cref="StudentDTO"/></returns>
-        Task<StudentTranscriptDTO> GetStudentTranscript(string studentId);
-
-        /// <summary>
-        /// Check student graduation eligibility
-        /// </summary>
-        /// <param name="studentId"></param>
-        /// <returns>true, if student is eligibile to graduate, false if not</returns>
-        Task<bool> CheckGraduationEligibility(string studentId);        
+        Task<StudentTranscriptDTO> GetStudentTranscript(string studentId);  
 
         /// <summary>
         /// Validate Student Account Details

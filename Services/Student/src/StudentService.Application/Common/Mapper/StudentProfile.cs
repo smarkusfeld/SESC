@@ -21,8 +21,10 @@ namespace StudentService.Application.Common.Mapper
               .ForMember(dest => dest.Key, opt => opt.Ignore())
               .ForMember(dest => dest.Enrolments, opt => opt.Ignore())
               .ForMember(dest => dest.Transcript, opt => opt.Ignore())
+              .ForMember(dest => dest.TranscriptId, opt => opt.Ignore())
               .ForMember(dest => dest.ContactDetail, opt => opt.Ignore())
               .ReverseMap();
+
 
             CreateMap<Student, StudentDetailedDTO>()
              .ForMember(dest => dest.StudentEmail, opt => opt.MapFrom(src => src.ContactDetail.StudentEmail))
@@ -45,7 +47,8 @@ namespace StudentService.Application.Common.Mapper
              .ReverseMap()
              .ForPath(dest => dest.Key, opt => opt.Ignore())
              .ForPath(dest => dest.Enrolments, opt => opt.Ignore())
-             .ForPath(dest => dest.Transcript, opt => opt.Ignore());
+             .ForPath(dest => dest.Transcript, opt => opt.Ignore())
+             .ForPath(dest => dest.TranscriptId, opt => opt.Ignore());
         }
     }
 }

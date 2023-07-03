@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IdentityService</name>
+    </assembly>
+    <members>
+        <member name="M:IdentityService.Controllers.AuthController.Login(IdentityService.Models.LoginModel)">
+            <summary>
+            User Login
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Controllers.AuthController.RegisterStudentUser(IdentityService.Models.RegistrationModel)">
+            <summary>
+            Register student user
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Controllers.AuthController.RegisterAdminUser(IdentityService.Models.RegistrationModel,System.String)">
+            <summary>
+            register admin user
+            </summary>
+            <param name="model"></param>
+            <param name="dept"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Controllers.AuthController.RegisterGuestUser(IdentityService.Models.RegistrationModel)">
+            <summary>
+            register guest user
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Extensions.ServiceExtension.AddEntityDbService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Add Entity Frameworkcore service
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Extensions.ServiceExtension.AddIdentityService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add Identity service
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Extensions.ServiceExtension.AddAuthenticationService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Add Authentication Service
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityService.Models.Response">
+            <summary>
+            Returns the response value after user registration and login
+            <br>Contains error details if request fails</br>
+            </summary>
+        </member>
+        <member name="T:IdentityService.Services.JwtTokenService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IdentityService.Services.JwtTokenService.GenerateAuthToken(IdentityService.Models.LoginModel)">
+            <summary>
+            
+            </summary>
+            <param name="loginModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Services.JwtTokenService.RegisterUser(IdentityService.Models.RegistrationModel,System.Collections.Generic.List{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <param name="roleNames"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Services.JwtTokenService.RegisterUser(IdentityService.Models.RegistrationModel,System.Collections.Generic.List{System.String},System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <param name="roleNames"></param>
+            <param name="scopes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Services.JwtTokenService.AddUserRoles(Microsoft.AspNetCore.Identity.IdentityUser,System.Collections.Generic.List{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <param name="roleNames"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Services.JwtTokenService.GetToken(System.Collections.Generic.List{System.Security.Claims.Claim})">
+            <summary>
+            
+            </summary>
+            <param name="authClaims"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

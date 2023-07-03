@@ -1,0 +1,15 @@
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Application\bin\Debug\net6.0\StudentService.Application.deps.json
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Application\bin\Debug\net6.0\StudentService.Application.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Application\bin\Debug\net6.0\StudentService.Application.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Application\bin\Debug\net6.0\StudentService.Domain.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Application\bin\Debug\net6.0\StudentService.Domain.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Application\obj\Debug\net6.0\StudentService.Application.csproj.AssemblyReference.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Application\obj\Debug\net6.0\StudentService.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Application\obj\Debug\net6.0\StudentService.Application.AssemblyInfoInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Application\obj\Debug\net6.0\StudentService.Application.AssemblyInfo.cs
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Application\obj\Debug\net6.0\StudentService.Application.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Application\obj\Debug\net6.0\StudentService.Application.csproj.CopyComplete
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Application\obj\Debug\net6.0\StudentService.Application.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Application\obj\Debug\net6.0\refint\StudentService.Application.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Application\obj\Debug\net6.0\StudentService.Application.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Application\obj\Debug\net6.0\ref\StudentService.Application.dll

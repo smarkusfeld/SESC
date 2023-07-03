@@ -11,18 +11,18 @@ using System.Text;
 
 namespace IdentityService.Controllers
 {
-    /// <summary>
-    /// Controller adapted from https://www.c-sharpcorner.com/article/jwt-authentication-and-authorization-in-net-6-0-with-identity-framework/ 
-    /// </summary>
-    [Route("api/[controller]")]
+
+    [Route("[controller]")]
     [ApiController]
     public class AuthController : Controller
     { 
         private readonly JwtTokenService _jwtService;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(JwtTokenService jwtService)
+        public AuthController(JwtTokenService jwtService, ILogger<AuthController> logger)
         {
             _jwtService = jwtService;
+            _logger = logger;
         }
 
         /// <summary>
@@ -72,8 +72,10 @@ namespace IdentityService.Controllers
         [Route("register/{dept}")]
         public async Task<IActionResult> RegisterAdminUser([FromBody] RegistrationModel model, string dept)
         {
+
             List<string> roles = new() { "User", "Admin",dept};
-            var registerAdmin = await _jwtService.RegisterUser(model, roles);
+            string[] scopes = new string[] { "admin" };
+            var registerAdmin = await _jwtService.RegisterUser(model, roles, scopes);
             return registerAdmin
             ? Ok(new Response { Status = "Success", Message = "User created successfully!" })
             : StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });

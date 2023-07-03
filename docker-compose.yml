@@ -16,7 +16,7 @@ services:
     image: ${DOCKER_REGISTRY-}identity.api
     build:
         context: .
-        dockerfile: Service/Identity/Dockerfile
+        dockerfile: Services/Identity/Dockerfile
     depends_on:
         - mysql-server
         
@@ -25,7 +25,7 @@ services:
     image: ${DOCKER_REGISTRY-}finance.api
     build:
         context: .
-        dockerfile: Service/Finance/src/FinanceService.Api/Dockerfile
+        dockerfile: Services/Finance/src/FinanceService.Api/Dockerfile
     depends_on:
         - mysql-server
         - identity-api 
@@ -35,14 +35,14 @@ services:
     image: ${DOCKER_REGISTRY-}studentserviceapi
     build:
       context: .
-      dockerfile: Service/Student/src/StudentService.Api/Dockerfile
+      dockerfile: Services/Student/src/StudentService.Api/Dockerfile
   
   # library api 
   library-api:
     image: ${DOCKER_REGISTRY-}library.api
     build:
         context: .
-        dockerfile: Service/Library/src/LibraryService.Api/Dockerfile
+        dockerfile: Services/Library/src/LibraryService.Api/Dockerfile
     depends_on:
         - mysql-server
         - identity-api 

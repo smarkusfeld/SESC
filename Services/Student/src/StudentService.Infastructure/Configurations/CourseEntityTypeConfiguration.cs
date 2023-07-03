@@ -25,6 +25,10 @@ namespace StudentService.Infastructure.Configurations
                 .HasKey(p => p.Id);
 
             builder
+            .Property(x => x.CourseCode)
+            .IsRequired(true);
+
+            builder
              .Property(x => x.DegreeId)
              .IsRequired(false);
 

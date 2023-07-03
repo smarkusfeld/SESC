@@ -2,6 +2,7 @@
 using LibraryService.Domain.Entities;
 using LibraryService.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace LibraryService.Infastructure.Context
 {
@@ -37,6 +38,8 @@ namespace LibraryService.Infastructure.Context
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //apply all types in the assembly that implment IEntityTypeConfiguration 
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             // configure alternate keys
             modelBuilder.Entity<Account>().HasAlternateKey(x => x.AccountNum);
 

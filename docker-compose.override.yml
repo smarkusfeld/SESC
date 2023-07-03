@@ -72,7 +72,7 @@ services:
     
       - "5200:80"
     volumes:
-      - ./ApiGateways/Web.Bff.StudentPortal/ocelot
+      - ./ApiGateways/Web.Bff.StudentPortal/ocelot:/app/configuration
   
   finance-gateway:
     environment:
@@ -81,7 +81,7 @@ services:
     ports:
       - "5201:80"
     volumes:
-      - ApiGateways/Web.Bff.FinancePortal/ocelot
+      - ./ApiGateways/Web.Bff.FinancePortal/ocelot:/app/configuration
 
   library-gateway:
     environment:
@@ -90,4 +90,4 @@ services:
     ports:
       - "5202:80"
     volumes:
-      - ApiGateways/Web.Bff.LibraryPortal/ocelot
+      - ./ApiGateways/Web.Bff.LibraryPortal/ocelot:/app/configuration
