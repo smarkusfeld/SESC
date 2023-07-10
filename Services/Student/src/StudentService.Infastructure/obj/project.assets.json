@@ -1371,6 +1371,9 @@
       "StudentService.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.5"
+        },
         "compile": {
           "bin/placeholder/StudentService.Domain.dll": {}
         },

@@ -16,6 +16,7 @@ namespace StudentService.Domain.Common.Enums
     {
         public enum ProgressDecision
         {
+            pass_proceed,
             awarded,
             deffered,
             reassesment,

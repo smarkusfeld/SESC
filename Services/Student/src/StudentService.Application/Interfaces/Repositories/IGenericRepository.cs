@@ -36,18 +36,19 @@ namespace StudentService.Application.Interfaces.Repositories
         /// <summary>
         /// Retrieves a filtered and orderd collection of entities 
         /// </summary>
-        /// <param name="predicate">Condition the entities must fullfill</param>
+        /// <param name="filter">Condition the entities must fullfill</param>
         /// <param name="orderBy">Collection order</param>
-        /// <param name="includes">Any additional properies to be included</param>
+        /// <param name="includeProperties">Any additional properies to be included</param>
         /// <returns>An ordered collection of entities or empty collection of entities
         /// Expection returned if source is null</returns>
         /// <exception cref="NullReferenceException"></exception> 
-        Task<IEnumerable<T>> GetAllOrderedAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>,
-                                                                IOrderedQueryable<T>> orderBy = null,
-                                                                string includeProperties = "");
+        Task<IEnumerable<T>> GetAllOrderedAsync(Expression<Func<T, bool>> filter = null,
+                                                                    Func<IQueryable<T>,
+                                                                    IOrderedQueryable<T>> orderBy = null,
+                                                                    string includeProperties = "");
 
 
-        
+
         /// <summary>
         /// Retrieves a collection of entities that fullfills the <paramref name="predicate" />
         /// </summary>

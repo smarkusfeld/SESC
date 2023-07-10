@@ -8,18 +8,18 @@ namespace StudentService.Application.Models.DTOs
 {
     public class ErrorDetail
     {
+        public bool hasErrors => Details.Any();
+        public ErrorDetail()
+        {
+        }
         public ErrorDetail(string errorMessage, List<string> errorDetails) 
         { 
             Message = errorMessage;
             Details = errorDetails;
 
         }
-        public ErrorDetail(string errorMessage)
-        {
-            Message = errorMessage;
-
-        }
-        public string Message { get; set; }
+        
+        public string Message { get; set; } = string.Empty;
         public List<string> Details { get; set; } = new List<string>();
         
         

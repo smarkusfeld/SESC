@@ -14,14 +14,14 @@ namespace StudentService.Infastructure.Context
 
         }
         public DbSet<Course> Courses { get; set; }
-        public DbSet<CourseOffering> CourseOfferings { get; set; }
-        public DbSet<CourseResult> CourseResults { get; set; }
-        public DbSet<Degree> Degrees { get; set; }
+        public DbSet<CourseLevel> CourseOfferings { get; set; }
+        public DbSet<StudentResult> CourseResults { get; set; }
+        public DbSet<Award> Awards { get; set; }
+        public DbSet<ContainedAward> ContainedAwards { get; set; }
         public DbSet<Enrolment> Enrolments { get; set; }
         public DbSet<CourseRegistration> CourseRegistrations { get; set; }
-        public DbSet<Qualification> Qualifications { get; set; }
-        public DbSet<Qualification> QualificationLevels { get; set; }
         public DbSet<Student> Students { get; set; }
+
         public DbSet<Transcript> Transcripts { get; set; }
 
         /// <summary>
@@ -45,21 +45,39 @@ namespace StudentService.Infastructure.Context
             modelBuilder.Entity<Student>().OwnsOne(
                 x=> x.ContactDetail, cd =>
                 {
-                    cd.ToTable("Contact");
+                    
                     cd.WithOwner(y => y.Student);
                     cd.Navigation(y => y.Student).UsePropertyAccessMode(PropertyAccessMode.Property);
                     cd.OwnsOne(y => y.PermanentAddress);
                     cd.OwnsOne(y => y.TermAddress);
                 });
 
-            modelBuilder.Entity<Student>().OwnsOne(x => x.Transcript, x => { x.ToTable("Transcript"); });
-
+           
             //add foreign keys
-
             modelBuilder.Entity<Course>()
-                .HasMany(y => y.Enrolments)
+                .HasMany(y => y.CourseLevels)
                 .WithOne(x => x.Course)
                 .HasForeignKey(x => x.CourseId);
+
+            modelBuilder.Entity<Course>()
+                .HasMany(y => y.Registrations)
+                .WithOne(x => x.Course)
+                .HasForeignKey(x => x.CourseId);
+
+            modelBuilder.Entity<Course>()
+               .HasMany(y => y.ContainedAwards)
+               .WithOne(x => x.Course)
+               .HasForeignKey(x => x.CourseId);
+
+            modelBuilder.Entity<Course>()
+               .HasOne(x => x.School)
+               .WithMany(y => y.Courses)               
+               .HasForeignKey(x => x.SchoolId);
+
+            modelBuilder.Entity<Course>()
+               .HasOne(x => x.Subject)
+               .WithMany(y => y.Courses)
+               .HasForeignKey(x => x.SubjectId);
 
             modelBuilder.Entity<Student>()
                 .HasMany(y => y.Enrolments)
@@ -76,6 +94,11 @@ namespace StudentService.Infastructure.Context
                 .WithOne(x => x.Student)
                 .HasForeignKey<Transcript>(x => x.StudentId);
 
+            modelBuilder.Entity<StudentResult>()
+                   .HasOne(y => y.Transcript)
+                   .WithMany(x => x.Results)
+                   .HasForeignKey(x => x.TranscriptId);
+
             //no reverse navigation
             modelBuilder.Entity<Transcript>()
                 .HasOne(y => y.Course)
@@ -84,44 +107,22 @@ namespace StudentService.Infastructure.Context
                 .OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<Transcript>()
-                .HasMany(y => y.Results)
-                .WithOne(x => x.Transcript)
-                .HasForeignKey(x => x.TranscriptId);
+               .HasMany(y => y.Results)
+               .WithOne(x => x.Transcript)
+               .HasForeignKey(x => x.TranscriptId);
 
-            modelBuilder.Entity<CourseResult>()
-                .HasOne(x => x.CourseOffering)
+
+            modelBuilder.Entity<StudentResult>()
+                .HasOne(x => x.CourseLevel)
                 .WithMany()
-                .HasForeignKey(x => x.CourseOfferingId);
+                .HasForeignKey(x => x.CourseLevelId);           
 
-            modelBuilder.Entity<CourseResult>()
-                .HasOne(x => x.Qualification).WithMany()
-                .HasForeignKey(x => x.QualificationId)
-                .IsRequired(false);
-
-            modelBuilder.Entity<Course>()
-                .HasMany(y=> y.CourseOfferings)
-                .WithOne(x => x.Course)
-                .HasForeignKey(x => x.CourseId);
-
-            modelBuilder.Entity<School>()
-                .HasMany(y=>y.Courses)
-                .WithOne(x=>x.School)
-                .HasForeignKey(x => x.SchoolId);
-
-            modelBuilder.Entity<Degree>()
+            modelBuilder.Entity<Award>()
                 .HasMany(y => y.Courses)
-                .WithOne(x => x.Degree)
-                .HasForeignKey(x => x.DegreeId);        
+                .WithOne(x => x.Award)
+                .HasForeignKey(x => x.AwardId);
 
-            modelBuilder.Entity<CourseOffering>()
-                .HasMany(y => y.Requirements)
-                .WithOne(x => x.CourseOffering)
-                .HasForeignKey(x => x.CourseOfferingId);
-
-            modelBuilder.Entity<Requirement>()
-                .HasOne(y => y.Qualification)
-                .WithMany()
-                .HasForeignKey(x => x.QualificationId);
+            modelBuilder.SeedDatabase();
 
         }
     }

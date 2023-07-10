@@ -4,13 +4,131 @@
         <name>StudentService.Api</name>
     </assembly>
     <members>
-        <member name="T:StudentService.Api.Controllers.RegistrarController">
+        <member name="T:StudentService.Api.Controllers.AccountsController">
             <summary>
-            Controller for studen microservice admin
-            Manage students, courses, and grades
-            Students use this controller for copies of transcripts and graduation eligibility
+            Controller for all account logic
             </summary>
         </member>
+        <member name="M:StudentService.Api.Controllers.AccountsController.#ctor(StudentService.Application.Interfaces.Services.IStudentAccountService,Microsoft.Extensions.Logging.ILogger{StudentService.Api.Controllers.AccountsController})">
+            <summary>
+            AccounrController Constructor. 
+            Defines the required logger and service interfaces 
+            </summary>
+            <param name="service"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:StudentService.Api.Controllers.AccountsController.ViewProfile(System.String)">
+            <summary>
+            View student profile
+            <br></br>
+            </summary>
+            <param name="studentId"></param>
+            <returns>
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with <seealso cref="T:StudentService.Application.Models.DTOs.InputModels.UpdateStudentContactDTO"/> <br/> 
+            A 400 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> if student was not found<br/> 
+            </returns>
+        </member>
+        <member name="M:StudentService.Api.Controllers.AccountsController.ViewTranscript(System.String)">
+            <summary>
+            View student transcript
+            <br></br>
+            </summary>
+            <param name="studentId"></param>
+            <returns>
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with <seealso cref="T:StudentService.Application.Models.DTOs.StudentTranscriptDTO"/> <br/> 
+            A 400 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> if student was not found<br/> 
+            </returns>
+        </member>
+        <member name="M:StudentService.Api.Controllers.AccountsController.UpdateProfile(StudentService.Application.Models.DTOs.InputModels.UpdateStudentContactDTO)">
+            <summary>
+            Update student profile
+            <br></br>
+            </summary>
+            <param name="account"></param>
+            <returns>
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with updated <seealso cref="T:StudentService.Application.Models.DTOs.InputModels.UpdateStudentContactDTO"/> <br/> 
+            A 400 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> if student was not found<br/> 
+            </returns>
+        </member>
+        <member name="T:StudentService.Api.Controllers.CoursesController">
+            <summary>
+            Controller for all course logic
+            </summary>
+        </member>
+        <member name="M:StudentService.Api.Controllers.CoursesController.#ctor(StudentService.Application.Interfaces.Services.ICourseService,Microsoft.Extensions.Logging.ILogger{StudentService.Api.Controllers.CoursesController})">
+            <summary>
+            CourseController Constructor. 
+            Defines the required logger and service interfaces 
+            </summary>
+            <param name="service"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:StudentService.Api.Controllers.CoursesController.GetAllCourses">
+            <summary>
+            Get All Active Courses
+            <br></br>
+            </summary>
+            <returns>
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with all active course offerings <br/> 
+            A 404 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NotFoundObjectResult"/> if student was not found<br/> 
+            </returns>
+        </member>
+        <member name="M:StudentService.Api.Controllers.CoursesController.GetAllCoursesBySubject(System.String)">
+            <summary>
+            Search for Course By Subject
+            <br></br>
+            </summary>
+            <returns>
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with all active course offerings <br/> 
+            A 404 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NotFoundObjectResult"/> if student was not found<br/> 
+            </returns>
+        </member>
+        <member name="M:StudentService.Api.Controllers.CoursesController.GetAllCoursesBySchool(System.String)">
+            <summary>
+            Search for Course By Sschool
+            <br></br>
+            </summary>
+            <returns>
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with all active course offerings <br/> 
+            A 404 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NotFoundObjectResult"/> if student was not found<br/> 
+            </returns>
+        </member>
+        <member name="T:StudentService.Api.Controllers.EnrolController">
+            <summary>
+            Controller for all enrol logic
+            </summary>
+        </member>
+        <member name="M:StudentService.Api.Controllers.EnrolController.#ctor(StudentService.Application.Interfaces.Services.IEnrolService,Microsoft.Extensions.Logging.ILogger{StudentService.Api.Controllers.EnrolController})">
+            <summary>
+             Registrar Controller Constructor. 
+            Defines the required logger and service interfaces 
+            </summary>
+            <param name="service"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:StudentService.Api.Controllers.EnrolController.CourseRegistration(StudentService.Application.Models.DTOs.InputModels.StudentRegistrationDTO)">
+            <summary>
+            Create a new student account, register a new student for a course, and enrol in the correct course offering for the course
+            <br></br>
+            </summary>
+            <param name="inputModel"></param>
+            <returns>
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with the registration and and student account details <br/> 
+            A 400 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.BadRequestResult"/> if registration can not be completed<br/> 
+            </returns>
+        </member>
+        <member name="M:StudentService.Api.Controllers.EnrolController.StudentEnrolment(System.String,System.String)">
+            <summary>
+            Enrol Student in Eligible Course
+            </summary>
+            <param name="studentId"></param>
+            <param name="courseCode"></param>
+            <returns>
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with enrolment confirmation details <br/> 
+            A 400 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.BadRequestResult"/> if enrolment can not be completed<br/> 
+            </returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:StudentService.Api.Controllers.EnrolController.GetAllEnrolments(System.String)" -->
         <member name="T:StudentService.Service.Middleware.ErrorHandlerMiddleware">
             <summary>
             https://jasonwatmore.com/post/2022/01/17/net-6-global-error-handler-tutorial-with-example 

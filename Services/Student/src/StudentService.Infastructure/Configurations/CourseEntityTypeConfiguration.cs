@@ -29,8 +29,7 @@ namespace StudentService.Infastructure.Configurations
             .IsRequired(true);
 
             builder
-             .Property(x => x.DegreeId)
-             .IsRequired(false);
+             .Property(x => x.AwardId);
 
             builder
                  .Property(x => x.SchoolId)

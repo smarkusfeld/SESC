@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using StudentService.Application.Models.DTOs;
+using StudentService.Application.Models.DTOs.InputModels;
 using StudentService.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace StudentService.Application.Common.Mapper
 {
-    
+
     public class StudentProfile : Profile
     {
         /// <summary>
@@ -23,10 +24,11 @@ namespace StudentService.Application.Common.Mapper
               .ForMember(dest => dest.Transcript, opt => opt.Ignore())
               .ForMember(dest => dest.TranscriptId, opt => opt.Ignore())
               .ForMember(dest => dest.ContactDetail, opt => opt.Ignore())
+              .ForMember(dest => dest.Registrations, opt => opt.Ignore())
               .ReverseMap();
 
 
-            CreateMap<Student, StudentDetailedDTO>()
+            CreateMap<Student, UpdateStudentContactDTO>()
              .ForMember(dest => dest.StudentEmail, opt => opt.MapFrom(src => src.ContactDetail.StudentEmail))
              .ForMember(dest => dest.AlternateEmail, opt => opt.MapFrom(src => src.ContactDetail.AlternateEmail))
              .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.ContactDetail.PhoneNumber))
@@ -49,6 +51,16 @@ namespace StudentService.Application.Common.Mapper
              .ForPath(dest => dest.Enrolments, opt => opt.Ignore())
              .ForPath(dest => dest.Transcript, opt => opt.Ignore())
              .ForPath(dest => dest.TranscriptId, opt => opt.Ignore());
+
+            //reverse not created as transcript result should never be mapped to course result
+            CreateMap<StudentResult, StudentTranscriptResultDTO>();
+
+            //reverse not created as transcript is read only for the student user
+            CreateMap<Transcript, StudentTranscriptDTO>()
+                .ForMember(dest => dest.StudentFullName, opt => opt.MapFrom(src => src.Student.FullName))
+                .ForMember(dest => dest.StudentSurname, opt => opt.MapFrom(src => src.Student.Surname))
+                .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src => src.Course.Name));
+
         }
     }
 }

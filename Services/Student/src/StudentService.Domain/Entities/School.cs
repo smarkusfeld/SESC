@@ -14,6 +14,9 @@ namespace StudentService.Domain.Entities
     /// </summary>
     public class School : BaseAuditableEntity
     {
+        public School() { }
+        public School(int id, string name) { Id = id; Name = name; }
+        
         public override object Key => Id;
 
         [Key]

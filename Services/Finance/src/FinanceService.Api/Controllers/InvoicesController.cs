@@ -78,6 +78,19 @@ namespace FinanceService.Api.Controllers
             return invoiceDTO == null ? NotFound() : Ok(invoiceDTO);
         }
 
+        /// <summary>
+        /// Check if student account has outstanding balance
+        /// </summary>
+        /// <param name="studentid"></param>
+        /// <returns>
+        /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with true if the student has any outstanding invoices<br/> 
+        /// </returns>
+        [HttpGet("balance/{studentid}")]
+        public async Task<IActionResult> HasOutstandingBalance(string studentid)
+        {
+            var check = await _service.HasOutstandingBalance(studentid);
+            return Ok(check);
+        }
 
         /// <summary>
         /// Create a new invoice
@@ -122,4 +135,6 @@ namespace FinanceService.Api.Controllers
             return result ? Ok("Invoice Canceled") : BadRequest();
         }
     }
+
+    
 }

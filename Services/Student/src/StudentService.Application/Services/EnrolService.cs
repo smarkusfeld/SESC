@@ -3,7 +3,11 @@ using StudentService.Application.Common.Exceptions;
 using StudentService.Application.Interfaces.Repositories;
 using StudentService.Application.Interfaces.Services;
 using StudentService.Application.Models.DTOs;
+using StudentService.Application.Models.DTOs.InputModels;
+using StudentService.Application.Models.DTOs.ReponseModels;
+using StudentService.Domain.Common.Enums.StudentService.Domain.Common.Enums;
 using StudentService.Domain.Entities;
+using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 
 namespace StudentService.Application.Services
@@ -19,20 +23,20 @@ namespace StudentService.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<EnrolmentConfirmationDTO> CourseEnrolment(string studentId, int courseOfferingId)
+        public async Task<EnrolmentConfirmationDTO> CourseEnrolment(string studentId, int courseLevelId)
         {
             //check student account
             var account = await _unitOfWork.Students.GetAsync(studentId)
                 ?? throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
             //check course offering account
-            var course = await _unitOfWork.CourseOfferings.GetAsync(courseOfferingId)
+            var course = await _unitOfWork.CourseLevels.GetAsync(courseLevelId)
                 ?? throw new KeyNotFoundException("Course Not Found");
             var courseEnrolment = new Enrolment
             {
                 StudentId = studentId,
-                CourseOfferingId = courseOfferingId,
+                CourseLevelId = courseLevelId,
             };
-            var enrol = await _unitOfWork.CourseEnrolments.AddAsync(courseEnrolment);
+            var enrol = await _unitOfWork.Enrolments.AddAsync(courseEnrolment);
             if (enrol != null)
             {
                
@@ -53,9 +57,9 @@ namespace StudentService.Application.Services
         {
             return new TuitionInvoiceDTO
             {
-                Amount = enrolment.Tutition,
+                Amount = enrolment.CourseLevel.TuitionFee,
                 StudentID = enrolment.StudentId,
-                Reference = enrolment.CourseOffering.Name
+                Reference = enrolment.CourseLevel.Name
             };
         }
 
@@ -104,11 +108,11 @@ namespace StudentService.Application.Services
         /// <param name="courseId"></param>
         /// <returns>The Course Offering with the lowest level/requirements associated witht the course</returns>
         /// <exception cref="BadRequestException"></exception>
-        private async Task<CourseOffering> FirstRegistration(string studentId, int courseId)
+        private async Task<CourseLevel> FirstRegistration(string studentId, int courseId)
         {
             // get first course
-            var courseOfferings = await _unitOfWork.CourseOfferings.GetAllWhereAsync(x => x.CourseId == courseId);
-            var firstCourse = courseOfferings.Where(x => x.Requirements.Count == 0 || x.Requirements == null).OrderBy(x => x.Qualification.Level).FirstOrDefault();
+            var courseLevels = await _unitOfWork.CourseLevels.GetAllWhereAsync(x => x.CourseId == courseId);
+            var firstCourse = courseLevels.OrderBy(x => x.QualificationLevel).FirstOrDefault();
 
             //create registration
             var reg = new CourseRegistration()
@@ -117,14 +121,16 @@ namespace StudentService.Application.Services
                 CourseId = courseId,
                 RegistrationDate = DateTime.Now,
             };
-            var regResult = await _unitOfWork.Enrolments.AddAsync(reg);
+            var regResult = await _unitOfWork.Registrations.AddAsync(reg);
            
             if (regResult != null)
             {
                 var save = await _unitOfWork.Save();
                if(save > 0)
                 {
-                    var result = await _unitOfWork.Transcripts.AddAsync(new(regResult.Student, regResult.Course));
+                    var student = regResult.Student;
+                    student.Transcript = new(regResult.Student, regResult.Course);
+                    var result = await _unitOfWork.Students.UpdateAsync(student);
                   
                     return firstCourse;
                 }
@@ -141,6 +147,8 @@ namespace StudentService.Application.Services
         /// <returns></returns>
         private async Task<Student?> CreateStudentAccount(StudentRegistrationDTO registration)
         {
+            var id = _unitOfWork.Students.GetNextStudentId();
+
             var student = new Student()
             {
                 FirstName = registration.FirstName,
@@ -158,9 +166,42 @@ namespace StudentService.Application.Services
         }
 
      
-        public Task<string> GetEligiableCourseOffering(string studentId, int courseOfferingId)
+        public async Task<int> GetEligiableCourseOffering(string studentId, string courseCode)
         {
-            throw new NotImplementedException();
+            // check student registration
+            var studentCourses = await _unitOfWork.Registrations
+               .GetAllWhereAsync(x => x.StudentId == studentId && x.Course.CourseCode == courseCode)
+               ?? throw new BadRequestException("Student Not Registered For Course");
+
+            // get course offerings
+            var courseLevels = await _unitOfWork.CourseLevels
+                .GetAllWhereAsync(x => x.Course.CourseCode == courseCode)
+                ?? throw new BadRequestException($"Could not find {courseCode}");
+
+           //get highest qualification recieved
+            var results = await _unitOfWork.StudentResults
+                .GetAllWhereAsync(x=> x.Transcript.StudentId == studentId && x.CourseLevel.Course.CourseCode == courseCode && x.ProgressDecision == ProgressDecision.pass_proceed);
+
+            var nextLevel = results.OrderByDescending(x => x.CourseLevel.QualificationLevel).Select(x=>x.CourseLevel.QualificationLevel).FirstOrDefault() + 1;
+            
+            // no qualifications have been awared select the lowest course offering with no requirements
+            if (results==null || !results.Any())
+            {
+                return courseLevels
+                    .OrderBy(x=>x.QualificationLevel)
+                    .Select(x=>x.Id).First();
+            }
+            try
+            {
+                return courseLevels
+                     .Where(x => x.QualificationLevel == nextLevel)
+                     .Select(x => x.Id).First();
+            }
+            catch
+            {
+                throw new BadRequestException("Student Not Eligible To Register for Course");
+            }
+
         }
     }
 }

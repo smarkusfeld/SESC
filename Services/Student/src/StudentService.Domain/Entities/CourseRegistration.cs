@@ -24,9 +24,6 @@ namespace StudentService.Domain.Entities
         public DateTime RegistrationDate { get; set; }
         public string StudentId { get; set; }
         public int CourseId { get; set; }
-        public string FirstName { get; set; }
-        public string Surname { get; set; }
-        public string MiddleName { get; set; }
 
         //navigation properies
         public Course Course { get; set;}

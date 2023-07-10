@@ -19,11 +19,11 @@ namespace StudentService.Application.Common.Mapper
             CreateMap<EnrolmentDTO, Enrolment>()
               .ForMember(dest => dest.Key, opt => opt.Ignore())
               .ForMember(dest => dest.Student, opt => opt.Ignore())
-              .ForMember(dest => dest.CourseOffering, opt => opt.Ignore())
+              .ForMember(dest => dest.CourseLevel, opt => opt.Ignore())
               .ReverseMap()
               .ForPath(dest => dest.StudentName, opt => opt.MapFrom(src => src.Student.FullName))
-              .ForPath(dest => dest.CourseOfferingName, opt => opt.MapFrom(src => src.CourseOffering.Name))
-              .ForPath(dest => dest.CourseName, opt => opt.MapFrom(src => src.CourseOffering.Course.Name));
+              .ForPath(dest => dest.CourseOfferingName, opt => opt.MapFrom(src => src.CourseLevel.Name))
+              .ForPath(dest => dest.CourseName, opt => opt.MapFrom(src => src.CourseLevel.Course.Name));
 
         }
     }

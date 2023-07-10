@@ -1,4 +1,6 @@
 ﻿using StudentService.Application.Models.DTOs;
+using StudentService.Application.Models.DTOs.InputModels;
+using StudentService.Application.Models.DTOs.ReponseModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +44,6 @@ namespace StudentService.Application.Interfaces.Services
         /// <param name="studentId"></param>
         /// <param name="courseOfferingId"></param>
         /// <returns></returns>
-        Task<string> GetEligiableCourseOffering(string studentId, int courseOfferingId);
+        Task<int> GetEligiableCourseOffering(string studentId, string courseCode);
     }
 }

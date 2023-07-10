@@ -25,8 +25,7 @@ namespace StudentService.Infastructure.Configurations
                 .HasAlternateKey(p => p.AccountNumber);
 
             builder
-                 .Property(x => x.StudentId)
-                 .HasComputedColumnSql("'c' + [Id]");
+                 .Property(x => x.StudentId);
 
             builder
                 .HasKey(p => p.StudentId);
@@ -45,6 +44,7 @@ namespace StudentService.Infastructure.Configurations
                .Property(x => x.Surname)
                .HasColumnType("varchar(50)");
 
+            
 
         }
     }

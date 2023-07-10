@@ -66,6 +66,16 @@ namespace FinanceService.Application.Interfaces
         Task<IEnumerable<InvoiceDTO>> GetAllOutstandingInvoices();
 
         /// <summary>
+        /// This method checks if any invoices have outstanding balance for 
+        /// the student
+        /// </summary>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// The task result contains a boolean value
+        /// </returns>
+        Task<bool> HasOutstandingBalance(string studentId);
+
+        /// <summary>
         /// This method returns all overdue invoices  
         /// </summary>
         /// <returns>
