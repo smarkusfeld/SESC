@@ -9,7 +9,7 @@ namespace StudentService.Api.Controllers
     /// <summary>
     /// Controller for all enrol logic
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class EnrolController : Controller
     {

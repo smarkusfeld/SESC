@@ -6,7 +6,6 @@
     <ProjectGuid>df08d662-a44c-45e7-a761-d1d14701d786</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-
   </PropertyGroup>
   <ItemGroup>
     <None Include=".env" />
@@ -17,5 +16,8 @@
     <None Include=".dockerignore" />
     <None Include="docker-compose.prod.yml" />
     <None Include="scripts\schema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="scripts\**" />
   </ItemGroup>
 </Project>

@@ -6,7 +6,7 @@ namespace LibraryService.Api.Controllers
     /// <summary>
     /// Controller for all book logic 
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class CatalogueController : Controller
     {
         private readonly ICatalogueService _service;
