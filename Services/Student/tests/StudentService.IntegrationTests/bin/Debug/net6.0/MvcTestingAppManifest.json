@@ -1,0 +1,6 @@
+{
+  "StudentService.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Student\\src\\StudentService.Api",
+  "StudentService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Student\\src\\StudentService.Application",
+  "StudentService.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Student\\src\\StudentService.Domain",
+  "StudentService.Infastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Student\\src\\StudentService.Infastructure"
+}

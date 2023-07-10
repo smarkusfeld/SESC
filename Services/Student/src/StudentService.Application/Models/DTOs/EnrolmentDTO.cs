@@ -11,7 +11,7 @@ namespace StudentService.Application.Models.DTOs
         public int Id { get; set; }
 
         public DateTime EnrolDate { get; set; }
-        public int CourseOfferingId { get; set; }
+        public int CourseLevelId { get; set; }
         public int StudentId { get; set; }
         public int Tutition { get; set; }
         public string StudentName { get; set; }
@@ -19,5 +19,10 @@ namespace StudentService.Application.Models.DTOs
         public string CourseOfferingName { get; set; }
 
         public string CourseName { get; set; }
+
+        public int? CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public int? UpdatedBy { get; set; }
+        public DateTime UpdatedDate { get; set; }
     }
 }

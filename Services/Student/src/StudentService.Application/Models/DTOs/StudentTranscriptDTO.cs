@@ -9,15 +9,15 @@ namespace StudentService.Application.Models.DTOs
     /// </summary>
     public class StudentTranscriptDTO
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
-        public int StudentId { get; private set; }
+        public string StudentId { get;  set; }
 
-        public string StudentSurname { get; private set; }
+        public string StudentSurname { get; set; }
 
-        public string StudentFullName { get; private set; }
+        public string StudentFullName { get;  set; }
 
-        public string CourseName { get; private set; }
+        public string CourseName { get;  set; }
         
         public IEnumerable<StudentTranscriptResultDTO>? Results { get; private set; } = new List<StudentTranscriptResultDTO>(); 
         
@@ -30,9 +30,9 @@ namespace StudentService.Application.Models.DTOs
     public class StudentTranscriptResultDTO
     {
         public int Id { get; private set;}
-        public string CourseOfferingName { get; private set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public string CourseLevelName { get; private set; }
+        //public DateTime StartDate { get; set; }
+        //public DateTime EndDate { get; set; }
         public string ProgressDecision { get; set; }
         public DateTime ProgressDate { get; set; }
         public string ProgressNotes { get; set; }

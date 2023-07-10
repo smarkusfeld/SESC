@@ -25,7 +25,7 @@ namespace StudentService.Infastructure.Configurations
                  .IsRequired();
 
             builder
-               .Property(x => x.CourseOfferingId)
+               .Property(x => x.CourseLevelId)
                .IsRequired();
 
              builder

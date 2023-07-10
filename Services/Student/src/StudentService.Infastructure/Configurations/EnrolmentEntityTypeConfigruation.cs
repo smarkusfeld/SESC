@@ -34,19 +34,7 @@ namespace StudentService.Infastructure.Configurations
                 .Property(x => x.RegistrationDate)
                 .IsRequired();
 
-            builder
-                 .Property(x => x.FirstName)
-                 .HasColumnType("varchar(50)")
-                 .IsRequired();
-
-            builder
-                .Property(x => x.MiddleName)
-                .HasColumnType("varchar(50)");
-
-            builder
-               .Property(x => x.Surname)
-               .HasColumnType("varchar(50)");
-
+           
             
         }
     }

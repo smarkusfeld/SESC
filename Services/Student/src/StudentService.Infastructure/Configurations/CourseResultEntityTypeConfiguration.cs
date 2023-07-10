@@ -13,11 +13,11 @@ using StudentService.Domain.Common.Enums.StudentService.Domain.Common.Enums;
 namespace StudentService.Infastructure.Configurations
 {
     /// <summary>
-    /// Configuration for the <see cref="CourseResult"/> entity
+    /// Configuration for the <see cref="StudentResult"/> entity
     /// </summary>
-   public class CourseResultEntityTypeConfiguration : IEntityTypeConfiguration<CourseResult>
+   public class CourseResultEntityTypeConfiguration : IEntityTypeConfiguration<StudentResult>
     {
-        public void Configure(EntityTypeBuilder<CourseResult> builder)
+        public void Configure(EntityTypeBuilder<StudentResult> builder)
         {
             builder
                 .Property(p => p.Id)
@@ -26,16 +26,14 @@ namespace StudentService.Infastructure.Configurations
                 .HasKey(p => p.Id);
 
             builder
-                 .Property(x => x.CourseOfferingId)
-                 .IsRequired(true);
+                 .Property(x => x.CourseLevelId);
 
             builder
-                 .Property(x => x.QualificationId)
-                 .IsRequired(false);
+                 .Property(x => x.TranscriptId);
 
             builder
-                 .Property(x => x.CourseName)
-                 .HasColumnType("varchar(50)")
+                 .Property(x => x.CourseLevelName)
+                 .HasColumnType("varchar(100)")
                  .IsRequired();
 
             builder
@@ -44,8 +42,7 @@ namespace StudentService.Infastructure.Configurations
                  .IsRequired(false);
 
             builder
-                 .Property(x => x.ProgressDate)
-                 .IsRequired(false);
+                 .Property(x => x.ProgressDate);
 
             builder
                 .Property(x => x.ProgressDecision)

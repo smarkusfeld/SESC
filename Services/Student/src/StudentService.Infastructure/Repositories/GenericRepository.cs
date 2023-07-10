@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StudentService.Application.Interfaces.Repositories;
 using StudentService.Domain.Common;
+using StudentService.Domain.Interfaces;
 using StudentService.Infastructure.Context;
 using System;
 using System.Collections.Generic;
@@ -36,18 +37,19 @@ namespace StudentService.Infastructure.Repositories
         public virtual async Task<IEnumerable<T>> GetAllAsync() => await _set.AsNoTracking().ToListAsync();
 
 
-        public virtual async Task<IEnumerable<T>> GetAllOrderedAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>,
-                                                                IOrderedQueryable<T>> orderBy = null,
-                                                                string includeProperties = "")
+        public virtual async Task<IEnumerable<T>> GetAllOrderedAsync(Expression<Func<T, bool>> filter = null,
+                                                                    Func<IQueryable<T>, 
+                                                                    IOrderedQueryable<T>> orderBy = null,
+                                                                    string includeProperties = "")
         {
 
-            IQueryable<T> query = _context.Set<T>();
+            IQueryable<T> query = _set;
 
-            if (predicate != null)
+            if (filter != null)
             {
-
-                query = query.Where(predicate);
+                query = query.Where(filter);
             }
+
             foreach (var includeProperty in includeProperties.Split
                 (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
@@ -56,14 +58,12 @@ namespace StudentService.Infastructure.Repositories
 
             if (orderBy != null)
             {
-                await orderBy(query).ToListAsync();
+                return orderBy(query).ToList();
             }
             else
             {
-                await query.AsNoTracking().ToListAsync();
+                return query.ToList();
             }
-            return null;
-
         }
 
         public virtual async Task<IEnumerable<T>> GetAllWhereAsync(Expression<Func<T, bool>> predicate) => await _set.Where(predicate).ToListAsync();

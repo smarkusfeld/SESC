@@ -19,7 +19,7 @@ namespace StudentService.Infastructure.Extensions
 
             });
 
-            services.AddAutoMapper(typeof(StudentProfile), typeof(TranscriptProfile), typeof(EnrolmentProfile), typeof(CourseProfile));
+            services.AddAutoMapper(typeof(StudentProfile),typeof(EnrolmentProfile), typeof(CourseProfile));
 
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();

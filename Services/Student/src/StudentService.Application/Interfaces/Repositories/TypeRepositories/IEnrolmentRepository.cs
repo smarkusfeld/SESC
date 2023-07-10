@@ -11,7 +11,7 @@ namespace StudentService.Application.Interfaces.Repositories.TypeRepositories
     /// Interface for Course Enrolment Repository
     /// <br></br> Implements the <see cref="IGenericRepository{T}"/>
     /// </summary>    
-    public interface ICourseEnrolmentRepository : IGenericRepository<Enrolment>
+    public interface IEnrolmentRepository : IGenericRepository<Enrolment>
     {
     }
     

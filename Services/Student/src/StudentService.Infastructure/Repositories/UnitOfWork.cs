@@ -2,6 +2,7 @@
 using StudentService.Application.Interfaces.Repositories.TypeRepositories;
 using StudentService.Domain.Entities;
 using StudentService.Infastructure.Context;
+using StudentService.Infastructure.Repositories.TypeRepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,44 +15,45 @@ namespace StudentService.Infastructure.Repositories
     {
         private readonly DataContext _dbContext;
         private ICourseRepository _courses;
-        private ICourseOfferingRepository _coursesOffering;
+        private ICourseLevelRepository _coursesLevels;
         private IStudentRepository _students;
-        private ICourseResultRepository _results;
-        private IDegreeRepository _degree;
-        private ICourseEnrolmentRepository _courseEnrolments;
-        private IQualificationRepository _qualifications;
-        private IRequirementRepository _requirements;
-        private ITranscriptRepository _transcripts;
+        private IStudentResultRepository _results;
+        private IAwardRepository _awards;
+        private ICourseRegistrationRepository _registrations;
         private ISchoolRepository _schools;
-
+        private ISubjectRepository _subjects;
+        private IEnrolmentRepository _enrolments;
         private bool disposed;
-        public ICourseRepository Courses => throw new NotImplementedException();
-        //=> _courses ?? new CourseRepository(_dbContext);
 
-        public ICourseOfferingRepository CourseOfferings => throw new NotImplementedException();
+        public ICourseRegistrationRepository Registrations => _registrations ?? new CourseRegistrationRepository(_dbContext);
+        public ICourseRepository Courses => _courses ?? new CourseRepository(_dbContext);
+        public ICourseLevelRepository CourseLevels => _coursesLevels ?? new CourseLevelRepository(_dbContext);
 
-        public ICourseResultRepository CourseResults => throw new NotImplementedException();
+        public IStudentResultRepository StudentResults => _results ?? new StudentResultRepository(_dbContext);
 
-        public IDegreeRepository Degrees => throw new NotImplementedException();
+        public IAwardRepository Awards => _awards ?? new AwardRepository(_dbContext);
 
-        public ICourseEnrolmentRepository CourseEnrolments => throw new NotImplementedException();
+        public IEnrolmentRepository Enrolments => _enrolments ?? new EnrolmentRepository(_dbContext);
 
-        public IEnrolmentRepository Enrolments => throw new NotImplementedException();
+        public IStudentRepository Students => _students ?? new StudentRepository(_dbContext);
 
-        public IQualificationRepository Qualifications => throw new NotImplementedException();
-
-        public IRequirementRepository Requirements => throw new NotImplementedException();
-
-        public ITranscriptRepository Transcripts => throw new NotImplementedException();
-
-        public IStudentRepository Students => throw new NotImplementedException();
-
-        public ISchoolRepository Schools => throw new NotImplementedException();
-
+        public ISchoolRepository Schools => _schools ?? new SchoolRepository(_dbContext);
+        public ISubjectRepository Subjects => _subjects ?? new SubjectRepository(_dbContext);
         public UnitOfWork(DataContext dbContext)
         {
             _dbContext = dbContext;
             _students = Students;
+            _enrolments = Enrolments;
+            _schools = Schools;
+            _subjects = Subjects;
+            _courses = Courses;
+            _coursesLevels = CourseLevels;
+            _results = StudentResults;
+            _awards = Awards;
+            _enrolments = Enrolments;
+            _students = Students;
+            _registrations = Registrations;
+               
         }
         /// <summary>
         /// Completes the unit of work, saving all repository changes to the underlying data-store.

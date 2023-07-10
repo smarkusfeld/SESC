@@ -19,7 +19,7 @@ namespace StudentService.Domain.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         public bool IsActive { get; set; } = true; 
         public string Name { get; set; }
@@ -29,13 +29,17 @@ namespace StudentService.Domain.Entities
 
         public int Duration { get; set; }
         public int SchoolId { get; set; }
-        public int DegreeId { get; set; }
+        public int SubjectId { get; set; }
+        public int AwardId { get; set; }
+
 
         //navigation properties     
         public School School { get; set; }
-        public Degree Degree { get; set; }
-        public ICollection<CourseOffering> CourseOfferings { get; private set; } = new List<CourseOffering>();
 
-        public ICollection<CourseRegistration> Enrolments { get; private set; } = new List<CourseRegistration>();
+        public Subject Subject { get; set; }
+        public Award Award { get; set; }
+        public ICollection<CourseLevel> CourseLevels { get; private set; } = new List<CourseLevel>();
+        public ICollection<ContainedAward> ContainedAwards { get; private set; } = new List<ContainedAward>();
+        public ICollection<CourseRegistration> Registrations { get; private set; } = new List<CourseRegistration>();
     }
 }

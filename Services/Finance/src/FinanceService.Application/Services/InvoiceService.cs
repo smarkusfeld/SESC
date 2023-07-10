@@ -189,6 +189,11 @@ namespace FinanceService.Application.Services
             return invoiceDTOList.AsEnumerable();
         }
 
+        public async Task<bool> HasOutstandingBalance(string studentId)
+        {
+            var all = await GetOutstandingInvoices(studentId);
+            return (all == null || all.Count() == 0);
+        }
         public async Task<IEnumerable<InvoiceDTO>> GetOutstandingInvoices(int accountID)
         {
             var invoiceList = await _unitOfWork.Invoices.GetAllWhereAsync(x => x.AccountID == accountID);

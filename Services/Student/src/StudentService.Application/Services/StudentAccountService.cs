@@ -3,6 +3,7 @@ using StudentService.Application.Common.Exceptions;
 using StudentService.Application.Interfaces.Repositories;
 using StudentService.Application.Interfaces.Services;
 using StudentService.Application.Models.DTOs;
+using StudentService.Application.Models.DTOs.InputModels;
 using StudentService.Domain.Entities;
 using System.ComponentModel;
 using System.Reflection.Metadata.Ecma335;
@@ -29,13 +30,13 @@ namespace StudentService.Application.Services
             return _mapper.Map<StudentDTO>(result);
         }
 
-        public async Task<StudentDetailedDTO> GetStudentAccountDetail(string studentId)
+        public async Task<UpdateStudentContactDTO> GetStudentAccountDetail(string studentId)
         {
             //get student account
             var result = await _unitOfWork.Students.GetAsync(studentId)
                 ?? throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
 
-            return _mapper.Map<StudentDetailedDTO>(result);
+            return _mapper.Map<UpdateStudentContactDTO>(result);
         }
 
         public async Task<StudentTranscriptDTO> GetStudentTranscript(string studentId)
@@ -45,41 +46,55 @@ namespace StudentService.Application.Services
 
             return _mapper.Map<StudentTranscriptDTO>(result);
         }
-        public async Task<StudentDetailedDTO> UpdateContactInformation(StudentDetailedDTO dto)
+        public async Task<UpdateStudentContactDTO> UpdateContactInformation(UpdateStudentContactDTO dto)
         {
-            var validationErrors = await ValidateStudentAccountDetails(dto);
-            if (validationErrors != null)
+            if(await ValidateStudentAccountDetails(dto))
             {
-                throw new BadRequestException(validationErrors.Message, validationErrors.Details);
+                var updatedAccount = _mapper.Map<Student>(dto);
+                var update = await _unitOfWork.Students.UpdateAsync(updatedAccount);
+                if (update != null)
+                {
+                    var result = await _unitOfWork.Save();
+                    return result > 0 ? _mapper.Map<UpdateStudentContactDTO>(result) : throw new MySQLException();
+
+                }                
             }
-            var updatedAccount = _mapper.Map<Student>(dto);
-            var update = await _unitOfWork.Students.UpdateAsync(updatedAccount)
-                ?? throw new BadRequestException("Unable to update account."); 
-            
-            var result = await _unitOfWork.Save();
-            return result > 0 ? _mapper.Map<StudentDetailedDTO>(result) : throw new MySQLException();
+            throw new BadRequestException("Unable to update account.");
+
         }
 
         //Validate Account
-        public async Task<ErrorDetail?> ValidateStudentAccountDetails(StudentDetailedDTO dto)
+        public async Task<bool> ValidateStudentAccountDetails(UpdateStudentContactDTO dto)
         {
-            List<string> validationErrors = new List<string>();
-            var account = await _unitOfWork.Students.GetTranscriptAsync(dto.StudentId);
+            var validation = new ErrorDetail();
+           
+            var account = await _unitOfWork.Students.GetAsync(dto.StudentId);
             if(account == null)
-            {
-                validationErrors.Add($"No Account Associated with Student {dto.StudentId}");
-            }
-
+                validation.Details.Add($"No Account Associated with Student {dto.StudentId}");
+            if (dto.TermAddressLineOne.Trim().Length == 0)
+                validation.Details.Add("Term Address Line One isRequired");
+            if (dto.TermAddressTown_City.Trim().Length == 0)
+                validation.Details.Add("Term Address Town or City is Required");
+            if (dto.TermAddressPostCode.Trim().Length == 0)
+                validation.Details.Add("Term Address Post Code is Required");
+            if (dto.TermAddressCountry.Trim().Length == 0)
+                validation.Details.Add("Term Address Country is Required");
+            if (dto.PermanentAddressLineOne.Trim().Length == 0)
+                validation.Details.Add("Permanent Address Line One isRequired");
+            if (dto.PermanentAddressTown_City.Trim().Length == 0)
+                validation.Details.Add("Permanent Address Town or City is Required");
+            if (dto.PermanentAddressPostCode.Trim().Length == 0)
+                validation.Details.Add("Permanent Address Post Code is Required");
+            if (dto.PermanentAddressCountry.Trim().Length == 0)
+                validation.Details.Add("Permanent Address Country is Required");           
             //TODO: add other validation rules
 
-            if (validationErrors.Any())
+            if (validation.Details.Any())
             {
-                return new ErrorDetail("Unable to update account.", validationErrors);
+                validation.Message = "Invalid Account";
+                throw new BadRequestException("Bad Request", validation);
             }
-            else
-            {
-                return null;
-            }
+            return true; 
 
         }
 

@@ -1,4 +1,5 @@
 ﻿using StudentService.Application.Models.DTOs;
+using StudentService.Application.Models.DTOs.InputModels;
 using StudentService.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,21 +17,21 @@ namespace StudentService.Application.Interfaces.Services
         /// </summary>
         /// <param name="studentDTO"></param>
         /// <returns><see cref="StudentDTO"/></returns>
-        Task<StudentDetailedDTO> UpdateContactInformation(StudentDetailedDTO studentDTO);
+        Task<UpdateStudentContactDTO> UpdateContactInformation(UpdateStudentContactDTO studentDTO);
 
         /// <summary>
         /// Get student account
         /// </summary>
         /// <param name="studentId"></param>
-        /// <returns><see cref="StudentDetailedDTO"/></returns>
+        /// <returns><see cref="UpdateStudentContactDTO"/></returns>
         Task<StudentDTO> GetStudentAccount(string studentId);
 
         /// <summary>
         /// Get detailed student account
         /// </summary>
         /// <param name="studentId"></param>
-        /// <returns><see cref="StudentDetailedDTO"/></returns>
-        Task<StudentDetailedDTO> GetStudentAccountDetail(string studentId);
+        /// <returns><see cref="UpdateStudentContactDTO"/></returns>
+        Task<UpdateStudentContactDTO> GetStudentAccountDetail(string studentId);
 
         /// <summary>
         /// Get student transcript
@@ -43,7 +44,7 @@ namespace StudentService.Application.Interfaces.Services
         /// Validate Student Account Details
         /// </summary>
         /// <param name="studentDTO"></param>
-        /// <returns><seealso cref="ErrorDetails"/> if there are any validation errors, otherwise, null Task Result</returns>
-        Task<ErrorDetail?>ValidateStudentAccountDetails (StudentDetailedDTO studentDTO);
+        /// <returns>false if there are any validation errors, otherwise, true</returns>
+        Task<bool>ValidateStudentAccountDetails (UpdateStudentContactDTO studentDTO);
     }
 }

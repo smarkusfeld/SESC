@@ -1,4 +1,5 @@
 ﻿using StudentService.Domain.Entities;
+using StudentService.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,14 @@ namespace StudentService.Application.Interfaces.Repositories.TypeRepositories
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        Task<Transcript> GetTranscriptAsync(string studentId);
+        Task<Transcript> GetTranscriptAsync(object key);
+
+        /// <summary>
+        /// Get last account number for generating the student Id
+        /// </summary>
+        /// <returns></returns>
+        Task<string> GetNextStudentId();
+
 
     }
 }

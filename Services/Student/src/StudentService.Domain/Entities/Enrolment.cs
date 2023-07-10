@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace StudentService.Domain.Entities
 {
     /// <summary>
-    /// Course Offering Entrollment entity
+    /// Course Level Entrollment entity
     /// </summary>
     public class Enrolment : BaseAuditableEntity
     {
@@ -21,15 +21,14 @@ namespace StudentService.Domain.Entities
         public int Id { get; private set; }
 
         public DateTime EnrolDate { get; set; }
-        public int CourseOfferingId { get; set; }
+        public int CourseLevelId { get; set; }
         public string StudentId { get; set; }
 
-        public int Tutition { get; set; }
 
         //navigation properties
         public Student Student { get; set; }
        
-        public CourseOffering CourseOffering { get; set; }
+        public CourseLevel CourseLevel { get; set; }
         
     }
 }

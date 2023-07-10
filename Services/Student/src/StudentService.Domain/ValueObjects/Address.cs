@@ -1,4 +1,5 @@
-﻿using StudentService.Domain.Common;
+﻿using Microsoft.EntityFrameworkCore;
+using StudentService.Domain.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,15 +13,28 @@ namespace StudentService.Domain.ValueObjects
     /// <summary>
     /// Value object for address properties
     /// </summary>
+    [Owned]
     public class Address : ValueObject
     {
+        [Column(TypeName = "varchar(100)")]
         public string LineOne { get; set; }
+
+        [Column(TypeName = "varchar(100)")]
         public string? LineTwo { get; set; }
+
+        [Column(TypeName = "varchar(100)")]
         public string? LineThree { get; set; }
+
+        [Column(TypeName = "varchar(50)")]
         public string Town_City { get; set; }
+        
+        [Column(TypeName = "varchar(50)")] 
         public string? County_Region { get; set; }
+
+        [Column(TypeName = "varchar(20)")]
         public string PostCode { get; set; }
 
+        [Column(TypeName = "varchar(30)")]
         public string Country { get; set; }
 
         

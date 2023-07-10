@@ -1,5 +1,6 @@
 ﻿using StudentService.Application.Interfaces.Repositories.TypeRepositories;
 using StudentService.Domain.Common;
+using StudentService.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,18 +15,20 @@ namespace StudentService.Application.Interfaces.Repositories
     ///</summary>
     public interface IUnitOfWork : IDisposable
     {
-        ICourseRepository Courses { get; }
-        ICourseOfferingRepository CourseOfferings { get; }
-        ICourseResultRepository CourseResults { get; }
+        public ICourseRegistrationRepository Registrations { get; }
+        public ICourseRepository Courses { get; }
+        public ICourseLevelRepository CourseLevels { get; }
 
-        IDegreeRepository Degrees { get; }
-        IEnrolmentRepository Enrolments { get; }
-        ICourseEnrolmentRepository CourseEnrolments { get; }
-        IQualificationRepository Qualifications { get; }
-        IRequirementRepository Requirements { get; }
-        ITranscriptRepository Transcripts { get; }
-        IStudentRepository Students { get; }
-        ISchoolRepository Schools { get; }
+        public IStudentResultRepository StudentResults { get; }
+
+        public IAwardRepository Awards { get; }
+
+        public IEnrolmentRepository Enrolments { get; }
+
+        public IStudentRepository Students { get; }
+
+        public ISchoolRepository Schools { get; }
+        public ISubjectRepository Subjects { get; }
         Task<int> Save();
         Task Rollback();
     }
