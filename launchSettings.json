@@ -3,19 +3,17 @@
     "Docker Compose": {
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
-      "composeLaunchAction": "LaunchBrowser",
-      "composeLaunchServiceName": "student-portal",
-      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}/swagger",
       "serviceActions": {
         "finance-api": "StartDebugging",
         "finance-gateway": "StartDebugging",
         "identity-api": "StartDebugging",
         "library-api": "StartDebugging",
         "library-gateway": "StartDebugging",
-        "mysql-server": "StartWithoutDebugging",
+        "adminer": "StartWithoutDebugging",
         "student-api": "StartDebugging",
         "student-gateway": "StartWithoutDebugging",
-        "student-portal": "StartDebugging"
+        "student-portal": "StartDebugging",
+        "db": "StartWithoutDebugging"
       }
     }
   }

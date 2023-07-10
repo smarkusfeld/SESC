@@ -6,19 +6,26 @@ services:
 
   # for development and testing all databases are in the same docker container to keep memory requirements low
   # for development and testing  all databases have the same root user and password
-  mysql-server:
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+  db:
+    command: --default-authentication-plugin=mysql_native_password    
+    restart: always
     # script to create seperate databases 
     volumes:
-       - ./mysql/init:/docker-entrypoint-initdb.d
+       - databases:/var/lib/mysql
+       - ./script/schema.sql:/docker-entrypoint-initdb.d
     environment:
-          MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?database root password not set}
-          
+          MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?database root password not set} 
     # map host port to container port
     # same port for development and testing because all service databases in one container 
     ports:
       - "3306:3306"
-  
+
+  # database management 
+  adminer:     
+   restart: always
+   ports:
+     - 8080:8080
+
   identity-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -91,3 +98,6 @@ services:
       - "5202:80"
     volumes:
       - ./ApiGateways/Web.Bff.LibraryPortal/ocelot:/app/configuration
+volumes:
+  databases:
+    
