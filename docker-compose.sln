@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceService.Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{10275D7A-65C1-4983-91A9-6790376E64DB}"
 	ProjectSection(SolutionItems) = preProject
-		scripts\schema.sql = scripts\schema.sql
+		Services\MySql\init\schema.sql = Services\MySql\init\schema.sql
 	EndProjectSection
 EndProject
 Global

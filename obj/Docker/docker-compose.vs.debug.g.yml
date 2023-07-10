@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  finance-api:
+  finance.api:
     image: finance.api:dev
     container_name: FinanceService.Api
     build:
@@ -29,7 +29,7 @@ services:
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
-  finance-gateway:
+  finance.gateway:
     image: finance.gateway:dev
     build:
       target: base
@@ -57,7 +57,7 @@ services:
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
 
-  identity-api:
+  identity.api:
     image: identity.api:dev
     container_name: IdentityService
     build:
@@ -86,7 +86,7 @@ services:
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
 
-  library-api:
+  library.api:
     image: library.api:dev
     container_name: LibraryService.Api
     build:
@@ -115,7 +115,7 @@ services:
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
 
-  library-gateway:
+  library.gateway:
     image: library.gateway:dev
     build:
       target: base
@@ -143,7 +143,7 @@ services:
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
 
-  student-api:
+  student.api:
     image: studentserviceapi:dev
     container_name: StudentService.Api
     build:
@@ -172,7 +172,7 @@ services:
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
 
-  student-gateway:
+  student.gateway:
     image: student.gateway:dev
     build:
       target: base
@@ -200,7 +200,7 @@ services:
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
 
-  student-portal:
+  student.portal:
     image: student.portal:dev
     container_name: StudentPortal
     build:

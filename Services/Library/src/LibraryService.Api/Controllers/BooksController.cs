@@ -36,7 +36,7 @@ namespace LibraryService.Api.Controllers
         /// A 201 status code produced by the <seealso cref="CreatedAtActionResult"/> with the new or updated book record<br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if the book record was not created<br/> 
         /// </returns>        
-        [HttpGet("add/{isbn}")]
+        [HttpPost("add/{isbn}")]
         public async Task<IActionResult> AddBook(string isbn)
         {
             _logger.LogInformation("Adding new book", isbn);

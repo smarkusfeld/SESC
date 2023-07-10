@@ -1,6 +1,5 @@
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\ApiGateways\OcelotApiGateway\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\ApiGateways\OcelotApiGateway\bin\Debug\net6.0\appsettings.json
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\ApiGateways\OcelotApiGateway\bin\Debug\net6.0\ocelot.json
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\ApiGateways\OcelotApiGateway\bin\Debug\net6.0\OcelotApiGateway.exe
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\ApiGateways\OcelotApiGateway\bin\Debug\net6.0\OcelotApiGateway.deps.json
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\ApiGateways\OcelotApiGateway\bin\Debug\net6.0\OcelotApiGateway.runtimeconfig.json

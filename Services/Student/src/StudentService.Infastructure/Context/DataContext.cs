@@ -69,6 +69,12 @@ namespace StudentService.Infastructure.Context
                .WithOne(x => x.Course)
                .HasForeignKey(x => x.CourseId);
 
+            //no reverse navigation for contained award
+            modelBuilder.Entity<ContainedAward>()
+               .HasOne(y => y.Award)
+               .WithMany()
+               .HasForeignKey(y => y.AwardId);
+
             modelBuilder.Entity<Course>()
                .HasOne(x => x.School)
                .WithMany(y => y.Courses)               
