@@ -91,6 +91,15 @@
             A 404 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/> if no invoice matched reference
             </returns>
         </member>
+        <member name="M:FinanceService.Api.Controllers.InvoicesController.HasOutstandingBalance(System.String)">
+            <summary>
+            Check if student account has outstanding balance
+            </summary>
+            <param name="studentid"></param>
+            <returns>
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with true if the student has any outstanding invoices<br/> 
+            </returns>
+        </member>
         <member name="M:FinanceService.Api.Controllers.InvoicesController.CreateBookFeeInvoice(FinanceService.Application.DTOs.NewInvoiceDTO)">
             <summary>
             Create a new invoice

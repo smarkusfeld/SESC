@@ -9,10 +9,12 @@ services:
 
   # for development and testing all databases are in the same docker container to keep memory requirements low
   # for development and testing  all databases have the same root user and password
-  mysql-server:
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+  db:
+    # use of "mysql_native_password" is not recommended for production
+    
     # script to create seperate databases 
     volumes:
+       - databases:/var/lib/mysql
        - ./mysql/init:/docker-entrypoint-initdb.d
     environment:
           MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?database root password not set}
@@ -92,3 +94,6 @@ services:
       - "80"
     volumes:
       - ApiGateways/Web.Bff.LibraryPortal/ocelot
+volumes:
+  databases:
+    

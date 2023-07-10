@@ -21,7 +21,6 @@ services:
       com.microsoft.visual-studio.project-name: "FinanceService.Api"
     tty: true
   finance-gateway:
-    container_name: OcelotApiGateway
     build:
       labels:
         com.microsoft.created-by: "visual-studio"
@@ -81,7 +80,6 @@ services:
     tty: true
 
   library-gateway:
-    container_name: OcelotApiGateway_1
     build:
       labels:
         com.microsoft.created-by: "visual-studio"
@@ -121,7 +119,6 @@ services:
     tty: true
 
   student-gateway:
-    container_name: OcelotApiGateway_2
     build:
       labels:
         com.microsoft.created-by: "visual-studio"

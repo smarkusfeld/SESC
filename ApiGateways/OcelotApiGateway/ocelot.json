@@ -2,15 +2,7 @@
   "GlobalConfiguration": {},
   "Routes": [
     {
-      // identity left out of api routing 
-      // define url of the api gateway that reccieves the requests
-      "UpstreamPathTemplate": "/api/{version}/b/{everything}",
-      //define http methods
-      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+     
     }
   ]
 }

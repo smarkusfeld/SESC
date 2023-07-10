@@ -31,7 +31,6 @@ services:
     tty: true
   finance-gateway:
     image: finance.gateway:dev
-    container_name: OcelotApiGateway
     build:
       target: base
       labels:
@@ -118,7 +117,6 @@ services:
 
   library-gateway:
     image: library.gateway:dev
-    container_name: OcelotApiGateway_1
     build:
       target: base
       labels:
@@ -176,7 +174,6 @@ services:
 
   student-gateway:
     image: student.gateway:dev
-    container_name: OcelotApiGateway_2
     build:
       target: base
       labels:

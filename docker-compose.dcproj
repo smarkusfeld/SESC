@@ -16,6 +16,6 @@
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
     <None Include="docker-compose.prod.yml" />
-    <None Include="Services\mysql\init\dev_databases.sql" />
+    <None Include="scripts\schema.sql" />
   </ItemGroup>
 </Project>

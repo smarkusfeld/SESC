@@ -6,11 +6,18 @@ version: '3.7'
 ## containers
 services:
 
+
   # database server 
   # each service should have a seperate database on the server
-  mysql-server:
+  db:
+    container_name: mysql_server
     image: mysql
   
+  # database management 
+  adminer:
+   container_name: adminer
+   image: adminer
+   
   # identity api for authorization and user management
   identity-api:
     image: ${DOCKER_REGISTRY-}identity.api
@@ -18,7 +25,7 @@ services:
         context: .
         dockerfile: Services/Identity/Dockerfile
     depends_on:
-        - mysql-server
+        - db
         
   # finance api 
   finance-api:
@@ -27,7 +34,7 @@ services:
         context: .
         dockerfile: Services/Finance/src/FinanceService.Api/Dockerfile
     depends_on:
-        - mysql-server
+        - db
         - identity-api 
         
   # student api for registrar services
@@ -44,7 +51,7 @@ services:
         context: .
         dockerfile: Services/Library/src/LibraryService.Api/Dockerfile
     depends_on:
-        - mysql-server
+        - db
         - identity-api 
         - finance-api
   
@@ -57,19 +64,22 @@ services:
 
   # create gateways
   # all gateways use the same base image 
-  student-gateway:
+  student-gateway:  
+    container_name: student_ocelot
     image: ${DOCKER_REGISTRY-}student.gateway
     build:
       context: .
       dockerfile: ApiGateways/OcelotApiGateway/Dockerfile
   
   finance-gateway:
+    container_name: finance_ocelot
     image: ${DOCKER_REGISTRY-}finance.gateway
     build:
       context: .
       dockerfile: ApiGateways/OcelotApiGateway/Dockerfile
 
   library-gateway:
+    container_name: library_ocelot
     image: ${DOCKER_REGISTRY-}library.gateway
     build:
       context: .
