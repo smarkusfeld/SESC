@@ -33,7 +33,7 @@ namespace LibraryService.Api.Controllers
         /// A 201 status code produced by the <seealso cref="CreatedAtActionResult"/> with the new or updated book record<br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if the book record was not created<br/> 
         /// </returns>  
-        [HttpGet("borrow/{isbn}")]
+        [HttpPost("borrow/{isbn}")]
         public async Task<IActionResult> NewLoan([FromBody] AccountDTO account, string isbn)
         {
             _logger.LogInformation("Create new loan", isbn);
@@ -50,7 +50,7 @@ namespace LibraryService.Api.Controllers
         /// <param name="isbn"></param>
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with the completed loan record<br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if the loan was not reutned <br/> 
-        [HttpGet("return/{isbn}")]
+        [HttpPost("return/{isbn}")]
         public async Task<IActionResult> Return([FromBody] AccountDTO account, string isbn)
         {
             _logger.LogInformation("Returning Book for", isbn);
@@ -68,7 +68,7 @@ namespace LibraryService.Api.Controllers
         /// <param name="isbn"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        [HttpGet("renew/{isbn}")]
+        [HttpPost("renew/{isbn}")]
         public async Task<IActionResult> RenewLoan([FromBody] AccountDTO account, string isbn)
         {
             throw new NotImplementedException();
@@ -82,7 +82,7 @@ namespace LibraryService.Api.Controllers
         /// A 204 status code prodeced by the <seealso cref="NoContentResult"/> if no records exists in the database <br/> 
         /// A 404 status code produced by the <seealso cref="NotFoundResult"/> if the loan service returns a null task
         /// </returns>
-        [HttpGet("loans/active")]
+        [HttpGet("active")]
         public async Task<IActionResult> GetAllActiveLoans()
         {
             _logger.LogInformation("Getting all active loans from database.");
@@ -99,7 +99,7 @@ namespace LibraryService.Api.Controllers
         /// A 204 status code prodeced by the <seealso cref="NoContentResult"/> if no records exists in the database <br/> 
         /// A 404 status code produced by the <seealso cref="NotFoundResult"/> if the loan service returns a null task
         /// </returns>
-        [HttpGet("loans/overdue")]
+        [HttpGet("overdue")]
         public async Task<IActionResult> GetAllOverdueLoans()
         {
             _logger.LogInformation("Getting all overdue loans from database.");

@@ -3,7 +3,6 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\bin\Debug\OcelotApiG
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\bin\Debug\OcelotApiGateway.runtimeconfig.json
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\bin\Debug\appsettings.Development.json
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\bin\Debug\appsettings.json
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\bin\Debug\ocelot.json
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\bin\Debug\OcelotApiGateway.exe
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\bin\Debug\OcelotApiGateway.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\bin\Debug\Microsoft.AspNetCore.Authentication.JwtBearer.dll

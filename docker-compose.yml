@@ -10,17 +10,20 @@ services:
   # database server 
   # each service should have a seperate database on the server
   db:
-    container_name: mysql_server
+    container_name: db.server
     image: mysql
   
   # database management 
-  adminer:
-   container_name: adminer
+  db.management:
+   container_name: db.management
    image: adminer
+   depends_on:
+        - db
    
   # identity api for authorization and user management
-  identity-api:
+  identity.api:
     image: ${DOCKER_REGISTRY-}identity.api
+    hostname: identity.api
     build:
         context: .
         dockerfile: Services/Identity/Dockerfile
@@ -28,60 +31,91 @@ services:
         - db
         
   # finance api 
-  finance-api:
+  finance.api:
     image: ${DOCKER_REGISTRY-}finance.api
+    hostname: finance.api
     build:
         context: .
         dockerfile: Services/Finance/src/FinanceService.Api/Dockerfile
     depends_on:
         - db
-        - identity-api 
         
   # student api for registrar services
-  student-api:
+  student.api:
     image: ${DOCKER_REGISTRY-}studentserviceapi
+    hostname: student.api
     build:
       context: .
       dockerfile: Services/Student/src/StudentService.Api/Dockerfile
+    depends_on:
+        - db
   
   # library api 
-  library-api:
+  library.api:
     image: ${DOCKER_REGISTRY-}library.api
+    hostname: library.api
     build:
         context: .
         dockerfile: Services/Library/src/LibraryService.Api/Dockerfile
     depends_on:
         - db
-        - identity-api 
-        - finance-api
   
   # student port for registrar services
-  student-portal:
-    image: ${DOCKER_REGISTRY-}student.portal
+  student.portal:
+    image: ${DOCKER_REGISTRY-}student.portal     
+    hostname: student.portal
     build:
       context: .
       dockerfile: StudentPortal/Dockerfile
 
   # create gateways
   # all gateways use the same base image 
-  student-gateway:  
-    container_name: student_ocelot
+  student.gateway:  
+    container_name: student_gateway
+    hostname: student.gateway
     image: ${DOCKER_REGISTRY-}student.gateway
     build:
       context: .
       dockerfile: ApiGateways/OcelotApiGateway/Dockerfile
+    depends_on:
+        - finance.api
+        - student.api
+        - library.api
+        - identity.api      
+    links:
+        - finance.api
+        - student.api
+        - library.api
+        - identity.api
+
   
-  finance-gateway:
-    container_name: finance_ocelot
+  finance.gateway:
+    container_name: finance_gateway
+    hostname: finance.gateway
     image: ${DOCKER_REGISTRY-}finance.gateway
     build:
       context: .
       dockerfile: ApiGateways/OcelotApiGateway/Dockerfile
+    depends_on:
+        - finance.api
+        - identity.api     
+    links:
+        - finance.api
+        - identity.api 
 
-  library-gateway:
-    container_name: library_ocelot
+  library.gateway:
+    container_name: library_gateway
+    hostname: library.gateway
     image: ${DOCKER_REGISTRY-}library.gateway
     build:
       context: .
       dockerfile: ApiGateways/OcelotApiGateway/Dockerfile
+    depends_on:
+        - finance.api
+        - library.api
+        - identity.api 
+    links:
+        - finance.api
+        - library.api
+        - identity.api 
   

@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  finance-api:
+  finance.api:
     container_name: FinanceService.Api
     build:
       labels:
@@ -20,7 +20,7 @@ services:
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
       com.microsoft.visual-studio.project-name: "FinanceService.Api"
     tty: true
-  finance-gateway:
+  finance.gateway:
     build:
       labels:
         com.microsoft.created-by: "visual-studio"
@@ -39,7 +39,7 @@ services:
       com.microsoft.visual-studio.project-name: "OcelotApiGateway"
     tty: true
 
-  identity-api:
+  identity.api:
     container_name: IdentityService
     build:
       labels:
@@ -59,7 +59,7 @@ services:
       com.microsoft.visual-studio.project-name: "IdentityService"
     tty: true
 
-  library-api:
+  library.api:
     container_name: LibraryService.Api
     build:
       labels:
@@ -79,7 +79,7 @@ services:
       com.microsoft.visual-studio.project-name: "LibraryService.Api"
     tty: true
 
-  library-gateway:
+  library.gateway:
     build:
       labels:
         com.microsoft.created-by: "visual-studio"
@@ -98,7 +98,7 @@ services:
       com.microsoft.visual-studio.project-name: "OcelotApiGateway"
     tty: true
 
-  student-api:
+  student.api:
     container_name: StudentService.Api
     build:
       labels:
@@ -118,7 +118,7 @@ services:
       com.microsoft.visual-studio.project-name: "StudentService.Api"
     tty: true
 
-  student-gateway:
+  student.gateway:
     build:
       labels:
         com.microsoft.created-by: "visual-studio"
@@ -137,7 +137,7 @@ services:
       com.microsoft.visual-studio.project-name: "OcelotApiGateway"
     tty: true
 
-  student-portal:
+  student.portal:
     container_name: StudentPortal
     build:
       labels:

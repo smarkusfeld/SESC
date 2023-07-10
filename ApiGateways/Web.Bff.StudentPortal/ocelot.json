@@ -6,15 +6,10 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "finance-api",
+          "Host": "finance.api",
           "Port": 80
         }
       ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "RouteClaimsRequirement": {},
       "UpstreamPathTemplate": "/finance/add/{id}",
       "UpstreamHttpMethod": [ "POST" ]
     },
@@ -23,17 +18,10 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "finance-api",
+          "Host": "finance.api",
           "Port": 80
         }
       ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": [ "admin" ]
-      },
-      "RouteClaimsRequirement": {
-        "role": "registrar"
-      },
       "UpstreamPathTemplate": "/finance/invoice",
       "UpstreamHttpMethod": [ "POST" ]
     },
@@ -42,15 +30,10 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "finance-api",
+          "Host": "finance.api",
           "Port": 80
         }
       ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "RouteClaimsRequirement": {},
       "UpstreamPathTemplate": "/finance/balance/{id}",
       "UpstreamHttpMethod": [ "GET" ]
     },
@@ -59,15 +42,10 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "library-api",
+          "Host": "library.api",
           "Port": 80
         }
       ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "RouteClaimsRequirement": {},
       "UpstreamPathTemplate": "/library/register/{id}",
       "UpstreamHttpMethod": [ "POST" ]
     }

@@ -245,7 +245,7 @@ namespace StudentService.Infastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("AwardId1")
+                    b.Property<int>("AwardId")
                         .HasColumnType("int");
 
                     b.Property<int>("CourseId")
@@ -253,7 +253,7 @@ namespace StudentService.Infastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AwardId1");
+                    b.HasIndex("AwardId");
 
                     b.HasIndex("CourseId");
 
@@ -936,7 +936,7 @@ namespace StudentService.Infastructure.Migrations
                 {
                     b.HasOne("StudentService.Domain.Entities.Award", "Award")
                         .WithMany()
-                        .HasForeignKey("AwardId1")
+                        .HasForeignKey("AwardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

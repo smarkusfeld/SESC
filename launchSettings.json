@@ -4,15 +4,15 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "finance-api": "StartDebugging",
-        "finance-gateway": "StartDebugging",
-        "identity-api": "StartDebugging",
-        "library-api": "StartDebugging",
-        "library-gateway": "StartDebugging",
-        "adminer": "StartWithoutDebugging",
-        "student-api": "StartDebugging",
-        "student-gateway": "StartWithoutDebugging",
-        "student-portal": "StartDebugging",
+        "student.portal": "StartDebugging",
+        "student.gateway": "StartDebugging",
+        "student.api": "StartDebugging",
+        "library.gateway": "StartDebugging",
+        "library.api": "StartDebugging",
+        "identity.api": "StartDebugging",
+        "finance.gateway": "StartDebugging",
+        "finance.api": "StartDebugging",
+        "db.management": "StartWithoutDebugging",
         "db": "StartWithoutDebugging"
       }
     }
