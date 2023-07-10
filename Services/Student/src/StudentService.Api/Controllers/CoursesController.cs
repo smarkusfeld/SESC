@@ -6,7 +6,7 @@ namespace StudentService.Api.Controllers
     /// <summary>
     /// Controller for all course logic
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CoursesController : Controller
     {

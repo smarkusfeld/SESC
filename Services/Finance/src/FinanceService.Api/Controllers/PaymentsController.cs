@@ -10,7 +10,7 @@ namespace FinanceService.Api.Controllers
     /// <summary>
     /// Controller for all payment logic
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class PaymentsController : Controller
     {

@@ -30,3 +30,5 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\StudentPortal\obj\De
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\StudentPortal\obj\Debug\net6.0\StudentPortal.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\StudentPortal\obj\Debug\net6.0\StudentPortal.genruntimeconfig.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\StudentPortal\obj\Debug\net6.0\ref\StudentPortal.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\StudentPortal\obj\Debug\net6.0\StudentPortal.RazorAssemblyInfo.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\StudentPortal\obj\Debug\net6.0\StudentPortal.RazorAssemblyInfo.cs

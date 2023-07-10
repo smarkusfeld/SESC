@@ -2,7 +2,7 @@
   "GlobalConfiguration": {},
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/Accounts/register/{id}",
+      "DownstreamPathTemplate": "/Accounts/register/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -27,7 +27,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/Accounts/{id}",
+      "DownstreamPathTemplate": "/Accounts/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -39,7 +39,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/Accounts/reset",
+      "DownstreamPathTemplate": "/Accounts/reset",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -51,7 +51,7 @@
       "UpstreamHttpMethod": [ "PUT" ]
     },
     {
-      "DownstreamPathTemplate": "/api/Books/add",
+      "DownstreamPathTemplate": "/Books/add",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -63,7 +63,7 @@
       "UpstreamHttpMethod": [ "POST" ]
     },
     {
-      "DownstreamPathTemplate": "/api/Catalogue/books",
+      "DownstreamPathTemplate": "/Catalogue/books",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -75,7 +75,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/Catalogue/books/{isbn}",
+      "DownstreamPathTemplate": "/Catalogue/books/{isbn}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -87,7 +87,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/Catalogue/authors",
+      "DownstreamPathTemplate": "/Catalogue/authors",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -99,7 +99,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/Catalogue/publishers",
+      "DownstreamPathTemplate": "/Catalogue/publishers",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -111,7 +111,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/Catalogue/subjects",
+      "DownstreamPathTemplate": "/Catalogue/subjects",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -123,7 +123,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/Loans/borrow/{isbn}",
+      "DownstreamPathTemplate": "/Loans/borrow/{isbn}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -135,7 +135,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/Loans/return/{isbn}",
+      "DownstreamPathTemplate": "/Loans/return/{isbn}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -147,7 +147,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/Loans/renew/{isbn}",
+      "DownstreamPathTemplate": "/Loans/renew/{isbn}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -159,7 +159,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/Loans/active",
+      "DownstreamPathTemplate": "/Loans/active",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -171,7 +171,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/Loans/overdue",
+      "DownstreamPathTemplate": "/Loans/overdue",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {

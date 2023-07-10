@@ -10,7 +10,7 @@ namespace LibraryService.Api.Controllers
     /// <summary>
     /// Controller for all book logic 
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class BooksController : Controller
     {
         private readonly IBookService _service;

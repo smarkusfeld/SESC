@@ -8,7 +8,7 @@ namespace LibraryService.Api.Controllers
     /// <summary>
     /// Controller for all loan logic 
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class LoansController : Controller
     {
         private readonly ILoanService _service;

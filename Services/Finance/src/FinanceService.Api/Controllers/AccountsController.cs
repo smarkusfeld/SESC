@@ -8,7 +8,7 @@ namespace FinanceService.Api.Controllers
     /// <summary>
     /// Controller for all account logic
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AccountsController : Controller
     {

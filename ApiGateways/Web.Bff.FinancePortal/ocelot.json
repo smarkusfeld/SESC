@@ -2,7 +2,7 @@
 	"GlobalConfiguration": {},
 	"Routes": [
 		{
-			"DownstreamPathTemplate": "/api/Invoices",
+			"DownstreamPathTemplate": "/Invoices",
 			"DownstreamScheme": "http",
 			"DownstreamHostAndPorts": [
 				{
@@ -15,7 +15,7 @@
 		},
 
 		{
-			"DownstreamPathTemplate": "/api/Invoices/{id}",
+			"DownstreamPathTemplate": "/Invoices/{id}",
 			"DownstreamScheme": "http",
 			"DownstreamHostAndPorts": [
 				{
@@ -27,7 +27,7 @@
 			"UpstreamHttpMethod": [ "GET" ]
 		},
 		{
-			"DownstreamPathTemplate": "/api/Invoices/find/{reference}",
+			"DownstreamPathTemplate": "/Invoices/find/{reference}",
 			"DownstreamScheme": "http",
 			"DownstreamHostAndPorts": [
 				{
@@ -39,7 +39,7 @@
 			"UpstreamHttpMethod": [ "GET", "POST" ]
 		},
 		{
-			"DownstreamPathTemplate": "/api/Invoices/library",
+			"DownstreamPathTemplate": "/Invoices/library",
 			"DownstreamScheme": "http",
 			"DownstreamHostAndPorts": [
 				{
@@ -51,7 +51,7 @@
 			"UpstreamHttpMethod": [ "POST" ]
 		},
 		{
-			"DownstreamPathTemplate": "/api/Invoices/tuition",
+			"DownstreamPathTemplate": "/Invoices/tuition",
 			"DownstreamScheme": "http",
 			"DownstreamHostAndPorts": [
 				{
@@ -63,7 +63,7 @@
 			"UpstreamHttpMethod": [ "POST" ]
 		},
 		{
-			"DownstreamPathTemplate": "/api/Accounts",
+			"DownstreamPathTemplate": "/Accounts",
 			"DownstreamScheme": "http",
 			"DownstreamHostAndPorts": [
 				{
@@ -75,7 +75,7 @@
 			"UpstreamHttpMethod": [ "GET" ]
 		},
 		{
-			"DownstreamPathTemplate": "/api/Accounts/{id}",
+			"DownstreamPathTemplate": "/Accounts/{id}",
 			"DownstreamScheme": "http",
 			"DownstreamHostAndPorts": [
 				{
@@ -87,7 +87,7 @@
 			"UpstreamHttpMethod": [ "GET", "POST" ]
 		},
 		{
-			"DownstreamPathTemplate": "/api/Payments/{everything}",
+			"DownstreamPathTemplate": "/Payments/{everything}",
 			"DownstreamScheme": "http",
 			"DownstreamHostAndPorts": [
 				{
