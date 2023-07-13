@@ -63,6 +63,7 @@ namespace FinanceService.Application.Services
         public async Task<AccountDTO> GetStudentAccount(string studentID)
         {
             var account = await _unitOfWork.Accounts.GetByAsync(x => x.StudentID == studentID);
+            if(account == null) { return null; }
             AccountDTO dto = _mapper.Map<AccountDTO>(account);
             dto.HasOutstandingBalance = await AccountHasOutstandingBalance(dto);
             return dto;
@@ -109,8 +110,13 @@ namespace FinanceService.Application.Services
         private async Task<bool> AccountHasOutstandingBalance(AccountDTO dto)
         {
             var invoices = await _unitOfWork.Invoices.GetAllWhereAsync(x => x.AccountID == dto.ID);
-            decimal total = invoices.Sum(x => x.Balance);
-            return total > 0;
+            if (invoices != null)
+            {
+                decimal total = invoices.Sum(x => x.Balance);
+                return total > 0;
+            }
+            return false;
+            
         }
         
     }

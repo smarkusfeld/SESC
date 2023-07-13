@@ -14,11 +14,11 @@ var builder = WebApplication.CreateBuilder(args);
 //add appsetting file
 builder.Host.ConfigureAppConfiguration(config =>
 {
-    config.AddJsonFile("appsetting.json");
-    config.AddJsonFile("appsettings.Development.json");
+    config.AddJsonFile("configuration/appsettings/appsettings.json");
+    config.AddJsonFile("configuration/appsettings/appsettings.Development.json");
 });
 
-var routes = "Routes";
+var routes = "configuration/ocelot";
 
 builder.Configuration.AddOcelotWithSwaggerSupport(options =>
 {
@@ -31,7 +31,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Configuration.AddJsonFile("configuration/ocelot.json", optional: false, reloadOnChange: true);
+builder.Configuration.AddJsonFile("configuration/ocelot/ocelot.json", optional: false, reloadOnChange: true);
 builder.Services.AddOcelot(builder.Configuration);
 
 builder.Services.AddSwaggerForOcelotService(builder.Configuration);
@@ -42,7 +42,6 @@ builder.Configuration.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembl
     .AddEnvironmentVariables();
 
 
-//swagger for ocelot
 // Swagger for ocelot
 builder.Services.AddSwaggerGen();
 

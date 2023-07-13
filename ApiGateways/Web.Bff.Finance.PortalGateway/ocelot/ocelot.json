@@ -1,124 +1,150 @@
 // finance gateway
 {
-	"GlobalConfiguration": {},
-	"Routes": [
+	"GlobalConfiguration": 
 		{
-			"DownstreamPathTemplate": "/Invoices",
-			"DownstreamScheme": "http",
-			"DownstreamHostAndPorts": [
-				{
-					"Host": "finance-api",
-					"Port": 80
-				}
-			],
-			"UpstreamPathTemplate": "/finance/invoices",
-			"UpstreamHttpMethod": [ "GET" ],
-			"SwaggerKey": "finance"
+			//"BaseUrl": "https://localhost:5201"
 		},
+		"Routes": [
+			{
+				"DownstreamPathTemplate": "/Invoices",
+				"DownstreamScheme": "http",
+				"DownstreamHostAndPorts": [
+					{
+						"Host": "finance-api",
+						"Port": 80
+					}
+				],
+				"UpstreamPathTemplate": "/invoices",
+				"UpstreamHttpMethod": [ "GET" ],
+				"SwaggerKey": "finance"
+			},
+			{
+				"DownstreamPathTemplate": "/Invoices/{studentId}",
+				"DownstreamScheme": "http",
+				"DownstreamHostAndPorts": [
+					{
+						"Host": "finance-api",
+						"Port": 80
+					}
+				],
+				"UpstreamPathTemplate": "/invoices/{studentId}",
+				"UpstreamHttpMethod": [ "GET" ],
+				"SwaggerKey": "finance"
+			},
 
-		{
-			"DownstreamPathTemplate": "/Invoices/{id}",
-			"DownstreamScheme": "http",
-			"DownstreamHostAndPorts": [
-				{
-					"Host": "finance-api",
-					"Port": 80
-				}
-			],
-			"UpstreamPathTemplate": "/finance/invoices/{id}",
-			"UpstreamHttpMethod": [ "GET" ],
-			"SwaggerKey": "finance"
-		},
-		{
-			"DownstreamPathTemplate": "/Invoices/find/{reference}",
-			"DownstreamScheme": "http",
-			"DownstreamHostAndPorts": [
-				{
-					"Host": "finance-api",
-					"Port": 80
-				}
-			],
-			"UpstreamPathTemplate": "/finance/invoices/find/{reference}",
-			"UpstreamHttpMethod": [ "GET", "POST" ],
-			"SwaggerKey": "finance"
-		},
-		{
-			"DownstreamPathTemplate": "/Invoices/library",
-			"DownstreamScheme": "http",
-			"DownstreamHostAndPorts": [
-				{
-					"Host": "finance-api",
-					"Port": 80
-				}
-			],
-			"UpstreamPathTemplate": "/finance/invoices/library",
-			"UpstreamHttpMethod": [ "POST" ],
-			"SwaggerKey": "finance"
-		},
-		{
-			"DownstreamPathTemplate": "/Invoices/tuition",
-			"DownstreamScheme": "http",
-			"DownstreamHostAndPorts": [
-				{
-					"Host": "finance-api",
-					"Port": 80
-				}
-			],
-			"UpstreamPathTemplate": "/finance/invoices/tuition",
-			"UpstreamHttpMethod": [ "POST" ],
-			"SwaggerKey": "finance"
-		},
-		{
-			"DownstreamPathTemplate": "/Accounts",
-			"DownstreamScheme": "http",
-			"DownstreamHostAndPorts": [
-				{
-					"Host": "finance-api",
-					"Port": 80
-				}
-			],
-			"UpstreamPathTemplate": "/finance/accounts",
-			"UpstreamHttpMethod": [ "GET" ],
-			"SwaggerKey": "finance"
-		},
-		{
-			"DownstreamPathTemplate": "/Accounts/{id}",
-			"DownstreamScheme": "http",
-			"DownstreamHostAndPorts": [
-				{
-					"Host": "finance-api",
-					"Port": 80
-				}
-			],
-			"UpstreamPathTemplate": "/finance/accounts/{id}",
-			"UpstreamHttpMethod": [ "GET", "POST" ],
-			"SwaggerKey": "finance"
-		},
-		{
-			"DownstreamPathTemplate": "/Payments/{everything}",
-			"DownstreamScheme": "http",
-			"DownstreamHostAndPorts": [
-				{
-					"Host": "finance-api",
-					"Port": 80
-				}
-			],
-			"UpstreamPathTemplate": "/finance/payments/{everything}",
-			"UpstreamHttpMethod": [ "GET", "POST" ],
-			"SwaggerKey": "finance"
+			{
+				"DownstreamPathTemplate": "/Invoices/find/{ref}",
+				"DownstreamScheme": "http",
+				"DownstreamHostAndPorts": [
+					{
+						"Host": "finance-api",
+						"Port": 80
+					}
+				],
+				"UpstreamPathTemplate": "/invoices/find/{ref}",
+				"UpstreamHttpMethod": [ "GET" ],
+				"SwaggerKey": "finance"
+			},
+			{
+				"DownstreamPathTemplate": "/Invoices/balance/{studentId}",
+				"DownstreamScheme": "http",
+				"DownstreamHostAndPorts": [
+					{
+						"Host": "finance-api",
+						"Port": 80
+					}
+				],
+				"UpstreamPathTemplate": "/invoices/balance/{studentId}",
+				"UpstreamHttpMethod": [ "GET" ],
+				"SwaggerKey": "finance"
+			},
+			{
+				"DownstreamPathTemplate": "/Invoices/cancel/{reference}",
+				"DownstreamScheme": "http",
+				"DownstreamHostAndPorts": [
+					{
+						"Host": "finance-api",
+						"Port": 80
+					}
+				],
+				"UpstreamPathTemplate": "/invoices/cancel/{reference}",
+				"UpstreamHttpMethod": [ "POST" ],
+				"SwaggerKey": "finance"
+			},
+			{
+				"DownstreamPathTemplate": "/Accounts",
+				"DownstreamScheme": "http",
+				"DownstreamHostAndPorts": [
+					{
+						"Host": "finance-api",
+						"Port": 80
+					}
+				],
+				"UpstreamPathTemplate": "/accounts",
+				"UpstreamHttpMethod": [ "GET" ],
+				"SwaggerKey": "finance"
+			},
+			{
+				"DownstreamPathTemplate": "/Accounts/{studentId}",
+				"DownstreamScheme": "http",
+				"DownstreamHostAndPorts": [
+					{
+						"Host": "finance-api",
+						"Port": 80
+					}
+				],
+				"UpstreamPathTemplate": "/accounts/{studentId}",
+				"UpstreamHttpMethod": [ "GET","POST" ],
+				"SwaggerKey": "finance"
+			},
+			{
+				"DownstreamPathTemplate": "/Payments/{everything}",
+				"DownstreamScheme": "http",
+				"DownstreamHostAndPorts": [
+					{
+						"Host": "finance-api",
+						"Port": 80
+					}
+				],
+				"UpstreamPathTemplate": "/payments/{everything}",
+				"UpstreamHttpMethod": [ "GET", "POST" ],
+				"SwaggerKey": "finance"
 
-		}
-	],
+			}
+		],
 	"SwaggerEndPoints": [
 		{
+			"Key": "bff",
+			"TransformByOcelotConfig": false,
+			"Config": [
+				{
+					"Name": "FinancePortal.Gateway",
+					"Version": "1.0",
+					"Url": "http://finance-gateway/swagger/v1/swagger.json"
+				}
+			]
+		},
+		{
 			"Key": "finance",
+			"TransformByOcelotConfig": true,
 			"Config": [
 				{
 					"Name": "Finance.API V1",
 					"Version": "v1",
-					"Url": "http://localhost:5100/swagger/v1/swagger.json"
+					"Url": "http://finance-api/swagger/v1/swagger.json"
+				}
+			]
+		},
+		{
+			"Key": "finance_ref",
+			"TransformByOcelotConfig": false,
+			"Config": [
+				{
+					"Name": "Finance.API Reference",
+					"Version": "v1",
+					"Url": "http://finance-api/swagger/v1/swagger.json"
 				}
 			]
 		}
 	]
-}
+	}
