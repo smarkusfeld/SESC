@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StudentPortal</name>
+    </assembly>
+    <members>
+        <member name="T:StudentPortal.Controllers.CourseController">
+            <summary>
+            Controller for all course logic
+            </summary>
+        </member>
+        <member name="M:StudentPortal.Controllers.UserController.Register(StudentPortal.Models.UserRegistrationModel)">
+            <summary>
+            Register User 
+            </summary>
+            <param name="userModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StudentPortal.Controllers.UserController.Error">
+            <summary>
+            Generic Error Page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StudentPortal.Controllers.UserController.Error(System.Int32,System.Collections.Generic.List{StudentPortal.Models.ErrorMessage})">
+            <summary>
+            Errror Page with Details from API service
+            </summary>
+            <param name="responseCode"></param>
+            <param name="errors"></param>
+            <returns></returns>
+        </member>
+        <member name="P:StudentPortal.Models.ResponseModel.Succeeded">
+            <summary>
+            Flag indicating whether if the operation succeeded or not.
+            </summary>
+            <value>True if the operation succeeded, otherwise false.</value>
+        </member>
+        <member name="P:StudentPortal.Models.ResponseModel.ResultContent">
+            <summary>
+            Operation Result
+            </summary>
+        </member>
+        <member name="M:StudentPortal.Models.ResponseModel.Success(System.String)">
+            <summary>
+            Creates a <see cref="T:StudentPortal.Models.ResponseModel"/> indicating a successful operation.
+            </summary>
+            <returns>An <see cref="T:StudentPortal.Models.ResponseModel"/> with the operation result</returns>
+        </member>
+        <member name="M:StudentPortal.Models.ResponseModel.Failed(System.Int32,System.String)">
+            <summary>
+            Creates a <see cref="T:StudentPortal.Models.ResponseModel"/> indicating a successful operation.
+            </summary>
+            <returns>An <see cref="T:StudentPortal.Models.ResponseModel"/> with the operation result</returns>
+        </member>
+        <member name="M:StudentPortal.Services.UserService.RegisterStudent(StudentPortal.Models.UserRegistrationModel)">
+            <summary>
+            Register new student user
+            </summary>
+            <param name="userModel"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

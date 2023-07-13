@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "9KJ6hW527Zj1oL35RQdtYCAGsAUbzSMC2ufYPB8i00+3/1IhatclNM6I/dEyCiJM/kQ/0zXoCYyMMF2Us8h2/Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\FinancePortal\\FinancePortal.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.2\\microsoft.visualstudio.azure.containers.tools.targets.1.17.2.nupkg.sha512"
+  ],
+  "logs": []
+}

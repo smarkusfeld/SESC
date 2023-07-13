@@ -10,11 +10,10 @@ namespace StudentPortal.Controllers
     public class CourseController : Controller
     {
         //view courses
-        private readonly ILogger<CoursesController> _logger;
-        public CoursesController(ICourseService service, ILogger<CoursesController> logger)
+        private readonly ILogger<Controller> _logger;
+        public CourseController(ILogger<CourseController> logger)
         {
 
-            _service = service;
             _logger = logger;
         }
 

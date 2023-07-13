@@ -11,59 +11,61 @@ namespace IdentityService.DataContext
             builder.HasData(
             new IdentityRole
             {
-                Id = "b7ea553b-141d-4b5a-bdc8-1f18bdaf4abe",
+                Id = "100",
                 Name = "admin",
                 NormalizedName = "ADMIN"
             },
             new IdentityRole
             {
+                Id = "101",
                 Name = "user",
                 NormalizedName = "USER"
             },
             new IdentityRole
             {
+                Id = "102",
                 Name = "staff",
                 NormalizedName = "STAFF"
             },
             new IdentityRole
             {
-               
+                Id = "103",
                 Name = "registrar",
                 NormalizedName = "REGISTRAR"
             },
             new IdentityRole
             {
-             
+                Id = "104",
                 Name = "library",
                 NormalizedName = "LIBRARY"
             },
             new IdentityRole
             {
-           
+                Id = "105",
                 Name = "finance",
                 NormalizedName = "FINANCE"
             },
             new IdentityRole
             {
-            
+                Id = "106",
                 Name = "faculty",
                 NormalizedName = "FACULTY"
             },
             new IdentityRole
             {
-              
+                Id = "107",
                 Name = "staff",
                 NormalizedName = "STAFF"
             },
             new IdentityRole
             {
-              
+                Id = "108",
                 Name = "guest",
                 NormalizedName = "GUEST"
             },
             new IdentityRole
             {
-                
+                Id = "109",
                 Name = "student",
                 NormalizedName = "STUDENT"
             });

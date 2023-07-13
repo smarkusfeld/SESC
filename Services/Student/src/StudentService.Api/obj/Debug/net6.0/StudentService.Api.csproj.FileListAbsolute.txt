@@ -1,9 +1,3 @@
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.csproj.AssemblyReference.cache
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.AssemblyInfoInputs.cache
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.AssemblyInfo.cs
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.csproj.CoreCompileInputs.cache
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\appsettings.json
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\StudentService.Api.exe
@@ -17,6 +11,7 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Azure.Core.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Azure.Identity.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Google.Protobuf.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Humanizer.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\K4os.Compression.LZ4.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\K4os.Compression.LZ4.Streams.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\K4os.Hash.xxHash.dll
@@ -24,6 +19,7 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
@@ -31,6 +27,7 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
@@ -46,12 +43,14 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.OpenApi.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.SqlServer.Server.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Mono.TextTemplating.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\MySql.Data.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\MySql.EntityFrameworkCore.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\BouncyCastle.Crypto.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\System.CodeDom.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\System.Drawing.Common.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
@@ -87,6 +86,13 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\StudentService.Application.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\StudentService.Infastructure.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\StudentService.Domain.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.csproj.AssemblyReference.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.AssemblyInfoInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.AssemblyInfo.cs
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\staticwebassets\msbuild.StudentService.Api.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\staticwebassets\msbuild.build.StudentService.Api.props
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.StudentService.Api.props
@@ -102,9 +108,3 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.genruntimeconfig.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\ref\StudentService.Api.dll
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Humanizer.dll
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\Mono.TextTemplating.dll
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\bin\Debug\net6.0\System.CodeDom.dll
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Student\src\StudentService.Api\obj\Debug\net6.0\StudentService.Api.MvcApplicationPartsAssemblyInfo.cs

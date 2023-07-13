@@ -1,0 +1,49 @@
+//student portal gateway
+{
+  "SwaggerEndPoints": [
+    {
+      "Key": "bffstudent",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "BFF.Student.Portal",
+          "Version": "1.0",
+          "Url": "http://localhost:5200/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "finance",
+      "TransformByOcelotConfig": true,
+      "Config": [
+        {
+          "Name": "FiananceService.API",
+          "Version": "1.0",
+          "Url": "http://localhost:5102/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "student",
+      "TransformByOcelotConfig": true,
+      "Config": [
+        {
+          "Name": "StudentService.API",
+          "Version": "1.0",
+          "Url": "http://localhost:5101/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "library",
+      "TransformByOcelotConfig": true,
+      "Config": [
+        {
+          "Name": "LibraryService.API",
+          "Version": "1.0",
+          "Url": "http://localhost:5103/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
+}

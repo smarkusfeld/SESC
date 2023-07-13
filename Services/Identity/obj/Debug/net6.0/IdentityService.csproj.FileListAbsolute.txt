@@ -1,8 +1,11 @@
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\appsettings.json
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\IdentityService.exe
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\IdentityService.deps.json
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\IdentityService.runtimeconfig.json
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\IdentityService.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\IdentityService.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\IdentityService.xml
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\Azure.Core.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\Azure.Identity.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\Humanizer.dll
@@ -31,6 +34,7 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bi
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
@@ -266,11 +270,7 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\ob
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\obj\Debug\net6.0\IdentityService.csproj.CopyComplete
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\obj\Debug\net6.0\IdentityService.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\obj\Debug\net6.0\refint\IdentityService.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\obj\Debug\net6.0\IdentityService.xml
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\obj\Debug\net6.0\IdentityService.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\obj\Debug\net6.0\IdentityService.genruntimeconfig.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\obj\Debug\net6.0\ref\IdentityService.dll
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\appsettings.json
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\IdentityService.xml
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\obj\Debug\net6.0\IdentityService.xml
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Identity\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll

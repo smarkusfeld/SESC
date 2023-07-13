@@ -1,33 +1,24 @@
-# syntax=docker/dockerfile:1
-# Define base image for production
+#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
 
-# Build and publish code into build context
-# Define build image
-FROM mcr.microsoft.com/dotnet/sdk:6.0 as build-env
-
-
-# Copy all csproj files and restore as distinct layers
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["src/FinanceService.Api/FinanceService.Api.csproj", "FinanceService.Api/"]
-COPY ["src/FinanceService.Application/FinanceService.Application.csproj", "FinanceService.Application/"]
-COPY ["src/FinanceService.Domain/FinanceService.Domain.csproj", "FinanceService.Domain/"]
-COPY ["src/FinanceService.Infastructure/FinanceService.Infastructure.csproj", "FinanceService.Infastructure/"]
-RUN dotnet restore "FinanceService.Api/FinanceService.Api.csproj"
+COPY ["Services/Finance/src/FinanceService.Api/FinanceService.Api.csproj", "Services/Finance/src/FinanceService.Api/"]
+COPY ["Services/Finance/src/FinanceService.Application/FinanceService.Application.csproj", "Services/Finance/src/FinanceService.Application/"]
+COPY ["Services/Finance/src/FinanceService.Domain/FinanceService.Domain.csproj", "Services/Finance/src/FinanceService.Domain/"]
+COPY ["Services/Finance/src/FinanceService.Infastructure/FinanceService.Infastructure.csproj", "Services/Finance/src/FinanceService.Infastructure/"]
+RUN dotnet restore "Services/Finance/src/FinanceService.Api/FinanceService.Api.csproj"
 COPY . .
-WORKDIR "/src/src/FinanceService.Api"
-RUN dotnet build FinanceService.Api.csproj -c Release -o /app
+WORKDIR "/src/Services/Finance/src/FinanceService.Api"
+RUN dotnet build "FinanceService.Api.csproj" -c Release -o /app/build
 
-# Build and publish code into publish context 
-# Copy output from build context without all build tools of sdk image
-FROM build-env AS publish
-RUN dotnet publish "FinanceService.Api.csproj" -c Release -o /app
+FROM build AS publish
+RUN dotnet publish "FinanceService.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-# Build and publish code into runtime context
-FROM base AS runtime
+FROM base AS final
 WORKDIR /app
-COPY --from=publish /app .
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "FinanceService.Api.dll"]

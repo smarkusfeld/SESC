@@ -4,16 +4,37 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "student.portal": "StartDebugging",
-        "student.gateway": "StartDebugging",
-        "student.api": "StartDebugging",
-        "library.gateway": "StartDebugging",
-        "library.api": "StartDebugging",
-        "identity.api": "StartDebugging",
-        "finance.gateway": "StartDebugging",
-        "finance.api": "StartDebugging",
-        "db.management": "StartWithoutDebugging",
-        "db": "StartWithoutDebugging"
+        "student-portal": "StartDebugging",
+        "student-gateway": "StartDebugging",
+        "student-api": "StartDebugging",
+        "library-gateway": "StartDebugging",
+        "library-api": "StartDebugging",
+        "identity-api": "StartDebugging",
+        "finance-gateway": "StartDebugging",
+        "finance-api": "StartDebugging",
+        "db-management": "StartWithoutDebugging",
+        "db": "StartWithoutDebugging",
+        "finance-portal": "StartDebugging"
+      }
+    },
+    "FinancePortal": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "finance-portal",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
+      "serviceActions": {
+        "db": "StartWithoutDebugging",
+        "db-management": "StartWithoutDebugging",
+        "finance-api": "StartDebugging",
+        "finance-gateway": "StartDebugging",
+        "finance-portal": "StartDebugging",
+        "identity-api": "DoNotStart",
+        "library-api": "DoNotStart",
+        "library-gateway": "DoNotStart",
+        "student-api": "DoNotStart",
+        "student-gateway": "DoNotStart",
+        "student-portal": "DoNotStart"
       }
     }
   }
