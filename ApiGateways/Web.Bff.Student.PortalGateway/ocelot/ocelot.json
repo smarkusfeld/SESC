@@ -1,0 +1,84 @@
+//student gateway
+{
+  "GlobalConfiguration": {},
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/Accounts/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "finance-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/finance/add/{id}",
+      "UpstreamHttpMethod": [ "POST" ],
+      "SwaggerKey": "finance"
+    },
+    {
+      "DownstreamPathTemplate": "/Invoices/tuition",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "finance-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/finance/invoice",
+      "UpstreamHttpMethod": [ "POST" ],
+      "SwaggerKey": "finance"
+    },
+    {
+      "DownstreamPathTemplate": "/Invoices/balance/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "finance-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/finance/balance/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "finance"
+    },
+    {
+      "DownstreamPathTemplate": "/Accounts/register/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "library-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/library/register/{id}",
+      "UpstreamHttpMethod": [ "POST" ],
+      "SwaggerKey": "finance"
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "finance",
+      "TransformByOcelotConfig": true,
+      "Config": [
+        {
+          "Name": "FiananceService.API",
+          "Version": "1.0",
+          "Url": "http://localhost:5102/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "bffstudent",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "BFF.Student.Portal",
+          "Version": "1.0",
+          "Url": "http://localhost:5200/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
+}
+
+      

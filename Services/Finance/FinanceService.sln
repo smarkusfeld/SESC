@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceService.Infastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceService.Api", "src\FinanceService.Api\FinanceService.Api.csproj", "{C178FA65-8A35-4B80-9518-4A34BDD301B9}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceService.UnitTests", "tests\FinanceService.UnitTests\FinanceService.UnitTests.csproj", "{68471548-2B6E-4179-8334-052EB0A1FC14}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C178FA65-8A35-4B80-9518-4A34BDD301B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C178FA65-8A35-4B80-9518-4A34BDD301B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C178FA65-8A35-4B80-9518-4A34BDD301B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68471548-2B6E-4179-8334-052EB0A1FC14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68471548-2B6E-4179-8334-052EB0A1FC14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68471548-2B6E-4179-8334-052EB0A1FC14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68471548-2B6E-4179-8334-052EB0A1FC14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,7 @@
 ﻿
+using Microsoft.Extensions.Configuration;
+using MMLib.SwaggerForOcelot.Middleware;
+
 namespace OcelotApiGateway.Extensions
 {
     public static class ServiceExtension
@@ -20,6 +23,13 @@ namespace OcelotApiGateway.Extensions
                 });
             //...
             return services; 
+        }
+
+        public static IServiceCollection AddSwaggerForOcelotService(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddSwaggerForOcelot(configuration);
+           
+            return services;
         }
     }
 }

@@ -40,6 +40,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Services\MySql\init\schema.sql = Services\MySql\init\schema.sql
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Bff.Student.PortalGateway", "Web.Bff.Student.PortalGateway", "{3AE9C256-47B2-4D10-9DC0-1F512739DDE4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Bff.Library.PortalGateway", "Web.Bff.Library.PortalGateway", "{D4A1EE02-41EE-437D-B38D-AC4C69BECA58}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Bff.Finance.PortalGateway", "Web.Bff.Finance.PortalGateway", "{0C864D4D-89D6-425A-B375-2E2B84FCCEBC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinancePortal", "FinancePortal\FinancePortal.csproj", "{427CE496-377A-4F85-833A-5CFA887B7833}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,6 +118,10 @@ Global
 		{56E775B2-A09C-403F-A0F4-31352D5F4976}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56E775B2-A09C-403F-A0F4-31352D5F4976}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56E775B2-A09C-403F-A0F4-31352D5F4976}.Release|Any CPU.Build.0 = Release|Any CPU
+		{427CE496-377A-4F85-833A-5CFA887B7833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{427CE496-377A-4F85-833A-5CFA887B7833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{427CE496-377A-4F85-833A-5CFA887B7833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{427CE496-377A-4F85-833A-5CFA887B7833}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

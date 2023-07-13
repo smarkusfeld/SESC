@@ -7,11 +7,18 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using IdentityService.Models;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using IdentityService.Services;
+using IdentityService.Interfaces;
 
 namespace IdentityService.Extensions
 {
+    /// <summary>
+    /// Extension methods for registering services 
+    /// </summary>
     public static class ServiceExtension
     {
+      
         /// <summary>
         /// Add Entity Frameworkcore service
         /// </summary>
@@ -37,8 +44,9 @@ namespace IdentityService.Extensions
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityDataContext>()
                 .AddDefaultTokenProviders();
-
-            
+            //use default token for password reset
+            services.Configure<DataProtectionTokenProviderOptions>(opt =>
+                        opt.TokenLifespan = TimeSpan.FromHours(2));
             services.Configure<IdentityOptions>(options =>
             {
                 //add password settings

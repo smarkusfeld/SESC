@@ -1,0 +1,9 @@
+//student gateway
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5202"
+    //"BaseUrl": "http://library-gateway"
+  }
+}
+
+    

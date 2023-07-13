@@ -7,13 +7,13 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["src/StudentService.Api/StudentService.Api.csproj", "src/StudentService.Api/"]
-COPY ["src/StudentService.Application/StudentService.Application.csproj", "src/StudentService.Application/"]
-COPY ["src/StudentService.Domain/StudentService.Domain.csproj", "src/StudentService.Domain/"]
-COPY ["src/StudentService.Infastructure/StudentService.Infastructure.csproj", "src/StudentService.Infastructure/"]
-RUN dotnet restore "src/StudentService.Api/StudentService.Api.csproj"
+COPY ["Services/Student/src/StudentService.Api/StudentService.Api.csproj", "Services/Student/src/StudentService.Api/"]
+COPY ["Services/Student/src/StudentService.Application/StudentService.Application.csproj", "Services/Student/src/StudentService.Application/"]
+COPY ["Services/Student/src/StudentService.Domain/StudentService.Domain.csproj", "Services/Student/src/StudentService.Domain/"]
+COPY ["Services/Student/src/StudentService.Infastructure/StudentService.Infastructure.csproj", "Services/Student/src/StudentService.Infastructure/"]
+RUN dotnet restore "Services/Student/src/StudentService.Api/StudentService.Api.csproj"
 COPY . .
-WORKDIR "/src/src/StudentService.Api"
+WORKDIR "/src/Services/Student/src/StudentService.Api"
 RUN dotnet build "StudentService.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish

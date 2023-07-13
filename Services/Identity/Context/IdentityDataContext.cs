@@ -1,79 +1,80 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
 using System.Reflection;
 using IdentityService.Models;
-using Microsoft.Identity.Client;
-using System.Security.Principal;
+using IdentityService.Extensions;
 
 namespace IdentityService.DataContext
 {
+    /// <summary>
+    /// Data Context for Identity Service. Implements <seealso cref="IdentityDbContext{TUser}"/> where 
+    /// <see cref="TUser"/> is <seealso cref="User"/>
+    /// </summary>
     public class IdentityDataContext : IdentityDbContext<User>
     {
+        /// <summary>
+        ///  Initilizes a new istance of <seealso cref="IdentityDataContext"/> 
+        /// </summary>
+        /// <param name="options"></param>
         public IdentityDataContext(DbContextOptions<IdentityDataContext> options) : base(options)
         {
             
         }
-       
+        DbSet<UserIdentifer> StudentIdentifiers { get; set; }
+
+        /// <summary>
+        /// Override Method to save changes async
+        /// </summary>
+        /// <returns></returns>
+        public override int SaveChanges()
+        {
+            return SaveChangesAsync().GetAwaiter().GetResult();
+        }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             //create identity server
             base.OnModelCreating(builder);
             builder.HasDefaultSchema("Identity");
+            // fix table names
             builder.Entity<User>(entity =>
             {
-                entity.ToTable(name: "User");
+                entity.ToTable(name: "user");
             });
             builder.Entity<IdentityRole>(entity =>
             {
-                entity.ToTable(name: "Role");
+                entity.ToTable(name: "role");
             });
             builder.Entity<IdentityUserRole<string>>(entity =>
             {
-                entity.ToTable("UserRoles");
+                entity.ToTable("user_role");
             });
             builder.Entity<IdentityUserClaim<string>>(entity =>
             {
-                entity.ToTable("UserClaims");
+                entity.ToTable("user_role");
             });
             builder.Entity<IdentityUserLogin<string>>(entity =>
             {
-                entity.ToTable("UserLogins");
+                entity.ToTable("user_login");
             });
             builder.Entity<IdentityRoleClaim<string>>(entity =>
             {
-                entity.ToTable("RoleClaims");
+                entity.ToTable("role_claim");
             });
             builder.Entity<IdentityUserToken<string>>(entity =>
             {
-                entity.ToTable("UserTokens");
+                entity.ToTable("user_token");
             });
+            builder.Entity<UserIdentifer>(entity =>
+            { 
+                entity.ToTable("user_identifier");
+            });
+
             //apply all types in the assembly that implment IEntityTypeConfiguration 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            //a hasher to hash the password before seeding the user to the db
-            var hasher = new PasswordHasher<User>();
-
-            //Seeding the User to AspNetUsers table
-            builder.Entity<User>().HasData(
-                new IdentityUser
-                {
-                    Id = "8e445865-a24d-4543-a6c6-9443d048cdb9", // primary key
-                    UserName = "superUser!",
-                    NormalizedUserName = "SUPERUSER!",
-                    PasswordHash = hasher.HashPassword(null, "Pa$$w0rd")
-                }
-            );
-
-            //add user to role
-            builder.Entity<IdentityUserRole<string>>().HasData(
-            new IdentityUserRole<string>
-            {
-                RoleId = "b7ea553b-141d-4b5a-bdc8-1f18bdaf4abe",
-                UserId = "8e445865-a24d-4543-a6c6-9443d048cdb9"
-            });
-
+            //seed database
+            builder.Seed();
         }
     }
 }

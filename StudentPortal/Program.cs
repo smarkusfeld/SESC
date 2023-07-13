@@ -4,10 +4,20 @@ using StudentPortal.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// register typed clients - api gateway 
-builder.Services.AddHttpClient<StudentService>(client =>
+// register typed clients
+//api gateway service 
+builder.Services.AddHttpClient<StudentGatewayService>(client =>
 {
-    client.BaseAddress = new Uri("http://student.api/");
+    client.BaseAddress = new Uri("http://student-api/");
+
+    // using Microsoft.Net.Http.Headers;
+    client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
+});
+
+//identity service
+builder.Services.AddHttpClient<UserService>(client =>
+{
+    client.BaseAddress = new Uri("http://student-gateway/");
 
     // using Microsoft.Net.Http.Headers;
     client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");

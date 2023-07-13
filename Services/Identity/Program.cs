@@ -1,12 +1,16 @@
 using IdentityService.Extensions;
+using IdentityService.Interfaces;
+using IdentityService.Services;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 ConfigurationManager configuration = builder.Configuration;
+// Add services to the container.
+builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo

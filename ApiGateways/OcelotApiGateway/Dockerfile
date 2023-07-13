@@ -6,11 +6,11 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /ApiGateways/OcelotApiGateway
-COPY ["ApiGateways/OcelotApiGatewayOcelot/ApiGateway.csproj", "."]
-RUN dotnet restore "./OcelotApiGateway.csproj"
+WORKDIR /src
+COPY ["ApiGateways/OcelotApiGateway/OcelotApiGateway.csproj", "ApiGateways/OcelotApiGateway/"]
+RUN dotnet restore "ApiGateways/OcelotApiGateway/OcelotApiGateway.csproj"
 COPY . .
-WORKDIR "."
+WORKDIR "/src/ApiGateways/OcelotApiGateway"
 RUN dotnet build "OcelotApiGateway.csproj" -c Release -o /app/build
 
 FROM build AS publish

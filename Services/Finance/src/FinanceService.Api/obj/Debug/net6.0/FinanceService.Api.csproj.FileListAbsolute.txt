@@ -215,13 +215,6 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\src\F
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.genruntimeconfig.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\src\FinanceService.Api\obj\Debug\net6.0\ref\FinanceService.Api.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\FinanceService\src\FinanceService.Api\bin\Debug\net6.0\NLog.dll
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.csproj.AssemblyReference.cache
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.AssemblyInfoInputs.cache
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.AssemblyInfo.cs
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.csproj.CoreCompileInputs.cache
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\bin\Debug\net6.0\appsettings.json
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\bin\Debug\net6.0\FinanceService.Api.exe
@@ -229,6 +222,7 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\bin\Debug\net6.0\FinanceService.Api.runtimeconfig.json
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\bin\Debug\net6.0\FinanceService.Api.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\bin\Debug\net6.0\FinanceService.Api.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\bin\Debug\net6.0\FinanceService.Api.xml
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\bin\Debug\net6.0\Azure.Core.dll
@@ -310,6 +304,13 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\bin\Debug\net6.0\FinanceService.Application.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\bin\Debug\net6.0\FinanceService.Infastructure.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\bin\Debug\net6.0\FinanceService.Domain.pdb
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.csproj.AssemblyReference.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.AssemblyInfoInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.AssemblyInfo.cs
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\staticwebassets\msbuild.FinanceService.Api.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\staticwebassets\msbuild.build.FinanceService.Api.props
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.FinanceService.Api.props
@@ -321,8 +322,7 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.csproj.CopyComplete
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\refint\FinanceService.Api.dll
+C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.xml
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.genruntimeconfig.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\ref\FinanceService.Api.dll
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\bin\Debug\net6.0\FinanceService.Api.xml
-C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Api\obj\Debug\net6.0\FinanceService.Api.xml

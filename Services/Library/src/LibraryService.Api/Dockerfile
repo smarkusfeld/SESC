@@ -7,13 +7,13 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["src/LibraryService.Api/LibraryService.Api.csproj", "src/LibraryService.Api/"]
-COPY ["src/LibraryService.Application/LibraryService.Application.csproj", "src/LibraryService.Application/"]
-COPY ["src/LibraryService.Domain/LibraryService.Domain.csproj", "src/LibraryService.Domain/"]
-COPY ["src/LibraryService.Infastructure/LibraryService.Infastructure.csproj", "src/LibraryService.Infastructure/"]
-RUN dotnet restore "src/LibraryService.Api/LibraryService.Api.csproj"
+COPY ["Services/Library/src/LibraryService.Api/LibraryService.Api.csproj", "Services/Library/src/LibraryService.Api/"]
+COPY ["Services/Library/src/LibraryService.Application/LibraryService.Application.csproj", "Services/Library/src/LibraryService.Application/"]
+COPY ["Services/Library/src/LibraryService.Domain/LibraryService.Domain.csproj", "Services/Library/src/LibraryService.Domain/"]
+COPY ["Services/Library/src/LibraryService.Infastructure/LibraryService.Infastructure.csproj", "Services/Library/src/LibraryService.Infastructure/"]
+RUN dotnet restore "Services/Library/src/LibraryService.Api/LibraryService.Api.csproj"
 COPY . .
-WORKDIR "/src/src/LibraryService.Api"
+WORKDIR "/src/Services/Library/src/LibraryService.Api"
 RUN dotnet build "LibraryService.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish

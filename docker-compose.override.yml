@@ -21,12 +21,12 @@ services:
       - "3306:3306"
 
   # database management 
-  db.management:     
+  db-management:     
    restart: always
    ports:
      - 8080:8080
 
-  identity.api:
+  identity-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:443;http://0.0.0.0:80
@@ -34,38 +34,44 @@ services:
     ports:
       - "5100:80" #The API Gateway redirects and access through the internal port (80).
 
-  student.api:
+  student-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:443;http://0.0.0.0:80
     ports:
       - "5101:80"
 
-  library.api:
+  library-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:443;http://0.0.0.0:80
     ports:
       - "5102:80"
  
-  finance.api:
+  finance-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:443;http://0.0.0.0:80
     ports:
       - "5103:80"
 
-  student.portal:
+  student-portal:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:443;http://0.0.0.0:80
     ports:
       - "80"
 
+  finance-portal:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:443;http://0.0.0.0:80
+    ports:
+      - "80"
   # add ocelot configuration files for each gateway  
   # API Gateway redirects and access through the internal port (80)
   # External Ports(5200-5202) kept for debugging
-  student.gateway:
+  student-gateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - IdentityUrl=http://identity-api
@@ -74,9 +80,10 @@ services:
     
       - "5200:80"
     volumes:
-      - ./ApiGateways/Web.Bff.StudentPortal:/app/configuration
+      - ./ApiGateways/Web.Bff.Finance.PortalGateway/ocelot:/app/configuration
+      - ./ApiGateways/Web.Bff.Finance.PortalGateway/appsettings:/app
   
-  finance.gateway:
+  finance-gateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - IdentityUrl=http://identity-api
@@ -84,9 +91,10 @@ services:
     ports:
       - "5201:80"
     volumes:
-      - ./ApiGateways/Web.Bff.FinancePortal:/app/configuration
+      - ./ApiGateways/Web.Bff.Finance.PortalGateway/ocelot:/app/configuration
+      - ./ApiGateways/Web.Bff.Finance.PortalGateway/appsettings:/app
 
-  library.gateway:
+  library-gateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - IdentityUrl=http://identity-api
@@ -94,7 +102,8 @@ services:
     ports:
       - "5202:80"
     volumes:
-      - ./ApiGateways/Web.Bff.LibraryPortal:/app/configuration
+      - ./ApiGateways/Web.Bff.Finance.PortalGateway/ocelot:/app/configuration
+      - ./ApiGateways/Web.Bff.Finance.PortalGateway/appsettings:/app
 volumes:
   databases:
     
