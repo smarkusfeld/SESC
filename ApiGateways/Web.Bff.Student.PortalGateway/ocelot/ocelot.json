@@ -3,6 +3,119 @@
   "GlobalConfiguration": {},
   "Routes": [
     {
+      //Get All Active Courses
+      "DownstreamPathTemplate": "/Courses",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "student-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/courses",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "student"
+    },
+    {
+      //Search for Course by different objects
+      "DownstreamPathTemplate": "/Courses/{everything}/{searchstring}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "student-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/courses/{everything}/{searchstring}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "student"
+    },
+    {
+      //create new student account
+      "DownstreamPathTemplate": "/Enrol/register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "student-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/register",
+      "UpstreamHttpMethod": [ "POST" ],
+      "SwaggerKey": "student"
+    },
+    {
+      //enrol in course
+      "DownstreamPathTemplate": "/Enrol/{studentId}/{courseCode}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "student-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/enrol/{studentId}/{courseCode}",
+      "UpstreamHttpMethod": [ "POST" ],
+      "SwaggerKey": "student"
+    },
+    {
+      //view all enrolments
+      "DownstreamPathTemplate": "/Enrol/{studentId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "student-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/enrolments/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "student"
+    },
+    {
+      //view student account
+      "DownstreamPathTemplate": "/Accounts/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "student-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/profile/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "student"
+    },
+    {
+      //view student account
+      "DownstreamPathTemplate": "/Accounts/transcript/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "student-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/transcript/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "student"
+    },
+    {
+      //update student account
+      "DownstreamPathTemplate": "/Accounts/update",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "student-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/update",
+      "UpstreamHttpMethod": [ "POST" ],
+      "SwaggerKey": "student"
+    },
+    {
+      //add account finance account
       "DownstreamPathTemplate": "/Accounts/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -11,11 +124,12 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/finance/add/{id}",
+      "UpstreamPathTemplate": "/account/add/{id}",
       "UpstreamHttpMethod": [ "POST" ],
       "SwaggerKey": "finance"
     },
     {
+      //issue tution invoice 
       "DownstreamPathTemplate": "/Invoices/tuition",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -24,11 +138,12 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/finance/invoice",
+      "UpstreamPathTemplate": "/invoice",
       "UpstreamHttpMethod": [ "POST" ],
       "SwaggerKey": "finance"
     },
     {
+      //check balance for elgibility to graduate
       "DownstreamPathTemplate": "/Invoices/balance/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -37,12 +152,13 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/finance/balance/{id}",
+      "UpstreamPathTemplate": "/balance/{id}",
       "UpstreamHttpMethod": [ "GET" ],
       "SwaggerKey": "finance"
     },
     {
-      "DownstreamPathTemplate": "/Accounts/register/{id}",
+      //add library account
+      "DownstreamPathTemplate": "/Accounts/register/{studentid}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -50,12 +166,23 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/library/register/{id}",
+      "UpstreamPathTemplate": "/account/library/{studentid}",
       "UpstreamHttpMethod": [ "POST" ],
-      "SwaggerKey": "finance"
+      "SwaggerKey": "library"
     }
   ],
   "SwaggerEndPoints": [
+    {
+      "Key": "bff",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "BFF.Student.Portal",
+          "Version": "1.0",
+          "Url": "http://student-gateway/swagger/v1/swagger.json"
+        }
+      ]
+    },
     {
       "Key": "finance",
       "TransformByOcelotConfig": true,
@@ -63,18 +190,29 @@
         {
           "Name": "FiananceService.API",
           "Version": "1.0",
-          "Url": "http://localhost:5102/swagger/v1/swagger.json"
+          "Url": "http://finance-api/swagger/v1/swagger.json"
         }
       ]
     },
     {
-      "Key": "bffstudent",
-      "TransformByOcelotConfig": false,
+      "Key": "student",
+      "TransformByOcelotConfig": true,
       "Config": [
         {
-          "Name": "BFF.Student.Portal",
+          "Name": "StudentService.API",
           "Version": "1.0",
-          "Url": "http://localhost:5200/swagger/v1/swagger.json"
+          "Url": "http://student-api/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "library",
+      "TransformByOcelotConfig": true,
+      "Config": [
+        {
+          "Name": "LibraryService.API",
+          "Version": "1.0",
+          "Url": "http://library-api/swagger/v1/swagger.json"
         }
       ]
     }

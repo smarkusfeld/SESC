@@ -1,0 +1,39 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>
+
+@if (Model.RequestId != null)
+{
+    <p>
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+@if (Model.ResponseCode != 0)
+{
+    <p>
+        <strong>Response Code ID:</strong> <code>@Model.ResponseCode</code>
+    </p>
+}
+<h3>Error Details</h3>
+<p>
+    <table>
+        <tr>
+            <th>
+                <strong> Error</strong>
+            </th>
+            <th>
+                <strong> Error Details</strong>
+            </th>
+        </tr>
+        @foreach (var error in Model.Errors)
+        {
+            <tr><td>@error.Code</td></tr>
+            <tr><td>@error.Message</td></tr>
+        }
+    </table>
+</p>
+

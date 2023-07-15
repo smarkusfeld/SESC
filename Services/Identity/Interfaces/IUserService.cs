@@ -1,15 +1,16 @@
 ﻿using IdentityService.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace IdentityService.Interfaces
 {
     public interface IUserService
     {
 
-        Task<IdentityResult> UpdateUserContactInformation(ConactInputModel model);
+        Task<ResultDetail> UpdateUserContactInformation(ConactModel model);
+        Task<ResultDetail> GetUserProfile(string username);
+        Task<ResultDetail> ResetPassword(ResetPasswordModel model);
 
-        Task<IdentityResult> ResetPassword(ResetPasswordModel model, string token);
-
-        Task<string> GeneratePasswordToken(string username);
+        Task<ResultDetail> GeneratePasswordToken(string username);
     }
 }

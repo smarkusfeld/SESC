@@ -80,7 +80,7 @@ services:
     
       - "5200:80"
     volumes:
-      - ./ApiGateways/Web.Bff.Finance.PortalGateway:/app/configuration
+      - ./ApiGateways/Web.Bff.Student.PortalGateway:/app/configuration
   
   finance-gateway:
     environment:
@@ -100,7 +100,7 @@ services:
     ports:
       - "5202:80"
     volumes:
-      - ./ApiGateways/Web.Bff.Finance.PortalGateway:/app/configuration
+      - ./ApiGateways/Web.Bff.Library.PortalGateway:/app/configuration
 volumes:
   databases:
     

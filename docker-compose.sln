@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryService.Api", "Servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentService.Api", "Services\Student\src\StudentService.Api\StudentService.Api.csproj", "{9A5B3388-A591-401F-9A5C-49961117A4F8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentPortal", "StudentPortal\StudentPortal.csproj", "{A0F7DD0B-05C0-493A-BDFD-D35A620DF399}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OcelotApiGateway", "ApiGateways\OcelotApiGateway\OcelotApiGateway.csproj", "{324FD2EA-9DB8-4D54-BB49-F6121B41DCAD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentService.Application", "Services\Student\src\StudentService.Application\StudentService.Application.csproj", "{F35AE8C6-7A53-40CC-A782-B12EA0FDC694}"
@@ -48,6 +46,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.Bff.Finance.PortalGatew
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinancePortal", "FinancePortal\FinancePortal.csproj", "{427CE496-377A-4F85-833A-5CFA887B7833}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentPortal", "StudentPortal\StudentPortal.csproj", "{64E66910-8CDA-4753-8E53-05C991723A0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,10 +74,6 @@ Global
 		{9A5B3388-A591-401F-9A5C-49961117A4F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A5B3388-A591-401F-9A5C-49961117A4F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A5B3388-A591-401F-9A5C-49961117A4F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0F7DD0B-05C0-493A-BDFD-D35A620DF399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0F7DD0B-05C0-493A-BDFD-D35A620DF399}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0F7DD0B-05C0-493A-BDFD-D35A620DF399}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0F7DD0B-05C0-493A-BDFD-D35A620DF399}.Release|Any CPU.Build.0 = Release|Any CPU
 		{324FD2EA-9DB8-4D54-BB49-F6121B41DCAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{324FD2EA-9DB8-4D54-BB49-F6121B41DCAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{324FD2EA-9DB8-4D54-BB49-F6121B41DCAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -122,6 +118,10 @@ Global
 		{427CE496-377A-4F85-833A-5CFA887B7833}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{427CE496-377A-4F85-833A-5CFA887B7833}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{427CE496-377A-4F85-833A-5CFA887B7833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64E66910-8CDA-4753-8E53-05C991723A0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64E66910-8CDA-4753-8E53-05C991723A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64E66910-8CDA-4753-8E53-05C991723A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64E66910-8CDA-4753-8E53-05C991723A0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

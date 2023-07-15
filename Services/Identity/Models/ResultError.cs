@@ -25,7 +25,7 @@
         {
             return new ResultError
             {
-                Code = nameof(UserNotFound),
+                Code = nameof(DefaultError),
                 Description = ResultErrorMessage.DefaultError
             };
         }

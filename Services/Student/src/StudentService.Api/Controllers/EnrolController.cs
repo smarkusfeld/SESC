@@ -39,7 +39,7 @@ namespace StudentService.Api.Controllers
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with the registration and and student account details <br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if registration can not be completed<br/> 
         /// </returns>
-        [HttpGet("register")]
+        [HttpPost("register")]
         public async Task<IActionResult> CourseRegistration([FromBody] StudentRegistrationDTO inputModel )
         {
             _logger.LogInformation("registering student");
@@ -56,7 +56,7 @@ namespace StudentService.Api.Controllers
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with enrolment confirmation details <br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if enrolment can not be completed<br/> 
         /// </returns>
-        [HttpGet("{studentId}/{courseCode}")]
+        [HttpPost("{studentId}/{courseCode}")]
         public async Task<IActionResult> StudentEnrolment(string studentId, string courseCode)
         {
             _logger.LogInformation($"Checking eligibile offerings for course {studentId}");

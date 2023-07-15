@@ -47,6 +47,7 @@ namespace IdentityService.Controllers
             return result.Succeeded && token != null
                 ? Ok(new
                 {
+                    
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     expiration = (int)token.ValidTo.Subtract(DateTime.Now).TotalSeconds
                 })
