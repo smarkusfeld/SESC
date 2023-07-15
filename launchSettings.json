@@ -36,6 +36,26 @@
         "student-gateway": "DoNotStart",
         "student-portal": "DoNotStart"
       }
+    },
+    "StudentPortal": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "student-portal",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}/",
+      "serviceActions": {
+        "db": "StartWithoutDebugging",
+        "db-management": "StartWithoutDebugging",
+        "finance-api": "StartDebugging",
+        "finance-gateway": "DoNotStart",
+        "finance-portal": "StartDebugging",
+        "identity-api": "StartDebugging",
+        "library-api": "StartDebugging",
+        "library-gateway": "DoNotStart",
+        "student-api": "StartDebugging",
+        "student-gateway": "StartDebugging",
+        "student-portal": "StartDebugging"
+      }
     }
   }
 }

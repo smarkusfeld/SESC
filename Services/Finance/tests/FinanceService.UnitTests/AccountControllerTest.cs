@@ -16,11 +16,11 @@ namespace FinanceMicroservice.UnitTests
     public class AccountControllerTest
     {
         private readonly Mock<IAccountService> accountService;
-        private readonly Mock<ILogger<AccountController>> logger;
+        private readonly Mock<ILogger<AccountsController>> logger;
         public AccountControllerTest()
         {
             accountService = new Mock<IAccountService>();
-            logger = new Mock<ILogger<AccountController>>();
+            logger = new Mock<ILogger<AccountsController>>();
         }
         [Fact]
         public async Task GetAll_ReturnsOkResult()
@@ -29,7 +29,7 @@ namespace FinanceMicroservice.UnitTests
             var accountDTOs = GetaccountDTOList();
             accountService.Setup(x => x.GetAllAccounts())
                 .ReturnsAsync(accountDTOs);
-            var accountController = new AccountController(accountService.Object, logger.Object);
+            var accountController = new AccountsController(accountService.Object, logger.Object);
             //act
             var result = await accountController.GetAll();
             var actionResult = result as OkObjectResult;
@@ -47,7 +47,7 @@ namespace FinanceMicroservice.UnitTests
             var accountDTOs = GetaccountDTOList();
             accountService.Setup(x => x.GetAllAccounts())
                 .ReturnsAsync(accountDTOs);
-            var accountController = new AccountController(accountService.Object, logger.Object);
+            var accountController = new AccountsController(accountService.Object, logger.Object);
             //act
             var result = await accountController.GetAll();
             var actionResult = result as OkObjectResult;
@@ -63,7 +63,7 @@ namespace FinanceMicroservice.UnitTests
             IEnumerable<AccountDTO> noReccords = new List<AccountDTO>();
             accountService.Setup(x => x.GetAllAccounts())
                 .ReturnsAsync(noReccords);
-            var accountController = new AccountController(accountService.Object, logger.Object);
+            var accountController = new AccountsController(accountService.Object, logger.Object);
             //act
             var result = await accountController.GetAll();
             var actionResult = result as BadRequestObjectResult;
@@ -78,7 +78,7 @@ namespace FinanceMicroservice.UnitTests
             IEnumerable<AccountDTO> noReccords = new List<AccountDTO>();
             accountService.Setup(x => x.GetAllAccounts())
                 .ReturnsAsync(noReccords);
-            var accountController = new AccountController(accountService.Object, logger.Object);
+            var accountController = new AccountsController(accountService.Object, logger.Object);
             //act
             var result = await accountController.GetAll();
             var actionResult = result as BadRequestObjectResult;
@@ -101,7 +101,7 @@ namespace FinanceMicroservice.UnitTests
 
             accountService.Setup(x => x.GetAccountById(1))
                 .ReturnsAsync(accountDTO);
-            var accountController = new AccountController(accountService.Object, logger.Object);
+            var accountController = new AccountsController(accountService.Object, logger.Object);
             //act
             var result = await accountController.Get(1);
             var actionResult = result as OkObjectResult;
@@ -122,7 +122,7 @@ namespace FinanceMicroservice.UnitTests
 
             accountService.Setup(x => x.GetAccountById(1))
                 .ReturnsAsync(accountDTO);
-            var accountController = new AccountController(accountService.Object, logger.Object);
+            var accountController = new AccountsController(accountService.Object, logger.Object);
             //act
             var result = await accountController.Get(1);
             var actionResult = result as ObjectResult;
@@ -137,7 +137,7 @@ namespace FinanceMicroservice.UnitTests
             //arrange
             accountService.Setup(x => x.GetAccountById(1))
                 .Returns(Task.FromResult<AccountDTO>(null)); 
-            var accountController = new AccountController(accountService.Object, logger.Object);
+            var accountController = new AccountsController(accountService.Object, logger.Object);
             //act
             var result = await accountController.Get(1);
             var actionResult = result as NotFoundResult;
@@ -159,7 +159,7 @@ namespace FinanceMicroservice.UnitTests
 
             accountService.Setup(x => x.GetStudentAccount("c1234567"))
                 .ReturnsAsync(accountDTO);
-            var accountController = new AccountController(accountService.Object, logger.Object);
+            var accountController = new AccountsController(accountService.Object, logger.Object);
             //act
             var result = await accountController.GetStudentAccount("c1234567");
             var actionResult = result as OkObjectResult;
@@ -179,7 +179,7 @@ namespace FinanceMicroservice.UnitTests
             };
             accountService.Setup(x => x.CreateAccount(accountDTO))
                 .ReturnsAsync(false);
-            var accountController = new AccountController(accountService.Object, logger.Object);
+            var accountController = new AccountsController(accountService.Object, logger.Object);
             //act
             var result = await accountController.CreateAccount("c1234567");
             var actionResult = result as BadRequestResult;

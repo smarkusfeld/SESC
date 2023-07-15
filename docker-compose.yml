@@ -83,7 +83,7 @@ services:
   student-gateway:  
     container_name: StudentPortal.Gateway
     hostname: student-gateway
-    image: ${DOCKER_REGISTRY-}
+    image: ${DOCKER_REGISTRY-}ocelotgateway
     build:
       context: .
       dockerfile: ApiGateways/OcelotApiGateway/Dockerfile  
@@ -97,7 +97,7 @@ services:
   finance-gateway:
     container_name: FinancePortal.Gateway
     hostname: finance-gateway
-    image: ${DOCKER_REGISTRY-}
+    image: ${DOCKER_REGISTRY-}ocelotgateway
     build:
       context: .
       dockerfile: ApiGateways/OcelotApiGateway/Dockerfile 
@@ -108,7 +108,7 @@ services:
   library-gateway:
     container_name: LibraryPortal.Gateway
     hostname: library-gateway
-    image: ${DOCKER_REGISTRY-}
+    image: ${DOCKER_REGISTRY-}ocelotgateway
     build:
       context: .
       dockerfile: ApiGateways/OcelotApiGateway/Dockerfile

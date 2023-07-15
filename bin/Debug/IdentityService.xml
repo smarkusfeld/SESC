@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IdentityService</name>
+    </assembly>
+    <members>
+        <member name="T:IdentityService.DataContext.IdentityDataContext">
+            <summary>
+            Data Context for Identity Service. Implements <seealso cref="T:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext`1"/> where 
+            <see cref="!:TUser"/> is <seealso cref="T:IdentityService.Models.User"/>
+            </summary>
+        </member>
+        <member name="M:IdentityService.DataContext.IdentityDataContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{IdentityService.DataContext.IdentityDataContext})">
+            <summary>
+             Initilizes a new istance of <seealso cref="T:IdentityService.DataContext.IdentityDataContext"/> 
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:IdentityService.DataContext.IdentityDataContext.SaveChanges">
+            <summary>
+            Override Method to save changes async
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityService.Controllers.AuthController">
+            <summary>
+            Contains all authentication and registration logic
+            </summary>
+        </member>
+        <member name="M:IdentityService.Controllers.AuthController.#ctor(IdentityService.Interfaces.IJwtTokenService,Microsoft.Extensions.Logging.ILogger{IdentityService.Controllers.AuthController})">
+            <summary>
+            AuthController constructor requests the <seealso cref="T:IdentityService.Interfaces.IJwtTokenService"/> and <seealso cref="T:Microsoft.Extensions.Logging.ILogger`1"/> services
+            </summary>
+            <param name="jwtService"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:IdentityService.Controllers.AuthController.Login(IdentityService.Models.LoginModel)">
+            <summary>
+            User Login
+            </summary>
+            <param name="model"></param>
+            <returns>
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with the <seealso cref="T:System.IdentityModel.Tokens.Jwt.JwtSecurityToken"/> and the token expiration<br/> 
+            A 401 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.NotFoundResult"/> the request was not authorized 
+            </returns>
+        </member>
+        <member name="M:IdentityService.Controllers.AuthController.RegisterUser(IdentityService.Models.RegistrationModel)">
+            <summary>
+            Register user
+            </summary>
+            <param name="model"></param>
+            <returns>
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> with <seealso cref="T:IdentityService.Models.ResultDetail"/> contained the new username
+            A 400 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.BadRequestResult"/> with <seealso cref="T:IdentityService.Models.ResultDetail"/> containing the error details
+            </returns>
+        </member>
+        <member name="T:IdentityService.Controllers.UserController">
+            <summary>
+            Contains all logic for managing user accounts
+            </summary>
+        </member>
+        <member name="M:IdentityService.Controllers.UserController.#ctor(IdentityService.Interfaces.IUserService,Microsoft.Extensions.Logging.ILogger{IdentityService.Controllers.UserController})">
+            <summary>
+            AuthController constructor requests the <seealso cref="T:IdentityService.Interfaces.IUserService"/> and <seealso cref="T:Microsoft.Extensions.Logging.ILogger`1"/> services
+            </summary>
+            <param name="accountService"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:IdentityService.Controllers.UserController.UpdateUser(IdentityService.Models.ConactInputModel)">
+            <summary>
+            Update User Contact Details
+            </summary>
+            <param name="model"></param>
+            <returns>
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> <br/> 
+            A 400 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> if the user could not be updated<br/> 
+            </returns>
+        </member>
+        <member name="M:IdentityService.Controllers.UserController.ChangeUserPassword(IdentityService.Models.ResetPasswordModel)">
+            <summary>
+            Update User Password
+            </summary>
+            <param name="model"></param>
+            <returns>
+            A 200 status code produced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> <br/> 
+            A 400 status code prodeced by the <seealso cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> if the user password could not be updated<br/> 
+            </returns>
+        </member>
+        <member name="T:IdentityService.Extensions.ModelBuilderExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IdentityService.Extensions.ModelBuilderExtensions.Seed(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Seed related data into the database 
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="T:IdentityService.Extensions.ServiceExtension">
+            <summary>
+            Extension methods for registering services 
+            </summary>
+        </member>
+        <member name="M:IdentityService.Extensions.ServiceExtension.AddEntityDbService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Add Entity Frameworkcore service
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Extensions.ServiceExtension.AddIdentityService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add Identity service
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Extensions.ServiceExtension.AddAuthenticationService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Add Authentication Service
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityService.Interfaces.IJwtTokenService">
+            <summary>
+            Contact for JWT Authentication services
+            </summary>
+        </member>
+        <member name="M:IdentityService.Interfaces.IJwtTokenService.GenerateAuthToken(IdentityService.Models.LoginModel)">
+            <summary>
+            Generate JWT token for user
+            </summary>
+            <param name="loginModel"></param>
+            <returns>
+            A <seealso cref="T:IdentityService.Models.ResultDetail"/> with a <seealso cref="T:System.IdentityModel.Tokens.Jwt.JwtSecurityToken"/> if the operation was succesful. <br></br>
+            A <seealso cref="T:IdentityService.Models.ResultDetail"/> with error details if the operation was unsuccessful 
+            </returns>
+        </member>
+        <member name="M:IdentityService.Interfaces.IJwtTokenService.RegisterUser(IdentityService.Models.RegistrationModel)">
+            <summary>
+            Register new user 
+            </summary>
+            <param name="model"></param>
+            <returns>
+            A <seealso cref="T:IdentityService.Models.ResultDetail"/> with the <seealso cref="T:IdentityService.Models.User"/> username if the operation was succesful. <br></br>
+            A <seealso cref="T:IdentityService.Models.ResultDetail"/> with error details if the operation was unsuccessful 
+            </returns>
+        </member>
+        <member name="T:IdentityService.Models.ResultDetail">
+            <summary>
+            Represents the result of an identity service operation
+            Adapted from <seealso cref="T:Microsoft.AspNetCore.Identity.IdentityResult"/>
+            </summary>
+        </member>
+        <member name="P:IdentityService.Models.ResultDetail.Succeeded">
+            <summary>
+            Flag indicating whether if the operation succeeded or not.
+            </summary>
+            <value>True if the operation succeeded, otherwise false.</value>
+        </member>
+        <member name="P:IdentityService.Models.ResultDetail.Result">
+            <summary>
+            Operation Result
+            </summary>
+        </member>
+        <member name="P:IdentityService.Models.ResultDetail.Success">
+            <summary>
+            Creates a <see cref="T:IdentityService.Models.ResultDetail"/> indicating an successful operation.
+            </summary>
+            <returns>An <see cref="T:IdentityService.Models.ResultDetail"/> indicating a successful operation.</returns>
+        </member>
+        <member name="P:IdentityService.Models.ResultDetail.Failed">
+            <summary>
+            Creates a <see cref="T:IdentityService.Models.ResultDetail"/> indicating a successful operation.
+            </summary>
+            <returns>An <see cref="T:IdentityService.Models.ResultDetail"/> indicating a successful operation.</returns>
+        </member>
+        <member name="M:IdentityService.Models.ResultDetail.SuccessResult(System.Object)">
+            <summary>
+            Creates a <see cref="T:IdentityService.Models.ResultDetail"/> indicating a successful operation.
+            </summary>
+            <returns>An <see cref="T:IdentityService.Models.ResultDetail"/> with the operation result</returns>
+        </member>
+        <member name="M:IdentityService.Models.ResultDetail.FailedResult(IdentityService.Models.ResultError[])">
+            <summary>
+            Creates a <see cref="T:IdentityService.Models.ResultDetail"/> indicating a failed operation, with a list of <paramref name="errors"/> if applicable.
+            </summary>
+            <param name="errors">An optional array of <see cref="T:IdentityService.Models.ResultError"/>s which caused the operation to fail.</param>
+            <returns>An <see cref="T:IdentityService.Models.ResultError"/> indicating a failed operation, with a list of <paramref name="errors"/> if applicable.</returns>
+        </member>
+        <member name="T:IdentityService.Models.ResultError">
+            <summary>
+            Encapsulates an error from the service subsystem.
+            </summary>
+        </member>
+        <member name="P:IdentityService.Models.ResultError.Code">
+            <summary>
+            Gets or sets error code
+            </summary>
+            <value>
+            The code for this error.
+            </value>
+        </member>
+        <member name="P:IdentityService.Models.ResultError.Description">
+            <summary>
+            Gets or sets error description for this error.
+            </summary>
+            <value>
+            The description for this error.
+            </value>
+        </member>
+        <member name="T:IdentityService.Models.ResultErrorMessage">
+            <summary>
+            Class contains constant strings to represent various operation errors
+            </summary>
+        </member>
+        <member name="T:IdentityService.Models.ValueObjects.Address">
+            <summary>
+            Value object for address properties
+            </summary>
+        </member>
+        <member name="M:IdentityService.Models.Common.ValueObject.op_Equality(IdentityService.Models.Common.ValueObject,IdentityService.Models.Common.ValueObject)">
+            <summary>
+            Overload == operator
+            </summary>
+            <param name="one"></param>
+            <param name="two"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Models.Common.ValueObject.op_Inequality(IdentityService.Models.Common.ValueObject,IdentityService.Models.Common.ValueObject)">
+            <summary>
+            overload !=
+            </summary>
+            <param name="one"></param>
+            <param name="two"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityService.Services.JwtTokenService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IdentityService.Services.JwtTokenService.#ctor(Microsoft.AspNetCore.Identity.UserManager{IdentityService.Models.User},Microsoft.AspNetCore.Identity.RoleManager{Microsoft.AspNetCore.Identity.IdentityRole},Microsoft.Extensions.Configuration.IConfiguration,IdentityService.DataContext.IdentityDataContext)">
+            <summary>
+            
+            </summary>
+            <param name="userManager"></param>
+            <param name="roleManager"></param>
+            <param name="usernameService"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:IdentityService.Services.JwtTokenService.AddUserRoles(IdentityService.Models.User,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <param name="roles"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Services.JwtTokenService.GetToken(System.Collections.Generic.List{System.Security.Claims.Claim})">
+            <summary>
+            
+            </summary>
+            <param name="authClaims"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityService.Services.UserService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IdentityService.Services.UserService.#ctor(Microsoft.AspNetCore.Identity.UserManager{IdentityService.Models.User},Microsoft.AspNetCore.Identity.RoleManager{Microsoft.AspNetCore.Identity.IdentityRole})">
+            <summary>
+            Provides the servies for manging a user in a persistence store
+            </summary>
+            <param name="userManager"></param>
+            <param name="roleManager"></param>
+        </member>
+        <member name="M:IdentityService.Services.UserService.UpdateUserContactInformation(IdentityService.Models.ConactInputModel)">
+            <summary>
+            Update User Contact Information
+            </summary>
+            <param name="model"></param>
+            <returns>A task that contains the <seealso cref="T:Microsoft.AspNetCore.Identity.IdentityResult"/></returns>
+        </member>
+        <member name="M:IdentityService.Services.UserService.ResetPassword(IdentityService.Models.ResetPasswordModel,System.String)">
+            <summary>
+            Reset User Password
+            </summary>
+            <param name="model"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityService.Services.UserService.GeneratePasswordToken(System.String)">
+            <summary>
+            Create Token to Reset User Password 
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

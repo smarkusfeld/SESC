@@ -32,26 +32,57 @@ namespace IdentityService.Services
             _roleManager = roleManager;
         }
 
+
+        /// <summary>
+        /// Get User Profile
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public async Task<ResultDetail> GetUserProfile(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            if (user == null)
+            {
+                return ResultDetail.FailedResult(ResultError.UserNotFound(username));
+            }
+            
+            return ResultDetail.SuccessResult(new ConactModel
+            {
+                FirstName = user.FirstName,
+                Surname = user.Surname,
+                MiddleName = user.MiddleName,
+                Email = user.Email,
+                SchoolEmail = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                PermanentAddressLineOne = user.Address.LineOne ?? string.Empty,
+                PermanentAddressLineTwo = user.Address.LineTwo ?? string.Empty,
+                PermanentAddressLineThree = user.Address.LineThree ?? string.Empty,
+                PermanentAddressTown_City = user.Address.Town_City ?? string.Empty,
+                PermanentAddressCounty_Region = user.Address.County_Region ?? string.Empty,
+                PermanentAddressPostCode = user.Address.PostCode ?? string.Empty,
+                PermanentAddressCountry = user.Address.Country ?? string.Empty,
+                TermAddressLineOne = user.Address.LineOne ?? string.Empty,
+                TermAddressLineTwo = user.Address.LineTwo ?? string.Empty,
+                TermAddressLineThree = user.Address.LineThree ?? string.Empty,
+                TermAddressTown_City = user.Address.Town_City ?? string.Empty,
+                TermAddressCounty_Region = user.Address.County_Region ?? string.Empty,
+                TermAddressPostCode = user.Address.PostCode ?? string.Empty,
+                TermAddressCountry = user.Address.Country ?? string.Empty,
+            });
+        }
+
         /// <summary>
         /// Update User Contact Information
         /// </summary>
         /// <param name="model"></param>
         /// <returns>A task that contains the <seealso cref="IdentityResult"/></returns>
-        public async Task<IdentityResult> UpdateUserContactInformation(ConactInputModel model)
+        public async Task<ResultDetail> UpdateUserContactInformation(ConactModel model)
         {
-            
+            var errors = new List<ResultError>();
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user == null)
             {
-                var errors = new List<IdentityError>
-                {
-                    new IdentityError()
-                    {
-                        Code = "NotFound",
-                        Description = "User: " + model.Username + " does not exist",
-                    }
-                };
-                return IdentityResult.Failed(errors.ToArray());
+                return ResultDetail.FailedResult(ResultError.UserNotFound(model.Username));
             }
             user.PhoneNumber = model.PhoneNumber;
             user.FirstName = model.FirstName;
@@ -78,19 +109,37 @@ namespace IdentityService.Services
                 PostCode = model.TermAddressPostCode ?? string.Empty,
                 Country = model.TermAddressCountry ?? string.Empty,
             };
-            return await _userManager.UpdateAsync(user);
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+            {
+                errors.AddRange(ConvetIdentityResult(result.Errors));
+            }
+            return !errors.Any()
+               ? ResultDetail.FailedResult(errors.ToArray())
+               : ResultDetail.SuccessResult(user);
         }
 
         /// <summary>
         /// Reset User Password
         /// </summary>
         /// <param name="model"></param>
-        /// <param name="token"></param>
         /// <returns></returns>
-        public async Task<IdentityResult> ResetPassword(ResetPasswordModel model, string token)
+        public async Task<ResultDetail> ResetPassword(ResetPasswordModel model)
         {
+            var errors = new List<ResultError>();
             var user = await _userManager.FindByNameAsync(model.Username);
-            return await _userManager.ResetPasswordAsync(user, token, model.Password);
+            if (user == null)
+            {                
+                return ResultDetail.FailedResult(ResultError.UserNotFound(model.Username));
+            }
+            var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
+            if (!result.Succeeded)
+            {
+                errors.AddRange(ConvetIdentityResult(result.Errors));
+            }
+            return !errors.Any()
+               ? ResultDetail.FailedResult(errors.ToArray())
+               : ResultDetail.Success;
         }
 
         /// <summary>
@@ -98,10 +147,28 @@ namespace IdentityService.Services
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public async Task<string> GeneratePasswordToken(string username)
+        public async Task<ResultDetail> GeneratePasswordToken(string username)
         {
+            var errors = new List<ResultError>();
             var user = await _userManager.FindByNameAsync(username);
-            return await _userManager.GeneratePasswordResetTokenAsync(user);
+            if (user == null)
+            {
+                return ResultDetail.FailedResult(ResultError.UserNotFound(username));
+            }
+            var result = await _userManager.GeneratePasswordResetTokenAsync(user);
+            return result == null
+               ? ResultDetail.FailedResult(ResultError.DefaultError())
+               : ResultDetail.SuccessResult(result);
+        }
+
+        private IEnumerable<ResultError> ConvetIdentityResult(IEnumerable<IdentityError> errors)
+        {
+            var result = new List<ResultError>();
+            foreach (IdentityError error in errors)
+            {
+                result.Add(new ResultError() { Code = error.Code, Description = error.Description });
+            }
+            return result;
         }
     }
 }
