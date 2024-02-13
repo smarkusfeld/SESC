@@ -1,4 +1,5 @@
-﻿using StudentService.Domain.Entities;
+﻿using StudentService.Application.Models.DTOs.InputModels;
+using StudentService.Domain.Entities;
 
 namespace StudentService.Application.Models.DTOs
 {
@@ -19,6 +20,8 @@ namespace StudentService.Application.Models.DTOs
         public string CourseSchool { get; set; }
 
         public string CourseDegree { get; set; }
+
+        public List<CourseLevelDTO> CourseLevels { get; set; }
 
     }
 }

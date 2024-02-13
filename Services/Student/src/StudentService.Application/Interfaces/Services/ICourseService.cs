@@ -56,28 +56,6 @@ namespace StudentService.Application.Interfaces.Services
         /// <returns>A collection of all <seealso cref="CourseListingDTO"/> that satisfy the search critera</returns>
         Task<IEnumerable<FullCourseListingDTO>> SearchCoursebyName(string searchTitle);
 
-        /// <summary>
-        /// Get all Course Offering
-        /// </summary>
-        /// <returns>A collection of all <seealso cref="CourseLevelDTO"/> that satisfy the search critera</returns>
-        Task<IEnumerable<CourseLevelDTO>> GetAllCourseLevels();
-
-
-        /// <summary>
-        /// Filter CourseOffering by CourseName
-        /// </summary>
-        /// <param name="courseName"><seealso cref="Course"/> search string</param>
-        /// <returns>A collection of all <seealso cref="CourseLevelDTO"/> that satisfy the search critera</returns>
-        Task<IEnumerable<FullCourseListingDTO>> GetCourseLevelsByCourse(string courseName);
-
-        /// <summary>
-        /// Filter CourseOffering by CourseId
-        /// </summary>
-        /// <param name=" courseCode"></param>
-        /// <returns>A collection of all <seealso cref="CourseLevelDTO"/> that satisfy the search critera</returns>
-        Task<IEnumerable<FullCourseListingDTO>> GetCourseLevelsByCourseCode(string courseCode);
-
- 
-
+       
     }
 }

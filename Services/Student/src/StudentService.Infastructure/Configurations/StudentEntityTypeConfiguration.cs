@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 namespace StudentService.Infastructure.Configurations
 {
     /// <summary>
-    /// Configuration for the <see cref="Student"/> entity
+    /// Configuration for the <see cref="Account"/> entity
     /// </summary>
-    public class StudentEntityTypeConfiguration : IEntityTypeConfiguration<Student>
+    public class StudentEntityTypeConfiguration : IEntityTypeConfiguration<Account>
     {
-        public void Configure(EntityTypeBuilder<Student> builder)
+        public void Configure(EntityTypeBuilder<Account> builder)
         {
             builder
                 .Property(p => p.AccountNumber)
@@ -31,19 +31,7 @@ namespace StudentService.Infastructure.Configurations
                 .HasKey(p => p.StudentId);
                  
 
-            builder
-                 .Property(x => x.FirstName)
-                 .HasColumnType("varchar(50)")
-                 .IsRequired();
-
-            builder
-                .Property(x => x.MiddleName)
-                .HasColumnType("varchar(50)");
-
-            builder
-               .Property(x => x.Surname)
-               .HasColumnType("varchar(50)");
-
+          
             
 
         }

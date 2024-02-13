@@ -13,5 +13,24 @@ namespace StudentService.Application.Interfaces.Repositories.TypeRepositories
     /// </summary>    
     public interface ICourseRepository : IGenericRepository<Course>
     {
+        
+        
+        /// <summary>
+        /// Update Course contained awards
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        Task<Course> UpdateContainedAwardsAsync(Course entity);
+
+        /// <summary>
+        /// Method to update exisiting course levels as well as the associated course modules, sessions, and session modules
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        Task<CourseLevel> UpdateCourseLevelAsync(CourseLevel entity);
+
+ 
     }
+
+    
 }

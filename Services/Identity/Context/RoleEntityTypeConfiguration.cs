@@ -11,6 +11,13 @@ namespace IdentityService.DataContext
             builder.HasData(
             new IdentityRole
             {
+                Id = "99",
+                Name = "applicant",
+                NormalizedName = "APPLICANT"
+                
+            },
+            new IdentityRole
+            {
                 Id = "100",
                 Name = "admin",
                 NormalizedName = "ADMIN"
@@ -18,8 +25,8 @@ namespace IdentityService.DataContext
             new IdentityRole
             {
                 Id = "101",
-                Name = "user",
-                NormalizedName = "USER"
+                Name = "student",
+                NormalizedName = "STUDENT"
             },
             new IdentityRole
             {
@@ -56,19 +63,7 @@ namespace IdentityService.DataContext
                 Id = "107",
                 Name = "staff",
                 NormalizedName = "STAFF"
-            },
-            new IdentityRole
-            {
-                Id = "108",
-                Name = "guest",
-                NormalizedName = "GUEST"
-            },
-            new IdentityRole
-            {
-                Id = "109",
-                Name = "student",
-                NormalizedName = "STUDENT"
-            });
+            };
 
         }
     }

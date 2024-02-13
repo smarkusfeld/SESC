@@ -18,11 +18,6 @@ namespace StudentService.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<CourseLevelDTO>> GetAllCourseLevels()
-        {
-            var result = await _unitOfWork.CourseLevels.GetAllOrderedAsync(includeProperties: "CourseLevels");
-            return _mapper.Map<IEnumerable<CourseLevelDTO>>(result);
-        }
 
         public async Task<IEnumerable<FullCourseListingDTO>> GetAllCourses()
         {
@@ -34,20 +29,6 @@ namespace StudentService.Application.Services
             var result = await _unitOfWork.Courses.GetAllWhereAsync(x=>x.IsActive==true);
             return _mapper.Map<IEnumerable<FullCourseListingDTO>>(result);
         }
-
-        public async Task<IEnumerable<FullCourseListingDTO>> GetCourseLevelsByCourse(string courseName)
-        {
-            var normalizedName = courseName;
-            var result = await _unitOfWork.CourseLevels.GetAllWhereAsync(x=>x.Course.Name.Normalize() == courseName);
-            return _mapper.Map<IEnumerable<FullCourseListingDTO>>(result);
-        }
-
-        public async Task<IEnumerable<FullCourseListingDTO>> GetCourseLevelsByCourseCode(string courseCode)
-        {
-            
-            var result = await _unitOfWork.CourseLevels.GetAllWhereAsync(x => x.Course.CourseCode== courseCode);
-            return _mapper.Map<IEnumerable<FullCourseListingDTO>>(result);
-        }      
 
         public async Task<IEnumerable<FullCourseListingDTO>> SearchCourseByAward(string searchDegree)
         {

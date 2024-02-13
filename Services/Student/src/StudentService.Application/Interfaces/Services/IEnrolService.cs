@@ -1,6 +1,6 @@
-﻿using StudentService.Application.Models.DTOs;
-using StudentService.Application.Models.DTOs.InputModels;
+﻿using StudentService.Application.Models.DTOs.InputModels;
 using StudentService.Application.Models.DTOs.ReponseModels;
+using StudentService.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,35 +15,64 @@ namespace StudentService.Application.Interfaces.Services
     /// </summary>
     public interface IEnrolService
     {
+
+
         /// <summary>
-        /// All enrollments for the specified student
+        /// Get all enrolments for the specified student
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns></returns>
+        /// <exception cref="KeyNotFoundException"></exception>
+        /// <exception cref="NotFoundException"></exception>
         Task<IEnumerable<EnrolmentDTO>> GetAllEnrolments(string studentId);
-
 
         /// <summary>
         /// Accept offer, create new student account, and complete initial course course enrolment
         /// </summary>
         /// <param name="offer"></param>
         /// <returns>new student account</returns>
-        Task<InitalRegistrationConfirmationDTO> RegisterNewStudent(StudentRegistrationDTO registration);
+        Task<TuitionInvoiceDTO> CourseRegistration(CourseRegistrationDTO courseRegistrationDTO);
 
         /// <summary>
-        /// Enrol in Course Offering
+        /// Enrol student already registered in a course in the eligible course offering level and session 
         /// </summary>
         /// <param name="studentId"></param>
-        /// <param name="courseOfferingId"></param>
-        /// <returns></returns>
-        Task<EnrolmentConfirmationDTO> CourseEnrolment(string studentId, int courseOfferingId);
+        /// <returns><seealso cref="TuitionInvoiceDTO"/></returns>
+        Task<TuitionInvoiceDTO> Enrol(string studentId);
 
         /// <summary>
-        /// Check Course Offering Eligibility for Student
+        /// Get course level for student enrolment according to eligibility
         /// </summary>
         /// <param name="studentId"></param>
-        /// <param name="courseOfferingId"></param>
+        /// <param name="courseCode"></param>
         /// <returns></returns>
-        Task<int> GetEligiableCourseOffering(string studentId, string courseCode);
+        Task<CourseLevel?> GetEligiableCourseLevel(string studentId, Course course);
+
+        /// <summary>
+        /// Check if student is registered in course
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <param name="courseCode"></param>
+        /// <returns></returns>
+        Task<bool> CheckCourseRegistration(string studentId, int CourseId);
+
+        /// <summary>
+        /// Create invoice for student enrolment
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <param name="session"></param>
+        /// <returns><seealso cref="TuitionInvoiceDTO"/></returns>
+        TuitionInvoiceDTO CreateInvoice(string studentId, Session session);
+
+        /// <summary>
+        /// Get eligible open session for next academic year for  student depending on student results 
+        /// </summary>
+        /// <param name="courseLevel"></param>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        Session GetOpenSession(CourseLevel courseLevel, Account account);
+
+
+
     }
 }

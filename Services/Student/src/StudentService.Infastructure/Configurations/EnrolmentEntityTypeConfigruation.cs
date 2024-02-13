@@ -13,11 +13,11 @@ using System.Threading.Tasks;
 namespace StudentService.Infastructure.Configurations
 {
     /// <summary>
-    /// Configuration for the <see cref="CourseRegistration"/> value object
+    /// Configuration for the <see cref="Registration"/> value object
     /// </summary>
-    public class RegistrationTypeConfiguration : IEntityTypeConfiguration<CourseRegistration>
+    public class RegistrationTypeConfiguration : IEntityTypeConfiguration<Registration>
     {
-        public void Configure(EntityTypeBuilder<CourseRegistration> builder)
+        public void Configure(EntityTypeBuilder<Registration> builder)
         {
             builder
                 .HasKey(x =>x.Id);

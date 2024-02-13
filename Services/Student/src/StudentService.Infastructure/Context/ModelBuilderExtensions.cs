@@ -14,6 +14,66 @@ namespace StudentService.Infastructure.Context
     {
         public static void SeedDatabase(this ModelBuilder builder)
         {
+            builder.Entity<AcademicYear>().HasData
+            (
+                new AcademicYear
+                {
+                    Id = 1,
+                    StartYear = 2022,
+                    EndYear = 2023
+                },
+                 new AcademicYear
+                 {
+                     Id = 2,
+                     StartYear = 2023,
+                     EndYear = 2024
+                 },
+                 new AcademicYear
+                 {
+                     Id = 3,
+                     StartYear = 2024,
+                     EndYear = 2025
+                 }
+             );
+            builder.Entity<AcademicTerm>().HasData
+           (
+               new AcademicTerm
+               {
+                   Id = 1,
+                   Name = "Fall",
+                   AcademicYearId = 1
+               },
+               new AcademicTerm
+               {
+                   Id = 2,
+                   Name = "Spring",
+                   AcademicYearId = 1
+               },
+               new AcademicTerm
+               {
+                   Id = 3,
+                   Name = "Fall",
+                   AcademicYearId = 2
+               },
+               new AcademicTerm
+               {
+                   Id = 4,
+                   Name = "Spring",
+                   AcademicYearId = 2
+               },
+                new AcademicTerm
+                {
+                    Id = 5,
+                    Name = "Fall",
+                    AcademicYearId = 3
+                },
+               new AcademicTerm
+               {
+                   Id = 6,
+                   Name = "Spring",
+                   AcademicYearId = 3
+               }
+            );
 
             builder.Entity<Course>().HasData(
                 new Course
@@ -28,36 +88,7 @@ namespace StudentService.Infastructure.Context
                    SubjectId = 7,
                 }
             );
-            builder.Entity<CourseLevel>().HasData(
-               new CourseLevel
-               {
-                   Id = 2,
-                   Name = "Computer Science Level 4",
-                   QualificationLevel = 4,
-                   CourseId = 1,
-                   Credits = 120,
-                   TuitionFee = 9250,
-                   
-               },
-               new CourseLevel
-               {
-                   Id = 3,
-                   Name = "Computer Science Level 5",
-                   QualificationLevel = 5,
-                   CourseId = 1,
-                   Credits = 120,
-                   TuitionFee = 9250,
-               },
-               new CourseLevel
-               {
-                   Id = 4,
-                   Name = "Computer Science Level 6",
-                   QualificationLevel = 6,
-                   CourseId = 1,
-                   Credits = 120,
-                   TuitionFee = 9250,
-               }
-           );
+            
         }
     }
 }

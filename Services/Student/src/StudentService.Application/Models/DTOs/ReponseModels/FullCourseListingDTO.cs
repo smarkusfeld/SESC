@@ -17,7 +17,6 @@ namespace StudentService.Application.Models.DTOs.ReponseModels
         public string CourseSchool { get; set; }
         public string CourseSubject { get; set; }
         public string CourseDegree { get; set; }
-
         public List<string> CourseLevels { get; set; }   
     }
 }

@@ -6,47 +6,58 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using StudentService.Domain.Common.Enums.StudentService.Domain.Common.Enums;
 
 namespace StudentService.Domain.Entities
 {
     /// <summary>
-    /// Trnascript entity 
+    /// Transcript Entity owned by <seealso cref="Account"/>
     /// </summary>
-    public class Transcript : BaseEntity
+
+    public class Transcript
     {
-        private Transcript() { }
-
-        public Transcript(Student student, Course course)
-        {
-            Student = student;
-            Course = course;
-            Course = course;
-            CourseId = course.Id;
-            CourseName = course.Name;
-        }
-        public Transcript(string studentId, Course course)
-        {
-            StudentId = studentId;
-            Course = course;
-            Course = course;
-            CourseId = course.Id;
-            CourseName = course.Name;
-        }
-        public override object Key => Id;
-
-        [Key]
+        
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; private set; }
-        public string StudentId { get; private set; }
-        public string CourseName { get; private set; }
-        public int CourseId { get; private set; }
+        public int Id { get; set; }
+        internal Transcript() { }
 
-        //navigation properties
-        public Student Student { get; private set; }
+        public int CourseId { get; private set; }
 
         //current course for the student
         public Course Course { get; private set; }
-        public ICollection<StudentResult> Results { get; private set; } = new List<StudentResult>();
+
+        
+        public ICollection<CourseResult> Results { get; private set; } = new List<CourseResult>();
+
+        [NotMapped]
+        public string CourseName => Course.Name ?? string.Empty;
+
+        [NotMapped]
+        public string CourseCode => Course.CourseCode ?? string.Empty;
+
+        /// <summary>
+        /// Add or update course
+        /// </summary>
+        /// <param name="courseId"></param>
+        public void AddUpdateCourse(int courseId)
+        {
+            CourseId = courseId;
+        }
+
+        /// <summary>
+        /// Add new course result
+        /// </summary>
+        /// <param name="result"></param>
+        public void AddCourseResult(string studentId, int sessionId, ProgressDecision progressDecision, string progressNotes)
+        {
+            var note = progressNotes ?? string.Empty;
+            Results.Add(new CourseResult(studentId,sessionId, progressDecision, note));
+
+        }
+
+      
+       
 
     }
 }

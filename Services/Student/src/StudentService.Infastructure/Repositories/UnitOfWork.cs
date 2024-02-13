@@ -15,44 +15,29 @@ namespace StudentService.Infastructure.Repositories
     {
         private readonly DataContext _dbContext;
         private ICourseRepository _courses;
-        private ICourseLevelRepository _coursesLevels;
-        private IStudentRepository _students;
-        private IStudentResultRepository _results;
+        private IAccountRepository _students;
         private IAwardRepository _awards;
-        private ICourseRegistrationRepository _registrations;
         private ISchoolRepository _schools;
         private ISubjectRepository _subjects;
-        private IEnrolmentRepository _enrolments;
         private bool disposed;
 
-        public ICourseRegistrationRepository Registrations => _registrations ?? new CourseRegistrationRepository(_dbContext);
         public ICourseRepository Courses => _courses ?? new CourseRepository(_dbContext);
-        public ICourseLevelRepository CourseLevels => _coursesLevels ?? new CourseLevelRepository(_dbContext);
-
-        public IStudentResultRepository StudentResults => _results ?? new StudentResultRepository(_dbContext);
 
         public IAwardRepository Awards => _awards ?? new AwardRepository(_dbContext);
 
-        public IEnrolmentRepository Enrolments => _enrolments ?? new EnrolmentRepository(_dbContext);
-
-        public IStudentRepository Students => _students ?? new StudentRepository(_dbContext);
+        public IAccountRepository Students => _students ?? new AccountRepository(_dbContext);
 
         public ISchoolRepository Schools => _schools ?? new SchoolRepository(_dbContext);
-        public ISubjectRepository Subjects => _subjects ?? new SubjectRepository(_dbContext);
+        public ISubjectRepository Accounts => _subjects ?? new SubjectRepository(_dbContext);
         public UnitOfWork(DataContext dbContext)
         {
             _dbContext = dbContext;
             _students = Students;
-            _enrolments = Enrolments;
             _schools = Schools;
-            _subjects = Subjects;
+            _subjects = Accounts;
             _courses = Courses;
-            _coursesLevels = CourseLevels;
-            _results = StudentResults;
             _awards = Awards;
-            _enrolments = Enrolments;
             _students = Students;
-            _registrations = Registrations;
                
         }
         /// <summary>
