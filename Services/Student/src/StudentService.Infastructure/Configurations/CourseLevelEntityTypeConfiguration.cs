@@ -6,7 +6,7 @@ using StudentService.Domain.Entities;
 namespace StudentService.Infastructure.Configurations
 {
     /// <summary>
-    /// Configuration for the <see cref="CourseLevel"/> entity
+    /// Configuration for the <see cref="Session"/> entity
     /// </summary>
     public class CourseLevelEntityTypeConfiguration : IEntityTypeConfiguration<CourseLevel>
     {
@@ -30,14 +30,6 @@ namespace StudentService.Infastructure.Configurations
                  .Property(x => x.Name)
                  .HasColumnType("varchar(50)")
                  .IsRequired();
-
-            //builder
-                 //.Property(x => x.StartDate)
-                 //.IsRequired();
-
-            //builder
-                 //.Property(x => x.EndDate)
-                 //.IsRequired();
 
             builder
                  .Property(x => x.Credits);

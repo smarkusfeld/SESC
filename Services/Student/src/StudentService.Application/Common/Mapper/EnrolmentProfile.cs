@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using StudentService.Application.Models.DTOs;
+using StudentService.Application.Models.DTOs.ReponseModels;
 using StudentService.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -18,12 +18,14 @@ namespace StudentService.Application.Common.Mapper
         {
             CreateMap<EnrolmentDTO, Enrolment>()
               .ForMember(dest => dest.Key, opt => opt.Ignore())
-              .ForMember(dest => dest.Student, opt => opt.Ignore())
-              .ForMember(dest => dest.CourseLevel, opt => opt.Ignore())
+              .ForMember(dest => dest.Account, opt => opt.Ignore())
+              .ForMember(dest => dest.Session, opt => opt.Ignore())
               .ReverseMap()
-              .ForPath(dest => dest.StudentName, opt => opt.MapFrom(src => src.Student.FullName))
-              .ForPath(dest => dest.CourseOfferingName, opt => opt.MapFrom(src => src.CourseLevel.Name))
-              .ForPath(dest => dest.CourseName, opt => opt.MapFrom(src => src.CourseLevel.Course.Name));
+              .ForPath(dest => dest.CourseLevelName, opt => opt.MapFrom(src => src.Session.CourseLevel.Name))
+              .ForPath(dest => dest.CourseCode, opt => opt.MapFrom(src => src.Session.CourseLevel.Course.CourseCode))
+              .ForPath(dest => dest.CourseName, opt => opt.MapFrom(src => src.Session.CourseLevel.Course.Name))
+              .ForPath(dest => dest.SessionModules, opt => opt.MapFrom(src => src.Session.SessionModules.Select(x => x.CourseModule.Name)));
+
 
         }
     }

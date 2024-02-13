@@ -2,13 +2,10 @@
 using StudentService.Application.Common.Exceptions;
 using StudentService.Application.Interfaces.Repositories;
 using StudentService.Application.Interfaces.Services;
-using StudentService.Application.Models.DTOs;
 using StudentService.Application.Models.DTOs.InputModels;
 using StudentService.Application.Models.DTOs.ReponseModels;
 using StudentService.Domain.Common.Enums.StudentService.Domain.Common.Enums;
 using StudentService.Domain.Entities;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Principal;
 
 namespace StudentService.Application.Services
 {
@@ -23,50 +20,51 @@ namespace StudentService.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<EnrolmentConfirmationDTO> CourseEnrolment(string studentId, int courseLevelId)
+        public async Task<TuitionInvoiceDTO> Enrol(string studentId)
         {
             //check student account
-            var account = await _unitOfWork.Students.GetAsync(studentId)
+            var account = await _unitOfWork.Accounts.GetAsync(studentId)
                 ?? throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
-            //check course offering account
-            var course = await _unitOfWork.CourseLevels.GetAsync(courseLevelId)
-                ?? throw new KeyNotFoundException("Course Not Found");
-            var courseEnrolment = new Enrolment
-            {
-                StudentId = studentId,
-                CourseLevelId = courseLevelId,
-            };
-            var enrol = await _unitOfWork.Enrolments.AddAsync(courseEnrolment);
-            if (enrol != null)
+            var course = account.Transcript.Course ?? throw new BadRequestException("Student not registered for course");
+
+            //get eligible course level
+            var eligibileLevel = await GetEligiableCourseLevel(studentId, course) ?? throw new BadRequestException("Student not eligible to register for any courses in current program");
+
+            //get session
+            var session = GetOpenSession(eligibileLevel, account);
+            if (eligibileLevel == null) { throw new BadRequestException("No open sessions for course level"); }
+            //enrol student
+            account.Enrol(session.Id);
+
+            //add invoice
+            var enrolment = await _unitOfWork.Accounts.CompleteEnrolment(account);
+            if (enrolment != null)
             {
                
                 var save = await _unitOfWork.Save();
-                var enrolDTO = _mapper.Map<EnrolmentDTO>(enrol);
-                var invoiceDTO = CreateTutionInvoice(enrol);
-                return save > 0 ? new EnrolmentConfirmationDTO(invoiceDTO, enrolDTO) : throw new BadRequestException();
+                return save > 0 ? CreateInvoice(studentId, session) : throw new MySQLException();
             }
-            throw new BadRequestException();
+            throw new MySQLException();
         }
 
-        /// <summary>
-        /// Create Tuition Invoice
-        /// </summary>
-        /// <param name="enrolment"></param>
-        /// <returns></returns>
-        private TuitionInvoiceDTO CreateTutionInvoice(Enrolment enrolment)
+        public TuitionInvoiceDTO CreateInvoice(string studentId, Session session)
         {
-            return new TuitionInvoiceDTO
-            {
-                Amount = enrolment.CourseLevel.TuitionFee,
-                StudentID = enrolment.StudentId,
-                Reference = enrolment.CourseLevel.Name
-            };
+            return new TuitionInvoiceDTO()
+                {
+                    StudentID = studentId,
+                    Amount = session.CourseLevel.TuitionFee,
+                    SessionId = session.Id,
+                    CourseLevelId = session.CourseLevel.Id,
+                    CourseLevelName = session.CourseLevel.Name,
+                    CourseCode = session.CourseLevel.Course.CourseCode
+                };
         }
 
+       
         public async Task<IEnumerable<EnrolmentDTO>> GetAllEnrolments(string studentId)
         {
             //check student account
-            var account = await _unitOfWork.Students.GetAsync(studentId)
+            var account = await _unitOfWork.Accounts.GetAsync(studentId)
                 ?? throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
 
             var enrolments = account.Enrolments.ToArray();
@@ -75,133 +73,78 @@ namespace StudentService.Application.Services
                 return _mapper.Map<EnrolmentDTO[]>(enrolments);
             }          
             throw new NotFoundException($"No enrolment records found for {studentId}");
-
         }
        
 
-        public async Task<InitalRegistrationConfirmationDTO> RegisterNewStudent(StudentRegistrationDTO registration)
+        public async Task<TuitionInvoiceDTO> CourseRegistration(CourseRegistrationDTO registration)
         {
             //vaidate course ID
             var course = await _unitOfWork.Courses.GetByAsync(x=>x.CourseCode == registration.CourseCode)
                 ?? throw new NotFoundException("No active courses with course code");
-            //create student account
-            var student = await CreateStudentAccount(registration) ?? throw new BadRequestException("Student account could not be created");
+            //validate student id
+            var student = await _unitOfWork.Accounts.GetAsync(registration.StudentId)
+                ?? throw new KeyNotFoundException($"No Account Associated with Student {registration.StudentId}");
             // TODO add validation for course ID
-            var regResult = await FirstRegistration(student.StudentId, course.Id)
+            return await Register(student, course, registration.StartYear)
                 ?? throw new BadRequestException("Registration Could Not Be Completed");
-            // complete enrolment
-            var enrolResult = await CourseEnrolment(student.StudentId, regResult.Id);
-            var account = _mapper.Map<StudentDTO>(student);
-            if(enrolResult != null)
-            {
-                return new InitalRegistrationConfirmationDTO(account, enrolResult);
-            }
-            
-             throw new BadRequestException();
-
-        }
-        
-        /// <summary>
-        /// Complete first registration and create student transcript
-        /// </summary>
-        /// <param name="studentId"></param>
-        /// <param name="courseId"></param>
-        /// <returns>The Course Offering with the lowest level/requirements associated witht the course</returns>
-        /// <exception cref="BadRequestException"></exception>
-        private async Task<CourseLevel> FirstRegistration(string studentId, int courseId)
-        {
-            // get first course
-            var courseLevels = await _unitOfWork.CourseLevels.GetAllWhereAsync(x => x.CourseId == courseId);
-            var firstCourse = courseLevels.OrderBy(x => x.QualificationLevel).FirstOrDefault();
-
-            //create registration
-            var reg = new CourseRegistration()
-            {
-                StudentId = studentId,
-                CourseId = courseId,
-                RegistrationDate = DateTime.Now,
-            };
-            var regResult = await _unitOfWork.Registrations.AddAsync(reg);
            
-            if (regResult != null)
-            {
-                var save = await _unitOfWork.Save();
-               if(save > 0)
-                {
-                    var student = regResult.Student;
-                    student.Transcript = new(regResult.Student, regResult.Course);
-                    var result = await _unitOfWork.Students.UpdateAsync(student);
-                  
-                    return firstCourse;
-                }
-
-            }
-            throw new BadRequestException();
-        }
-        
-      
-        /// <summary>
-        /// Create New Student Account
-        /// </summary>
-        /// <param name="registration"></param>
-        /// <returns></returns>
-        private async Task<Student?> CreateStudentAccount(StudentRegistrationDTO registration)
-        {
-            var id = _unitOfWork.Students.GetNextStudentId();
-
-            var student = new Student()
-            {
-                FirstName = registration.FirstName,
-                Surname = registration.Surname,
-                MiddleName = registration.MiddleName,
-            };
-            var account = await _unitOfWork.Students.AddAsync(student);
-            if (account != null)
-            {
-                var save = await _unitOfWork.Save();
-                return save > 0 ? account : null;
-            }
-            return null;
-
         }
 
-     
-        public async Task<int> GetEligiableCourseOffering(string studentId, string courseCode)
+        public async Task<TuitionInvoiceDTO> Register(Account account, Course course, int year)
         {
-            // check student registration
-            var studentCourses = await _unitOfWork.Registrations
-               .GetAllWhereAsync(x => x.StudentId == studentId && x.Course.CourseCode == courseCode)
-               ?? throw new BadRequestException("Student Not Registered For Course");
-
-            // get course offerings
-            var courseLevels = await _unitOfWork.CourseLevels
-                .GetAllWhereAsync(x => x.Course.CourseCode == courseCode)
-                ?? throw new BadRequestException($"Could not find {courseCode}");
-
-           //get highest qualification recieved
-            var results = await _unitOfWork.StudentResults
-                .GetAllWhereAsync(x=> x.Transcript.StudentId == studentId && x.CourseLevel.Course.CourseCode == courseCode && x.ProgressDecision == ProgressDecision.pass_proceed);
-
-            var nextLevel = results.OrderByDescending(x => x.CourseLevel.QualificationLevel).Select(x=>x.CourseLevel.QualificationLevel).FirstOrDefault() + 1;
             
-            // no qualifications have been awared select the lowest course offering with no requirements
-            if (results==null || !results.Any())
+            //register in course
+            if (!account.Register(course.Id))
             {
-                return courseLevels
-                    .OrderBy(x=>x.QualificationLevel)
-                    .Select(x=>x.Id).First();
+                throw new BadRequestException("Student already registered in course");
             }
-            try
+            account.Transcript.AddUpdateCourse(course.Id);
+            //enrol in first course
+            var level = course.GetFirstCourseLevel();
+            var session = level.ActiveSessions.Where(x => x.AcademicYear.StartYear == year && x.EnrolmentOpen).First() 
+                ?? throw new BadRequestException("No Open Sessions for Course");
+            if (account.Enrol(session.Id))
             {
-                return courseLevels
-                     .Where(x => x.QualificationLevel == nextLevel)
-                     .Select(x => x.Id).First();
-            }
-            catch
-            {
-                throw new BadRequestException("Student Not Eligible To Register for Course");
-            }
+                var update = await _unitOfWork.Accounts.CompleteRegistration(account);
 
+                var save = await _unitOfWork.Save();
+
+                return save > 0 ? CreateInvoice(account.StudentId, session) : throw new MySQLException();
+            }
+            throw new BadRequestException("No available source sessions");
         }
+
+        public async Task<CourseLevel?> GetEligiableCourseLevel(string studentId, Course course)
+        {
+            //Get student
+            var account = await _unitOfWork.Accounts.GetAsync(studentId) ?? throw new BadRequestException("Invalid Student ID");
+
+            //get next course level
+            var result = account.Transcript.Results.OrderByDescending(x => x.ProgressDate).First();
+            var currentLevel = result.Session.CourseLevel;
+            return result.ProgressDecision switch
+            {
+                ProgressDecision.pass_proceed => course.CourseLevels.Where(x => x.QualificationLevel > currentLevel.QualificationLevel).OrderBy(x => x.QualificationLevel).First(),
+                ProgressDecision.failed_repeat or ProgressDecision.reassesment => result.Session.CourseLevel,
+                _ => null,
+            };
+        }
+
+        public async Task<bool> CheckCourseRegistration(string studentId, int courseId)
+        {            
+            var account = await _unitOfWork.Accounts.GetAsync(studentId);
+            return account.Registrations.Any(x=>x.CourseId == courseId);
+        }
+
+        public Session GetOpenSession(CourseLevel courseLevel, Account account)
+        {
+            var year = account.Transcript.Results.OrderByDescending(x => x.ProgressDate).First().AcademicYear.StartYear;
+            var nextyear = year + 1;
+            return courseLevel.ActiveSessions.Where(x => x.AcademicYear.StartYear == nextyear && x.EnrolmentOpen).First();
+        }
+
+
+
+
     }
 }

@@ -14,6 +14,11 @@ namespace StudentService.Domain.Entities
     /// </summary>
     public class ContainedAward : BaseEntity
     {
+        private ContainedAward() { }
+        internal ContainedAward(int awardId)
+        {
+            AwardId = awardId;
+        }
         public override object Key => Id;
 
         [Key]

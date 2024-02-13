@@ -13,11 +13,11 @@ using StudentService.Domain.Common.Enums.StudentService.Domain.Common.Enums;
 namespace StudentService.Infastructure.Configurations
 {
     /// <summary>
-    /// Configuration for the <see cref="StudentResult"/> entity
+    /// Configuration for the <see cref="CourseResult"/> entity
     /// </summary>
-   public class CourseResultEntityTypeConfiguration : IEntityTypeConfiguration<StudentResult>
+   public class CourseResultEntityTypeConfiguration : IEntityTypeConfiguration<CourseResult>
     {
-        public void Configure(EntityTypeBuilder<StudentResult> builder)
+        public void Configure(EntityTypeBuilder<CourseResult> builder)
         {
             builder
                 .Property(p => p.Id)
@@ -26,7 +26,7 @@ namespace StudentService.Infastructure.Configurations
                 .HasKey(p => p.Id);
 
             builder
-                 .Property(x => x.CourseLevelId);
+                 .Property(x => x.SessionId);
 
             builder
                  .Property(x => x.TranscriptId);

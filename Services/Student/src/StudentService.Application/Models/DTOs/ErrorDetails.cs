@@ -8,7 +8,7 @@ namespace StudentService.Application.Models.DTOs
 {
     public class ErrorDetail
     {
-        public bool hasErrors => Details.Any();
+        public bool HasErrors => Details.Any();
         public ErrorDetail()
         {
         }

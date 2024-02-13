@@ -15,17 +15,12 @@ namespace StudentService.Application.Interfaces.Repositories
     ///</summary>
     public interface IUnitOfWork : IDisposable
     {
-        public ICourseRegistrationRepository Registrations { get; }
+      
         public ICourseRepository Courses { get; }
-        public ICourseLevelRepository CourseLevels { get; }
-
-        public IStudentResultRepository StudentResults { get; }
 
         public IAwardRepository Awards { get; }
 
-        public IEnrolmentRepository Enrolments { get; }
-
-        public IStudentRepository Students { get; }
+        public IAccountRepository Accounts { get; }
 
         public ISchoolRepository Schools { get; }
         public ISubjectRepository Subjects { get; }

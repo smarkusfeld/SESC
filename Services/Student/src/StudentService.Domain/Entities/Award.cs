@@ -7,13 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using StudentService.Domain.Common.Enums;
 using StudentService.Domain.Common;
+using StudentService.Domain.Interfaces;
 
 namespace StudentService.Domain.Entities
 {
     /// <summary>
-    /// Award Entity 
+    /// Award Entity. 
     /// </summary>
-    public class Award : BaseEntity
+    public class Award : BaseEntity 
     {
         public override object Key => Id;
 
