@@ -15,7 +15,7 @@ namespace RegistrarService.Infastructure.Repositories
     {
         private readonly DataContext _dbContext;
         private ICourseRepository _courses;
-        private IAccountRepository _students;
+        private IStudentRepository _students;
         private IAwardRepository _awards;
         private ISchoolRepository _schools;
         private ISubjectRepository _subjects;
@@ -25,7 +25,7 @@ namespace RegistrarService.Infastructure.Repositories
 
         public IAwardRepository Awards => _awards ?? new AwardRepository(_dbContext);
 
-        public IAccountRepository Students => _students ?? new AccountRepository(_dbContext);
+        public IStudentRepository Students => _students ?? new AccountRepository(_dbContext);
 
         public ISchoolRepository Schools => _schools ?? new SchoolRepository(_dbContext);
         public ISubjectRepository Accounts => _subjects ?? new SubjectRepository(_dbContext);

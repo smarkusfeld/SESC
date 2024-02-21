@@ -15,14 +15,29 @@ namespace RegistrarService.Domain.Entities
     /// </summary>
     public class Applicant : BaseAuditableEntity
     {
-        public override object Key => ApplicantNumber;
+
+        public Applicant()
+        {
+
+        }
+        public override object Key => ApplicantId;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ApplicantNumber { get; set; }
+        public int ApplicantId { get; set; }
+
+        public string FirstName { get; set; }
+        public string Surname { get; set; }
+        
+        public string MiddleName { get; set; }
+
+        public string Email { get; set; }
+
+        public Address Address { get; set; }
+
 
         //navigation properties
-        public ICollection<Applicantion> Applicantions { get; set; } = new List<Applicantion>();
+        public ICollection<CourseApplication> Applicantions { get; set; } = new List<CourseApplication>();
 
     }
 }

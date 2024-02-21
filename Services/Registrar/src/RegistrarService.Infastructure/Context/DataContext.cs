@@ -17,7 +17,7 @@ namespace RegistrarService.Infastructure.Context
         public DbSet<AcademicYear> AcademicYears { get; set; }
         public DbSet<AcademicTerm> AcademicTerms { get; set; }
         public DbSet<Applicant> Applicants { get; set; }
-        public DbSet<Applicantion> Applicantions { get; set; }
+        public DbSet<Domain.Entities.CourseApplication> Applicantions { get; set; }
         public DbSet<Assesment> Assesments { get; set; }
         public DbSet<Award> Awards { get; set; }
         public DbSet<Component> Components { get; set; }

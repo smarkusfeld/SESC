@@ -13,15 +13,15 @@ using System.Reflection.Metadata.Ecma335;
 namespace RegistrarService.Domain.Entities
 {
     /// <summary>
-    /// Course Entity 
+    /// Course Entity. Contains all business logic and behaviors for course.
     /// </summary>
-    public class Course : BaseAuditableEntity, IAggregateRoot
+    public class Course : BaseAuditableEntity
     {
         public override object Key => CourseCode;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CourseCode { get; set; }
+        public string CourseCode { get; set; }
 
         public bool Active { get; set; } = true;
 
@@ -37,6 +37,8 @@ namespace RegistrarService.Domain.Entities
         //navigation properties     
         public ICollection<CourseLevel> CourseLevels { get; private set; } = new List<CourseLevel>();
 
+
+        
 
     }
    

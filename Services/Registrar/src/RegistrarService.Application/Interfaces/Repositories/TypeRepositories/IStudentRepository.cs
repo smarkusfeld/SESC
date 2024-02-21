@@ -3,10 +3,10 @@
 namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
 {
     /// <summary>
-    /// Interface for Student Repository
+    /// Interface for Student Repository 
     /// <br></br> Implements the <see cref="IGenericRepository{T}"/>
     /// </summary>
-    public interface IAccountRepository : IGenericRepository<Student>
+    public interface IStudentRepository : IGenericRepository<Student>
     {
         /// <summary>
         /// Enrol Student in Course Level

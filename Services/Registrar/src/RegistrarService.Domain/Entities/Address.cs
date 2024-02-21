@@ -10,29 +10,35 @@ using System.Threading.Tasks;
 namespace RegistrarService.Domain.Entities
 {
     /// <summary>
-    ///  Location Entity
+    ///  Address Entity
     ///  </summary>
-    public class Location : BaseAuditableEntity
+    public class Address : BaseAuditableEntity
     {
-        private Location() { }
 
 
-        public Location(int roomNumber, string building)
+        public Address()
         {
-            RoomNumber = roomNumber;
-            BuildingCode = building;
+
         }
-        public override object Key => LocationId;
+        public override object Key => Id;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public int RoomNumber { get; set; }
+        public string AddressLine1 { get; set; }
 
-        public string BuildingCode { get; set; }
+        public string AddressLine2 { get; set; }
 
-        public Building Building { get; set; }
+        public string AddressLine3 { get; set; }
+
+        public string City { get; set; }
+
+        public string Region { get; set; }
+
+        public string Postcode { get; set; }
+
+        public string Country { get; set; }
 
     }
 }

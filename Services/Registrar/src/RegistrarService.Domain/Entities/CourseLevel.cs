@@ -12,12 +12,19 @@ using System.Reflection;
 namespace RegistrarService.Domain.Entities
 {
     /// <summary>
-    /// Course Level Entity
+    /// Course Level Entity. 
     /// </summary>
     public class CourseLevel : BaseAuditableEntity
     {
         private CourseLevel() { }
 
+        /// <summary>
+        /// Internal Constructor to create CourseLevel used by <seealso cref="Course"/>
+        /// </summary>
+        /// <param name="credits">Num of credits earned at level</param>
+        /// <param name="year">AcademicYear Id</param>
+        /// <param name="qualificationLevel">Qualification level of course level</param>
+        /// <param name="tuition">Tution fee for course level</param>
         internal CourseLevel(int credits, int year, int qualificationLevel, float tuition)
         {
             Credits = credits;
@@ -34,7 +41,7 @@ namespace RegistrarService.Domain.Entities
         public int Credits { get; set; }
         public int QualificationLevel { get; set; }
         public float TuitionFee { get; set; }
-        public int CourseId { get; set; }
+        public string CourseCode { get; set; }
         public int AcademicYearId { get; private set; }
 
         // navigation properies

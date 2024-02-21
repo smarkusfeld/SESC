@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 namespace RegistrarService.Application.Interfaces.Repositories
 {
     /// <summary>
-    /// Generic Repository Interface.
+    /// Generic Repository Interface. Coordinates interactions between API, Domain, and Interface Layers
     /// </summary>
     public interface IGenericRepository<T> where T : BaseEntity
     {

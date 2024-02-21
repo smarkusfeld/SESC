@@ -6,7 +6,7 @@ using RegistrarService.Infastructure.Context;
 
 namespace RegistrarService.Infastructure.Repositories.TypeRepositories
 {
-    public class AccountRepository : GenericRepository<Student>, IAccountRepository
+    public class AccountRepository : GenericRepository<Student>, IStudentRepository
     {
         public AccountRepository(DataContext dbContext) : base(dbContext)
         {

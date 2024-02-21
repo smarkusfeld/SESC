@@ -20,7 +20,7 @@ namespace RegistrarService.Application.Interfaces.Repositories
 
         public IAwardRepository Awards { get; }
 
-        public IAccountRepository Accounts { get; }
+        public IStudentRepository Accounts { get; }
 
         public ISchoolRepository Schools { get; }
         public ISubjectRepository Subjects { get; }
