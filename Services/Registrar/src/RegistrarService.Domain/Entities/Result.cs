@@ -54,6 +54,6 @@ namespace RegistrarService.Domain.Entities
         public string CourseLevelName => CourseLevel.Name;
 
         [NotMapped]
-        public int CourseCode => CourseLevel.Course.CourseCode;                         
+        public string CourseCode => CourseLevel.Course.CourseCode;                         
     }
 }
