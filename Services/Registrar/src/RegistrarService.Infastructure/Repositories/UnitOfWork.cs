@@ -14,11 +14,14 @@ namespace RegistrarService.Infastructure.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DataContext _dbContext;
+
         private ICourseRepository _courses;
         private IStudentRepository _students;
         private IAwardRepository _awards;
         private ISchoolRepository _schools;
         private ISubjectRepository _subjects;
+        private IProgrammeRepository _programmes;
+        private IApplicantRepository _applicants;
         private bool disposed;
 
         public ICourseRepository Courses => _courses ?? new CourseRepository(_dbContext);
@@ -29,6 +32,17 @@ namespace RegistrarService.Infastructure.Repositories
 
         public ISchoolRepository Schools => _schools ?? new SchoolRepository(_dbContext);
         public ISubjectRepository Accounts => _subjects ?? new SubjectRepository(_dbContext);
+
+        public IProgrammeRepository Programmes => _programmes ?? new ProgrammeRepository(_dbContext);
+
+        public IApplicantRepository Applicants => throw new NotImplementedException();
+
+        public ICourseApplicationRepository CourseApplications => throw new NotImplementedException();
+
+        IStudentRepository IUnitOfWork.Accounts => throw new NotImplementedException();
+
+        public ISubjectRepository Subjects => throw new NotImplementedException();
+
         public UnitOfWork(DataContext dbContext)
         {
             _dbContext = dbContext;

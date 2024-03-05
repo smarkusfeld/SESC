@@ -24,6 +24,8 @@ namespace RegistrarService.Domain.Entities
 
         [NotMapped]
         public string Name => StartYear.ToString() + "/" + EndYear.ToString();
-       
+
+        public ICollection<CourseLevel> CourseLevels { get; private set; } = new List<CourseLevel>();
+
     }
 }

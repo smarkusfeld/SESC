@@ -30,8 +30,25 @@ namespace RegistrarService.Domain.Entities
         public int SessionCode { get; set; }
         public int CRN { get; set; }
 
+        public bool Open { get; set; } = true;
+
+        public int Capacity { get; set; } = 30;
+
+        public CourseModule CourseModule { get; set; }
+
         //navigation properties
         public ICollection<Timetable> Timetables { get; private set; } = new List<Timetable>();
+
+        public ICollection<Registration> Registrations { get; set; } = new List<Registration>();
+
+        [NotMapped]
+
+        public int RegisteredStudents { get => Registrations.Count; }
+
+        [NotMapped]
+
+        public int Availablity{ get => Capacity - RegisteredStudents; }
+
 
     }
 }

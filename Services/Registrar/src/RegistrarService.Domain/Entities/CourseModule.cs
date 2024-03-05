@@ -35,9 +35,12 @@ namespace RegistrarService.Domain.Entities
         public CourseLevel CourseLevel { get; private set;}
         public string ModuleCode { get; private set; }
 
-        public Module Module { get; private set; }
+        public AcademicModule Module { get; private set; }
 
         public AcademicTerm AcademicTerm { get; private set; }
         public ICollection<Session> Sessions { get; private set; } = new List<Session>();
+
+        public ICollection<Component> Components { get; private set; } = new List<Component>();
+
     }
 }

@@ -7,19 +7,19 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Services/Student/src/StudentService.Api/StudentService.Api.csproj", "Services/Student/src/StudentService.Api/"]
-COPY ["Services/Student/src/StudentService.Application/StudentService.Application.csproj", "Services/Student/src/StudentService.Application/"]
-COPY ["Services/Student/src/StudentService.Domain/StudentService.Domain.csproj", "Services/Student/src/StudentService.Domain/"]
-COPY ["Services/Student/src/StudentService.Infastructure/StudentService.Infastructure.csproj", "Services/Student/src/StudentService.Infastructure/"]
-RUN dotnet restore "Services/Student/src/StudentService.Api/StudentService.Api.csproj"
+COPY ["Services/Registrar/src/RegistrarService.Api/RegistrarService.Api.csproj", "Services/Registrar/src/RegistrarService.Api/"]
+COPY ["Services/Registrar/src/RegistrarService.Application/RegistrarService.Application.csproj", "Services/Registrar/src/RegistrarService.Application/"]
+COPY ["Services/Registrar/src/RegistrarService.Domain/RegistrarService.Domain.csproj", "Services/Registrar/src/RegistrarService.Domain/"]
+COPY ["Services/Registrar/src/RegistrarService.Infastructure/RegistrarService.Infastructure.csproj", "Services/Registrar/src/RegistrarService.Infastructure/"]
+RUN dotnet restore "Services/Registrar/src/RegistrarService.Api/RegistrarService.Api.csproj"
 COPY . .
-WORKDIR "/src/Services/Student/src/StudentService.Api"
-RUN dotnet build "StudentService.Api.csproj" -c Release -o /app/build
+WORKDIR "/src/Services/Registrar/src/RegistrarService.Api"
+RUN dotnet build "RegistrarService.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "StudentService.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "RegistrarService.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "StudentService.Api.dll"]
+ENTRYPOINT ["dotnet", "RegistrarService.Api.dll"]

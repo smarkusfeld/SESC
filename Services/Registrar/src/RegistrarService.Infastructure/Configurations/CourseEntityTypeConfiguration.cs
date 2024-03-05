@@ -18,34 +18,18 @@ namespace RegistrarService.Infastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Course> builder)
         {
+         
             builder
-                .Property(p => p.Id)
-                .ValueGeneratedOnAdd();
-            builder
-                .HasKey(p => p.Id);
+                .HasKey(p => p.CourseCode);
 
             builder
             .Property(x => x.CourseCode)
             .IsRequired(true);
 
-            builder
-             .Property(x => x.AwardId);
-
-            builder
-                 .Property(x => x.SchoolId)
-                 .IsRequired(true);
-
-            builder
-                 .Property(x => x.Duration)
-                 .IsRequired(true);
 
             builder
                  .Property(x => x.IsActive);
 
-            builder
-                 .Property(x => x.Name)
-                 .HasColumnType("varchar(50)")
-                 .IsRequired();
 
             builder
                .Property(x => x.CourseType)

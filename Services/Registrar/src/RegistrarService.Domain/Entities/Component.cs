@@ -26,8 +26,11 @@ namespace RegistrarService.Domain.Entities
 
         public string ComponentName { get; private set; }
 
+        public int CRN { get; private set; }
         public int Percent { get; private set; }
 
         public CourseModule CourseModule { get; private set;}
+
+        public ICollection<Assesment> Assesments { get; private set; } = new List<Assesment>();
     }
 }

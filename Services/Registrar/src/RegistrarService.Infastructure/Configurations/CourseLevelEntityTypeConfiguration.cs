@@ -19,7 +19,7 @@ namespace RegistrarService.Infastructure.Configurations
                 .HasKey(p => p.Id);
 
             builder
-                 .Property(x => x.CourseId)
+                 .Property(x => x.CourseCode)
                  .IsRequired(true);
 
             builder

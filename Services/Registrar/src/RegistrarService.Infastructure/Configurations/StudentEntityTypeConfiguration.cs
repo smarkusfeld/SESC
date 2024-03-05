@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RegistrarService.Domain.Entities;
-using RegistrarService.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +17,6 @@ namespace RegistrarService.Infastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Student> builder)
         {
-            builder
-                .Property(p => p.AccountNumber)
-                .ValueGeneratedOnAdd();
-            builder
-                .HasAlternateKey(p => p.AccountNumber);
 
             builder
                  .Property(x => x.StudentId);

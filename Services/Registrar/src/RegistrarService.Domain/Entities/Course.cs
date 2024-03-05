@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using RegistrarService.Domain.Common.Enums;
 using RegistrarService.Domain.Interfaces;
 using System.Reflection.Metadata.Ecma335;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RegistrarService.Domain.Entities
 {
@@ -20,10 +21,13 @@ namespace RegistrarService.Domain.Entities
         public override object Key => CourseCode;
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string CourseCode { get; set; }
 
-        public bool Active { get; set; } = true;
+        public bool IsActive { get; set; } = true;
+
+        public DateTime ApplicationDeadline { get; set; }
+
+        public DateTime EnrolmentDeadline { get; set; }
 
         public DateTime StartDate { get; set; } 
 
@@ -37,8 +41,21 @@ namespace RegistrarService.Domain.Entities
         //navigation properties     
         public ICollection<CourseLevel> CourseLevels { get; private set; } = new List<CourseLevel>();
 
+        public ICollection<CourseApplication> CourseApplications { get; private set; } = new List<CourseApplication>();
 
-        
+        //read only properties 
+
+        /// <summary>
+        /// Enrolment Open read-only property for entity. Not mapped to database. Calculated based on <seealso cref="EnrolmentDeadline"/> 
+        /// </summary>
+        [NotMapped]
+        public bool EnrolmentOpen { get => DateTime.Now <= EnrolmentDeadline ? true : false; }
+
+        /// <summary>
+        /// Enrolment Open read-only property for entity. Not mapped to database. Calculated based on <seealso cref="ApplicationDeadline"/> 
+        /// </summary>
+        [NotMapped]
+        public bool ApplicationOpen { get => DateTime.Now <= ApplicationDeadline ? true : false; }
 
     }
    

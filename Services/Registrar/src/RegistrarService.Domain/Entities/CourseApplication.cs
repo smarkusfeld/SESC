@@ -31,18 +31,20 @@ namespace RegistrarService.Domain.Entities
             ApplicantId = applicantId;
             CourseCode = courseCode;
         }
-        public override object Key => ApplicantionId;
+        public override object Key => ApplicationId;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ApplicantionId { get; set; }
+        public int ApplicationId { get; set; }
 
         public string CourseCode { get; private set; }
         public int ApplicantId { get; private set; }
+
         public Applicant Applicant { get; private set; }
         public Course Course { get; private set; }
-        public ApplicationStatus Status { get; private set; }
+        public ApplicationStatus Status { get; set; }
 
-        public Enrolment? Enrolment { get; private set; }
+
+       
     }
 }

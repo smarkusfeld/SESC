@@ -28,11 +28,7 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
         /// <param name="entity"></param>
         /// <returns></returns>
         Task<Student> AddCourseResults(Student entity);
-        /// <summary>
-        /// Get last account number for generating the student Id
-        /// </summary>
-        /// <returns></returns>
-        Task<string> GetNextStudentId();
+
 
 
     }

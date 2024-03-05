@@ -21,4 +21,8 @@
     <ProjectReference Include="..\RegistrarService.Application\RegistrarService.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

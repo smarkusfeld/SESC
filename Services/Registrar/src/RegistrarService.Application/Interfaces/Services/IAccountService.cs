@@ -17,14 +17,14 @@ namespace RegistrarService.Application.Interfaces.Services
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns><see cref="UpdateStudentContactDTO"/></returns>
-        Task<AccountDTO> AddStudentAccount(string studentId);
+        Task<AccountDTO> AddStudentAccount(int studentId);
 
         /// <summary>
         /// Get student account
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns><see cref="UpdateStudentContactDTO"/></returns>
-        Task<AccountDTO> GetStudentAccount(string studentId);
+        Task<AccountDTO> GetStudentAccount(int studentId);
 
         /// <summary>
         /// Add course session results to student transcript

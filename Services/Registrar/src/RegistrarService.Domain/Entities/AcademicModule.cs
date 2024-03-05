@@ -10,10 +10,10 @@ using System.Xml.Linq;
 
 namespace RegistrarService.Domain.Entities
 {
-    public class Module : BaseAuditableEntity
+    public class AcademicModule : BaseAuditableEntity
     {
-        private Module() { }
-        internal Module(string code, string name)
+        private AcademicModule() { }
+        internal AcademicModule(string code, string name)
         {
             ModuleCode = code;
             ModuleName = name;
@@ -24,6 +24,8 @@ namespace RegistrarService.Domain.Entities
         public string ModuleCode { get; private set; }
 
         public string ModuleName { get; private set; }
+
+        public ICollection<CourseModule> CourseModules { get; private set; } = new List<CourseModule>();
 
     }
 }

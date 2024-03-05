@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Microsoft.EntityFrameworkCore;
+using RegistrarService.Domain.Common.Enums;
 using RegistrarService.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -40,52 +41,66 @@ namespace RegistrarService.Infastructure.Context
                new AcademicTerm
                {
                    Id = 1,
-                   Name = "Fall",
-                   AcademicYearId = 1
+                   Term = "Fall"
                },
                new AcademicTerm
                {
                    Id = 2,
-                   Name = "Spring",
-                   AcademicYearId = 1
+                   Term = "Spring"
                },
                new AcademicTerm
                {
                    Id = 3,
-                   Name = "Fall",
-                   AcademicYearId = 2
+                   Term = "Winter"
                },
                new AcademicTerm
                {
                    Id = 4,
-                   Name = "Spring",
-                   AcademicYearId = 2
-               },
-                new AcademicTerm
-                {
-                    Id = 5,
-                    Name = "Fall",
-                    AcademicYearId = 3
-                },
-               new AcademicTerm
-               {
-                   Id = 6,
-                   Name = "Spring",
-                   AcademicYearId = 3
+                   Term = "Summer"
                }
             );
-
+            builder.Entity<Programme>().HasData(
+                new Programme
+                {
+                    ProgrammeCode = "8L17",
+                    Name = "MEng Computer Science",
+                    Duration = 3,
+                    TotalCredits = 240,
+                    SchoolId = 2,
+                    AwardId = 100,
+                    SubjectId = 7,
+                }
+            );
             builder.Entity<Course>().HasData(
                 new Course
-                {
-                   Id =1,
+                {                   
                    IsActive=true,
-                   Name = "Computer Science",
-                   CourseCode = "L27",
-                   Duration = 3,
-                   SchoolId = 2,
-                   AwardId = 100,
-                   SubjectId = 7,
+                   CourseCode = "8L17-2022",
+                   ProgrammeCode = "8L17",
+                   StartDate = new DateTime(2022, 09, 01),
+                   EnrolmentDeadline = new DateTime(2022, 07, 01),
+                   ApplicationDeadline = new DateTime(2022, 01, 15),
+                   CourseType = CourseType.FullTime
+                },
+                new Course
+                {
+                    IsActive = true,
+                    CourseCode = "8L17-2023",
+                    ProgrammeCode = "8L17",
+                    StartDate = new DateTime(2023, 09, 01),
+                    EnrolmentDeadline = new DateTime(2023, 07, 01),
+                    ApplicationDeadline = new DateTime(2023, 01, 15),
+                    CourseType = CourseType.FullTime
+                },
+                new Course
+                {
+                    IsActive = true,
+                    CourseCode = "8L17-2024",
+                    ProgrammeCode = "8L17",
+                    StartDate = new DateTime(2024, 09, 01),
+                    EnrolmentDeadline = new DateTime(2024, 07, 01),
+                    ApplicationDeadline = new DateTime(2024, 01, 15),
+                    CourseType = CourseType.FullTime
                 }
             );
             

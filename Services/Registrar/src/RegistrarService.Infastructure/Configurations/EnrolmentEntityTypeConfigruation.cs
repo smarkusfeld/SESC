@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RegistrarService.Domain.Common.Enums;
 using RegistrarService.Domain.Entities;
-using RegistrarService.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;

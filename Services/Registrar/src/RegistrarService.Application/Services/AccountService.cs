@@ -22,7 +22,7 @@ namespace RegistrarService.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<AccountDTO> AddStudentAccount(string studentId)
+        public async Task<AccountDTO> AddStudentAccount(int studentId)
         {
             var check = await _unitOfWork.Accounts.GetAsync(studentId);
             if (check != null) { throw new BadRequestException($"Account already exists for {studentId}"); }
@@ -40,7 +40,7 @@ namespace RegistrarService.Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task<AccountDTO> GetStudentAccount(string studentId)
+        public async Task<AccountDTO> GetStudentAccount(int studentId)
         {
             //get student account
             var result = await _unitOfWork.Accounts.GetAsync(studentId) 

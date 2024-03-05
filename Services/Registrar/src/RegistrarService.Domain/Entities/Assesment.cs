@@ -23,11 +23,11 @@ namespace RegistrarService.Domain.Entities
             ResultId = result;
             Mark = mark;
         }
-        public override object Key => Id;
+        public override object Key => AssesmentId;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; private set; }
+        public int AssesmentId { get; private set; }
         public int ComponentId { get; set; }
         public int ResultId { get; set; }
 

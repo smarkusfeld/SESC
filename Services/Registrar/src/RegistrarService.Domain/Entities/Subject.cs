@@ -26,6 +26,6 @@ namespace RegistrarService.Domain.Entities
         public string Name { get; set; }
 
         //navigation properties
-        public ICollection<Course> Courses { get; private set; } = new List<Course>();
+        public ICollection<Programme> Programmes { get; private set; } = new List<Programme>();
     }
 }

@@ -24,10 +24,6 @@ namespace RegistrarService.Infastructure.Configurations
                  .Property(x => x.EnrolDate)
                  .IsRequired();
 
-            builder
-               .Property(x => x.SessionId)
-               .IsRequired();
-
              builder
                  .Property(x => x.StudentId)
                  .IsRequired();

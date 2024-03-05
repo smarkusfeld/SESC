@@ -26,9 +26,6 @@ namespace RegistrarService.Infastructure.Configurations
                 .HasKey(p => p.Id);
 
             builder
-                 .Property(x => x.SessionId);
-
-            builder
                  .Property(x => x.TranscriptId);
 
             builder

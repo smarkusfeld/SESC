@@ -41,7 +41,7 @@ namespace RegistrarService.Domain.Entities
         //navigation properties
         public Student? Account { get; private set; }       
 
-        public CourseLevel courseLevel { get; private set; }
+        public CourseLevel CourseLevel { get; private set; }
 
         /// <summary>
         /// Update Enrolment Status

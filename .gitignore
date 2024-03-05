@@ -368,3 +368,5 @@ MigrationBackup/
 FodyWeavers.xsd
 Services/Finance/tests/FinanceService.UnitTests/obj/Debug/net6.0/FinanceService.UnitTests.csproj.AssemblyReference.cache
 *.cache
+Services/Finance/tests/FinanceService.UnitTests/obj/Debug/net6.0/FinanceService.UnitTests.csproj.AssemblyReference.cache
+Services/Finance/tests/FinanceService.UnitTests/obj/Debug/net6.0/FinanceService.UnitTests.csproj.AssemblyReference.cache

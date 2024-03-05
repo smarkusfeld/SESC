@@ -15,7 +15,10 @@ namespace RegistrarService.Application.Interfaces.Repositories
     ///</summary>
     public interface IUnitOfWork : IDisposable
     {
-      
+
+        public IProgrammeRepository Programmes { get; }
+        public IApplicantRepository Applicants { get; }
+        public ICourseApplicationRepository CourseApplications { get; }
         public ICourseRepository Courses { get; }
 
         public IAwardRepository Awards { get; }

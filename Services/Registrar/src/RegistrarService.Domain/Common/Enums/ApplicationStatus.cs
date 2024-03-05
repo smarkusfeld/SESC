@@ -21,7 +21,8 @@ namespace RegistrarService.Domain.Common.Enums
         Offer,
         ConditionalOffer,
         Accepted,
-        Declined
+        Declined,
+        Withdrawn
 
     }
 }

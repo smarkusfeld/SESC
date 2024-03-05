@@ -40,11 +40,11 @@ services:
         
   # student api for registrar services
   student-api:
-    image: ${DOCKER_REGISTRY-}studentservice.api
+    image: ${DOCKER_REGISTRY-}registrarservice.api
     hostname: student-api
     build:
       context: .
-      dockerfile: Services/Student/src/StudentService.Api/Dockerfile
+      dockerfile: Services/Registrar/src/RegistrarService.Api/Dockerfile
     depends_on:
         - db
   
@@ -77,7 +77,14 @@ services:
       dockerfile: FinancePortal/Dockerfile
     depends_on:
       - finance-gateway
-
+  # eventbus serice
+  rabbitmq:
+        image: rabbitmq:3-management
+        container_name: rabbitmq
+        ports:
+            - 5672:5672
+            - 15672:15672
+    
   # create gateways
   # all gateways use the same base image 
   student-gateway:  

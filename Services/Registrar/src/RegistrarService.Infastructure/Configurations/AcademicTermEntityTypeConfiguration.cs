@@ -21,26 +21,7 @@ namespace RegistrarService.Infastructure.Configurations
                 .HasKey(p => p.Id);
 
 
-            // degree types to seed database
-            builder.HasData
-            (
-                new AcademicYear
-                {
-                   
-                    StartYear = 2022,
-                    EndYear = 2023
-                },
-                 new AcademicYear
-                 {
-                     StartYear = 2023,
-                     EndYear = 2024
-                 },
-                 new AcademicYear
-                 {
-                     StartYear = 2024,
-                     EndYear = 2025
-                 });
-
+       
         }
     }
 }

@@ -11,12 +11,12 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
     /// Interface for Course Repository
     /// <br></br> Implements the <see cref="IGenericRepository{T}"/>
     /// </summary>    
-    public interface ICourseRepository : IGenericRepository<Course>
+    public interface IProgrammeRepository : IGenericRepository<Programme>
     {
-        
 
- 
+
+
     }
 
-    
+
 }

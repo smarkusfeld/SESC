@@ -32,7 +32,7 @@ namespace RegistrarService.Domain.Entities
 
         //navigation properties
 
-        public ICollection<Course> Courses { get; private set; } = new List<Course>();
+        public ICollection<Programme> Programmes { get; private set; } = new List<Programme>();
 
     }
 }

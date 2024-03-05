@@ -22,44 +22,9 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
         
        
 
-        public async Task<CourseLevel> UpdateCourseLevelAsync(CourseLevel entity)
-        {
-            var attached = await _context.Set<CourseLevel>()
-                .Include(x => x.CourseModules)
-                .Include(x => x.Sessions)
-                .ThenInclude(x => x.SessionModules)
-                .SingleAsync(x => x.Id == entity.Id);
-            _context.Entry(attached).State = EntityState.Detached;
-            foreach (var module in attached.CourseModules.ToList())
-            {
-                _context.Entry(module).State = EntityState.Detached;
-            }
-            foreach (var session in attached.Sessions.ToList())
-            {
-                _context.Entry(session).State = EntityState.Detached;
-                foreach (var sessionmodule in session.SessionModules.ToList())
-                {
-                    _context.Entry(sessionmodule).State = EntityState.Detached;
-                }
-            }
-            var entry = _context.Attach(entity);
-            return entity;
-        }
-        public async Task<Course> UpdateContainedAwardsAsync(Course entity)
-        {
-            var attached = await _set
-                .Include(x => x.ContainedAwards)
-                .SingleAsync(x => x.Id == entity.Id);
 
-            _context.Entry(attached).State = EntityState.Detached;
-            foreach (var level in attached.CourseLevels.ToList())
-            {
-                _context.Entry(level).State = EntityState.Detached;
-            }
-            var entry = _context.Attach(entity);
-            return entity;
-        }  
+        
 
-        }
+        
     }
 }

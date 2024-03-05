@@ -19,6 +19,10 @@ namespace RegistrarService.Domain.Entities
     {
         private Transcript() { }
 
+        internal Transcript(int coursecode)
+        {
+            CourseCode = coursecode;
+        }
         internal Transcript(string studentId, int coursecode)
         {
             StudentId = studentId;
@@ -30,7 +34,7 @@ namespace RegistrarService.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
 
-        public int CourseCode { get; private set; }
+        public int CourseCode { get; set; }
         public string StudentId { get; private set; }
 
         //navigation properties

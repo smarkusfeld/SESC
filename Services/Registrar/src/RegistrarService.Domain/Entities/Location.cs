@@ -26,13 +26,15 @@ namespace RegistrarService.Domain.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int LocationId { get; set; }
 
         public int RoomNumber { get; set; }
 
         public string BuildingCode { get; set; }
 
         public Building Building { get; set; }
+
+        public ICollection<Timetable> Timetables { get; private set; } = new List<Timetable>();
 
     }
 }
