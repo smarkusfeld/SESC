@@ -22,7 +22,7 @@ namespace RegistrarService.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<AccountDTO> AddStudentAccount(int studentId)
+        public async Task<StudentDTO> AddStudentAccount(int studentId)
         {
             var check = await _unitOfWork.Accounts.GetAsync(studentId);
             if (check != null) { throw new BadRequestException($"Account already exists for {studentId}"); }
@@ -32,21 +32,21 @@ namespace RegistrarService.Application.Services
             {
                  throw new BadRequestException();
             } 
-            return _mapper.Map<AccountDTO>(account);
+            return _mapper.Map<StudentDTO>(account);
         }
 
-        public Task<AccountDTO> AddProgressionResult(ProgressionDTO progresion)
+        public Task<StudentDTO> AddProgressionResult(ProgressionDTO progresion)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<AccountDTO> GetStudentAccount(int studentId)
+        public async Task<StudentDTO> GetStudentAccount(int studentId)
         {
             //get student account
             var result = await _unitOfWork.Accounts.GetAsync(studentId) 
                 ?? throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
 
-            return _mapper.Map<AccountDTO>(result);
+            return _mapper.Map<StudentDTO>(result);
         }
 
        

@@ -28,8 +28,6 @@ namespace RegistrarService.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CRN { get; private set; }
 
-        public string Name { get; private set; }
-
         public int CourseLevelId { get; private set; }
         public int AcademicTermId { get; private set; }
         public CourseLevel CourseLevel { get; private set;}
@@ -42,5 +40,7 @@ namespace RegistrarService.Domain.Entities
 
         public ICollection<Component> Components { get; private set; } = new List<Component>();
 
+        [NotMapped]
+        public string Name => Module.ModuleName;
     }
 }

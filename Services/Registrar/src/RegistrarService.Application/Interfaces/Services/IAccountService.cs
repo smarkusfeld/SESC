@@ -17,21 +17,21 @@ namespace RegistrarService.Application.Interfaces.Services
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns><see cref="UpdateStudentContactDTO"/></returns>
-        Task<AccountDTO> AddStudentAccount(int studentId);
+        Task<StudentDTO> AddStudentAccount(int studentId);
 
         /// <summary>
         /// Get student account
         /// </summary>
         /// <param name="studentId"></param>
         /// <returns><see cref="UpdateStudentContactDTO"/></returns>
-        Task<AccountDTO> GetStudentAccount(int studentId);
+        Task<StudentDTO> GetStudentAccount(int studentId);
 
         /// <summary>
         /// Add course session results to student transcript
         /// </summary>
         /// <param name="studentResult"></param>
         /// <returns></returns>
-        Task<AccountDTO> AddProgressionResult(ProgressionDTO progresion);
+        Task<StudentDTO> AddProgressionResult(ProgressionDTO progresion);
 
  
 

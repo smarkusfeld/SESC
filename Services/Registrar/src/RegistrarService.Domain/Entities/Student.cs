@@ -32,7 +32,9 @@ namespace RegistrarService.Domain.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int StudentId { get; set; }        
+        public int StudentId { get; set; } 
+        
+        public string StudentEmail { get; set; }
 
         public StudentStatus Status { get; private set; }
 
@@ -41,7 +43,11 @@ namespace RegistrarService.Domain.Entities
         public ICollection<Registration> Registrations { get; set; } = new List<Registration>();
 
         public Transcript Transcript { get; set; }
-        
+
+       
+
+
+
 
     }
 }
