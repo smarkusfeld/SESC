@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 namespace RegistrarService.Infastructure.Configurations
 {
     /// <summary>
-    /// Configuration for the <see cref="Registration"/> value object
+    /// Configuration for the <see cref="Enrolment"/> value object
     /// </summary>
-    public class RegistrationTypeConfiguration : IEntityTypeConfiguration<Registration>
+    public class EnrolmentTypeConfiguration : IEntityTypeConfiguration<Enrolment>
     {
-        public void Configure(EntityTypeBuilder<Registration> builder)
+        public void Configure(EntityTypeBuilder<Enrolment> builder)
         {
             builder
                 .HasKey(x =>x.Id);
@@ -26,11 +26,11 @@ namespace RegistrarService.Infastructure.Configurations
                 .IsRequired();
 
             builder
-                .Property(x => x.SessionId)
+                .Property(x => x.CourseLevelId)
                 .IsRequired();
 
             builder
-                .Property(x => x.RegistrationDate)
+                .Property(x => x.EnrolDate)
                 .IsRequired();
 
            

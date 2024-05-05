@@ -27,41 +27,41 @@ namespace RegistrarService.Infastructure.Repositories.TypeRepositories
             return entity;
         }
 
-        public async Task<Student> CompleteRegistration(Student entity)
-        {
-            var attached = await _set
-                .Include(x => x.Registrations)
-                .Include(x => x.Enrolments)
-                .SingleAsync(x => x.StudentId == entity.StudentId);
+        //public async Task<Student> CompleteRegistration(Student entity)
+        //{
+        //    var attached = await _set
+        //        .Include(x => x.Registrations)
+        //        .Include(x => x.Enrolments)
+        //        .SingleAsync(x => x.StudentId == entity.StudentId);
 
-            _context.Entry(attached).State = EntityState.Detached;
-            foreach (var registration in attached.Registrations.ToList())
-            {
-                _context.Entry(registration).State = EntityState.Detached;
-            }
-            _context.Entry(attached).State = EntityState.Detached;
-            foreach (var enrolment in attached.Enrolments.ToList())
-            {
-                _context.Entry(enrolment).State = EntityState.Detached;
-            }
-            var entry = _context.Attach(entity);
-            return entity;
-        }
+        //    _context.Entry(attached).State = EntityState.Detached;
+        //    foreach (var registration in attached.Registrations.ToList())
+        //    {
+        //        _context.Entry(registration).State = EntityState.Detached;
+        //    }
+        //    _context.Entry(attached).State = EntityState.Detached;
+        //    foreach (var enrolment in attached.Enrolments.ToList())
+        //    {
+        //        _context.Entry(enrolment).State = EntityState.Detached;
+        //    }
+        //    var entry = _context.Attach(entity);
+        //    return entity;
+        //}
 
-        public async Task<Student> AddCourseResults(Student entity)
-        {
-            var attached = await _set
-                .Include(x => x.Transcript.Results)
-                .SingleAsync(x => x.StudentId == entity.StudentId);
+        //public async Task<Student> AddCourseResults(Student entity)
+        //{
+        //    var attached = await _set
+        //        .Include(x => x.Transcript.Results)
+        //        .SingleAsync(x => x.StudentId == entity.StudentId);
 
-            _context.Entry(attached).State = EntityState.Detached;
-            foreach (var result in attached.Transcript.Results.ToList())
-            {
-                _context.Entry(result).State = EntityState.Detached;
-            }
-            var entry = _context.Attach(entity);
-            return entity;
-        }
+        //    _context.Entry(attached).State = EntityState.Detached;
+        //    foreach (var result in attached.Transcript.Results.ToList())
+        //    {
+        //        _context.Entry(result).State = EntityState.Detached;
+        //    }
+        //    var entry = _context.Attach(entity);
+        //    return entity;
+        //}
       
     }
 }

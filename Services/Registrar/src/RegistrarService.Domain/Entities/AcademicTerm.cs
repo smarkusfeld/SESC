@@ -22,7 +22,6 @@ namespace RegistrarService.Domain.Entities
         
         public string Term { get; set; }
 
-        public ICollection<CourseModule> CourseModules { get; private set; } = new List<CourseModule>();
 
     }
 }

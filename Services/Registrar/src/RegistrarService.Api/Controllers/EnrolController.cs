@@ -39,13 +39,13 @@ namespace RegistrarService.Api.Controllers
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with the registration and and student account details <br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if registration can not be completed<br/> 
         /// </returns>
-        [HttpPost("register")]
-        public async Task<IActionResult> CourseRegistration([FromBody] StudentRegistrationDTO inputModel )
-        {
-            _logger.LogInformation("registering student");
-            var result = await _service.RegisterNewStudent(inputModel);
-            return result != null ? Ok(result) : BadRequest(); 
-        }
+        //[HttpPost("register")]
+        //public async Task<IActionResult> CourseRegistration([FromBody] StudentRegistrationDTO inputModel )
+        //{
+        //    _logger.LogInformation("registering student");
+        //    var result = await _service.RegisterNewStudent(inputModel);
+        //    return result != null ? Ok(result) : BadRequest(); 
+        //}
 
         /// <summary>
         /// Enrol Student in Eligible Course
@@ -56,15 +56,15 @@ namespace RegistrarService.Api.Controllers
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with enrolment confirmation details <br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if enrolment can not be completed<br/> 
         /// </returns>
-        [HttpPost("{studentId}/{courseCode}")]
-        public async Task<IActionResult> StudentEnrolment(string studentId, string courseCode)
-        {
-            _logger.LogInformation($"Checking eligibile offerings for course {studentId}");
-            var courseId = await _service.GetEligiableCourseOffering(studentId, courseCode);
-            _logger.LogInformation("enrolling student");
-            var result = await _service.CourseEnrolment(studentId, courseId);
-            return result != null ? Ok(result) : BadRequest();
-        }
+        //[HttpPost("{studentId}/{courseCode}")]
+        //public async Task<IActionResult> StudentEnrolment(string studentId, string courseCode)
+        //{
+        //    _logger.LogInformation($"Checking eligibile offerings for course {studentId}");
+        //    var courseId = await _service.GetEligiableCourseOffering(studentId, courseCode);
+        //    _logger.LogInformation("enrolling student");
+        //    var result = await _service.CourseEnrolment(studentId, courseId);
+        //    return result != null ? Ok(result) : BadRequest();
+        //}
 
         /// <summary>
         /// Get All Student Enrolments

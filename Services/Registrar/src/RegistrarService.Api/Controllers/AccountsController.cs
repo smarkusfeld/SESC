@@ -37,13 +37,13 @@ namespace RegistrarService.Api.Controllers
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with <seealso cref="UpdateStudentContactDTO"/> <br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestObjectResult"/> if student was not found<br/> 
         /// </returns>
-        [HttpGet("{id}")]
-        public async Task<IActionResult> AddAccount(string studentId)
-        {
-            _logger.LogInformation("Finding Student Record");
-            var result = await _service.C;
-            return result != null ? Ok(result) : BadRequest();
-        }
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> AddAccount(string studentId)
+        //{
+            //_logger.LogInformation("Finding Student Record");
+            //var result = await _service.C;
+            //return result != null ? Ok(result) : BadRequest();
+        //}
         /// <summary>
         /// View student profile
         /// <br></br>
@@ -53,13 +53,13 @@ namespace RegistrarService.Api.Controllers
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with <seealso cref="UpdateStudentContactDTO"/> <br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestObjectResult"/> if student was not found<br/> 
         /// </returns>
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ViewProfile(string studentId)
-        {
-            _logger.LogInformation("Finding Student Record");
-            var result = await _service.GetStudentAccount(studentId);
-            return result != null ? Ok(result) : BadRequest();
-        }
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> ViewProfile(string studentId)
+        //{
+            //_logger.LogInformation("Finding Student Record");
+            //var result = await _service.GetStudentAccount(studentId);
+            //return result != null ? Ok(result) : BadRequest();
+        //}
             
     }
 }

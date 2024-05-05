@@ -48,11 +48,8 @@ namespace RegistrarService.Domain.Entities
         public Course Course { get; set; }
 
         public AcademicYear AcademicYear { get; private set; }
-        public ICollection<CourseModule> CourseModules { get; set; } = new List<CourseModule>();
 
         public ICollection<Enrolment> Enrolments { get; set; } = new List<Enrolment>();
-
-        public ICollection<Session> Sessions { get; set; } = new List<Session>();
 
         [NotMapped]
         public string Name => Course.Programme.Name + QualificationLevel.ToString();

@@ -24,23 +24,22 @@ namespace RegistrarService.Domain.Entities
         /// Public Constructor for new account
         /// </summary>
         /// <param name="id"></param>
-        public Student(int coursecode)
+        public Student(int studentID)
         {
-            Transcript = new Transcript(coursecode);
+            StudentId = studentID;
         }
         public override object Key => StudentId;
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int StudentId { get; set; }        
 
         public StudentStatus Status { get; private set; }
 
         //navigation properties
         public ICollection<Enrolment> Enrolments { get; set; } = new List<Enrolment>();
-        public ICollection<Registration> Registrations { get; set; } = new List<Registration>();
 
-        public Transcript Transcript { get; set; }
+
         
 
     }

@@ -18,10 +18,10 @@ namespace RegistrarService.Application.Common.Mapper
         /// </summary>
         public AccountProfile()
         {
-            CreateMap<Student, AccountDTO>()
+            CreateMap<Student, AccountDTO>();
               //.ForMember(dest => dest.CourseId, opt => opt.MapFrom(src => src.Transcript.CourseId))
               //.ForMember(dest => dest.CourseId, opt => opt.MapFrom(src => src.Transcript.CourseName))
-              .ForMember(dest => dest.Results, opt => opt.MapFrom(src => src.Transcript.Results));
+              //.ForMember(dest => dest.Results, opt => opt.MapFrom(src => src.Transcript.Results));
 
             CreateMap<Result, CourseResultDTO>()
                 .ForMember(dest => dest.CourseLevelName, opt => opt.MapFrom(src => src.CourseLevelName))

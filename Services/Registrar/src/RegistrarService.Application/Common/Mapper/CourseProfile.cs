@@ -28,24 +28,24 @@ namespace RegistrarService.Application.Common.Mapper
               //.ForPath(dest => dest.ContainedCourseAwards, opt => opt.MapFrom(src => src.ContainedAwards.Select(x=>x.Award.Name)));
 
 
-            CreateMap<CourseModuleDTO, CourseModule>()
-                .ForMember(dest => dest.Key, opt => opt.Ignore())
-                .ForMember(dest => dest.CourseLevel, opt => opt.Ignore())
+            //CreateMap<CourseModuleDTO, CourseModule>()
+                //.ForMember(dest => dest.Key, opt => opt.Ignore())
+                //.ForMember(dest => dest.CourseLevel, opt => opt.Ignore())
                 //.ForMember(dest => dest.SessionModules, opt => opt.Ignore())
-                .ReverseMap();
+                //.ReverseMap();
 
-            CreateMap<SessionDTO, Session>()
-                .ForMember(dest => dest.Key, opt => opt.Ignore())
+           // CreateMap<SessionDTO, Session>()
+                //.ForMember(dest => dest.Key, opt => opt.Ignore())
                 //.ForMember(dest => dest.AcademicYear, opt => opt.Ignore())
                 //.ForMember(dest => dest.AcademicTerm, opt => opt.Ignore())
-               .ReverseMap();
+               //.ReverseMap();
 
             CreateMap<CourseLevelDTO, CourseLevel>()
               .ForMember(dest => dest.Key, opt => opt.Ignore())
               .ForMember(dest => dest.Course, opt => opt.Ignore())
-              .ReverseMap()
-              .ForPath(dest => dest.CourseModules, opt => opt.MapFrom(src => src.CourseModules))
-              .ForPath(dest => dest.Sessions, opt => opt.MapFrom(src => src.Sessions));
+              .ReverseMap();
+              //.ForPath(dest => dest.CourseModules, opt => opt.MapFrom(src => src.CourseModules))
+              //.ForPath(dest => dest.Sessions, opt => opt.MapFrom(src => src.Sessions));
 
             CreateMap<Course, FullCourseListingDTO>()
                //.ForMember(dest => dest.CourseSchool, opt => opt.MapFrom(src => src.School.Name))

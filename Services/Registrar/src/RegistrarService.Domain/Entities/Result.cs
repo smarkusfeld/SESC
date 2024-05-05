@@ -44,8 +44,6 @@ namespace RegistrarService.Domain.Entities
         //navigation properties
      
         public CourseLevel CourseLevel { get; set; }
-        public Transcript Transcript { get; set; }
-        public ICollection<Assesment> Assesments { get; private set; } = new List<Assesment>();
 
         [NotMapped]
         public AcademicYear AcademicYear => CourseLevel.AcademicYear;
