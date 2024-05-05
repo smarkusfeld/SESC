@@ -13,10 +13,10 @@ namespace RegistrarService.Infastructure.Configurations
         public void Configure(EntityTypeBuilder<CourseLevel> builder)
         {
             builder
-                .Property(p => p.Id)
+                .Property(p => p.CourseLevelId)
                 .ValueGeneratedOnAdd();
             builder
-                .HasKey(p => p.Id);
+                .HasKey(p => p.CourseLevelId);
 
             builder
                  .Property(x => x.CourseCode)

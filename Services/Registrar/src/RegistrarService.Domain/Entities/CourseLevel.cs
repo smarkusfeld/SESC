@@ -32,11 +32,11 @@ namespace RegistrarService.Domain.Entities
             TuitionFee = tuition;
             AcademicYearId = year;
         }
-        public override object Key => Id;
+        public override object Key => CourseLevelId;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int CourseLevelId { get; set; }
 
         public int Credits { get; set; }
         public int QualificationLevel { get; set; }

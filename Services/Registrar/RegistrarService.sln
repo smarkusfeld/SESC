@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegistrarService.Infastruct
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentService.UnitTests", "tests\RegistrarService.UnitTests\StudentService.UnitTests.csproj", "{7B5F9177-F9B5-41AF-8493-C777B873D06D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "..\..\BuildingBlocks\EventBus\EventBus\EventBus.csproj", "{AA558C23-D1DD-48CF-926B-652D84F9A6DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{7B5F9177-F9B5-41AF-8493-C777B873D06D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B5F9177-F9B5-41AF-8493-C777B873D06D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B5F9177-F9B5-41AF-8493-C777B873D06D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA558C23-D1DD-48CF-926B-652D84F9A6DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA558C23-D1DD-48CF-926B-652D84F9A6DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA558C23-D1DD-48CF-926B-652D84F9A6DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA558C23-D1DD-48CF-926B-652D84F9A6DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
