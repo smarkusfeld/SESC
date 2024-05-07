@@ -11,42 +11,44 @@ using System.Threading.Tasks;
 namespace RegistrarService.Domain.Entities
 {
     /// <summary>
-    /// Account Entity. Aggregate Entity for <seealso cref="Transcript"/> , <seealso cref="Result"/>, <seealso cref="Enrolment"/>, <seealso cref="Registration"/>
+    /// Account Entity. Aggregate Entity for <seealso cref="Transcript"/> , <seealso cref="ProgressionResult"/>, <seealso cref="Enrolment"/>, <seealso cref="Registration"/>
     /// </summary>
     public class Student : BaseAuditableEntity, IAggregateRoot
     {
-        /// <summary>
-        /// Private Constructor for Database and Mapper
-        /// </summary>
-        private Student() { }
+        
 
         /// <summary>
-        /// Public Constructor for new account
+        /// Constructor for new account
         /// </summary>
-        /// <param name="id"></param>
-        public Student(int coursecode)
-        {
-            Transcript = new Transcript(coursecode);
-        }
+        public Student()
+        {}
         public override object Key => StudentId;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int StudentId { get; set; } 
+
         
         public string StudentEmail { get; set; }
 
-        public StudentStatus Status { get; private set; }
+        public string AlternateEmail { get; set; }
+
+        public StudentStatus Status { get; set; }
+
+        public string FirstName { get; set; }
+        public string Surname { get; set; }
+        public string MiddleName { get; set; }  
+
+        public Address TermAddress { get; set; }
+
+        public Address PermanentAddress { get; set; }
+
 
         //navigation properties
+
         public ICollection<Enrolment> Enrolments { get; set; } = new List<Enrolment>();
-        public ICollection<Registration> Registrations { get; set; } = new List<Registration>();
 
-        public Transcript Transcript { get; set; }
-
-       
-
-
+        public ICollection<ProgressionResult> Results { get; set; } = new List<ProgressionResult>();
 
 
     }

@@ -16,6 +16,22 @@ namespace RegistrarService.Domain.Entities
     /// </summary>
     public class Award : BaseEntity 
     {
+        public Award() { }
+        public Award(string name, string abbr, int qualificationLevel, QualificationType qualificationType, DegreeCategory degreeCategory) 
+        { 
+            Name = name;
+            Abbr = abbr;
+            QualificationLevel = qualificationLevel;
+            QualificationType = qualificationType;
+            DegreeCategory = degreeCategory;
+        }
+        public Award(string name, string abbr, int qualificationLevel, QualificationType qualificationType)
+        {
+            Name = name;
+            Abbr = abbr;
+            QualificationLevel = qualificationLevel;
+            QualificationType = qualificationType;
+        }
         public override object Key => Id;
 
         [Key]

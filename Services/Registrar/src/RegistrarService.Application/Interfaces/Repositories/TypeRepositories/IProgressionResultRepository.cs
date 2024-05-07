@@ -11,7 +11,7 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
     /// Interface for Result Repository
     /// <br></br> Implements the <see cref="IGenericRepository{T}"/>
     /// </summary>    
-    public interface IResultRepository : IGenericRepository<Result>
+    public interface IProgressionResultRepository : IGenericRepository<ProgressionResult>
     {
     }
 }

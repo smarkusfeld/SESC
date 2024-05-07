@@ -37,9 +37,9 @@ namespace RegistrarService.Infastructure.Repositories
 
         public IApplicantRepository Applicants => throw new NotImplementedException();
 
-        public ICourseApplicationRepository CourseApplications => throw new NotImplementedException();
+        public ICourseApplicationRepository Applications => throw new NotImplementedException();
 
-        IStudentRepository IUnitOfWork.Accounts => throw new NotImplementedException();
+        IStudentRepository IUnitOfWork.Students => throw new NotImplementedException();
 
         public ISubjectRepository Subjects => throw new NotImplementedException();
 

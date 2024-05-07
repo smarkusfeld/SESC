@@ -18,12 +18,12 @@ namespace RegistrarService.Application.Interfaces.Repositories
 
         public IProgrammeRepository Programmes { get; }
         public IApplicantRepository Applicants { get; }
-        public ICourseApplicationRepository CourseApplications { get; }
+        public ICourseApplicationRepository Applications { get; }
         public ICourseRepository Courses { get; }
 
         public IAwardRepository Awards { get; }
 
-        public IStudentRepository Accounts { get; }
+        public IStudentRepository Students { get; }
 
         public ISchoolRepository Schools { get; }
         public ISubjectRepository Subjects { get; }

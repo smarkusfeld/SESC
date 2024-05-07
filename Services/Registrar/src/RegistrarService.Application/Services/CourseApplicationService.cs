@@ -8,7 +8,7 @@ using RegistrarService.Domain.Common.Enums;
 
 namespace RegistrarService.Application.Services
 {
-    public class CourseApplicationService : ICourseApplicantionService
+    public class CourseApplicationService : IApplicantionService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -25,7 +25,7 @@ namespace RegistrarService.Application.Services
 
         public async Task<IEnumerable<CourseApplicationDTO>> GetAllApplications()
         {
-            var result = await _unitOfWork.CourseApplications.GetAllAsync();
+            var result = await _unitOfWork.Applications.GetAllAsync();
             if (result != null)
             {
                 return _mapper.Map<IEnumerable<CourseApplicationDTO>>(result);
@@ -40,7 +40,7 @@ namespace RegistrarService.Application.Services
                 ?? throw new KeyNotFoundException ($"No applicant associated with applicant id: {applicantId}");
 
             //get applicant accounts
-            var result = await _unitOfWork.CourseApplications.GetAllWhereAsync(x => x.ApplicantId == applicantId);
+            var result = await _unitOfWork.Applications.GetAllWhereAsync(x => x.ApplicantId == applicantId);
             if (result != null)
             {
                 return _mapper.Map<IEnumerable<CourseApplicationDTO>>(result);
@@ -54,7 +54,7 @@ namespace RegistrarService.Application.Services
             var applicant = await _unitOfWork.Courses.GetAsync(courseCode)
                 ?? throw new KeyNotFoundException($"Course code: {courseCode} not found");
             //get applications for couse code
-            var result = await _unitOfWork.CourseApplications.GetAllWhereAsync(x => x.CourseCode == courseCode);
+            var result = await _unitOfWork.Applications.GetAllWhereAsync(x => x.CourseCode == courseCode);
             if (result != null)
             {
                 return _mapper.Map<IEnumerable<CourseApplicationDTO>>(result);
@@ -66,7 +66,7 @@ namespace RegistrarService.Application.Services
         {
             if (Enum.TryParse(appStatus, true, out ApplicationStatus search))
             {
-                var result = await _unitOfWork.CourseApplications.GetAllWhereAsync(x => x.Status == search);
+                var result = await _unitOfWork.Applications.GetAllWhereAsync(x => x.Status == search);
                 if (result != null)
                 {
                     return _mapper.Map<IEnumerable<CourseApplicationDTO>>(result);
@@ -78,12 +78,12 @@ namespace RegistrarService.Application.Services
 
         public async Task<CourseApplicationDTO> GetApplication(int ApplicationId)
         {
-            var result = await _unitOfWork.CourseApplications.GetAsync(ApplicationId)
+            var result = await _unitOfWork.Applications.GetAsync(ApplicationId)
                 ?? throw new KeyNotFoundException($"No application found for applicantion id: {ApplicationId}");
             return _mapper.Map<CourseApplicationDTO>(result);
         }
 
-        public async Task<CourseApplicationDTO> UpdateApplication(ApplicationDTO Applicantion)
+        public async Task<CourseApplicationDTO> UpdateApplication(UpdateApplicationDTO Applicantion)
         {
             //validate application id
 
@@ -96,13 +96,13 @@ namespace RegistrarService.Application.Services
         public async Task<CourseApplicationDTO> Accept(int ApplicationId)
         {
             //check application Id
-            var application = await _unitOfWork.CourseApplications.GetAsync(ApplicationId)
+            var application = await _unitOfWork.Applications.GetAsync(ApplicationId)
                 ?? throw new KeyNotFoundException($"No application found for applicantion id: {ApplicationId}");
 
             if(application.Status == ApplicationStatus.Offer)
             {
                 application.Status = ApplicationStatus.Accepted;
-                var result = await _unitOfWork.CourseApplications.UpdateAsync(application)
+                var result = await _unitOfWork.Applications.UpdateAsync(application)
                     ?? throw new MySQLException("Could not update application");
                 return _mapper.Map<CourseApplicationDTO>(result);
             }
@@ -112,13 +112,13 @@ namespace RegistrarService.Application.Services
         public async Task<CourseApplicationDTO> Decline(int ApplicationId)
         {
             //check application Id
-            var application = await _unitOfWork.CourseApplications.GetAsync(ApplicationId)
+            var application = await _unitOfWork.Applications.GetAsync(ApplicationId)
                 ?? throw new KeyNotFoundException($"No application found for applicantion id: {ApplicationId}");
 
             if (application.Status == ApplicationStatus.Offer || application.Status == ApplicationStatus.ConditionalOffer)
             {
                 application.Status = ApplicationStatus.Declined;
-                var result = await _unitOfWork.CourseApplications.UpdateAsync(application)
+                var result = await _unitOfWork.Applications.UpdateAsync(application)
                     ?? throw new MySQLException("Could not update application");
                 return _mapper.Map<CourseApplicationDTO>(result);
             }
@@ -128,11 +128,11 @@ namespace RegistrarService.Application.Services
         public async Task<CourseApplicationDTO> Withdraw(int ApplicationId)
         {
             //check application Id
-            var application = await _unitOfWork.CourseApplications.GetAsync(ApplicationId)
+            var application = await _unitOfWork.Applications.GetAsync(ApplicationId)
                 ?? throw new KeyNotFoundException($"No application found for applicantion id: {ApplicationId}");
 
             application.Status = ApplicationStatus.Withdrawn;
-            var result = await _unitOfWork.CourseApplications.UpdateAsync(application)
+            var result = await _unitOfWork.Applications.UpdateAsync(application)
                 ?? throw new MySQLException("Could not update application");
             return _mapper.Map<CourseApplicationDTO>(result);
         }

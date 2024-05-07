@@ -14,6 +14,11 @@ namespace RegistrarService.Domain.Entities
     /// </summary>
     public class AcademicYear : BaseAuditableEntity
     {
+        public AcademicYear(int startYear, int endYear) 
+        { 
+            StartYear = startYear;
+            EndYear = endYear;
+        }
         public override object Key => Id;
 
         [Key]
@@ -25,7 +30,9 @@ namespace RegistrarService.Domain.Entities
         [NotMapped]
         public string Name => StartYear.ToString() + "/" + EndYear.ToString();
 
-        public ICollection<CourseLevel> CourseLevels { get; private set; } = new List<CourseLevel>();
+        //navigation properities
+        public ICollection<CourseLevel> CourseLevels { get; set; } = new List<CourseLevel>();
+
 
     }
 }

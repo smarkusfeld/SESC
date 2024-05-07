@@ -12,7 +12,7 @@ namespace RegistrarService.Api.Controllers
     [ApiController]
     public class AccountsController : Controller
     {
-        private readonly IAccountService _service;
+        private readonly IStudentService _service;
 
         private readonly ILogger<AccountsController> _logger;
 
@@ -22,7 +22,7 @@ namespace RegistrarService.Api.Controllers
         /// </summary>
         /// <param name="service"></param>
         /// <param name="logger"></param>
-        public AccountsController(IAccountService service, ILogger<AccountsController> logger)
+        public AccountsController(IStudentService service, ILogger<AccountsController> logger)
         {
 
             _service = service;

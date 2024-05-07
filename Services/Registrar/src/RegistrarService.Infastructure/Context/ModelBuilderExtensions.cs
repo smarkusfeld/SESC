@@ -17,46 +17,44 @@ namespace RegistrarService.Infastructure.Context
         {
             builder.Entity<AcademicYear>().HasData
             (
-                new AcademicYear
+                new AcademicYear(2022, 2023)
                 {
-                    Id = 1,
-                    StartYear = 2022,
-                    EndYear = 2023
+                    Id = 1
                 },
-                 new AcademicYear
+                 new AcademicYear(2023, 2024)
                  {
-                     Id = 2,
-                     StartYear = 2023,
-                     EndYear = 2024
+                     Id = 2
                  },
-                 new AcademicYear
+                 new AcademicYear(2024, 2025)
                  {
-                     Id = 3,
-                     StartYear = 2024,
-                     EndYear = 2025
+                     Id = 3
                  }
              );
             builder.Entity<AcademicTerm>().HasData
            (
-               new AcademicTerm
+               new AcademicTerm("Semester 1", 1, new DateTime(2022, 09, 18), new DateTime(2023, 01, 15))
                {
                    Id = 1,
-                   Term = "Fall"
                },
-               new AcademicTerm
+               new AcademicTerm("Semester 2", 1, new DateTime(2023, 01, 25), new DateTime(2023, 05, 24))
                {
                    Id = 2,
-                   Term = "Spring"
-               },
-               new AcademicTerm
+               }, 
+               new AcademicTerm("Semester 1", 2, new DateTime(2023, 09, 18), new DateTime(2024, 01, 15))
                {
                    Id = 3,
-                   Term = "Winter"
                },
-               new AcademicTerm
+               new AcademicTerm("Semester 2", 2, new DateTime(2024, 01, 25), new DateTime(2024, 05, 24))
                {
                    Id = 4,
-                   Term = "Summer"
+               },
+               new AcademicTerm("Semester 1", 3, new DateTime(2024, 09, 18), new DateTime(2025, 01, 15))
+               {
+                   Id = 5,
+               },
+               new AcademicTerm("Semester 2", 3, new DateTime(2025, 01, 25), new DateTime(2026, 05, 24))
+               {
+                   Id = 6,
                }
             );
             builder.Entity<Programme>().HasData(

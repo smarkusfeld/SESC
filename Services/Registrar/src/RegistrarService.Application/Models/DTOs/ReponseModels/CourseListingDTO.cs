@@ -6,7 +6,7 @@ namespace RegistrarService.Application.Models.DTOs.ReponseModels
     /// Represents the <see cref="Course"/> for public views and searches
     /// <br> View only to protect data models</br>
     /// </summary>
-    public class CourseListing
+    public class CourseListingDTO
     {
         public string CourseCode { get; private set; }
         public string IsActive { get; private set; }

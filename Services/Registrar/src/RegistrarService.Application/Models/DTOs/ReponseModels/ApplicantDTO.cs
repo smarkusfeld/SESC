@@ -1,13 +1,12 @@
-﻿using RegistrarService.Domain.Common.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RegistrarService.Application.Models.DTOs.InputModels
+namespace RegistrarService.Application.Models.DTOs.ReponseModels
 {
-    public class NewApplicationDTO
+    public class ApplicantDTO
     {
         public int ApplicantId { get; set; }
 
@@ -32,7 +31,14 @@ namespace RegistrarService.Application.Models.DTOs.InputModels
 
         public string Country { get; set; }
 
-        public string CourseCode { get; private set; }
+        public IEnumerable<ApplicationDTO> Applications { get; set; }
+    }
+
+    public class ApplicationDTO
+    {
+        public int ApplicantId { get; set; }
+
+        public string CourseCode { get; set; }
 
         public string Status { get; set; }
     }

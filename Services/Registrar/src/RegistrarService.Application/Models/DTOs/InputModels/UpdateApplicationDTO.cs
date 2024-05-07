@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RegistrarService.Application.Models.DTOs.InputModels
 {
-    public class ApplicationDTO
+    public class UpdateApplicationDTO
     {
     }
 }

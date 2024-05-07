@@ -22,26 +22,26 @@ namespace RegistrarService.Application.Services
         }
 
 
-        public async Task<IEnumerable<CourseListing>> GetAllCourses()
+        public async Task<IEnumerable<CourseListingDTO>> GetAllCourses()
         {
             var result = await _unitOfWork.Courses.GetAllAsync();
             if (result != null)
             {
-                return _mapper.Map<IEnumerable<CourseListing>>(result);
+                return _mapper.Map<IEnumerable<CourseListingDTO>>(result);
             }
-            return Enumerable.Empty<CourseListing>();
+            return Enumerable.Empty<CourseListingDTO>();
         }
-        public async Task<IEnumerable<CourseListing>> GetAllActiveCourses()
+        public async Task<IEnumerable<CourseListingDTO>> GetAllActiveCourses()
         {
             var result = await _unitOfWork.Courses.GetAllWhereAsync(x=>x.IsActive==true);
             if (result != null)
             {
-                return _mapper.Map<IEnumerable<CourseListing>>(result);
+                return _mapper.Map<IEnumerable<CourseListingDTO>>(result);
             }
-            return Enumerable.Empty<CourseListing>();
+            return Enumerable.Empty<CourseListingDTO>();
         }
 
-        public async Task<IEnumerable<CourseListing>> SearchCourseByAward(string searchAward)
+        public async Task<IEnumerable<CourseListingDTO>> SearchCourseByAward(string searchAward)
         {
             var search = searchAward.ToLower();
             var check = await _unitOfWork.Awards.GetByAsync(x=>x.Name.ToLower().Equals(search))
@@ -49,13 +49,13 @@ namespace RegistrarService.Application.Services
             var result = await _unitOfWork.Courses.GetAllOrderedAsync(filter: x=>x.Programme.Award.Name.ToLower().Contains(search), includeProperties: "CourseLevels");
             if (result != null)
             {
-                return _mapper.Map<IEnumerable<CourseListing>>(result);
+                return _mapper.Map<IEnumerable<CourseListingDTO>>(result);
             }
-            return Enumerable.Empty<CourseListing>();
+            return Enumerable.Empty<CourseListingDTO>();
 
         }
 
-        public async Task<IEnumerable<CourseListing>> SearchCourseBySchool(string searchSchool)
+        public async Task<IEnumerable<CourseListingDTO>> SearchCourseBySchool(string searchSchool)
         {
             var search = searchSchool.ToLower();
             var check = await _unitOfWork.Schools.GetByAsync(x => x.Name.ToLower().Equals(search))
@@ -63,11 +63,11 @@ namespace RegistrarService.Application.Services
             var result = await _unitOfWork.Courses.GetAllOrderedAsync(filter: x => x.Programme.School.Name.ToLower().Contains(search), includeProperties: "CourseLevels");
             if (result != null)
             {
-                return _mapper.Map<IEnumerable<CourseListing>>(result);
+                return _mapper.Map<IEnumerable<CourseListingDTO>>(result);
             }
-            return Enumerable.Empty<CourseListing>();
+            return Enumerable.Empty<CourseListingDTO>();
         }
-        public async Task<IEnumerable<CourseListing>> SearchCourseBySubject(string searchSubject)
+        public async Task<IEnumerable<CourseListingDTO>> SearchCourseBySubject(string searchSubject)
         {
             var search = searchSubject.ToLower();
 
@@ -76,11 +76,11 @@ namespace RegistrarService.Application.Services
             var result = await _unitOfWork.Courses.GetAllOrderedAsync(filter: x => x.Programme.Subject.Name.ToLower().Contains(search), includeProperties: "CourseLevels");
             if (result != null)
             {
-                return _mapper.Map<IEnumerable<CourseListing>>(result);
+                return _mapper.Map<IEnumerable<CourseListingDTO>>(result);
             }
-            return Enumerable.Empty<CourseListing>();
+            return Enumerable.Empty<CourseListingDTO>();
         }
-        public async Task<IEnumerable<CourseListing>> SearchCoursebyName(string searchTitle)
+        public async Task<IEnumerable<CourseListingDTO>> SearchCoursebyName(string searchTitle)
         {
             var search = searchTitle.ToLower();
             var check = await _unitOfWork.Programmes.GetByAsync(x => x.Name.ToLower().Equals(search))
@@ -89,42 +89,42 @@ namespace RegistrarService.Application.Services
             var result = await _unitOfWork.Courses.GetAllOrderedAsync(filter: x => x.Programme.Name.ToLower().Contains(search) && x.IsActive == true, includeProperties: "CourseLevels");
             if (result != null)
             {
-                return _mapper.Map<IEnumerable<CourseListing>>(result);
+                return _mapper.Map<IEnumerable<CourseListingDTO>>(result);
             }
-            return Enumerable.Empty<CourseListing>();
+            return Enumerable.Empty<CourseListingDTO>();
         }
 
-        public async Task<IEnumerable<CourseListing>> SearchCourseByType(string searchType)
+        public async Task<IEnumerable<CourseListingDTO>> SearchCourseByType(string searchType)
         {
             if (Enum.TryParse(searchType, true, out CourseType search))
             {
                 var result = await _unitOfWork.Courses.GetAllOrderedAsync(filter: x => x.CourseType == search && x.IsActive == true, includeProperties: "CourseLevels");
                 if (result != null)
                 {
-                    return _mapper.Map<IEnumerable<CourseListing>>(result);
+                    return _mapper.Map<IEnumerable<CourseListingDTO>>(result);
                 }
-                return Enumerable.Empty<CourseListing>();
+                return Enumerable.Empty<CourseListingDTO>();
             }
             throw new NotFoundException($"Course type: {searchType} not found");
         }
 
-        public async Task<CourseListing> GetCourse(string courseCode)
+        public async Task<CourseListingDTO> GetCourse(string courseCode)
         {
             var result = await _unitOfWork.Courses.GetAsync(courseCode)
                 ?? throw new KeyNotFoundException($"Course code: {courseCode} not found");
-            return _mapper.Map<CourseListing>(result);
+            return _mapper.Map<CourseListingDTO>(result);
         }
 
-        public async Task<IEnumerable<CourseListing>> GetCoursesByProgramme(string programmeCode)
+        public async Task<IEnumerable<CourseListingDTO>> GetCoursesByProgramme(string programmeCode)
         {
             var check = await _unitOfWork.Programmes.GetAsync(programmeCode)
                 ?? throw new NotFoundException($"Programme Code: {programmeCode} not found");
             var result = await _unitOfWork.Courses.GetAllOrderedAsync(filter: x => x.ProgrammeCode == programmeCode, includeProperties: "CourseLevels");
             if (result != null)
             {
-                return _mapper.Map<IEnumerable<CourseListing>>(result);
+                return _mapper.Map<IEnumerable<CourseListingDTO>>(result);
             }
-            return Enumerable.Empty<CourseListing>();
+            return Enumerable.Empty<CourseListingDTO>();
         }
     }
 }

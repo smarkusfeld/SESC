@@ -18,7 +18,7 @@ namespace RegistrarService.Application.Common.Mapper
         {
             CreateMap<EnrolmentDTO, Enrolment>()
               .ForMember(dest => dest.Key, opt => opt.Ignore())
-              .ForMember(dest => dest.Account, opt => opt.Ignore())
+              .ForMember(dest => dest.Student, opt => opt.Ignore())
               //.ForMember(dest => dest.Session, opt => opt.Ignore())
               .ReverseMap();
               //.ForPath(dest => dest.CourseLevelName, opt => opt.MapFrom(src => src.Session.CourseLevel.Name))

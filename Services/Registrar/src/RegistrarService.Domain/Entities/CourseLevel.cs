@@ -19,6 +19,23 @@ namespace RegistrarService.Domain.Entities
         private CourseLevel() { }
 
         /// <summary>
+        /// Public Constructor to create CourseLevel
+        /// </summary>
+        /// <param name="course">Course Code</param>
+        /// <param name="credits">Num of credits earned at level</param>
+        /// <param name="year">AcademicYear Id</param>
+        /// <param name="qualificationLevel">Qualification level of course level</param>
+        /// <param name="tuition">Tution fee for course level</param>
+        public CourseLevel(string course, int credits, int year, int qualificationLevel, float tuition)
+        {
+            CourseCode = course;
+            Credits = credits;
+            QualificationLevel = qualificationLevel;
+            TuitionFee = tuition;
+            AcademicYearId = year;
+        }
+
+        /// <summary>
         /// Internal Constructor to create CourseLevel used by <seealso cref="Course"/>
         /// </summary>
         /// <param name="credits">Num of credits earned at level</param>
@@ -50,6 +67,8 @@ namespace RegistrarService.Domain.Entities
         public AcademicYear AcademicYear { get; private set; }
 
         public ICollection<Enrolment> Enrolments { get; set; } = new List<Enrolment>();
+
+        public ICollection<ProgressionResult> Results { get; set; } = new List<ProgressionResult>();
 
         [NotMapped]
         public string Name => Course.Programme.Name + QualificationLevel.ToString();

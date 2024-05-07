@@ -13,11 +13,11 @@ using RegistrarService.Domain.Common.Enums.StudentService.Domain.Common.Enums;
 namespace RegistrarService.Infastructure.Configurations
 {
     /// <summary>
-    /// Configuration for the <see cref="Result"/> entity
+    /// Configuration for the <see cref="ProgressionResult"/> entity
     /// </summary>
-   public class CourseResultEntityTypeConfiguration : IEntityTypeConfiguration<Result>
+   public class CourseResultEntityTypeConfiguration : IEntityTypeConfiguration<ProgressionResult>
     {
-        public void Configure(EntityTypeBuilder<Result> builder)
+        public void Configure(EntityTypeBuilder<ProgressionResult> builder)
         {
             builder
                 .Property(p => p.Id)
@@ -26,7 +26,7 @@ namespace RegistrarService.Infastructure.Configurations
                 .HasKey(p => p.Id);
 
             builder
-                 .Property(x => x.TranscriptId);
+                 .Property(x => x.StudentId);
 
             builder
                  .Property(x => x.CourseLevelName)

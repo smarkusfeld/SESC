@@ -39,7 +39,7 @@ namespace RegistrarService.Domain.Entities
         public EnrolStatus Status { get; private set; }
 
         //navigation properties
-        public Student? Account { get; private set; }       
+        public Student? Student { get; private set; }       
 
         public CourseLevel CourseLevel { get; private set; }
 

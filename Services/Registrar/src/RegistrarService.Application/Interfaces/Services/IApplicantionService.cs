@@ -8,9 +8,8 @@ namespace RegistrarService.Application.Interfaces.Services
     /// <summary>
     /// Defines a contract for applicantion services
     /// </summary>
-    public interface ICourseApplicantionService
+    public interface IApplicantionService
     {
-
 
         /// <summary>
         /// Get All Applications 
@@ -25,7 +24,7 @@ namespace RegistrarService.Application.Interfaces.Services
         /// <param name="applicantId"><seealso cref="Applicant.ApplicantId"/> </param>
         /// <exception cref="KeyNotFoundException"></exception>
         /// <returns>A <seealso cref="IEnumerable{CourseApplicationDTO}"/> of <seealso cref="CourseApplicationDTO"/></returns>
-        Task<IEnumerable<CourseApplicationDTO>> GetAllApplications(int applicantId);
+        //Task<IEnumerable<CourseApplicationDTO>> GetAllApplications(int applicantId);
 
         /// <summary>
         /// Get All Applications by Course
@@ -55,11 +54,19 @@ namespace RegistrarService.Application.Interfaces.Services
         /// <summary>
         /// Edit Application
         /// </summary>
-        /// <param name="Applicantion"><seealso cref="ApplicationDTO"/> application to be updated</param>
+        /// <param name="Applicantion"><seealso cref="UpdateApplicationDTO"/> application to be updated</param>
         /// <exception cref="KeyNotFoundException"></exception>
         /// <exception cref="BadRequestException"></exception>
         /// <returns><seealso cref="CourseApplicationDTO"/></returns>
-        Task<CourseApplicationDTO> UpdateApplication(ApplicationDTO Applicantion);
+        Task<CourseApplicationDTO> UpdateApplication(UpdateApplicationDTO Applicantion);
+
+        /// <summary>
+        /// New Applicant
+        /// </summary>
+        /// <param name="Applicantion"><seealso cref="NewApplicationDTO"/> application to be added</param>
+        /// <exception cref="BadRequestException"></exception>
+        /// <returns><seealso cref="CourseApplicationDTO"/></returns>
+        Task<CourseApplicationDTO> AddApplication(NewApplicantDTO Applicantion);
 
         /// <summary>
         /// Add Application

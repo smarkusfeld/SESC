@@ -10,6 +10,7 @@ using RegistrarService.Domain.Common.Enums;
 using RegistrarService.Domain.Interfaces;
 using System.Reflection.Metadata.Ecma335;
 using static System.Net.Mime.MediaTypeNames;
+using System.Reflection;
 
 namespace RegistrarService.Domain.Entities
 {
@@ -18,6 +19,29 @@ namespace RegistrarService.Domain.Entities
     /// </summary>
     public class Course : BaseAuditableEntity
     {
+
+        /// <summary>
+        /// Internal Constructor for Course
+        /// </summary>
+        /// <param name="programmeCode"></param>
+        /// <param name="courseCode"></param>
+        /// <param name="courseType"></param>
+        /// <param name="applicationDeadline"></param>
+        /// <param name="enrolmentDeadline"></param>
+        /// <param name="startDate"></param>
+        /// <param name="isActive"></param>
+        public Course(string programmeCode, string courseCode, CourseType courseType, DateTime applicationDeadline, DateTime enrolmentDeadline, DateTime startDate, bool isActive = true )
+        {
+            CourseCode = courseCode;
+            IsActive = isActive;
+            ApplicationDeadline = applicationDeadline;
+            EnrolmentDeadline = enrolmentDeadline;
+            StartDate = startDate;
+            ProgrammeCode = programmeCode;
+            CourseType = courseType;
+        }
+
+        public Course() { }
         public override object Key => CourseCode;
 
         [Key]
@@ -33,12 +57,11 @@ namespace RegistrarService.Domain.Entities
 
         public string ProgrammeCode { get; set; }
 
-
+        //navigation properties     
         public Programme Programme { get; set; }
 
         public CourseType CourseType { get; set; }
 
-        //navigation properties     
         public ICollection<CourseLevel> CourseLevels { get; private set; } = new List<CourseLevel>();
 
         public ICollection<CourseApplication> CourseApplications { get; private set; } = new List<CourseApplication>();

@@ -44,7 +44,7 @@ namespace RegistrarService.Infastructure.Configurations
             // degree types to seed database
             builder.HasData
             (
-                new Award
+                new Award ()
                 {
                     Id = 91,
                     Name = "Certificate of Higher Education in Science",
@@ -81,7 +81,6 @@ namespace RegistrarService.Infastructure.Configurations
                     Id = 95,
                     Name = "Certificate of Higher Education in Science",
                     Abbr = "CertHEdSc",
-                    DegreeCategory = DegreeCategory.Undergraduate,
                     QualificationType = QualificationType.Certificate,
                     QualificationLevel = 5
                 },
@@ -91,16 +90,16 @@ namespace RegistrarService.Infastructure.Configurations
                      Id = 96,
                      Name = "Foundation Degree In Education",
                      Abbr = "FdA",
-                     DegreeCategory = DegreeCategory.Undergraduate,
+                     DegreeCategory = DegreeCategory.Foundation,
                      QualificationType = QualificationType.Degree,
-                     QualificationLevel = 5
+                     QualificationLevel = 5,
                  },
                  new Award
                  {
                      Id = 97,
                      Name = "Foundation Degree In Science",
                      Abbr = "FdSc",
-                     DegreeCategory = DegreeCategory.Undergraduate,
+                     DegreeCategory = DegreeCategory.Foundation,
                      QualificationType = QualificationType.Degree,
                      QualificationLevel = 5
                  },

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Asn1.X509;
 using RegistrarService.Domain.Entities;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -23,7 +24,7 @@ namespace RegistrarService.Infastructure.Context
         public DbSet<CourseLevel> CourseLevels { get; set; }
         public DbSet<Enrolment> Enrolments { get; set; }
         public DbSet<Programme> Programmes { get; set; }
-        public DbSet<Result> Results { get; set; }
+        public DbSet<ProgressionResult> Results { get; set; }
         public DbSet<School> Schools { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<School> Subjects { get; set; }
@@ -40,6 +41,12 @@ namespace RegistrarService.Infastructure.Context
         {
             //apply all types in the assembly that implment IEntityTypeConfiguration 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            //owned objects
+            modelBuilder.Entity<Student>()
+                .OwnsOne(x => x.TermAddress);
+            modelBuilder.Entity<Student>()
+                .OwnsOne(x => x.PermanentAddress);
 
             //add foreign keys
             modelBuilder.Entity<Applicant>()
@@ -90,9 +97,18 @@ namespace RegistrarService.Infastructure.Context
 
             modelBuilder.Entity<Student>()
                 .HasMany(y => y.Enrolments)
-                .WithOne(x => x.Account)
+                .WithOne(x => x.Student)
                 .HasForeignKey(x => x.StudentId);
 
+            modelBuilder.Entity<Student>()
+                .HasMany(y => y.Results)
+                .WithOne(x => x.Student)
+                .HasForeignKey(x => x.StudentId);
+
+            modelBuilder.Entity<CourseLevel>()
+                .HasMany(y => y.Results)
+                .WithOne(x => x.CourseLevel)
+                .HasForeignKey(x => x.CourseLevelId);
 
             modelBuilder.SeedDatabase();
 
