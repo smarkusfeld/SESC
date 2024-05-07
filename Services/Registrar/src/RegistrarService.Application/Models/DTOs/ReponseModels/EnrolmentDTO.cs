@@ -16,6 +16,5 @@ namespace RegistrarService.Application.Models.DTOs.ReponseModels
         public string CourseLevelName { get; set; }
         public string CourseName { get; set; }
         public string CourseCode { get; set; }
-        //public List<string> SessionModules { get; set; }
     }
 }

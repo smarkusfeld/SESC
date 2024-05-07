@@ -20,7 +20,7 @@ namespace RegistrarService.Domain.Entities
     {
         private ProgressionResult() { }
 
-        internal ProgressionResult(string studentId, int courseLevel, ProgressDecision progressDecision, string progressNotes)
+        internal ProgressionResult(int studentId, int courseLevel, ProgressDecision progressDecision, string progressNotes)
         {
             StudentId = studentId;
             CourseLevelId = courseLevel;
@@ -38,7 +38,7 @@ namespace RegistrarService.Domain.Entities
         public ProgressDecision ProgressDecision { get; set; }
         public DateTime ProgressDate { get; set; }
         public string? ProgressNotes { get; set; } 
-        public string StudentId { get; set; }
+        public int StudentId { get; set; }
         public int CourseLevelId { get; set; }
 
         //navigation properties

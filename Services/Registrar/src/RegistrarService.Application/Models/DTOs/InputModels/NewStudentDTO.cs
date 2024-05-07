@@ -8,6 +8,7 @@ namespace RegistrarService.Application.Models.DTOs.InputModels
 {
     public class NewStudentDTO
     {
+        public int ApplicantId { get; private set; }
         public string FirstName { get; private set; }
         public string Surname { get; private set; }
         public string MiddleName { get; private set; }

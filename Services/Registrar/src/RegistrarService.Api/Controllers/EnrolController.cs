@@ -2,6 +2,7 @@
 using RegistrarService.Application.Interfaces.Services;
 using RegistrarService.Application.Models.DTOs;
 using RegistrarService.Application.Models.DTOs.InputModels;
+using RegistrarService.Domain.Entities;
 
 namespace RegistrarService.Api.Controllers
 {
@@ -34,37 +35,40 @@ namespace RegistrarService.Api.Controllers
         /// Create a new student account, register a new student for a course, and enrol in the correct course offering for the course
         /// <br></br>
         /// </summary>
+        /// <param name="courseCode"></param>
         /// <param name="inputModel"></param>
         /// <returns>
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with the registration and and student account details <br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if registration can not be completed<br/> 
         /// </returns>
-        //[HttpPost("register")]
-        //public async Task<IActionResult> CourseRegistration([FromBody] StudentRegistrationDTO inputModel )
-        //{
-        //    _logger.LogInformation("registering student");
-        //    var result = await _service.RegisterNewStudent(inputModel);
-        //    return result != null ? Ok(result) : BadRequest(); 
-        //}
+        [HttpPost("new/{courseCode}")]
+        public async Task<IActionResult> FirstEnrolment(string courseCode, [FromBody] NewStudentDTO inputModel )
+        {
+            _logger.LogInformation($"Checking applicantion status for {inputModel.ApplicantId}");
+            var courseId = await _service.GetFirstCourseLevel(courseCode, inputModel.ApplicantId);
+            _logger.LogInformation("Creating student account and enrolling student");
+            var result = await _service.Enrol(courseId, inputModel);
+            return result != null ? Ok(result) : BadRequest(); 
+        }
 
         /// <summary>
         /// Enrol Student in Eligible Course
         /// </summary>
-        /// <param name="studentId"></param>
         /// <param name="courseCode"></param>
+        /// <param name="inputModel"></param>
         /// <returns>
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with enrolment confirmation details <br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if enrolment can not be completed<br/> 
         /// </returns>
-        //[HttpPost("{studentId}/{courseCode}")]
-        //public async Task<IActionResult> StudentEnrolment(string studentId, string courseCode)
-        //{
-        //    _logger.LogInformation($"Checking eligibile offerings for course {studentId}");
-        //    var courseId = await _service.GetEligiableCourseOffering(studentId, courseCode);
-        //    _logger.LogInformation("enrolling student");
-        //    var result = await _service.CourseEnrolment(studentId, courseId);
-        //    return result != null ? Ok(result) : BadRequest();
-        //}
+        [HttpPost("{studentId}/{courseCode}")]
+        public async Task<IActionResult> StudentEnrolment(string courseCode, int studentId, [FromBody] UpdateStudentDTO inputModel)
+        {
+            _logger.LogInformation($"Checking eligibile offerings for course {studentId}");
+            var courseId = await _service.GetEligibleCourseLevel(courseCode, studentId);
+            _logger.LogInformation("Updating Student Account and Enrolling Student");
+            var result = await _service.Enrol(courseId, inputModel);
+            return result != null ? Ok(result) : BadRequest();
+        }
 
         /// <summary>
         /// Get All Student Enrolments
@@ -75,7 +79,7 @@ namespace RegistrarService.Api.Controllers
         /// A 400 status code prodeced by the <seealso cref="NoContentResult"/> if no records exist<br/> 
         /// </returns>
         [HttpGet("{studentId}")]
-        public async Task<IActionResult> GetAllEnrolments(string studentId)
+        public async Task<IActionResult> GetAllEnrolments(int studentId)
         {
             var result = await _service.GetAllEnrolments(studentId);
             return result != null ? Ok(result) : NoContent();

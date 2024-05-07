@@ -24,27 +24,42 @@ namespace RegistrarService.Application.Interfaces.Services
         /// <param name="studentId"></param>
         /// <returns></returns>
         /// <exception cref="KeyNotFoundException"></exception>
-        Task<IEnumerable<EnrolmentDTO>> GetAllEnrolments(string studentId);
+        Task<IEnumerable<EnrolmentDTO>> GetAllEnrolments(int studentId);
 
         /// <summary>
         /// First time enrolment
         /// </summary>
-        /// <param name="courseCode"></param>
+        /// <param name="student"></param>
+        /// <param name="courseLevel"></param>
         /// <returns></returns>
         /// <exception cref="KeyNotFoundException"></exception>
         /// <exception cref="BadRequestException"></exception>
-        
-        Task<EnrolmentDTO> Enrol(int courseCode);
+
+        Task<EnrolmentDTO> Enrol(int courseLevel, NewStudentDTO student);
+
+        /// <summary>
+        /// Returning student enrolment, no account updates
+        /// </summary>
+        /// <param name="courseLevel"></param>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
+        Task<EnrolmentDTO> Enrol(int courseLevel, int studentId);
 
         /// <summary>
         /// Returning Student Enrolment
         /// </summary>
-        /// <param name="studentId"></param>
-        /// <param name="courseCode"></param>
+        /// <param name="student"></param>
+        /// <param name="courseLevel"></param>
         /// <returns></returns>
         /// <exception cref="KeyNotFoundException"></exception>
         /// <exception cref="BadRequestException"></exception>
-        Task<EnrolmentDTO> Enrol(int studentId, int courseCode);
+        Task<EnrolmentDTO> Enrol(int courseLevel, UpdateStudentDTO student);
+
+        Task<int> GetEligibleCourseLevel(string courseCode, int studentId);
+
+        Task<int> GetFirstCourseLevel(string courseCode, int applicantId);
+
+
 
     }
 }

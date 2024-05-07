@@ -20,13 +20,15 @@ namespace RegistrarService.Application.Interfaces.Repositories
         public IApplicantRepository Applicants { get; }
         public ICourseApplicationRepository Applications { get; }
         public ICourseRepository Courses { get; }
-
+        public IEnrolmentRepository Enrolments { get; }
         public IAwardRepository Awards { get; }
 
         public IStudentRepository Students { get; }
 
         public ISchoolRepository Schools { get; }
         public ISubjectRepository Subjects { get; }
+
+        public IProgressionResultRepository Results { get; }
         Task<int> Save();
         Task Rollback();
     }

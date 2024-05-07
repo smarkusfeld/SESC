@@ -18,7 +18,7 @@ namespace RegistrarService.Domain.Entities
 
         private Enrolment() { }
 
-        internal Enrolment(string studentId, int courseLevelId)
+        public Enrolment(int studentId,int courseLevelId)
         {
             StudentId = studentId;
             CourseLevelId = courseLevelId;
@@ -35,7 +35,7 @@ namespace RegistrarService.Domain.Entities
         public DateTime EnrolDate { get; private set; }
         public int CourseLevelId { get; private set; }
 
-        public string StudentId { get; private set; }
+        public int StudentId { get; private set; }
         public EnrolStatus Status { get; private set; }
 
         //navigation properties

@@ -21,7 +21,32 @@ namespace RegistrarService.Application.Common.Mapper
             CreateMap<NewStudentDTO, Student>()
                  .ForMember(dest => dest.StudentId, opt => opt.Ignore())
                  .ForMember(dest => dest.StudentEmail, opt => opt.Ignore())
+                 .ForMember(dest => dest.Status, opt => opt.Ignore())
                  .ForMember(dest => dest.AlternateEmail, opt =>opt.MapFrom(src =>src.Email))
+                 .ForMember(dest => dest.TermAddress.AddressLine1, opt => opt.MapFrom(src => src.TermAddressLine1))
+                 .ForMember(dest => dest.TermAddress.AddressLine2, opt => opt.MapFrom(src => src.TermAddressLine2))
+                 .ForMember(dest => dest.TermAddress.AddressLine3, opt => opt.MapFrom(src => src.TermAddressLine3))
+                 .ForMember(dest => dest.TermAddress.City, opt => opt.MapFrom(src => src.TermAddressCity))
+                 .ForMember(dest => dest.TermAddress.Region, opt => opt.MapFrom(src => src.TermAddressRegion))
+                 .ForMember(dest => dest.TermAddress.Postcode, opt => opt.MapFrom(src => src.TermAddressPostcode))
+                 .ForMember(dest => dest.TermAddress.Country, opt => opt.MapFrom(src => src.TermAddressCountry))
+                 .ForMember(dest => dest.PermanentAddress.AddressLine1, opt => opt.MapFrom(src => src.PermanentAddressLine1))
+                 .ForMember(dest => dest.PermanentAddress.AddressLine2, opt => opt.MapFrom(src => src.PermanentAddressLine2))
+                 .ForMember(dest => dest.PermanentAddress.AddressLine3, opt => opt.MapFrom(src => src.PermanentAddressLine3))
+                 .ForMember(dest => dest.PermanentAddress.City, opt => opt.MapFrom(src => src.PermanentAddressCity))
+                 .ForMember(dest => dest.PermanentAddress.Region, opt => opt.MapFrom(src => src.PermanentAddressRegion))
+                 .ForMember(dest => dest.PermanentAddress.Postcode, opt => opt.MapFrom(src => src.PermanentAddressPostcode))
+                 .ForMember(dest => dest.PermanentAddress.Country, opt => opt.MapFrom(src => src.PermanentAddressCountry))
+                 .ForAllMembers(opts =>
+                 {
+                     opts.AllowNull();
+                     opts.Condition((src, dest, srcMember) => srcMember != null);
+                 });
+            CreateMap<UpdateStudentDTO, Student>()
+                 .ForMember(dest => dest.StudentId, opt => opt.Ignore())
+                 .ForMember(dest => dest.StudentEmail, opt => opt.Ignore())
+                 .ForMember(dest => dest.Status, opt => opt.Ignore())
+                 .ForMember(dest => dest.AlternateEmail, opt => opt.MapFrom(src => src.AlternateEmail))
                  .ForMember(dest => dest.TermAddress.AddressLine1, opt => opt.MapFrom(src => src.TermAddressLine1))
                  .ForMember(dest => dest.TermAddress.AddressLine2, opt => opt.MapFrom(src => src.TermAddressLine2))
                  .ForMember(dest => dest.TermAddress.AddressLine3, opt => opt.MapFrom(src => src.TermAddressLine3))
