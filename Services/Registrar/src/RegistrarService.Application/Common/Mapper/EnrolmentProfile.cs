@@ -18,13 +18,17 @@ namespace RegistrarService.Application.Common.Mapper
         {
             CreateMap<EnrolmentDTO, Enrolment>()
               .ForMember(dest => dest.Key, opt => opt.Ignore())
+               .ForMember(dest => dest.Id, opt => opt.Ignore())
               .ForMember(dest => dest.Student, opt => opt.Ignore())
-              //.ForMember(dest => dest.Session, opt => opt.Ignore())
-              .ReverseMap();
-              //.ForPath(dest => dest.CourseLevelName, opt => opt.MapFrom(src => src.Session.CourseLevel.Name))
-              //.ForPath(dest => dest.CourseCode, opt => opt.MapFrom(src => src.Session.CourseLevel.Course.CourseCode))
-              //.ForPath(dest => dest.CourseName, opt => opt.MapFrom(src => src.Session.CourseLevel.Course.Name))
-              //.ForPath(dest => dest.SessionModules, opt => opt.MapFrom(src => src.Session.SessionModules.Select(x => x.CourseModule.Name)));
+              .ForMember(dest => dest.CreatedBy, opt => opt.Ignore())
+              .ForMember(dest => dest.CreatedDate, opt => opt.Ignore())
+              .ForMember(dest => dest.UpdatedBy, opt => opt.Ignore())
+              .ForMember(dest => dest.UpdatedDate, opt => opt.Ignore())
+              .ForMember(dest => dest.CourseLevel, opt => opt.Ignore())
+              .ReverseMap()
+              .ForPath(dest => dest.CourseLevelName, opt => opt.MapFrom(src => src.CourseLevel.Name))
+              .ForPath(dest => dest.CourseCode, opt => opt.MapFrom(src => src.CourseLevel.Course.CourseCode))
+              .ForPath(dest => dest.Tutition, opt => opt.MapFrom(src => src.CourseLevel.TuitionFee));
 
 
         }

@@ -20,32 +20,8 @@ namespace RegistrarService.Application.Models.DTOs.InputModels
 
         public string Status { get; set; }
 
-        public string TermAddressLine1 { get; set; }
+        public AddressDTO TermAddress { get; private set; }
 
-        public string TermAddressLine2 { get; set; }
-
-        public string TermAddressLine3 { get; set; }
-
-        public string TermAddressCity { get; set; }
-
-        public string TermAddressRegion { get; set; }
-
-        public string TermAddressPostcode { get; set; }
-
-        public string TermAddressCountry { get; set; }
-
-        public string PermanentAddressLine1 { get; set; }
-
-        public string PermanentAddressLine2 { get; set; }
-
-        public string PermanentAddressLine3 { get; set; }
-
-        public string PermanentAddressCity { get; set; }
-
-        public string PermanentAddressRegion { get; set; }
-
-        public string PermanentAddressPostcode { get; set; }
-
-        public string PermanentAddressCountry { get; set; }
+        public AddressDTO PermanentAddress { get; private set; }
     }
 }

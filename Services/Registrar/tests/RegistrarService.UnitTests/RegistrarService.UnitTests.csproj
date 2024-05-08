@@ -22,4 +22,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\RegistrarService.Application\RegistrarService.Application.csproj" />
+    <ProjectReference Include="..\..\src\RegistrarService.Domain\RegistrarService.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

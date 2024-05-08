@@ -11,7 +11,7 @@ namespace RegistrarService.Application.Models.DTOs.ReponseModels
         public string CourseCode { get; private set; }
         public string IsActive { get; private set; }
 
-        public string Name { get; private set; }
+        //public string Name { get; private set; }
 
         public string CourseType { get; private set; }
         public DateTime ApplicationDeadline { get; private set; }

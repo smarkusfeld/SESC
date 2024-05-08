@@ -16,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegistrarService.Domain", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegistrarService.Infastructure", "src\RegistrarService.Infastructure\RegistrarService.Infastructure.csproj", "{BA90303D-01C9-4277-9C55-2CDA6DB282C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentService.UnitTests", "tests\RegistrarService.UnitTests\StudentService.UnitTests.csproj", "{7B5F9177-F9B5-41AF-8493-C777B873D06D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegistrarService.UnitTests", "tests\RegistrarService.UnitTests\RegistrarService.UnitTests.csproj", "{7B5F9177-F9B5-41AF-8493-C777B873D06D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "..\..\BuildingBlocks\EventBus\EventBus\EventBus.csproj", "{136F694B-6FAD-43F3-9190-C8CF88857144}"
 EndProject

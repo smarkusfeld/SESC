@@ -72,13 +72,13 @@ namespace RegistrarService.Domain.Entities
         /// Enrolment Open read-only property for entity. Not mapped to database. Calculated based on <seealso cref="EnrolmentDeadline"/> 
         /// </summary>
         [NotMapped]
-        public bool EnrolmentOpen { get => DateTime.Now <= EnrolmentDeadline ? true : false; }
+        public bool EnrolmentOpen { get => DateTime.Now <= EnrolmentDeadline; }
 
         /// <summary>
         /// Enrolment Open read-only property for entity. Not mapped to database. Calculated based on <seealso cref="ApplicationDeadline"/> 
         /// </summary>
         [NotMapped]
-        public bool ApplicationOpen { get => DateTime.Now <= ApplicationDeadline ? true : false; }
+        public bool ApplicationOpen { get => DateTime.Now <= ApplicationDeadline; }
 
     }
    
