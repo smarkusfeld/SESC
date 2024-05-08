@@ -8,7 +8,7 @@ using RegistrarService.Domain.Common.Enums;
 
 namespace RegistrarService.Application.Services
 {
-    public class CourseApplicationService : IApplicantionService
+    public class ApplicationService : IApplicantionService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -135,6 +135,11 @@ namespace RegistrarService.Application.Services
             var result = await _unitOfWork.Applications.UpdateAsync(application)
                 ?? throw new MySQLException("Could not update application");
             return _mapper.Map<CourseApplicationDTO>(result);
+        }
+
+        public Task<CourseApplicationDTO> AddApplication(NewApplicantDTO Applicantion)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -22,37 +22,44 @@ namespace RegistrarService.Infastructure.Repositories
         private ISubjectRepository _subjects;
         private IProgrammeRepository _programmes;
         private IApplicantRepository _applicants;
+        private ICourseApplicationRepository _applicantions;
+        private IProgressionResultRepository _results;
+        private IEnrolmentRepository _enrolments;
         private bool disposed;
 
         public ICourseRepository Courses => _courses ?? new CourseRepository(_dbContext);
 
         public IAwardRepository Awards => _awards ?? new AwardRepository(_dbContext);
 
-        public IStudentRepository Students => _students ?? new AccountRepository(_dbContext);
+        public IStudentRepository Students => _students ?? new StudentRepository(_dbContext);
 
         public ISchoolRepository Schools => _schools ?? new SchoolRepository(_dbContext);
-        public ISubjectRepository Accounts => _subjects ?? new SubjectRepository(_dbContext);
+        public ISubjectRepository Subjects => _subjects ?? new SubjectRepository(_dbContext);
 
         public IProgrammeRepository Programmes => _programmes ?? new ProgrammeRepository(_dbContext);
 
-        public IApplicantRepository Applicants => throw new NotImplementedException();
+        public IApplicantRepository Applicants => _applicants ?? new ApplicantRepository(_dbContext);
 
-        public ICourseApplicationRepository Applications => throw new NotImplementedException();
+        public ICourseApplicationRepository Applications => _applicantions ?? new CourseApplicationRepository(_dbContext);
 
-        IStudentRepository IUnitOfWork.Students => throw new NotImplementedException();
+        public IEnrolmentRepository Enrolments => _enrolments ?? new EnrolmentRepository(_dbContext);
 
-        public ISubjectRepository Subjects => throw new NotImplementedException();
+        public IProgressionResultRepository Results => _results ?? new ProgressionResultRepository(_dbContext);
 
         public UnitOfWork(DataContext dbContext)
         {
             _dbContext = dbContext;
             _students = Students;
             _schools = Schools;
-            _subjects = Accounts;
+            _subjects = Subjects;
             _courses = Courses;
             _awards = Awards;
-            _students = Students;
-               
+            _applicantions = Applications;
+            _applicants = Applicants;
+            _programmes = Programmes;
+            _enrolments = Enrolments;
+            _results = Results;
+             
         }
         /// <summary>
         /// Completes the unit of work, saving all repository changes to the underlying data-store.
