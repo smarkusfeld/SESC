@@ -21,7 +21,7 @@ namespace RegistrarService.Application.Models.DTOs.ReponseModels
 
         public string Status { get; set; }
 
-        public IEnumerable<ProgressionDTO> Results { get; set; }
+        public IEnumerable<ProgressionDTO> Results { get; set; } = new List<ProgressionDTO>();
     }
 
     public class ProgressionDTO

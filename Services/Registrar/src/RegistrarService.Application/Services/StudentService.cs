@@ -50,9 +50,16 @@ namespace RegistrarService.Application.Services
             var result = await _unitOfWork.Students.GetAsync(studentId)
                 ?? throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
 
-            return _mapper.Map<StudentProgressionDTO>(result);
+            return _mapper.Map <StudentProgressionDTO>(result);
         }
+        public async Task<IEnumerable<StudentAccountDTO>> GetStudentAccounts()
+        {
+            //get student account
+            var result = await _unitOfWork.Students.GetAllAsync()
+                ?? throw new KeyNotFoundException($"No students found");
 
+            return _mapper.Map <IEnumerable<StudentAccountDTO>>(result);
+        }
         public async Task<StudentAccountDTO> GetStudentAccount(int studentId)
         {
             //get student account

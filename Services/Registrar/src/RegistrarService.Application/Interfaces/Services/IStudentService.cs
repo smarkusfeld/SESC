@@ -27,6 +27,13 @@ namespace RegistrarService.Application.Interfaces.Services
         Task<StudentAccountDTO> GetStudentAccount(int studentId);
 
         /// <summary>
+        /// Get all student accounts
+        /// </summary>
+        /// <returns>A list of <see cref="StudentAccountDTO"/></returns>
+        Task<IEnumerable<StudentAccountDTO>> GetStudentAccounts();
+
+
+        /// <summary>
         /// Add course level results to student account
         /// </summary>
         /// <param name="studentResult"></param>

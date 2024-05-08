@@ -15,21 +15,21 @@ namespace RegistrarService.Application.Models.DTOs.ReponseModels
      /// </summary>
     public class StudentAccountDTO
     {
-        public int StudentId { get; private set; }
+        public int StudentId { get; set; }
 
-        public string FirstName { get; private set; }
-        public string Surname { get; private set; }
-        public string MiddleName { get; private set; }
+        public string FirstName { get; set; }
+        public string Surname { get; set; }
+        public string MiddleName { get; set; }
 
-        public string StudentEmail { get; private set; }
+        public string StudentEmail { get; set; }
 
-        public string AlternateEmail { get; private set; }
+        public string AlternateEmail { get;  set; }
 
-        public string Status { get; private set; }
+        public string Status { get; set; }
 
-        public AddressDTO TermAddress { get; private set; }
+        public AddressDTO TermAddress { get;  set; }
 
-        public AddressDTO PermanentAddress { get; private set; }
+        public AddressDTO PermanentAddress { get; set; }
 
         //public string TermAddressLine1 { get; private set; }
 
