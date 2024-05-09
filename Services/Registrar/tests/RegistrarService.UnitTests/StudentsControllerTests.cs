@@ -30,7 +30,7 @@ namespace RegistrarService.UnitTests
         public async Task GetAll_ReturnsOkResult()
         {
             //arrange
-            var studentDTOs = GetstudentDTOList();
+            var studentDTOs = GetStudentDTOList();
             studentService.Setup(x => x.GetStudentAccounts())
                 .ReturnsAsync(studentDTOs);
             var studentController = new StudentsController(studentService.Object, logger.Object);
@@ -156,7 +156,7 @@ namespace RegistrarService.UnitTests
             Assert.Equal(200, actionResult.StatusCode);
         }
         [Fact]
-        public async Task GetResults()
+        public async Task GetResults_ReturnsOKResult()
         {
             //arrange
             StudentProgressionDTO accountDTO = new StudentProgressionDTO
@@ -231,7 +231,7 @@ namespace RegistrarService.UnitTests
             Assert.Equal(200, actionResult.StatusCode);
         }
 
-        private IEnumerable<StudentAccountDTO> GetstudentDTOList()
+        private IEnumerable<StudentAccountDTO> GetStudentDTOList()
         {
             IEnumerable<StudentAccountDTO> studentDTOList = new List<StudentAccountDTO>
             {

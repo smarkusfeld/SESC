@@ -76,13 +76,16 @@ namespace RegistrarService.Api.Controllers
         /// <param name="studentId"></param>
         // <returns>
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with student enrolment history <br/> 
-        /// A 400 status code prodeced by the <seealso cref="NoContentResult"/> if no records exist<br/> 
+        /// A 204 status code prodeced by the <seealso cref="NoContentResult"/> if no records exists in the database <br/> 
+        /// A 404 status code produced by the <seealso cref="NotFoundResult"/> if the course service returns a null task<br/> 
         /// </returns>
         [HttpGet("{studentId}")]
         public async Task<IActionResult> GetAllEnrolments(int studentId)
         {
+            _logger.LogInformation("Finding Enrolments");
             var result = await _service.GetAllEnrolments(studentId);
-            return result != null ? Ok(result) : NoContent();
+            if (result == null) { return NotFound(); }
+            return result.Any() ? Ok(result) : NoContent();
         }
     }
 
