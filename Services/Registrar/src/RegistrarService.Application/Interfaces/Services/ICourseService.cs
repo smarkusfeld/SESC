@@ -73,7 +73,7 @@ namespace RegistrarService.Application.Interfaces.Services
         /// <param name="searchProgram"><seealso cref="Programme.Name"/> search string</param>
         /// <exception cref="NotFoundException"></exception>
         ///<returns>A <seealso cref="IEnumerable{CourseApplicationDTO}"/> of  <seealso cref="CourseListingDTO"/> </returns>
-        Task<IEnumerable<CourseListingDTO>> SearchCoursebyName(string searchTitle);
+        Task<IEnumerable<CourseListingDTO>> SearchCourseByName(string searchTitle);
 
        
     }

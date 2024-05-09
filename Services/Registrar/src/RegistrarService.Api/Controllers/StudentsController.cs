@@ -10,11 +10,11 @@ namespace RegistrarService.Api.Controllers
     /// </summary>
     [Route("[controller]")]
     [ApiController]
-    public class StudentController : Controller
+    public class StudentsController : Controller
     {
         private readonly IStudentService _service;
 
-        private readonly ILogger<StudentController> _logger;
+        private readonly ILogger<StudentsController> _logger;
 
         /// <summary>
         /// AccounrController Constructor. 
@@ -22,7 +22,7 @@ namespace RegistrarService.Api.Controllers
         /// </summary>
         /// <param name="service"></param>
         /// <param name="logger"></param>
-        public StudentController(IStudentService service, ILogger<StudentController> logger)
+        public StudentsController(IStudentService service, ILogger<StudentsController> logger)
         {
 
             _service = service;

@@ -16,14 +16,14 @@ using Microsoft.AspNetCore.Http;
 
 namespace RegistrarService.UnitTests
 {
-    public class StudentControllerTests
+    public class StudentsControllerTests
     {
         private readonly Mock<IStudentService> studentService;
-        private readonly Mock<ILogger<StudentController>> logger;
-        public StudentControllerTests()
+        private readonly Mock<ILogger<StudentsController>> logger;
+        public StudentsControllerTests()
         {
             studentService = new Mock<IStudentService>();
-            logger = new Mock<ILogger<StudentController>>();
+            logger = new Mock<ILogger<StudentsController>>();
         }
 
         [Fact]
@@ -33,9 +33,9 @@ namespace RegistrarService.UnitTests
             var studentDTOs = GetstudentDTOList();
             studentService.Setup(x => x.GetStudentAccounts())
                 .ReturnsAsync(studentDTOs);
-            var accountController = new StudentController(studentService.Object, logger.Object);
+            var studentController = new StudentsController(studentService.Object, logger.Object);
             //act
-            var result = await accountController.GetAll();
+            var result = await studentController.GetAll();
             var actionResult = result as OkObjectResult;
 
             //assert
@@ -51,7 +51,7 @@ namespace RegistrarService.UnitTests
             IEnumerable<StudentAccountDTO> noReccords = null;
             studentService.Setup(x => x.GetStudentAccounts())
                 .ReturnsAsync(noReccords);
-            var studentController = new StudentController(studentService.Object, logger.Object);
+            var studentController = new StudentsController(studentService.Object, logger.Object);
             //act
             var result = await studentController.GetAll();
             var actionResult = result as NotFoundResult;
@@ -67,7 +67,7 @@ namespace RegistrarService.UnitTests
             IEnumerable<StudentAccountDTO> noReccords = new List<StudentAccountDTO>();
             studentService.Setup(x => x.GetStudentAccounts())
                 .ReturnsAsync(noReccords);
-            var studentController = new StudentController(studentService.Object, logger.Object);
+            var studentController = new StudentsController(studentService.Object, logger.Object);
             //act
             var result = await studentController.GetAll();
             var actionResult = result as NoContentResult;
@@ -90,7 +90,7 @@ namespace RegistrarService.UnitTests
 
             studentService.Setup(x => x.GetStudentAccount(1234567))
                 .ReturnsAsync(accountDTO);
-            var studentController = new StudentController(studentService.Object, logger.Object);
+            var studentController = new StudentsController(studentService.Object, logger.Object);
             //act
             var result = await studentController.Get(1234567);
             var actionResult = result as OkObjectResult;
@@ -110,7 +110,7 @@ namespace RegistrarService.UnitTests
 
             studentService.Setup(x => x.GetStudentAccount(1234567))
                 .ReturnsAsync(accountDTO);
-            var studentController = new StudentController(studentService.Object, logger.Object);
+            var studentController = new StudentsController(studentService.Object, logger.Object);
             //act
             var result = await studentController.Get(1234567);
             var actionResult = result as OkObjectResult;
@@ -125,7 +125,7 @@ namespace RegistrarService.UnitTests
             //arrange
             studentService.Setup(x => x.GetStudentAccount(1234567))
                 .Returns(Task.FromResult<StudentAccountDTO>(null));
-            var studentController = new StudentController(studentService.Object, logger.Object);
+            var studentController = new StudentsController(studentService.Object, logger.Object);
             //act
             var result = await studentController.Get(1234567);
             var actionResult = result as NotFoundResult;
@@ -146,7 +146,7 @@ namespace RegistrarService.UnitTests
 
             studentService.Setup(x => x.GetStudentAccount(1234567))
                 .ReturnsAsync(accountDTO);
-            var studentController = new StudentController(studentService.Object, logger.Object);
+            var studentController = new StudentsController(studentService.Object, logger.Object);
             //act
             var result = await studentController.Get(1234567);
             var actionResult = result as OkObjectResult;
@@ -167,7 +167,7 @@ namespace RegistrarService.UnitTests
 
             studentService.Setup(x => x.GetProgressionResults(1234567))
                 .ReturnsAsync(accountDTO);
-            var studentController = new StudentController(studentService.Object, logger.Object);
+            var studentController = new StudentsController(studentService.Object, logger.Object);
             //act
             var result = await studentController.GetResults(1234567);
             var actionResult = result as OkObjectResult;
@@ -187,7 +187,7 @@ namespace RegistrarService.UnitTests
 
             studentService.Setup(x => x.GetProgressionResults(1234567))
                 .ReturnsAsync(accountDTO);
-            var studentController = new StudentController(studentService.Object, logger.Object);
+            var studentController = new StudentsController(studentService.Object, logger.Object);
             //act
             var result = await studentController.GetResults(1234567);
             var actionResult = result as OkObjectResult;
@@ -202,7 +202,7 @@ namespace RegistrarService.UnitTests
             //arrange
             studentService.Setup(x => x.GetProgressionResults(1234567))
                 .Returns(Task.FromResult<StudentProgressionDTO>(null));
-            var studentController = new StudentController(studentService.Object, logger.Object);
+            var studentController = new StudentsController(studentService.Object, logger.Object);
             //act
             var result = await studentController.GetResults(1234567);
             var actionResult = result as NotFoundResult;
@@ -222,7 +222,7 @@ namespace RegistrarService.UnitTests
 
             studentService.Setup(x => x.GetProgressionResults(1234567))
                 .ReturnsAsync(accountDTO);
-            var studentController = new StudentController(studentService.Object, logger.Object);
+            var studentController = new StudentsController(studentService.Object, logger.Object);
             //act
             var result = await studentController.GetResults(1234567);
             var actionResult = result as OkObjectResult;
@@ -252,25 +252,6 @@ namespace RegistrarService.UnitTests
             };
             return studentDTOList;
         }
-        private IEnumerable<StudentProgressionDTO> GetstudentresultDTOList()
-        {
-            IEnumerable<StudentProgressionDTO> studentDTOList = new List<StudentProgressionDTO>
-            {
-                new StudentProgressionDTO
-                {
-                    StudentId=1234567,
-                    Results = new List<ProgressionDTO>()
-                },
-                 new StudentProgressionDTO
-                {
-                    StudentId=765321
-                },
-                 new StudentProgressionDTO
-                {
-                    StudentId=1122334
-                },
-            };
-            return studentDTOList;
-        }
+       
     }
 }

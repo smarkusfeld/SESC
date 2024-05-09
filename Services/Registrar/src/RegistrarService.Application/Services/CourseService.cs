@@ -80,7 +80,7 @@ namespace RegistrarService.Application.Services
             }
             return Enumerable.Empty<CourseListingDTO>();
         }
-        public async Task<IEnumerable<CourseListingDTO>> SearchCoursebyName(string searchTitle)
+        public async Task<IEnumerable<CourseListingDTO>> SearchCourseByName(string searchTitle)
         {
             var search = searchTitle.ToLower();
             var check = await _unitOfWork.Programmes.GetByAsync(x => x.Name.ToLower().Equals(search))

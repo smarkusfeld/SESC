@@ -33,14 +33,17 @@ namespace RegistrarService.Api.Controllers
         /// </summary>
         /// <returns>
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with all active course offerings <br/> 
-        /// A 404 status code prodeced by the <seealso cref="BadRequestObjectResult"/> if request could not be completed<br/> 
+        /// A 204 status code prodeced by the <seealso cref="NoContentResult"/> if no records exists in the database <br/> 
+        /// A 404 status code produced by the <seealso cref="NotFoundResult"/> if the course service returns a null task<br/> 
         /// </returns>
         [HttpGet]
-        public async Task<IActionResult> GetAllCourses()
+        public async Task<IActionResult> GetAll()
         {
             _logger.LogInformation("Finding Courses");
-            var result = await _service.GetAllCourses();
-            return result != null ? Ok(result) : BadRequest();
+            var result = await _service.GetAllActiveCourses();
+            _logger.LogInformation("Returned Courses from database.");
+            if (result == null) { return NotFound(); }
+            return result.Any() ? Ok(result) : NoContent();
         }
         /// <summary>
         /// Get Course by Course Code
@@ -48,14 +51,14 @@ namespace RegistrarService.Api.Controllers
         /// </summary>
         /// <returns>
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with course <br/> 
-        /// A 404 status code prodeced by the <seealso cref="BadRequestObjectResult"/> if request could not be completed<br/> 
+        /// A 400 status code prodeced by the <seealso cref="NotFoundResult"/> if course was not found<br/>
         /// </returns>
         [HttpGet]
-        public async Task<IActionResult> GetCourse(string courseCode)
+        public async Task<IActionResult> Get(string courseCode)
         {
             _logger.LogInformation($"Finding Course {courseCode}");
             var result = await _service.GetCourse(courseCode);
-            return result != null ? Ok(result) : BadRequest();
+            return result != null ? Ok(result) : NotFound();
         }
         /// <summary>
         /// Get Courses by Program Code
@@ -63,14 +66,17 @@ namespace RegistrarService.Api.Controllers
         /// </summary>
         /// <returns>
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with courses <br/> 
-        /// A 404 status code prodeced by the <seealso cref="BadRequestObjectResult"/> if request could not be completed<br/> 
+        /// A 204 status code prodeced by the <seealso cref="NoContentResult"/> if no records exists in the database <br/> 
+        /// A 404 status code produced by the <seealso cref="NotFoundResult"/> if the course service returns a null task<br/> 
         /// </returns>
         [HttpGet]
         public async Task<IActionResult> GetCourses(string programmeCode)
         {
             _logger.LogInformation($"Finding Courses for Programme Code {programmeCode}");
-            var result = await _service.GetCourse(programmeCode);
-            return result != null ? Ok(result) : BadRequest();
+            var result = await _service.GetCoursesByProgramme(programmeCode);
+            _logger.LogInformation("Returned Courses from database.");
+            if (result == null) { return NotFound(); }
+            return result.Any() ? Ok(result) : NoContent();
         }
         /// <summary>
         /// Search for Course By Subject
@@ -78,14 +84,17 @@ namespace RegistrarService.Api.Controllers
         /// </summary>
         /// <returns>
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with course search results <br/> 
-        /// A 404 status code prodeced by the <seealso cref="BadRequestObjectResult"/> if request could not be completed<br/> 
+        /// A 204 status code prodeced by the <seealso cref="NoContentResult"/> if no records exists in the database <br/> 
+        /// A 404 status code produced by the <seealso cref="NotFoundResult"/> if the course service returns a null task<br/> 
         /// </returns>
         [HttpGet("subject/{search}")]
         public async Task<IActionResult> GetAllCoursesBySubject(string search)
         {
             _logger.LogInformation("Finding Courses");
             var result = await _service.SearchCourseBySubject(search);
-            return result != null ? Ok(result) : BadRequest();
+            _logger.LogInformation("Returned Courses from database.");
+            if (result == null) { return NotFound(); }
+            return result.Any() ? Ok(result) : NoContent();
         }
         /// <summary>
         /// Search for Course By School
@@ -93,14 +102,17 @@ namespace RegistrarService.Api.Controllers
         /// </summary>
         /// <returns>
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with course search results <br/> 
-        /// A 404 status code prodeced by the <seealso cref="BadRequestObjectResult"/> if request could not be completed<br/> 
+        /// A 204 status code prodeced by the <seealso cref="NoContentResult"/> if no records exists in the database <br/> 
+        /// A 404 status code produced by the <seealso cref="NotFoundResult"/> if the course service returns a null task<br/> 
         /// </returns>
         [HttpGet("school/{search}")]
         public async Task<IActionResult> GetAllCoursesBySchool(string search)
         {
             _logger.LogInformation("Finding Courses");
-            var result = await _service.SearchCourseBySubject(search);
-            return result != null ? Ok(result) : BadRequest();
+            var result = await _service.SearchCourseBySchool(search);
+            _logger.LogInformation("Returned Courses from database.");
+            if (result == null) { return NotFound(); }
+            return result.Any() ? Ok(result) : NoContent();
         }
 
         /// <summary>
@@ -109,14 +121,16 @@ namespace RegistrarService.Api.Controllers
         /// </summary>
         /// <returns>
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with course search results <br/> 
-        /// A 404 status code prodeced by the <seealso cref="BadRequestObjectResult"/> if request could not be completed<br/> 
+        /// A 204 status code prodeced by the <seealso cref="NoContentResult"/> if no records exists in the database <br/> 
+        /// A 404 status code produced by the <seealso cref="NotFoundResult"/> if the course service returns a null task<br/> 
         /// </returns>
         [HttpGet("name/{search}")]
         public async Task<IActionResult> GetAllCoursesByName(string search)
         {
             _logger.LogInformation("Finding Courses");
-            var result = await _service.SearchCoursebyName(search);
-            return result != null ? Ok(result) : BadRequest(); ;
+            var result = await _service.SearchCourseByName(search);
+            if (result == null) { return NotFound(); }
+            return result.Any() ? Ok(result) : NoContent();
         }
 
     }
