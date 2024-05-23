@@ -22,7 +22,7 @@ namespace RegistrarService.Infastructure.Configurations
 
             builder
                  .Property(x => x.Name)
-                 .HasColumnType("varchar(50)")
+                 .HasColumnType("varchar(350)")
                  .IsRequired();
 
             builder.HasData

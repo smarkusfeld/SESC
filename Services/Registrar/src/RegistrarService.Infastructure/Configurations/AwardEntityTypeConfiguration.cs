@@ -26,12 +26,12 @@ namespace RegistrarService.Infastructure.Configurations
 
             builder
                  .Property(x => x.Name)
-                 .HasColumnType("varchar(50)")
+                 .HasColumnType("varchar(250)")
                  .IsRequired();
 
             builder
                  .Property(x => x.Abbr)
-                 .HasColumnType("varchar(5)")
+                 .HasColumnType("varchar(20)")
                  .IsRequired(false);
 
             builder

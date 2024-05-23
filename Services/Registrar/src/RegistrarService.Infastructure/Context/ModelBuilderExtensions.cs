@@ -65,7 +65,7 @@ namespace RegistrarService.Infastructure.Context
                     Duration = 3,
                     TotalCredits = 240,
                     SchoolId = 2,
-                    AwardId = 100,
+                    AwardId = 110,
                     SubjectId = 7,
                 }
             );
