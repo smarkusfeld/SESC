@@ -28,10 +28,10 @@ namespace RegistrarService.Infastructure.Configurations
             builder
                  .Property(x => x.StudentId);
 
-            builder
-                 .Property(x => x.CourseLevelName)
-                 .HasColumnType("varchar(100)")
-                 .IsRequired();
+            //builder
+                 //.Property(x => x.CourseLevelName)
+                 //.HasColumnType("varchar(100)")
+                 //.IsRequired();
 
             builder
                  .Property(x => x.ProgressNotes)

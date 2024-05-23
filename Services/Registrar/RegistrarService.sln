@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegistrarService.Infastruct
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegistrarService.UnitTests", "tests\RegistrarService.UnitTests\RegistrarService.UnitTests.csproj", "{7B5F9177-F9B5-41AF-8493-C777B873D06D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "..\..\BuildingBlocks\EventBus\EventBus\EventBus.csproj", "{136F694B-6FAD-43F3-9190-C8CF88857144}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegistrarService.IntegrationTests", "tests\RegistrarService.IntegrationTests\RegistrarService.IntegrationTests.csproj", "{66EFCBB9-996B-4B9A-898D-3BB136A46535}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,10 +46,10 @@ Global
 		{7B5F9177-F9B5-41AF-8493-C777B873D06D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B5F9177-F9B5-41AF-8493-C777B873D06D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B5F9177-F9B5-41AF-8493-C777B873D06D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{136F694B-6FAD-43F3-9190-C8CF88857144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{136F694B-6FAD-43F3-9190-C8CF88857144}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{136F694B-6FAD-43F3-9190-C8CF88857144}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{136F694B-6FAD-43F3-9190-C8CF88857144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66EFCBB9-996B-4B9A-898D-3BB136A46535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66EFCBB9-996B-4B9A-898D-3BB136A46535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66EFCBB9-996B-4B9A-898D-3BB136A46535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66EFCBB9-996B-4B9A-898D-3BB136A46535}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

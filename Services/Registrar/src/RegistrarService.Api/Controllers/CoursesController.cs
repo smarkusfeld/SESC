@@ -53,7 +53,7 @@ namespace RegistrarService.Api.Controllers
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with course <br/> 
         /// A 400 status code prodeced by the <seealso cref="NotFoundResult"/> if course was not found<br/>
         /// </returns>
-        [HttpGet]
+        [HttpGet("{courseCode}")]
         public async Task<IActionResult> Get(string courseCode)
         {
             _logger.LogInformation($"Finding Course {courseCode}");
@@ -69,7 +69,7 @@ namespace RegistrarService.Api.Controllers
         /// A 204 status code prodeced by the <seealso cref="NoContentResult"/> if no records exists in the database <br/> 
         /// A 404 status code produced by the <seealso cref="NotFoundResult"/> if the course service returns a null task<br/> 
         /// </returns>
-        [HttpGet]
+        [HttpGet("{programmeCode}")]
         public async Task<IActionResult> GetCourses(string programmeCode)
         {
             _logger.LogInformation($"Finding Courses for Programme Code {programmeCode}");

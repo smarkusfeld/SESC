@@ -26,10 +26,10 @@ namespace RegistrarService.Infastructure.Configurations
                  .Property(x => x.QualificationLevel)
                  .IsRequired(true);
 
-            builder
-                 .Property(x => x.Name)
-                 .HasColumnType("varchar(50)")
-                 .IsRequired();
+            //builder
+                // .Property(x => x.Name)
+                 //.HasColumnType("varchar(50)")
+                 //.IsRequired();
 
             builder
                  .Property(x => x.Credits);

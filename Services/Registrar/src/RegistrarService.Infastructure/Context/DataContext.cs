@@ -57,17 +57,17 @@ namespace RegistrarService.Infastructure.Context
             modelBuilder.Entity<Award>()
                .HasMany(y => y.Programmes)
                .WithOne(x => x.Award)
-               .HasForeignKey(x => x.ProgrammeCode); 
+               .HasForeignKey(x => x.AwardId); 
             
             modelBuilder.Entity<Subject>()
                .HasMany(y => y.Programmes)
                .WithOne(x => x.Subject)
-               .HasForeignKey(x => x.ProgrammeCode);
+               .HasForeignKey(x => x.SubjectId);
             
             modelBuilder.Entity<School>()
                .HasMany(y => y.Programmes)
                .WithOne(x => x.School)
-               .HasForeignKey(x => x.ProgrammeCode);
+               .HasForeignKey(x => x.SchoolId);
 
             modelBuilder.Entity<Programme>()
                .HasMany(y => y.Courses)

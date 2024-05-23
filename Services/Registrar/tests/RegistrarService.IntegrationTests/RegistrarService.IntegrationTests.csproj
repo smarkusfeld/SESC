@@ -26,10 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\StudentService.Api\RegistrarService.Api.csproj" />
-    <ProjectReference Include="..\..\src\StudentService.Application\RegistrarService.Application.csproj" />
-    <ProjectReference Include="..\..\src\StudentService.Domain\RegistrarService.Domain.csproj" />
-    <ProjectReference Include="..\..\src\StudentService.Infastructure\RegistrarService.Infastructure.csproj" />
+    <ProjectReference Include="..\..\src\RegistrarService.Api\RegistrarService.Api.csproj" />
+    <ProjectReference Include="..\..\src\RegistrarService.Application\RegistrarService.Application.csproj" />
+    <ProjectReference Include="..\..\src\RegistrarService.Domain\RegistrarService.Domain.csproj" />
+    <ProjectReference Include="..\..\src\RegistrarService.Infastructure\RegistrarService.Infastructure.csproj" />
   </ItemGroup>
 
 </Project>

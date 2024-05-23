@@ -98,8 +98,6 @@ namespace RegistrarService.Application.Services
 
             }
 
-
-
         }
 
         /// <summary>

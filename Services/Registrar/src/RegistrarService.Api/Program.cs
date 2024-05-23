@@ -6,6 +6,7 @@ using RegistrarService.Infastructure.Extensions;
 using RegistrarService.Service.Middleware;
 using System.Reflection;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,9 +20,9 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "StudentMicroservice",
+        Title = "RegistrarMicroservice",
         Version = "v1",
-        Description = "Student Service",
+        Description = "Registrar Service",
     });
     // allow xml comments to be seen on swagger UI
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -56,7 +57,7 @@ using (var scope = app.Services.CreateScope())
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
-    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Student HTTP API v1");
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Registrar HTTP API v1");
     options.RoutePrefix = string.Empty;
 });
 
@@ -69,3 +70,6 @@ app.UseMiddleware<ErrorHandlerMiddleware>();
 app.MapControllers();
 
 app.Run();
+
+//public partical program for integration testing
+public partial class Program { }

@@ -51,6 +51,8 @@ namespace RegistrarService.Domain.Entities
         }
         public override object Key => CourseLevelId;
 
+        private string _name;
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CourseLevelId { get; set; }

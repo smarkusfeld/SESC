@@ -29,16 +29,18 @@ namespace StudentPortal.Controllers
             return View();
         }
 
-        public IActionResult UserProfile()
-        {
+        //public IActionResult UserProfile()
+        //{
 
-        }
+        //}
 
-        public Task<IActionResult> GetUserProfile(string username)
-        {
+        //public Task<IActionResult> GetUserProfile(string username)
+        //{
 
-        }
-        public IActionResult Login()
+        //}
+        //public IActionResult Login()
+        //{ }
+
         public async Task<IActionResult> Login(LoginModel model)
         {
             _logger.LogInformation("Validating Model");
