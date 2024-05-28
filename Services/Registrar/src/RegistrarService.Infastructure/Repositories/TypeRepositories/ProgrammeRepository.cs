@@ -1,4 +1,5 @@
-﻿using RegistrarService.Application.Interfaces.Repositories.TypeRepositories;
+﻿using Microsoft.EntityFrameworkCore;
+using RegistrarService.Application.Interfaces.Repositories.TypeRepositories;
 using RegistrarService.Domain.Entities;
 using RegistrarService.Infastructure.Context;
 using System;
@@ -13,6 +14,12 @@ namespace RegistrarService.Infastructure.Repositories.TypeRepositories
     {
         public ProgrammeRepository(DataContext dbContext) : base(dbContext)
         {
+
+        }
+
+        public override async Task<Programme> GetAsync(object key)
+        {
+            return await _set.SingleOrDefaultAsync(x => x.ProgrammeCode == key);
         }
     }
 }

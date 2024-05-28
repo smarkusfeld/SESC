@@ -11,6 +11,10 @@ namespace RegistrarService.Infastructure.Repositories.TypeRepositories
         public StudentRepository(DataContext dbContext) : base(dbContext)
         {
         }
+        public override async Task<Student> GetAsync(object key)
+        {
+            return await _set.SingleOrDefaultAsync(x => x.StudentId.Equals(key));
+        }
 
         public async Task<Student> CompleteEnrolment(Student entity)
         {

@@ -24,11 +24,6 @@ namespace RegistrarService.Application.Models.DTOs.ReponseModels
 
         public int Credits { get; set; }
 
-        public string CourseSchool { get; set; }
-
-        public string CourseSubject { get; set; }
-
-        public string CourseDegree { get; set; }
 
         public string ProgrammeCode { get; set; }
         public List<string> CourseLevels { get; set; }

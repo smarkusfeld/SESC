@@ -17,6 +17,8 @@ namespace RegistrarService.Application.Interfaces.Repositories
         /// <exception cref="NullReferenceException"></exception> 
         Task<T> GetAsync(object key);
 
+       
+
         /// <summary>
         /// Gets a single according that fullfills the <paramref name="predicate" />
         /// </summary>

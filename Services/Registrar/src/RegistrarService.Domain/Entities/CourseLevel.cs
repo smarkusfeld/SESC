@@ -16,7 +16,7 @@ namespace RegistrarService.Domain.Entities
     /// </summary>
     public class CourseLevel : BaseAuditableEntity
     {
-        private CourseLevel() { }
+        public CourseLevel() { }
 
         /// <summary>
         /// Public Constructor to create CourseLevel
@@ -59,9 +59,9 @@ namespace RegistrarService.Domain.Entities
 
         public int Credits { get; set; }
         public int QualificationLevel { get; set; }
-        public float TuitionFee { get; set; }
+        public double TuitionFee { get; set; }
         public string CourseCode { get; set; }
-        public int AcademicYearId { get; private set; }
+        public int AcademicYearId { get; set; }
 
         // navigation properies
         public Course Course { get; set; }
@@ -73,7 +73,7 @@ namespace RegistrarService.Domain.Entities
         public ICollection<ProgressionResult> Results { get; set; } = new List<ProgressionResult>();
 
         [NotMapped]
-        public string Name => Course.Programme.Name + QualificationLevel.ToString();
+        public string Name => Course.Programme.Name + " "+  QualificationLevel.ToString();
 
     }
 }

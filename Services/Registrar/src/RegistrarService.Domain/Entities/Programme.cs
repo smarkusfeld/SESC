@@ -38,5 +38,7 @@ namespace RegistrarService.Domain.Entities
         public Subject Subject { get; set; }
         public Award Award { get; set; }
         public ICollection<Course> Courses { get; private set; } = new List<Course>();
+
+  
     }
 }

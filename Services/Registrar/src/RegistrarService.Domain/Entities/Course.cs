@@ -80,6 +80,8 @@ namespace RegistrarService.Domain.Entities
         [NotMapped]
         public bool ApplicationOpen { get => DateTime.Now <= ApplicationDeadline; }
 
+        
+
     }
    
 }

@@ -36,7 +36,7 @@ namespace RegistrarService.Infastructure.Configurations
 
             builder
                  .Property(x => x.TuitionFee)
-                 .HasColumnType("decimal(5, 2)")
+                 .HasColumnType("decimal(9, 2)")
                  .IsRequired();
 
         }

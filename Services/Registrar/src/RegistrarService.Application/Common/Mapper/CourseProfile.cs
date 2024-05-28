@@ -28,14 +28,18 @@ namespace RegistrarService.Application.Common.Mapper
 
 
             ////no reverse map needed for listings
-            CreateMap<Course, CourseListingDTO> ()
-               .ForMember(dest => dest.CourseSchool, opt => opt.MapFrom(src => src.Programme.School.Name))
-               .ForMember(dest => dest.CourseSubject, opt => opt.MapFrom(src => src.Programme.Subject.Name))
-               .ForMember(dest => dest.CourseDegree, opt => opt.MapFrom(src => src.Programme.Award.Name))
-               .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Programme.Duration))
-               .ForMember(dest => dest.Credits, opt => opt.MapFrom(src => src.Programme.TotalCredits))
-               .ForMember(dest => dest.ProgrammeCode, opt => opt.MapFrom(src => src.Programme.ProgrammeCode))
+            CreateMap<Course, CourseListingDTO>()
+               .IncludeMembers(s => s.Programme)
                .ForMember(dest => dest.CourseLevels, opt => opt.MapFrom(src => src.CourseLevels.Select(x => x.Name)));
+            //.ForPath(dest => dest.CourseLevels, opt => opt.MapFrom(src => src.CourseLevels.Select(x => x.Name)));
+
+
+            CreateMap<Programme, CourseListingDTO>()
+               .ForMember(dest => dest.ProgrammeCode, opt => opt.MapFrom(src => src.ProgrammeCode))
+               .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Duration))
+               .ForMember(dest => dest.Credits, opt => opt.MapFrom(src => src.TotalCredits));
+
+
 
             ////no reverse map needed for listings
             //CreateMap<CourseLevel, CourseLevelListing>()

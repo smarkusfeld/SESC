@@ -1,11 +1,12 @@
-﻿using RegistrarService.Application.Common.Exceptions;
+﻿using Microsoft.AspNetCore.Mvc;
+using RegistrarService.Application.Common.Exceptions;
 using System.Net;
 using System.Text.Json;
 
 namespace RegistrarService.Service.Middleware
 {
     /// <summary>
-    /// https://jasonwatmore.com/post/2022/01/17/net-6-global-error-handler-tutorial-with-example 
+    /// Exception service
     /// </summary>
     public class ErrorHandlerMiddleware
     {
@@ -26,31 +27,35 @@ namespace RegistrarService.Service.Middleware
             {
                 var response = context.Response;
                 response.ContentType = "application/json";
-
                 switch (error)
                 {
-                    case BadRequestException e:
+                    case AppException:
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
-                    case MySQLException e:
+                    case BadRequestException:
+                        // custom application error
+                        response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        break;
+                    case MySQLException:
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
                         break;
-                    case InvalidResponseException e:
+                    case InvalidResponseException:
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.BadGateway;
                         break;
-                    case KeyNotFoundException e:
+                    case KeyNotFoundException:
                         // not found error
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
+                    
                     default:
                         // unhandled error
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
                         break;
                 }
-
+                
                 var result = JsonSerializer.Serialize(new { message = error?.Message });
                 await response.WriteAsync(result);
             }

@@ -15,7 +15,7 @@ namespace RegistrarService.Infastructure.Configurations
     /// <summary>
     /// Configuration for the <see cref="ProgressionResult"/> entity
     /// </summary>
-   public class CourseResultEntityTypeConfiguration : IEntityTypeConfiguration<ProgressionResult>
+   public class ProgressionResultEntityTypeConfiguration : IEntityTypeConfiguration<ProgressionResult>
     {
         public void Configure(EntityTypeBuilder<ProgressionResult> builder)
         {

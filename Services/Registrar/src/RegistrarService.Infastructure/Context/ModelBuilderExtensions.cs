@@ -28,6 +28,22 @@ namespace RegistrarService.Infastructure.Context
                  new AcademicYear(2024, 2025)
                  {
                      Id = 3
+                 },
+                 new AcademicYear(2025, 2026)
+                 {
+                     Id = 4
+                 },
+                 new AcademicYear(2026, 2027)
+                 {
+                     Id = 5
+                 },
+                 new AcademicYear(2027, 2028)
+                 {
+                     Id = 6
+                 },
+                 new AcademicYear(2028, 2029)
+                 {
+                     Id = 7
                  }
              );
             builder.Entity<AcademicTerm>().HasData
@@ -52,9 +68,17 @@ namespace RegistrarService.Infastructure.Context
                {
                    Id = 5,
                },
-               new AcademicTerm("Semester 2", 3, new DateTime(2025, 01, 25), new DateTime(2026, 05, 24))
+               new AcademicTerm("Semester 2", 3, new DateTime(2025, 01, 25), new DateTime(2025, 05, 24))
                {
                    Id = 6,
+               },
+               new AcademicTerm("Semester 1", 4, new DateTime(2025, 09, 18), new DateTime(2026, 01, 15))
+               {
+                   Id = 7,
+               },
+               new AcademicTerm("Semester 2", 4, new DateTime(2026, 01, 25), new DateTime(2026, 05, 24))
+               {
+                   Id = 8,
                }
             );
             builder.Entity<Programme>().HasData(
@@ -101,7 +125,116 @@ namespace RegistrarService.Infastructure.Context
                     CourseType = CourseType.FullTime
                 }
             );
-            
+            builder.Entity<CourseLevel>().HasData(
+               new CourseLevel
+               {
+                   CourseLevelId = 1,
+                   CourseCode = "8L17-2022",
+                   QualificationLevel = 4,
+                   Credits = 60,
+                   TuitionFee = 9250.00,
+                   AcademicYearId = 1 
+               },
+               new CourseLevel
+               {
+                   CourseLevelId = 2,
+                   CourseCode = "8L17-2022",
+                   QualificationLevel = 5,
+                   Credits = 60,
+                   TuitionFee = 9250.00,
+                   AcademicYearId = 2
+               },
+               new CourseLevel
+               {
+                   CourseLevelId = 3,
+                   CourseCode = "8L17-2022",
+                   QualificationLevel = 6,
+                   Credits = 60,
+                   TuitionFee = 9250.00,
+                   AcademicYearId = 3
+               },
+               new CourseLevel
+               {
+                   CourseLevelId = 4,
+                   CourseCode = "8L17-2022",
+                   QualificationLevel = 7,
+                   Credits = 60,
+                   TuitionFee = 9250.00,
+                   AcademicYearId = 4
+               },
+               new CourseLevel
+               {
+                   CourseLevelId = 5,
+                   CourseCode = "8L17-2023",
+                   QualificationLevel = 4,
+                   Credits = 60,
+                   TuitionFee = 9250.00,
+                   AcademicYearId = 2
+               },
+               new CourseLevel
+               {
+                   CourseLevelId = 6,
+                   CourseCode = "8L17-2023",
+                   QualificationLevel = 5,
+                   Credits = 60,
+                   TuitionFee = 9250.00,
+                   AcademicYearId = 3
+               },
+               new CourseLevel
+               {
+                   CourseLevelId = 7,
+                   CourseCode = "8L17-2023",
+                   QualificationLevel = 6,
+                   Credits = 60,
+                   TuitionFee = 9250.00,
+                   AcademicYearId = 4
+               },
+               new CourseLevel
+               {
+                   CourseLevelId = 8,
+                   CourseCode = "8L17-2023",
+                   QualificationLevel = 7,
+                   Credits = 60,
+                   TuitionFee = 9250.00,
+                   AcademicYearId = 5
+               },
+               new CourseLevel
+               {
+                   CourseLevelId = 9,
+                   CourseCode = "8L17-2024",
+                   QualificationLevel = 4,
+                   Credits = 60,
+                   TuitionFee = 9250.00,
+                   AcademicYearId = 3
+               },
+               new CourseLevel
+               {
+                   CourseLevelId = 10,
+                   CourseCode = "8L17-2024",
+                   QualificationLevel = 5,
+                   Credits = 60,
+                   TuitionFee = 9250.00,
+                   AcademicYearId = 4
+               },
+               new CourseLevel
+               {
+                   CourseLevelId = 11,
+                   CourseCode = "8L17-2024",
+                   QualificationLevel = 6,
+                   Credits = 60,
+                   TuitionFee = 9250.00,
+                   AcademicYearId = 5
+               },
+               new CourseLevel
+               {
+                   CourseLevelId = 12,
+                   CourseCode = "8L17-2024",
+                   QualificationLevel = 7,
+                   Credits = 60,
+                   TuitionFee = 9250.00,
+                   AcademicYearId = 6
+               }
+           );
         }
     }
 }

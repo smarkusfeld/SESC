@@ -79,11 +79,11 @@ namespace RegistrarService.Application.Common.Mapper
 
 
             CreateMap<ProgressionDTO, ProgressionResult>()
-            .ForMember(dest => dest.CourseLevelName, opt => opt.MapFrom(src => src.CourseLevelName))
+            //.ForMember(dest => dest.CourseLevelName, opt => opt.MapFrom(src => src.CourseLevelName))
             .ForMember(dest => dest.ProgressDecision, opt => opt.MapFrom(src => src.ProgressDecision))
             .ForMember(dest => dest.ProgressDate, opt => opt.MapFrom(src => src.ProgressDate))
             .ForMember(dest => dest.ProgressNotes, opt => opt.MapFrom(src => src.ProgressNotes))
-            .ForMember(dest=> dest.AcademicYear, opt=>opt.Ignore())
+            //.ForMember(dest=> dest.AcademicYear, opt=>opt.Ignore())
             .ForMember(dest => dest.Student, opt => opt.Ignore())
             .ForMember(dest => dest.CourseLevel, opt => opt.Ignore())
             .ForMember(dest => dest.CreatedBy, opt => opt.Ignore())
@@ -92,7 +92,7 @@ namespace RegistrarService.Application.Common.Mapper
              .ForMember(dest => dest.UpdatedDate, opt => opt.Ignore())
             .ReverseMap()
             .ForPath(dest => dest.AcademicYear, opt => opt.MapFrom(src => src.CourseLevel.AcademicYear.Name))
-            .ForPath(dest => dest.CourseCode, opt => opt.MapFrom(src => src.CourseCode));
+            .ForPath(dest => dest.CourseCode, opt => opt.MapFrom(src => src.CourseLevel.Course.CourseCode));
             
 
 

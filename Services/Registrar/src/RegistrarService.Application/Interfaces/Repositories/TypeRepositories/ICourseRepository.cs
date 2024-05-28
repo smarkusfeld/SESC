@@ -13,10 +13,17 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
     /// </summary>    
     public interface ICourseRepository : IGenericRepository<Course>
     {
-        
+        /// <summary>
+        /// Retrives a collection of all courses
+        /// </summary>
+        /// <returns>An ordered collection of entities or empty collection of entities
+        /// Expection returned if source is null</returns>
+        /// <exception cref="NullReferenceException"></exception> 
+        Task<IEnumerable<Course>> GetAllActiveCoursesAsync();
 
- 
+
     }
 
     
+
 }

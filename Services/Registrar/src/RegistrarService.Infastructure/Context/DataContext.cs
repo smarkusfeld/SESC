@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MySqlX.XDevAPI.Common;
 using Org.BouncyCastle.Asn1.X509;
 using RegistrarService.Domain.Entities;
+using System.Diagnostics;
 using System.Reflection;
 using System.Reflection.Emit;
 
@@ -54,60 +56,79 @@ namespace RegistrarService.Infastructure.Context
                .WithOne(x => x.Applicant)
                .HasForeignKey(x => x.ApplicantId);
 
-            modelBuilder.Entity<Award>()
-               .HasMany(y => y.Programmes)
-               .WithOne(x => x.Award)
-               .HasForeignKey(x => x.AwardId); 
-            
-            modelBuilder.Entity<Subject>()
-               .HasMany(y => y.Programmes)
-               .WithOne(x => x.Subject)
+            modelBuilder.Entity<Programme>()
+               .HasOne(x => x.Subject)
+               .WithMany(y => y.Programmes)
                .HasForeignKey(x => x.SubjectId);
-            
-            modelBuilder.Entity<School>()
-               .HasMany(y => y.Programmes)
-               .WithOne(x => x.School)
+
+            modelBuilder.Entity<Programme>()
+               .HasOne(x => x.School)
+               .WithMany(y => y.Programmes)
                .HasForeignKey(x => x.SchoolId);
 
             modelBuilder.Entity<Programme>()
-               .HasMany(y => y.Courses)
-               .WithOne(x => x.Programme)
-               .HasForeignKey(x => x.ProgrammeCode);
+              .HasOne(x => x.Award)
+              .WithMany(y => y.Programmes)
+              .HasForeignKey(x => x.AwardId);
+
+            //modelBuilder.Entity<Award>()
+            //   .HasMany(y => y.Programmes)
+            //   .WithOne(x => x.Award)
+            //   .HasForeignKey(x => x.AwardId); 
+
+            //modelBuilder.Entity<Subject>()
+            //   .HasMany(y => y.Programmes)
+            //   .WithOne(x => x.Subject)
+            //   .HasForeignKey(x => x.SubjectId);
+
+            //modelBuilder.Entity<School>()
+            //   .HasMany(y => y.Programmes)
+            //   .WithOne(x => x.School)
+            //   .HasForeignKey(x => x.SchoolId);
+
+            //modelBuilder.Entity<Programme>()
+            // .HasMany(y => y.Courses)
+            //.WithOne(x => x.Programme)
+            // .HasForeignKey(x => x.ProgrammeCode);
 
             modelBuilder.Entity<Course>()
-                .HasMany(y => y.CourseLevels)
-                .WithOne(x => x.Course)
+                .HasOne(x => x.Programme)
+                .WithMany(y => y.Courses)
+                .HasForeignKey(x => x.ProgrammeCode);
+
+            modelBuilder.Entity<CourseLevel>()
+                .HasOne(y => y.Course)
+                .WithMany(x => x.CourseLevels)
                 .HasForeignKey(x => x.CourseCode);
 
-            modelBuilder.Entity<Course>()
-                .HasMany(y => y.CourseApplications)
-                .WithOne(x => x.Course)
-                .HasForeignKey(x => x.CourseCode);
-
-            modelBuilder.Entity<AcademicYear>()
-                .HasMany(y => y.CourseLevels)
-                .WithOne(x => x.AcademicYear)
+            modelBuilder.Entity<CourseLevel>()
+                .HasOne(y => y.AcademicYear)
+                .WithMany(x => x.CourseLevels)
                 .HasForeignKey(x => x.AcademicYearId);
 
-            modelBuilder.Entity<CourseLevel>()
-                .HasMany(y => y.Enrolments)
-                .WithOne(x => x.CourseLevel)
+            modelBuilder.Entity<CourseApplication>()
+                .HasOne(y => y.Course)
+                .WithMany(x => x.CourseApplications)
+                .HasForeignKey(x => x.CourseCode);
+
+            modelBuilder.Entity<Enrolment>()
+                .HasOne(y => y.CourseLevel)
+                .WithMany(x => x.Enrolments)
                 .HasForeignKey(x => x.CourseLevelId);
 
-
-            modelBuilder.Entity<Student>()
-                .HasMany(y => y.Enrolments)
-                .WithOne(x => x.Student)
+            modelBuilder.Entity<Enrolment>()
+                .HasOne(y => y.Student)
+                .WithMany(x => x.Enrolments)
                 .HasForeignKey(x => x.StudentId);
 
-            modelBuilder.Entity<Student>()
-                .HasMany(y => y.Results)
-                .WithOne(x => x.Student)
+            modelBuilder.Entity<ProgressionResult>()
+                .HasOne(y => y.Student)
+                .WithMany(x => x.Results)
                 .HasForeignKey(x => x.StudentId);
 
-            modelBuilder.Entity<CourseLevel>()
-                .HasMany(y => y.Results)
-                .WithOne(x => x.CourseLevel)
+            modelBuilder.Entity<ProgressionResult>()
+                .HasOne(y => y.CourseLevel)
+                .WithMany(x => x.Results)
                 .HasForeignKey(x => x.CourseLevelId);
 
             modelBuilder.SeedDatabase();

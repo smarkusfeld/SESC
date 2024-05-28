@@ -84,7 +84,7 @@ namespace RegistrarService.UnitTests
         }
         [Theory]
         [InlineData(typeof(Course), typeof(CourseListingDTO))]
-        public void PaymentMap_SourceToDestination_ExistConfiguration(Type origin, Type destination)
+        public void CourseMap_SourceToDestination_ExistConfiguration(Type origin, Type destination)
         {
             var instance = FormatterServices.GetUninitializedObject(origin);
             _Mapper.Map(instance, origin, destination);

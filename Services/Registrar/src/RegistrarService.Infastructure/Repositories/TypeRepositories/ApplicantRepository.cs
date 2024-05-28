@@ -1,4 +1,5 @@
-﻿using RegistrarService.Application.Interfaces.Repositories.TypeRepositories;
+﻿using Microsoft.EntityFrameworkCore;
+using RegistrarService.Application.Interfaces.Repositories.TypeRepositories;
 using RegistrarService.Domain.Entities;
 using RegistrarService.Infastructure.Context;
 using System;
@@ -15,7 +16,10 @@ namespace RegistrarService.Infastructure.Repositories.TypeRepositories
         {
 
         }
-
+        public override async Task<Applicant> GetAsync(object key)
+        {
+            return await _set.SingleOrDefaultAsync(x => x.ApplicantId.Equals(key));
+        }
         public Task<Applicant> SubmitApplication(Applicant entity)
         {
             throw new NotImplementedException();

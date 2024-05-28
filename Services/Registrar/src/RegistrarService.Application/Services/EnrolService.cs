@@ -77,7 +77,7 @@ namespace RegistrarService.Application.Services
             var account = await _unitOfWork.Students.GetAsync(studentId)
                ?? throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
 
-            var results = await _unitOfWork.Results.GetAllWhereAsync(x => x.StudentId == studentId && x.CourseCode.Equals(courseCode))
+            var results = await _unitOfWork.Results.GetAllWhereAsync(x => x.StudentId == studentId && x.CourseLevel.CourseCode.Equals(courseCode))
                 ?? throw new BadRequestException($"Check student course code");
 
             var lastResult = results.OrderByDescending(d => d.ProgressDate).First();

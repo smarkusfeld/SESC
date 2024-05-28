@@ -69,7 +69,7 @@ namespace RegistrarService.Api.Controllers
         /// A 204 status code prodeced by the <seealso cref="NoContentResult"/> if no records exists in the database <br/> 
         /// A 404 status code produced by the <seealso cref="NotFoundResult"/> if the course service returns a null task<br/> 
         /// </returns>
-        [HttpGet("{programmeCode}")]
+        [HttpGet("programme/{programmeCode}")]
         public async Task<IActionResult> GetCourses(string programmeCode)
         {
             _logger.LogInformation($"Finding Courses for Programme Code {programmeCode}");
@@ -114,7 +114,24 @@ namespace RegistrarService.Api.Controllers
             if (result == null) { return NotFound(); }
             return result.Any() ? Ok(result) : NoContent();
         }
-
+        /// <summary>
+        /// Search for Course By Degree
+        /// <br></br>
+        /// </summary>
+        /// <returns>
+        /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with course search results <br/> 
+        /// A 204 status code prodeced by the <seealso cref="NoContentResult"/> if no records exists in the database <br/> 
+        /// A 404 status code produced by the <seealso cref="NotFoundResult"/> if the course service returns a null task<br/> 
+        /// </returns>
+        [HttpGet("degree/{search}")]
+        public async Task<IActionResult> GetAllCoursesByDegree(string search)
+        {
+            _logger.LogInformation("Finding Courses");
+            var result = await _service.SearchCourseByAward(search);
+            _logger.LogInformation("Returned Courses from database.");
+            if (result == null) { return NotFound(); }
+            return result.Any() ? Ok(result) : NoContent();
+        }
         /// <summary>
         /// Search for Course By Programme Name
         /// <br></br>

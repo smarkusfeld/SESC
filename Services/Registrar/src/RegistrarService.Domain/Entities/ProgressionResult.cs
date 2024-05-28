@@ -46,13 +46,13 @@ namespace RegistrarService.Domain.Entities
         public Student Student { get; set; }
         public CourseLevel CourseLevel { get; set; }
 
-        [NotMapped]
-        public AcademicYear AcademicYear => CourseLevel.AcademicYear;
+        //[NotMapped]
+        //public AcademicYear AcademicYear => CourseLevel.AcademicYear;
 
-        [NotMapped]
-        public string CourseLevelName => CourseLevel.Name;
+        //[NotMapped]
+        //public string CourseLevelName => CourseLevel.Name;
 
-        [NotMapped]
-        public string CourseCode => CourseLevel.Course.CourseCode;                         
+        //[NotMapped]
+        //public string CourseCode => CourseLevel.Course.CourseCode;                         
     }
 }
