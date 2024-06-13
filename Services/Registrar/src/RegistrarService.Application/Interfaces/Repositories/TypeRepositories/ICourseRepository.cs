@@ -22,6 +22,7 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
         Task<IEnumerable<Course>> GetAllActiveCoursesAsync();
 
 
+        
     }
 
     

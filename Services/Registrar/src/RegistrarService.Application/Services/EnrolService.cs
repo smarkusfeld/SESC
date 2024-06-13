@@ -151,7 +151,7 @@ namespace RegistrarService.Application.Services
         private async Task<StudentAccountDTO> UpdateStudentAccount(UpdateStudentDTO student)
         {
             var update = _mapper.Map<Student>(student);
-            var result = await _unitOfWork.Students.UpdateAsync(update)
+            var result =  _unitOfWork.Students.Update(update)
                 ?? throw new MySQLException("Could not update student account");
             return _mapper.Map<StudentAccountDTO>(result);
         }

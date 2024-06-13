@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,30 +24,74 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
         
         public override async Task<Course> GetAsync(object key)
         {
-            IQueryable<Course> query = _set;
 
-            query = query.Where(x => x.CourseCode.Equals(key));
+            return await _set
+                .Include(x => x.CourseLevels)
+                .Include(x => x.Programme)
+                .Include(x => x.Programme.School)
+                .Include(x => x.Programme.Award)
+                .Include(x => x.Programme.Subject)
+                .AsNoTracking()
+                .SingleAsync(x => x.CourseCode.Equals(key));
 
-            query = query.Include("Programme");
+        }
+        
 
-            query = query.Include("CourseLevels");
 
-            return await query.AsNoTracking().SingleAsync();
+        public override async Task<IEnumerable<Course>> GetAllAsync()
+        {
+
+            return await _set
+               .Include(x => x.Programme)
+               .Include(x => x.CourseLevels)
+                .Include(x => x.Programme.School)
+                .Include(x => x.Programme.Award)
+                .Include(x => x.Programme.Subject)
+               .AsNoTracking()
+               .ToListAsync();
+
+        }
+
+        public override async Task<Course>GetByAsync(Expression<Func<Course, bool>> predicate)
+        {
+
+            return await _set
+               .Include(x => x.Programme)
+               .Include(x => x.CourseLevels)
+                .Include(x => x.Programme.School)
+                .Include(x => x.Programme.Award)
+                .Include(x => x.Programme.Subject)
+               .AsNoTracking()
+               .SingleAsync(predicate);
+
+        }
+
+        public override async Task<IEnumerable<Course>> GetAllWhereAsync(Expression<Func<Course, bool>> predicate)
+        {
+
+            return await _set
+               .Where(predicate)
+               .Include(x => x.Programme)
+               .Include(x => x.CourseLevels)
+               .Include(x => x.Programme.School)
+                .Include(x => x.Programme.Award)
+                .Include(x => x.Programme.Subject)
+               .AsNoTracking()
+               .ToListAsync();
 
         }
 
         public async Task<IEnumerable<Course>> GetAllActiveCoursesAsync()
-        {
-            IQueryable<Course> query = _set;
-
-            query = query.Where(x => x.IsActive);
-
-            query = query.Include("Programme");
-
-            query = query.Include("CourseLevels");
-
-            return await query.AsNoTracking().ToListAsync();
-
+        {         
+            return await _set
+               .Where(x => x.IsActive)
+               .Include(x => x.Programme)
+               .Include(x => x.CourseLevels)
+               .Include(x => x.Programme.School)
+                .Include(x => x.Programme.Award)
+                .Include(x => x.Programme.Subject)
+               .AsNoTracking()
+               .ToListAsync();
         }
 
 

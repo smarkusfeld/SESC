@@ -13,5 +13,12 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
     /// </summary>    
     public interface IProgressionResultRepository : IGenericRepository<ProgressionResult>
     {
+
+        /// <summary>
+        /// Get all progression results for student
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
+        Task<IEnumerable<ProgressionResult>> GetStudentResults(int studentID);
     }
 }

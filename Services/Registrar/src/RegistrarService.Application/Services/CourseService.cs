@@ -75,7 +75,8 @@ namespace RegistrarService.Application.Services
                 IEnumerable<Course> courses = new List<Course>();
                 foreach (var programme in result)
                 {
-                    var programmeCourses = await _unitOfWork.Courses.GetAllOrderedAsync(filter: x => x.ProgrammeCode == programme.ProgrammeCode, includeProperties: "CourseLevels");
+                    //var programmeCourses = await _unitOfWork.Courses.GetAllOrderedAsync(filter: x => x.ProgrammeCode == programme.ProgrammeCode, includeProperties: "CourseLevels");
+                    var programmeCourses = await _unitOfWork.Courses.GetAllWhereAsync(x => x.ProgrammeCode == programme.ProgrammeCode);
                     if (programmeCourses != null)
                     {
                         courses = courses.Concat(programmeCourses);
@@ -107,7 +108,7 @@ namespace RegistrarService.Application.Services
                 IEnumerable<Course> courses = new List<Course>();
                 foreach (var programme in result)
                 {
-                    var programmeCourses = await _unitOfWork.Courses.GetAllOrderedAsync(filter: x => x.ProgrammeCode == programme.ProgrammeCode, includeProperties: "CourseLevels");
+                    var programmeCourses = await _unitOfWork.Courses.GetAllWhereAsync(x => x.ProgrammeCode == programme.ProgrammeCode);
                     if (programmeCourses != null)
                     {
                         courses = courses.Concat(programmeCourses);
@@ -137,7 +138,8 @@ namespace RegistrarService.Application.Services
                 IEnumerable<Course> courses = new List<Course>();
                 foreach ( var programme in result)
                 {
-                    var programmeCourses = await _unitOfWork.Courses.GetAllOrderedAsync(filter: x => x.ProgrammeCode == programme.ProgrammeCode, includeProperties: "CourseLevels");
+
+                    var programmeCourses = await _unitOfWork.Courses.GetAllWhereAsync(x => x.ProgrammeCode == programme.ProgrammeCode);
                     if (programmeCourses != null)
                     {
                         courses = courses.Concat(programmeCourses);
@@ -156,7 +158,8 @@ namespace RegistrarService.Application.Services
                 IEnumerable<Course> courses = new List<Course>();
                 foreach (var programme in result)
                 {
-                    var programmeCourses = await _unitOfWork.Courses.GetAllOrderedAsync(filter: x => x.ProgrammeCode == programme.ProgrammeCode, includeProperties: "CourseLevels");
+
+                    var programmeCourses = await _unitOfWork.Courses.GetAllWhereAsync(x => x.ProgrammeCode == programme.ProgrammeCode);
                     if (programmeCourses != null)
                     {
                         courses = courses.Concat(programmeCourses);
@@ -173,7 +176,7 @@ namespace RegistrarService.Application.Services
             try
             {
                 Enum.TryParse(searchType, true, out CourseType search);
-                var result = await _unitOfWork.Courses.GetAllOrderedAsync(filter: x => x.CourseType == search && x.IsActive == true, includeProperties: "CourseLevels");
+                var result = await _unitOfWork.Courses.GetAllWhereAsync(x => x.CourseType == search && x.IsActive == true);
                 if (result != null)
                 {
                     return _mapper.Map<IEnumerable<CourseListingDTO>>(result);
@@ -200,7 +203,7 @@ namespace RegistrarService.Application.Services
             {
                 throw new NotFoundException($"Programme Code: {programmeCode} not found");
             }
-            var result = await _unitOfWork.Courses.GetAllOrderedAsync(filter: x => x.ProgrammeCode == programmeCode, includeProperties: "CourseLevels");
+            var result = await _unitOfWork.Courses.GetAllWhereAsync(x => x.ProgrammeCode == programmeCode);
             if (result != null)
             {
                 return _mapper.Map<IEnumerable<CourseListingDTO>>(result);

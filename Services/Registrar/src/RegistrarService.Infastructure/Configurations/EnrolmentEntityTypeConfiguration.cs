@@ -9,7 +9,7 @@ namespace RegistrarService.Infastructure.Configurations
     /// <summary>
     /// Configuration for the <see cref="EnrolmentEntity"/> value object
     /// </summary>
-    public class CourseEnrolmentEntityTypeConfiguration : IEntityTypeConfiguration<Enrolment>
+    public class EnrolmentEntityTypeConfiguration : IEntityTypeConfiguration<Enrolment>
     {
         public void Configure(EntityTypeBuilder<Enrolment> builder)
         {
@@ -28,7 +28,12 @@ namespace RegistrarService.Infastructure.Configurations
                  .Property(x => x.StudentId)
                  .IsRequired();
 
-            
+            builder
+                .Property(p => p.Status)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (EnrolStatus)Enum.Parse(typeof(EnrolStatus), v));
+
 
         }
     }

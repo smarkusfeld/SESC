@@ -20,8 +20,8 @@ namespace RegistrarService.Application.Models.DTOs.InputModels
 
         public string Status { get; set; }
 
-        public AddressDTO TermAddress { get; private set; }
+        public AddressDTO? TermAddress { get; set; } 
 
-        public AddressDTO PermanentAddress { get; private set; }
+        public AddressDTO? PermanentAddress { get; set; }
     }
 }

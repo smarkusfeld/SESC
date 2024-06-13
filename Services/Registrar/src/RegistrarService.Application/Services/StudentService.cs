@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Microsoft.VisualBasic;
 using RegistrarService.Application.Common.Exceptions;
 using RegistrarService.Application.Interfaces.Repositories;
 using RegistrarService.Application.Interfaces.Services;
 using RegistrarService.Application.Models.DTOs.InputModels;
 using RegistrarService.Application.Models.DTOs.ReponseModels;
+using RegistrarService.Domain.Common.Enums;
 using RegistrarService.Domain.Entities;
 using System.ComponentModel;
 using System.Reflection.Emit;
@@ -47,38 +49,81 @@ namespace RegistrarService.Application.Services
         public async Task<StudentProgressionDTO> GetProgressionResults(int studentId)
         {
             //get student account
-            var result = await _unitOfWork.Students.GetAsync(studentId)
-                ?? throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
+            var check = await _unitOfWork.Students.GetAsync(studentId);
+            if (check != null)
+            {
+                var student = new StudentProgressionDTO()
+                {
+                    StudentId = check.StudentId,
+                    FirstName = check.FirstName,
+                    Surname = check.Surname,
+                    MiddleName = check.MiddleName,
+                    Status = check.Status.ToString()
 
-            return _mapper.Map <StudentProgressionDTO>(result);
+                };
+                var result = await _unitOfWork.Results.GetStudentResults(studentId);
+                if (result != null)
+                {
+                    var results = _mapper.Map <IEnumerable<ProgressionDTO>>(result);       
+                    student.Results = results;
+                }
+                return student;
+            }
+            throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
+            
         }
         public async Task<IEnumerable<StudentAccountDTO>> GetStudentAccounts()
         {
-            //get student account
-            var result = await _unitOfWork.Students.GetAllAsync()
-                ?? throw new KeyNotFoundException($"No students found");
+            
+            var result = await _unitOfWork.Students.GetAllAsync();
+            if (result != null)
+            {
+                return _mapper.Map<IEnumerable<StudentAccountDTO>>(result);
+            }
+            return Enumerable.Empty<StudentAccountDTO>();
 
-            return _mapper.Map <IEnumerable<StudentAccountDTO>>(result);
+
         }
         public async Task<StudentAccountDTO> GetStudentAccount(int studentId)
         {
-            //get student account
-            var result = await _unitOfWork.Students.GetAsync(studentId) 
-                ?? throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
-
-            return _mapper.Map<StudentAccountDTO>(result);
+            try
+            {
+                var result = await _unitOfWork.Students.GetAsync(studentId); 
+                return _mapper.Map<StudentAccountDTO>(result);
+            }
+            catch
+            {
+                throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
+            }                              
         }
 
         public async Task<StudentAccountDTO> UpdateStudentAccount(int studentId, UpdateStudentDTO student)
         {
             //get student account
-            var check = await _unitOfWork.Students.GetAsync(studentId)
-                ?? throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
+            try
+            {
+                var check = await _unitOfWork.Students.GetAsync(studentId);
+            }
+            catch
+            {
+                throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
+            }
+            try
+            {
+                Student update = _mapper.Map<Student>(student);
+                update.StudentId = studentId;
+                var result = _unitOfWork.Students.Update(update)
+                    ?? throw new MySQLException("Could not update student account");
+                var save = await _unitOfWork.Save();
+                return save > 0
+                    ? _mapper.Map<StudentAccountDTO>(result)
+                    : throw new MySQLException("MySQL Error. Changes not saved");
 
-            var update = _mapper.Map<Student>(student);
-            var result = await _unitOfWork.Students.UpdateAsync(update)
-                ?? throw new MySQLException("Could not update student account");
-            return _mapper.Map<StudentAccountDTO>(result);
+            }
+            catch
+            {
+                throw new BadRequestException("Could not update student. Please check fields");
+            }
         }
 
         private async Task<string> CreateStudentEmail(string firstname, string surname)

@@ -95,6 +95,7 @@ namespace RegistrarService.Infastructure.Context
             );
             builder.Entity<Course>().HasData(
                 new Course
+
                 {                   
                    IsActive=true,
                    CourseCode = "8L17-2022",

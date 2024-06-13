@@ -71,26 +71,6 @@ namespace RegistrarService.Infastructure.Context
               .WithMany(y => y.Programmes)
               .HasForeignKey(x => x.AwardId);
 
-            //modelBuilder.Entity<Award>()
-            //   .HasMany(y => y.Programmes)
-            //   .WithOne(x => x.Award)
-            //   .HasForeignKey(x => x.AwardId); 
-
-            //modelBuilder.Entity<Subject>()
-            //   .HasMany(y => y.Programmes)
-            //   .WithOne(x => x.Subject)
-            //   .HasForeignKey(x => x.SubjectId);
-
-            //modelBuilder.Entity<School>()
-            //   .HasMany(y => y.Programmes)
-            //   .WithOne(x => x.School)
-            //   .HasForeignKey(x => x.SchoolId);
-
-            //modelBuilder.Entity<Programme>()
-            // .HasMany(y => y.Courses)
-            //.WithOne(x => x.Programme)
-            // .HasForeignKey(x => x.ProgrammeCode);
-
             modelBuilder.Entity<Course>()
                 .HasOne(x => x.Programme)
                 .WithMany(y => y.Courses)

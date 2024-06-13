@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿
+using AutoMapper;
 using RegistrarService.Application.Interfaces.Repositories;
 using RegistrarService.Application.Interfaces.Services;
 using RegistrarService.Application.Models.DTOs.InputModels;
@@ -102,7 +103,7 @@ namespace RegistrarService.Application.Services
             if(application.Status == ApplicationStatus.Offer)
             {
                 application.Status = ApplicationStatus.Accepted;
-                var result = await _unitOfWork.Applications.UpdateAsync(application)
+                var result = _unitOfWork.Applications.Update(application)
                     ?? throw new MySQLException("Could not update application");
                 return _mapper.Map<CourseApplicationDTO>(result);
             }
@@ -118,7 +119,7 @@ namespace RegistrarService.Application.Services
             if (application.Status == ApplicationStatus.Offer || application.Status == ApplicationStatus.ConditionalOffer)
             {
                 application.Status = ApplicationStatus.Declined;
-                var result = await _unitOfWork.Applications.UpdateAsync(application)
+                var result = _unitOfWork.Applications.Update(application)
                     ?? throw new MySQLException("Could not update application");
                 return _mapper.Map<CourseApplicationDTO>(result);
             }
@@ -132,7 +133,7 @@ namespace RegistrarService.Application.Services
                 ?? throw new KeyNotFoundException($"No application found for applicantion id: {ApplicationId}");
 
             application.Status = ApplicationStatus.Withdrawn;
-            var result = await _unitOfWork.Applications.UpdateAsync(application)
+            var result = _unitOfWork.Applications.Update(application)
                 ?? throw new MySQLException("Could not update application");
             return _mapper.Map<CourseApplicationDTO>(result);
         }

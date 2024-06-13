@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using RegistrarService.Domain.Common.Enums;
 using RegistrarService.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -23,10 +24,16 @@ namespace RegistrarService.Infastructure.Configurations
 
             builder
                 .HasKey(p => p.StudentId);
-                 
 
-          
-            
+            builder
+                .Property(p => p.Status)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (StudentStatus)Enum.Parse(typeof(StudentStatus), v));
+
+
+
+
 
         }
     }

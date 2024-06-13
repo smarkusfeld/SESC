@@ -1,4 +1,5 @@
 ﻿using RegistrarService.Domain.Entities;
+using System.Diagnostics.Contracts;
 
 namespace RegistrarService.Application.Models.DTOs.ReponseModels
 {
@@ -24,8 +25,15 @@ namespace RegistrarService.Application.Models.DTOs.ReponseModels
 
         public int Credits { get; set; }
 
-
+        public string Name { get; set; }
         public string ProgrammeCode { get; set; }
+
+        public string School { get; set; }
+
+        public string Subject { get; set; }
+
+        public string Award { get; set; }
+
         public List<string> CourseLevels { get; set; }
 
 

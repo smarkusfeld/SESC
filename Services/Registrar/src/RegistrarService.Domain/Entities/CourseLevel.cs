@@ -72,8 +72,11 @@ namespace RegistrarService.Domain.Entities
 
         public ICollection<ProgressionResult> Results { get; set; } = new List<ProgressionResult>();
 
+        //read only properties 
         [NotMapped]
         public string Name => Course.Programme.Name + " "+  QualificationLevel.ToString();
+
+        
 
     }
 }

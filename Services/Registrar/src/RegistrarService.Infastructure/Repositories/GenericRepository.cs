@@ -74,9 +74,9 @@ namespace RegistrarService.Infastructure.Repositories
             return entity;
         }
 
-        public virtual async Task<T> UpdateAsync(T entity)
+        public virtual T Update(T entity)
         {
-            await _set.AddAsync(entity);
+            _set.Entry(entity).State = EntityState.Modified;
             return entity;
         }        
 
@@ -86,6 +86,18 @@ namespace RegistrarService.Infastructure.Repositories
             return Task.CompletedTask;
         }
 
+        public virtual async Task<T> UpdateAsync(T entity, object key)
+        {
+            if (entity == null)
+                return null;
+            T exist = await _set.SingleOrDefaultAsync(x => x.Key == key);
+            if (exist != null)
+            {
+                _context.Entry(exist).CurrentValues.SetValues(entity);
+            }
+            return exist;
+
+        }
 
         public virtual Task Delete(T entity)
         {

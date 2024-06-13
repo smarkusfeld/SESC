@@ -1,4 +1,5 @@
-﻿using RegistrarService.Application.Interfaces.Repositories.TypeRepositories;
+﻿using Microsoft.EntityFrameworkCore;
+using RegistrarService.Application.Interfaces.Repositories.TypeRepositories;
 using RegistrarService.Domain.Entities;
 using RegistrarService.Infastructure.Context;
 using System;
@@ -13,7 +14,18 @@ namespace RegistrarService.Infastructure.Repositories.TypeRepositories
     {
         public ProgressionResultRepository(DataContext dbContext) : base(dbContext)
         {
-
+            
+        }
+        public async Task<IEnumerable<ProgressionResult>> GetStudentResults(int studentId)
+        {
+            return await _set
+             .Where(x => x.StudentId == studentId)
+             .Include(x => x.Student)
+             .Include(x => x.CourseLevel)
+             .ThenInclude(x=>x.Course)
+             .ThenInclude(x=>x.Programme)
+             .AsNoTracking()
+             .ToListAsync();
         }
     }
 }

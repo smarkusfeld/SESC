@@ -29,7 +29,6 @@ namespace RegistrarService.Application.Models.DTOs.ReponseModels
         public string Id { get; set; }
         public int StudentId { get; set; }
         public int CourseLevelId { get; set; }
-        public string AcademicYear { get; set; }
         public string CourseCode { get; set; }
 
         public string CourseLevelName { get; set; }

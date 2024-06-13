@@ -15,6 +15,8 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
         /// <returns></returns>
         Task<Student> CompleteEnrolment(Student entity);
 
+        
+
         ///// <summary>
         ///// Register student in course
         ///// </summary>
@@ -22,12 +24,12 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
         ///// <returns></returns>
         //Task<Student> CompleteRegistration(Student entity);
 
-        ///// <summary>
-        ///// Add course results to student transcript
-        ///// </summary>
-        ///// <param name="entity"></param>
-        ///// <returns></returns>
-        //Task<Student> AddCourseResults(Student entity);
+        /// <summary>
+        /// Add course results to student transcript
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        Task<Student> AddCourseResults(Student entity);
 
 
 

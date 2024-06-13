@@ -68,6 +68,7 @@ namespace RegistrarService.Domain.Entities
 
         //read only properties 
 
+        
         /// <summary>
         /// Enrolment Open read-only property for entity. Not mapped to database. Calculated based on <seealso cref="EnrolmentDeadline"/> 
         /// </summary>

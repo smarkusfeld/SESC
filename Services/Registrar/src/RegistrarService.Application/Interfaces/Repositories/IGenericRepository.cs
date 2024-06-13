@@ -73,7 +73,15 @@ namespace RegistrarService.Application.Interfaces.Repositories
         /// <param name="entity">The entity to update</param>
         /// /// <param name="entity">enity key</param>
         /// <returns>The entity updated entity</returns>
-        Task<T> UpdateAsync(T entity);
+        T Update(T entity);
+
+        /// <summary>
+        /// Update the specified entity 
+        /// </summary>
+        /// <param name="entity">The entity to update</param>
+        /// /// <param name="entity">enity key</param>
+        /// <returns>The entity updated entity</returns>
+        Task<T> UpdateAsync(T entity, object key);
 
         /// <summary>
         /// Update multiple entities 
