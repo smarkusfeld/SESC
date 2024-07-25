@@ -8,23 +8,23 @@ namespace RegistrarService.Application.Interfaces.Services
     /// <summary>
     /// Defines a contract for applicantion services
     /// </summary>
-    public interface IApplicantionService
+    public interface IApplicationService
     {
 
         /// <summary>
         /// Get All Applications 
         /// </summary>        
         /// <exception cref="NotFoundException"></exception>
-        /// <returns>A <seealso cref="IEnumerable{CourseApplicationDTO}"/> of <seealso cref="CourseApplicationDTO"/></returns>
-        Task<IEnumerable<CourseApplicationDTO>> GetAllApplications();
+        /// <returns>A <seealso cref="IEnumerable{CourseApplicationDTO}"/> of <seealso cref="ApplicationDTO"/></returns>
+        Task<IEnumerable<ApplicationDTO>> GetAllApplications();
 
         /// <summary>
         /// Get All Applications by Applicant
         /// </summary>
         /// <param name="applicantId"><seealso cref="Applicant.ApplicantId"/> </param>
         /// <exception cref="KeyNotFoundException"></exception>
-        /// <returns>A <seealso cref="IEnumerable{CourseApplicationDTO}"/> of <seealso cref="CourseApplicationDTO"/></returns>
-        //Task<IEnumerable<CourseApplicationDTO>> GetAllApplications(int applicantId);
+        /// <returns>A <seealso cref="IEnumerable{CourseApplicationDTO}"/> of <seealso cref="ApplicationDTO"/></returns>
+        Task<IEnumerable<ApplicationDTO>> GetAllApplications(int applicantId);
 
         /// <summary>
         /// Get All Applications by Course
@@ -32,7 +32,7 @@ namespace RegistrarService.Application.Interfaces.Services
         /// <exception cref="KeyNotFoundException"></exception>
         /// <param name="applicantId"><seealso cref="Course.CourseCode"/></param>
         /// <returns>A <seealso cref="IEnumerable{CourseApplicationDTO}"/> of <seealso cref="CourseApplicationDTO"/></returns>
-        Task<IEnumerable<CourseApplicationDTO>> GetAllApplicationsbyCourse(string courseCode);
+        Task<IEnumerable<ApplicationDTO>> GetAllApplicationsbyCourse(string courseCode);
 
 
         /// <summary>
@@ -40,61 +40,72 @@ namespace RegistrarService.Application.Interfaces.Services
         /// </summary>
         /// <param name="appStatus"><seealso cref="CourseApplication.Status"/></param>
         /// <exception cref="NotFoundException"></exception>
-        /// <returns>A <seealso cref="IEnumerable{CourseApplicationDTO}"/> of <seealso cref="CourseApplicationDTO"/></returns>
-        Task<IEnumerable<CourseApplicationDTO>> GetAllApplicationsbyStatus(string appStatus);
+        /// <returns>A <seealso cref="IEnumerable{CourseApplicationDTO}"/> of <seealso cref="ApplicationDTO"/></returns>
+        Task<IEnumerable<ApplicationDTO>> GetAllApplicationsbyStatus(string appStatus);
 
         /// <summary>
         /// Get Application
         /// </summary>
         /// <param name="applicantionId"><seealso cref="CourseApplication.ApplicationId"/> search string</param>
         /// <exception cref="KeyNotFoundException"></exception>
-        /// <returns><seealso cref="CourseApplicationDTO"/></returns>
-        Task<CourseApplicationDTO> GetApplication(int ApplicationId);
+        /// <returns><seealso cref="ApplicationDTO"/></returns>
+        Task<ApplicationDTO> GetApplication(int ApplicationId);
+
+
 
         /// <summary>
-        /// Edit Application
+        /// Save Application
         /// </summary>
-        /// <param name="Applicantion"><seealso cref="UpdateApplicationDTO"/> application to be updated</param>
-        /// <exception cref="KeyNotFoundException"></exception>
+        /// <param name="applicantId">applicantId</param>
+        /// <param name="courseCode">courseCode</param>
         /// <exception cref="BadRequestException"></exception>
-        /// <returns><seealso cref="CourseApplicationDTO"/></returns>
-        Task<CourseApplicationDTO> UpdateApplication(UpdateApplicationDTO Applicantion);
+        /// <returns><seealso cref="ApplicationDTO"/></returns>
+        Task<ApplicationDTO> SaveApplication(int applicantId, string courseCode);
 
         /// <summary>
-        /// New Applicant
+        /// Save Application
         /// </summary>
-        /// <param name="Applicantion"><seealso cref="NewApplicationDTO"/> application to be added</param>
+        /// <param name="inputModel"><seealso cref="NewApplicationDTO"/></param>
         /// <exception cref="BadRequestException"></exception>
-        /// <returns><seealso cref="CourseApplicationDTO"/></returns>
-        Task<CourseApplicationDTO> AddApplication(NewApplicantDTO Applicantion);
+        /// <returns><seealso cref="ApplicationDTO"/></returns>
+        Task<ApplicationDTO> SaveApplication(NewApplicationDTO inputModel);
 
         /// <summary>
-        /// Add Application
+        /// Update Application
         /// </summary>
-        /// <param name="Applicantion"><seealso cref="NewApplicationDTO"/> application to be added</param>
+        /// <param name="inputModel"><seealso cref="UpdateApplicationDTO"/></param>
         /// <exception cref="BadRequestException"></exception>
-        /// <returns><seealso cref="CourseApplicationDTO"/></returns>
-        Task<CourseApplicationDTO> AddApplication(NewApplicationDTO Applicantion);
+        /// <returns><seealso cref="ApplicationDTO"/></returns>
+        Task<ApplicationDTO> UpdateApplication(UpdateApplicationDTO inputModel);
+
+        /// <summary>
+        /// Submit Application
+        /// </summary>
+        /// <param name="applicantId">applicantId</param>
+        /// <param name="courseCode">courseCode</param>
+        /// <exception cref="BadRequestException"></exception>
+        /// <returns><seealso cref="ApplicationDTO"/></returns>
+        Task<ApplicationDTO> SubmitApplication(int applicationId);
 
         /// <summary>
         /// Accept Application Offer
         /// </summary>
         /// <param name="applicationId"><seealso cref="CourseApplication.ApplicationId"/> application id</param>
         /// <exception cref="KeyNotFoundException"></exception>
-        Task<CourseApplicationDTO> Accept(int ApplicationId);
+        Task<ApplicationDTO> Accept(int ApplicationId);
 
         /// <summary>
         /// Decline Application Offer
         /// </summary>
         /// <param name="applicationId"><seealso cref="CourseApplication.ApplicationId"/> application id</param>
         /// <exception cref="KeyNotFoundException"></exception>
-        Task<CourseApplicationDTO> Decline(int ApplicationId);
+        Task<ApplicationDTO> Decline(int ApplicationId);
 
         /// <summary>
         /// Withdraw Application
         /// </summary>
         /// <param name="applicationId"><seealso cref="CourseApplication.ApplicationId"/> application id</param>
         /// <exception cref="KeyNotFoundException"></exception>
-        Task<CourseApplicationDTO> Withdraw(int ApplicationId);
+        Task<ApplicationDTO> Withdraw(int ApplicationId);
     }
 }

@@ -17,9 +17,9 @@ namespace RegistrarService.Infastructure.Repositories.TypeRepositories
 
         }
 
-        public override async Task<Programme> GetAsync(object key)
+        public override async Task<Programme?> GetAsync(object key)
         {
-            return await _set.SingleOrDefaultAsync(x => x.ProgrammeCode == key);
+            return await _set.SingleOrDefaultAsync(x => x.ProgrammeCode.Equals(key));
         }
     }
 }

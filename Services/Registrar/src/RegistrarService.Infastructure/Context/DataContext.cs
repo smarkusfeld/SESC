@@ -20,7 +20,7 @@ namespace RegistrarService.Infastructure.Context
         public DbSet<AcademicYear> AcademicYears { get; set; }
         public DbSet<AcademicTerm> AcademicTerms { get; set; }
         public DbSet<Applicant> Applicants { get; set; }
-        public DbSet<CourseApplication> Applicantions { get; set; }
+        public DbSet<CourseApplication> Applications { get; set; }
         public DbSet<Award> Awards { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseLevel> CourseLevels { get; set; }

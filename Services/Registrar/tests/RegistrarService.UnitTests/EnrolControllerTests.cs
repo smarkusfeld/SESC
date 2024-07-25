@@ -22,11 +22,11 @@ namespace RegistrarService.UnitTests
     public class EnrolControllerTests
     {
         private readonly Mock<IEnrolService> enrolService;
-        private readonly Mock<ILogger<EnrolController>> logger;
+        private readonly Mock<ILogger<EnrolmentsController>> logger;
         public EnrolControllerTests()
         {
             enrolService = new Mock<IEnrolService>();
-            logger = new Mock<ILogger<EnrolController>>();
+            logger = new Mock<ILogger<EnrolmentsController>>();
         }
 
         [Fact]
@@ -37,7 +37,7 @@ namespace RegistrarService.UnitTests
             EnrolmentDTO enrolmentDTO = null;
             enrolService.Setup(x => x.Enrol(123, inputModel))
                 .ReturnsAsync(enrolmentDTO);
-            var enrolController = new EnrolController(enrolService.Object, logger.Object);
+            var enrolController = new EnrolmentsController(enrolService.Object, logger.Object);
             //act
             var result = await enrolController.FirstEnrolment("cc", inputModel);
             var actionResult = result as BadRequestResult;
@@ -52,7 +52,7 @@ namespace RegistrarService.UnitTests
             EnrolmentDTO enrolmentDTO = null;
             enrolService.Setup(x => x.Enrol(123, inputModel))
                 .ReturnsAsync(enrolmentDTO);
-            var enrolController = new EnrolController(enrolService.Object, logger.Object);
+            var enrolController = new EnrolmentsController(enrolService.Object, logger.Object);
             //act
             var result = await enrolController.StudentEnrolment("cc",12356, inputModel);
             var actionResult = result as BadRequestResult;
@@ -66,7 +66,7 @@ namespace RegistrarService.UnitTests
             var enrolmentDTOs = GetEnrolmentDTOList();
             enrolService.Setup(x => x.GetAllEnrolments(1234567))
                 .ReturnsAsync(enrolmentDTOs);
-            var enrolController = new EnrolController(enrolService.Object, logger.Object);
+            var enrolController = new EnrolmentsController(enrolService.Object, logger.Object);
             //act
             var result = await enrolController.GetAllEnrolments(1234567);
             var actionResult = result as OkObjectResult;
@@ -81,7 +81,7 @@ namespace RegistrarService.UnitTests
             var enrolmentDTOs = GetEnrolmentDTOList();
             enrolService.Setup(x => x.GetAllEnrolments(1234567))
                 .ReturnsAsync(enrolmentDTOs);
-            var enrolController = new EnrolController(enrolService.Object, logger.Object);
+            var enrolController = new EnrolmentsController(enrolService.Object, logger.Object);
             //act
             var result = await enrolController.GetAllEnrolments(1234567);
             var actionResult = result as OkObjectResult;
@@ -96,7 +96,7 @@ namespace RegistrarService.UnitTests
             IEnumerable<EnrolmentDTO> noReccords = new List<EnrolmentDTO>(); 
             enrolService.Setup(x => x.GetAllEnrolments(1234567))
                 .ReturnsAsync(noReccords);
-            var enrolController = new EnrolController(enrolService.Object, logger.Object);
+            var enrolController = new EnrolmentsController(enrolService.Object, logger.Object);
             //act
             var result = await enrolController.GetAllEnrolments(1234567);
             var actionResult = result as NoContentResult;
@@ -112,7 +112,7 @@ namespace RegistrarService.UnitTests
             IEnumerable<EnrolmentDTO> noReccords = null;
             enrolService.Setup(x => x.GetAllEnrolments(1234567))
                 .ReturnsAsync(noReccords);
-            var enrolController = new EnrolController(enrolService.Object, logger.Object);
+            var enrolController = new EnrolmentsController(enrolService.Object, logger.Object);
             //act
             var result = await enrolController.GetAllEnrolments(1234567);
             var actionResult = result as NotFoundResult;

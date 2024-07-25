@@ -12,11 +12,11 @@ namespace RegistrarService.Api.Controllers
     /// </summary>
     [Route("[controller]")]
     [ApiController]
-    public class EnrolController : Controller
+    public class EnrolmentsController : Controller
     {
         private readonly IEnrolService _service;
 
-        private readonly ILogger<EnrolController> _logger;
+        private readonly ILogger<EnrolmentsController> _logger;
 
         /// <summary>
         ///  Registrar Controller Constructor. 
@@ -24,7 +24,7 @@ namespace RegistrarService.Api.Controllers
         /// </summary>
         /// <param name="service"></param>
         /// <param name="logger"></param>
-        public EnrolController(IEnrolService service, ILogger<EnrolController> logger)
+        public EnrolmentsController(IEnrolService service, ILogger<EnrolmentsController> logger)
         {
 
             _service = service;
@@ -41,7 +41,7 @@ namespace RegistrarService.Api.Controllers
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with the registration and and student account details <br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if registration can not be completed<br/> 
         /// </returns>
-        [HttpPost("new/{courseCode}")]
+        [HttpPost("{courseCode}")]
         public async Task<IActionResult> FirstEnrolment(string courseCode, [FromBody] NewStudentDTO inputModel )
         {
             _logger.LogInformation($"Checking applicantion status for {inputModel.ApplicantId}");
@@ -70,30 +70,13 @@ namespace RegistrarService.Api.Controllers
             return result != null ? Ok(result) : BadRequest();
         }
 
-        /// <summary>
-        /// Enrol Student in Eligible Course
-        /// </summary>
-        /// <param name="courseCode"></param>
-        /// <param name="studentId"></param>
-        /// <returns>
-        /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with enrolment confirmation details <br/> 
-        /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if enrolment can not be completed<br/> 
-        /// </returns>
-        //[HttpPost("{studentId}/{courseCode}")]
-        //public async Task<IActionResult> StudentEnrolment(string courseCode, int studentId)
-        //{
-           // _logger.LogInformation($"Checking eligibile offerings for course {studentId}");
-           // var courseId = await _service.GetEligibleCourseLevel(courseCode, studentId);
-           // _logger.LogInformation("Updating Student Account and Enrolling Student");
-           // var result = await _service.Enrol(courseId, studentId);
-           // return result != null ? Ok(result) : BadRequest();
-        //}
+        
 
         /// <summary>
         /// Get All Student Enrolments
         /// </summary>
         /// <param name="studentId"></param>
-        // <returns>
+        /// <returns>
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with student enrolment history <br/> 
         /// A 204 status code prodeced by the <seealso cref="NoContentResult"/> if no records exists in the database <br/> 
         /// A 404 status code produced by the <seealso cref="NotFoundResult"/> if the course service returns a null task<br/> 

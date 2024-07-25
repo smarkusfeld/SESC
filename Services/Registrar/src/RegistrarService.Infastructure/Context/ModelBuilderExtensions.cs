@@ -236,6 +236,33 @@ namespace RegistrarService.Infastructure.Context
                    AcademicYearId = 6
                }
            );
+
+            builder.Entity<Applicant>().HasData(
+                new Applicant
+                {
+                    ApplicantId = 11111,
+                    FirstName = "John",
+                    MiddleName = "A",
+                    Surname = "Doe",
+                    Email = "john.a.doe@applicant.com"
+                   
+                }
+
+         ); 
+            builder.Entity<Student>().HasData(
+                new Student
+                {
+                    StudentId = 123456,
+                    FirstName = "Jane",
+                    MiddleName = "B",
+                    Surname = "Doe",
+                    Status = StudentStatus.Active,
+                    StudentEmail = "jane.b.doe@student.co.uk",
+                    AlternateEmail = "jane.b.doe@applicant.com",
+                   
+                }
+
+         );
         }
     }
 }

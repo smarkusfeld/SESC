@@ -9,6 +9,8 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
     /// </summary>    
     public interface ICourseApplicationRepository : IGenericRepository<CourseApplication>
     {
+
+        
     }
 
 }

@@ -15,36 +15,102 @@ namespace RegistrarService.Infastructure.Repositories
     {
         private readonly DataContext _dbContext;
 
-        private ICourseRepository _courses;
-        private IStudentRepository _students;
+        private IApplicantRepository _applicants;
         private IAwardRepository _awards;
+        private ICourseRepository _courses;
+        private ICourseApplicationRepository _applicantions;
+        private IEnrolmentRepository _enrolments;
+        private IProgrammeRepository _programmes;
+        private IStudentRepository _students;
         private ISchoolRepository _schools;
         private ISubjectRepository _subjects;
-        private IProgrammeRepository _programmes;
-        private IApplicantRepository _applicants;
-        private ICourseApplicationRepository _applicantions;
         private IProgressionResultRepository _results;
-        private IEnrolmentRepository _enrolments;
         private bool disposed;
 
-        public ICourseRepository Courses => _courses ?? new CourseRepository(_dbContext);
 
-        public IAwardRepository Awards => _awards ?? new AwardRepository(_dbContext);
+        public IApplicantRepository Applicants
+        {
+            get
+            {
+                _applicants ??= new ApplicantRepository(_dbContext);
+                return _applicants;
+            }
+        }
+        public IAwardRepository Awards
+        {
+            get
+            {
+                _awards ??= new AwardRepository(_dbContext);
+                return _awards;
+            }
+        }
+        public ICourseRepository Courses
+        {
+            get
+            {
+                _courses ??= new CourseRepository(_dbContext);
+                return _courses;
+            }
+        }
 
-        public IStudentRepository Students => _students ?? new StudentRepository(_dbContext);
+        public ICourseApplicationRepository Applications
+        {
+            get
+            {
+                _applicantions ??= new CourseApplicationRepository(_dbContext);
+                return _applicantions;
+            }
+        }
+        public IEnrolmentRepository Enrolments
+        {
+            get
+            {
+                _enrolments ??= new EnrolmentRepository(_dbContext);
+                return _enrolments;
+            }
+        }
+        public IProgrammeRepository Programmes
+        {
+            get
+            {
+                _programmes ??= new ProgrammeRepository(_dbContext);
+                return _programmes;
+            }
+        }
 
-        public ISchoolRepository Schools => _schools ?? new SchoolRepository(_dbContext);
-        public ISubjectRepository Subjects => _subjects ?? new SubjectRepository(_dbContext);
+        public IProgressionResultRepository Results
+        {
+            get
+            {
+                _results ??= new ProgressionResultRepository(_dbContext);
+                return _results;
+            }
+        }
+        public IStudentRepository Students
+        {
+            get
+            {
+                _students ??= new StudentRepository(_dbContext);
+                return _students;
+            }
+        }
 
-        public IProgrammeRepository Programmes => _programmes ?? new ProgrammeRepository(_dbContext);
-
-        public IApplicantRepository Applicants => _applicants ?? new ApplicantRepository(_dbContext);
-
-        public ICourseApplicationRepository Applications => _applicantions ?? new CourseApplicationRepository(_dbContext);
-
-        public IEnrolmentRepository Enrolments => _enrolments ?? new EnrolmentRepository(_dbContext);
-
-        public IProgressionResultRepository Results => _results ?? new ProgressionResultRepository(_dbContext);
+        public ISchoolRepository Schools
+        {
+            get
+            {
+                _schools ??= new SchoolRepository(_dbContext);
+                return _schools;
+            }
+        }
+        public ISubjectRepository Subjects
+        {
+            get
+            {
+                _subjects ??= new SubjectRepository(_dbContext);
+                return _subjects;
+            }
+        }
 
         public UnitOfWork(DataContext dbContext)
         {

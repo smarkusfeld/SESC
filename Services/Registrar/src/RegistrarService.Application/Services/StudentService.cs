@@ -36,13 +36,13 @@ namespace RegistrarService.Application.Services
             if (check != null) { throw new BadRequestException($"Student already exists for {studentDTO.Email}"); }
 
             var student = _mapper.Map<Student>(studentDTO);
-            student.StudentEmail = await CreateStudentEmail(studentDTO.FirstName, studentDTO.Surname);           
+            student.StudentEmail = await CreateStudentEmail(studentDTO.FirstName, studentDTO.Surname);
 
             var newStudent = await _unitOfWork.Students.AddAsync(student);
-            if(await _unitOfWork.Save() < 0)
+            if (await _unitOfWork.Save() < 0)
             {
-                 throw new BadRequestException();
-            } 
+                throw new BadRequestException();
+            }
             return _mapper.Map<StudentAccountDTO>(newStudent);
         }
 
@@ -64,17 +64,17 @@ namespace RegistrarService.Application.Services
                 var result = await _unitOfWork.Results.GetStudentResults(studentId);
                 if (result != null)
                 {
-                    var results = _mapper.Map <IEnumerable<ProgressionDTO>>(result);       
+                    var results = _mapper.Map<IEnumerable<ProgressionDTO>>(result);
                     student.Results = results;
                 }
                 return student;
             }
             throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
-            
+
         }
         public async Task<IEnumerable<StudentAccountDTO>> GetStudentAccounts()
         {
-            
+
             var result = await _unitOfWork.Students.GetAllAsync();
             if (result != null)
             {
@@ -86,44 +86,41 @@ namespace RegistrarService.Application.Services
         }
         public async Task<StudentAccountDTO> GetStudentAccount(int studentId)
         {
-            try
-            {
-                var result = await _unitOfWork.Students.GetAsync(studentId); 
-                return _mapper.Map<StudentAccountDTO>(result);
-            }
-            catch
-            {
-                throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
-            }                              
+            var result = await _unitOfWork.Students.GetAsync(studentId)
+                ?? throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
+            return _mapper.Map<StudentAccountDTO>(result);
         }
 
         public async Task<StudentAccountDTO> UpdateStudentAccount(int studentId, UpdateStudentDTO student)
         {
             //get student account
-            try
+            var account = await _unitOfWork.Students.GetAsync(studentId)
+                ?? throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
+            //validate account updates
+            List<string> errors = new();
+            if (!Enum.TryParse(student.Status, true, out StudentStatus status))
             {
-                var check = await _unitOfWork.Students.GetAsync(studentId);
+                errors.Add($"Invalid Account Status: {status}");
             }
-            catch
-            {
-                throw new KeyNotFoundException($"No Account Associated with Student {studentId}");
-            }
-            try
-            {
-                Student update = _mapper.Map<Student>(student);
-                update.StudentId = studentId;
-                var result = _unitOfWork.Students.Update(update)
-                    ?? throw new MySQLException("Could not update student account");
-                var save = await _unitOfWork.Save();
-                return save > 0
-                    ? _mapper.Map<StudentAccountDTO>(result)
-                    : throw new MySQLException("MySQL Error. Changes not saved");
+            //add more validation rules
+            if (errors.Any()) { throw new BadRequestException("Invalid Request", errors); }
 
-            }
-            catch
+            //update account 
+            account.Status = status;
+            account.FirstName = student.FirstName;
+            account.MiddleName = student.MiddleName;
+            account.Surname = student.Surname;
+            account.AlternateEmail = student.AlternateEmail;
+            account.StudentEmail = student.StudentEmail;
+            account.PermanentAddress = _mapper.Map<Address>(student.PermanentAddress);
+            account.TermAddress = _mapper.Map<Address>(student.PermanentAddress);
+            var update = _unitOfWork.Students.Update(account);
+            if (update != null)
             {
-                throw new BadRequestException("Could not update student. Please check fields");
+                var result = await _unitOfWork.Save();
+                return result > 0 ? _mapper.Map<StudentAccountDTO>(update) : throw new MySQLException("MySQL Error. Changes not saved");
             }
+            throw new BadRequestException("Unable to update student account");
         }
 
         private async Task<string> CreateStudentEmail(string firstname, string surname)
@@ -131,14 +128,14 @@ namespace RegistrarService.Application.Services
             string emailHeader = surname + '.' + firstname;
             string emailDomain = "@student.school.ac.uk";
             int i = 1;
-            while (true) 
+            while (true)
             {
                 string email = emailHeader + emailDomain;
                 string normalizedEmail = email;
                 var check = await _unitOfWork.Students.GetByAsync(x => x.AlternateEmail.Normalize().ToUpperInvariant().Equals(normalizedEmail));
                 if (check == null)
                 {
-                    return email;   
+                    return email;
                 }
                 emailHeader += i;
                 i++;
@@ -146,6 +143,6 @@ namespace RegistrarService.Application.Services
         }
 
 
-       
+
     }
 }

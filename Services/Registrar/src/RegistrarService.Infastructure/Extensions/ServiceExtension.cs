@@ -5,6 +5,8 @@ using RegistrarService.Application.Interfaces.Repositories;
 using RegistrarService.Infastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using RegistrarService.Infastructure.Repositories;
+using RegistrarService.Infastructure.Repositories.TypeRepositories;
+using RegistrarService.Application.Interfaces.Repositories.TypeRepositories;
 
 namespace RegistrarService.Infastructure.Extensions
 {
@@ -19,14 +21,19 @@ namespace RegistrarService.Infastructure.Extensions
 
             });
 
-            services.AddAutoMapper(typeof(StudentProfile),typeof(EnrolmentProfile), typeof(CourseProfile));
+            services.AddAutoMapper(typeof(StudentProfile),typeof(EnrolmentProfile), typeof(CourseProfile), typeof(ApplicantProfile),typeof(ApplicationProfile));
 
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            //services.AddScoped<IAccountRepository, AccountRepository>();
-
-
-
+            services.AddScoped<IApplicantRepository, ApplicantRepository>();
+            services.AddScoped<IAwardRepository, AwardRepository>();
+            services.AddScoped<ICourseApplicationRepository, CourseApplicationRepository>();
+            services.AddScoped<IEnrolmentRepository, EnrolmentRepository>();
+            services.AddScoped <ProgrammeRepository, ProgrammeRepository>();
+            services.AddScoped<IProgressionResultRepository, ProgressionResultRepository>();
+            services.AddScoped <ISchoolRepository, SchoolRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<ISubjectRepository, SubjectRepository>();
 
             return services;
         }

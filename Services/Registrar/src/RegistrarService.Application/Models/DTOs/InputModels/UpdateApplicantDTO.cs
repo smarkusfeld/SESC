@@ -1,13 +1,12 @@
-﻿using RegistrarService.Application.Models.DTOs.InputModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RegistrarService.Application.Models.DTOs.ReponseModels
+namespace RegistrarService.Application.Models.DTOs.InputModels
 {
-    public class ApplicantDTO
+    public class UpdateApplicantDTO
     {
         public int ApplicantId { get; set; }
 
@@ -19,9 +18,5 @@ namespace RegistrarService.Application.Models.DTOs.ReponseModels
         public string Email { get; set; }
 
         public AddressDTO? Address { get; set; }
-
-        public IEnumerable<ApplicationDTO> Applications { get; set; }
     }
-
-    
 }

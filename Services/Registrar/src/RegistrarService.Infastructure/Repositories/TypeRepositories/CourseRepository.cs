@@ -22,7 +22,7 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
 
         }
         
-        public override async Task<Course> GetAsync(object key)
+        public override async Task<Course?> GetAsync(object key)
         {
 
             return await _set
@@ -32,7 +32,7 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
                 .Include(x => x.Programme.Award)
                 .Include(x => x.Programme.Subject)
                 .AsNoTracking()
-                .SingleAsync(x => x.CourseCode.Equals(key));
+                .SingleOrDefaultAsync(x => x.CourseCode.Equals(key));
 
         }
         
@@ -52,7 +52,7 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
 
         }
 
-        public override async Task<Course>GetByAsync(Expression<Func<Course, bool>> predicate)
+        public override async Task<Course?>GetByAsync(Expression<Func<Course, bool>> predicate)
         {
 
             return await _set
@@ -62,7 +62,7 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
                 .Include(x => x.Programme.Award)
                 .Include(x => x.Programme.Subject)
                .AsNoTracking()
-               .SingleAsync(predicate);
+               .SingleOrDefaultAsync(predicate);
 
         }
 

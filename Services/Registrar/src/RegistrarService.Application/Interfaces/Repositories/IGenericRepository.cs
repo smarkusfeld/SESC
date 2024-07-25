@@ -14,8 +14,7 @@ namespace RegistrarService.Application.Interfaces.Repositories
         /// </summary>
         /// <param name="predicate">Where clause.<example><code>x => x.Id == id</code></example></param>
         ///<returns>The entity object if found, otherwise null</returns>
-        /// <exception cref="NullReferenceException"></exception> 
-        Task<T> GetAsync(object key);
+        Task<T?> GetAsync(object key);
 
        
 
@@ -24,8 +23,7 @@ namespace RegistrarService.Application.Interfaces.Repositories
         /// </summary>
         /// <param name="predicate">Where clause.<example><code>x => x.Id == id</code></example></param>
         ///<returns>The entity object if found, otherwise null</returns>
-        /// <exception cref="NullReferenceException"></exception> 
-        Task<T> GetByAsync(Expression<Func<T, bool>> predicate);
+        Task<T?> GetByAsync(Expression<Func<T, bool>> predicate);
 
         /// <summary>
         /// Retrives a collection of all entities
@@ -81,7 +79,7 @@ namespace RegistrarService.Application.Interfaces.Repositories
         /// <param name="entity">The entity to update</param>
         /// /// <param name="entity">enity key</param>
         /// <returns>The entity updated entity</returns>
-        Task<T> UpdateAsync(T entity, object key);
+        Task<T?> UpdateAsync(T entity, object key);
 
         /// <summary>
         /// Update multiple entities 

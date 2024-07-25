@@ -29,9 +29,9 @@ namespace RegistrarService.Infastructure.Repositories
         }
 
 
-        public virtual async Task<T> GetAsync(object key) => await _set.AsNoTracking().SingleAsync(x => x.Key == key);
+        public virtual async Task<T?> GetAsync(object key) => await _set.SingleOrDefaultAsync(x => x.Key.Equals(key));
 
-        public virtual async Task<T> GetByAsync(Expression<Func<T, bool>> predicate) => await _set.AsNoTracking().SingleAsync(predicate);
+        public virtual async Task<T?> GetByAsync(Expression<Func<T, bool>> predicate) => await _set.AsNoTracking().SingleOrDefaultAsync(predicate);
 
 
         public virtual async Task<IEnumerable<T>> GetAllAsync() => await _set.AsNoTracking().ToListAsync();
@@ -58,11 +58,11 @@ namespace RegistrarService.Infastructure.Repositories
 
             if (orderBy != null)
             {
-                return orderBy(query).ToList();
+                return await orderBy(query).ToListAsync();
             }
             else
             {
-                return query.ToList();
+                return await query.ToListAsync();
             }
         }
 
@@ -86,11 +86,11 @@ namespace RegistrarService.Infastructure.Repositories
             return Task.CompletedTask;
         }
 
-        public virtual async Task<T> UpdateAsync(T entity, object key)
+        public virtual async Task<T?> UpdateAsync(T entity, object key)
         {
             if (entity == null)
                 return null;
-            T exist = await _set.SingleOrDefaultAsync(x => x.Key == key);
+            T exist = await _set.SingleOrDefaultAsync(x => x.Key.Equals(key));
             if (exist != null)
             {
                 _context.Entry(exist).CurrentValues.SetValues(entity);

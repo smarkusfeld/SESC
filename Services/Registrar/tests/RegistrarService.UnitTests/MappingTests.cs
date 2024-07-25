@@ -26,6 +26,9 @@ namespace RegistrarService.UnitTests
                 cfg.AddProfile<StudentProfile>();
                 cfg.AddProfile<EnrolmentProfile>();
                 cfg.AddProfile<CourseProfile>();
+                cfg.AddProfile<ApplicantProfile>();
+
+                cfg.AddProfile<ApplicationProfile>();
 
             });
             _Mapper = _configuration.CreateMapper();

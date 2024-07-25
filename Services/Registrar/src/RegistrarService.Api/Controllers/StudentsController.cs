@@ -17,7 +17,7 @@ namespace RegistrarService.Api.Controllers
         private readonly ILogger<StudentsController> _logger;
 
         /// <summary>
-        /// AccounrController Constructor. 
+        /// AccountController Constructor. 
         /// Defines the required logger and service interfaces 
         /// </summary>
         /// <param name="service"></param>
@@ -55,7 +55,7 @@ namespace RegistrarService.Api.Controllers
         /// A 204 status code prodeced by the <seealso cref="NoContentResult"/> if no records exists in the database <br/> 
         /// A 404 status code produced by the <seealso cref="NotFoundResult"/> if the student service returns a null task<br/> 
         /// </returns>
-        [HttpGet("all")]
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             _logger.LogInformation("Finding Student Records");
@@ -91,7 +91,7 @@ namespace RegistrarService.Api.Controllers
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with <seealso cref="StudentAccountDTO"/> <br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestObjectResult"/> if update fails<br/> 
         /// </returns>
-        [HttpPost("{studentId}/update")]
+        [HttpPost("update/{studentId}")]
         public async Task<IActionResult> Update(int studentId, [FromBody] UpdateStudentDTO inputModel)
         {
             _logger.LogInformation("Updating Student Record");

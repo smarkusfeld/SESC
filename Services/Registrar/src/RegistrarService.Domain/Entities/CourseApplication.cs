@@ -39,6 +39,8 @@ namespace RegistrarService.Domain.Entities
 
         public string CourseCode { get; private set; }
         public int ApplicantId { get; private set; }
+
+        public string Statement { get; set; }
         public ApplicationStatus Status { get; set; }
 
         //navigation properties
