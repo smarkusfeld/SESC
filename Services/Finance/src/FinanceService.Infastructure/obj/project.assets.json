@@ -3976,24 +3976,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\sofia\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Finance\\src\\FinanceService.Infastructure\\FinanceService.Infastructure.csproj",
+      "projectUniqueName": "D:\\SESC\\ApiGateways\\Services\\Finance\\src\\FinanceService.Infastructure\\FinanceService.Infastructure.csproj",
       "projectName": "FinanceService.Infastructure",
-      "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Finance\\src\\FinanceService.Infastructure\\FinanceService.Infastructure.csproj",
-      "packagesPath": "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Finance\\src\\FinanceService.Infastructure\\obj\\",
+      "projectPath": "D:\\SESC\\ApiGateways\\Services\\Finance\\src\\FinanceService.Infastructure\\FinanceService.Infastructure.csproj",
+      "packagesPath": "C:\\Users\\sofia\\.nuget\\packages\\",
+      "outputPath": "D:\\SESC\\ApiGateways\\Services\\Finance\\src\\FinanceService.Infastructure\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Sofia Markusfeld\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\sofia\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4001,15 +3996,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Finance\\src\\FinanceService.Application\\FinanceService.Application.csproj": {
-              "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Finance\\src\\FinanceService.Application\\FinanceService.Application.csproj"
+            "D:\\SESC\\ApiGateways\\Services\\Finance\\src\\FinanceService.Application\\FinanceService.Application.csproj": {
+              "projectPath": "D:\\SESC\\ApiGateways\\Services\\Finance\\src\\FinanceService.Application\\FinanceService.Application.csproj"
             }
           }
         }
@@ -4061,7 +4055,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

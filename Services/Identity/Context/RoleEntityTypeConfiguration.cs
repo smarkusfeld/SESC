@@ -63,7 +63,7 @@ namespace IdentityService.DataContext
                 Id = "107",
                 Name = "staff",
                 NormalizedName = "STAFF"
-            };
+            });
 
         }
     }

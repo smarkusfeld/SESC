@@ -22,3 +22,29 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\refint\LibraryService.Domain.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\ref\LibraryService.Domain.dll
+D:\SESC\Services\Library\src\LibraryService.Domain\bin\Debug\net6.0\LibraryService.Domain.deps.json
+D:\SESC\Services\Library\src\LibraryService.Domain\bin\Debug\net6.0\LibraryService.Domain.dll
+D:\SESC\Services\Library\src\LibraryService.Domain\bin\Debug\net6.0\LibraryService.Domain.pdb
+D:\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.csproj.AssemblyReference.cache
+D:\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.AssemblyInfoInputs.cache
+D:\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.AssemblyInfo.cs
+D:\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.csproj.CoreCompileInputs.cache
+D:\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.sourcelink.json
+D:\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.dll
+D:\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\refint\LibraryService.Domain.dll
+D:\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.pdb
+D:\SESC\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\ref\LibraryService.Domain.dll
+D:\SESC\ApiGateways\Services\Library\src\LibraryService.Domain\bin\Debug\net6.0\LibraryService.Domain.deps.json
+D:\SESC\ApiGateways\Services\Library\src\LibraryService.Domain\bin\Debug\net6.0\LibraryService.Domain.dll
+D:\SESC\ApiGateways\Services\Library\src\LibraryService.Domain\bin\Debug\net6.0\LibraryService.Domain.pdb
+D:\SESC\ApiGateways\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.csproj.AssemblyReference.cache
+D:\SESC\ApiGateways\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\SESC\ApiGateways\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.AssemblyInfoInputs.cache
+D:\SESC\ApiGateways\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.AssemblyInfo.cs
+D:\SESC\ApiGateways\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.csproj.CoreCompileInputs.cache
+D:\SESC\ApiGateways\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.sourcelink.json
+D:\SESC\ApiGateways\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.dll
+D:\SESC\ApiGateways\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\refint\LibraryService.Domain.dll
+D:\SESC\ApiGateways\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\LibraryService.Domain.pdb
+D:\SESC\ApiGateways\Services\Library\src\LibraryService.Domain\obj\Debug\net6.0\ref\LibraryService.Domain.dll

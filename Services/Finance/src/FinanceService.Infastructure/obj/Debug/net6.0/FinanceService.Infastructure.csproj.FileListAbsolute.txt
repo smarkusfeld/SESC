@@ -55,3 +55,43 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.genruntimeconfig.cache
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\ref\FinanceService.Infastructure.dll
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Infastructure.deps.json
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Infastructure.runtimeconfig.json
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Infastructure.dll
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Infastructure.pdb
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Application.dll
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Domain.dll
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Application.pdb
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Domain.pdb
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.csproj.AssemblyReference.cache
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.AssemblyInfoInputs.cache
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.AssemblyInfo.cs
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.csproj.CoreCompileInputs.cache
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.sourcelink.json
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.csproj.CopyComplete
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.dll
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\refint\FinanceService.Infastructure.dll
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.pdb
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.genruntimeconfig.cache
+D:\SESC\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\ref\FinanceService.Infastructure.dll
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Infastructure.deps.json
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Infastructure.runtimeconfig.json
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Infastructure.dll
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Infastructure.pdb
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Application.dll
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Domain.dll
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Application.pdb
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\bin\Debug\net6.0\FinanceService.Domain.pdb
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.csproj.AssemblyReference.cache
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.AssemblyInfoInputs.cache
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.AssemblyInfo.cs
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.csproj.CoreCompileInputs.cache
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.sourcelink.json
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.csproj.CopyComplete
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.dll
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\refint\FinanceService.Infastructure.dll
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.pdb
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\FinanceService.Infastructure.genruntimeconfig.cache
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Infastructure\obj\Debug\net6.0\ref\FinanceService.Infastructure.dll

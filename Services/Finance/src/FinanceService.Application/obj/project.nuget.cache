@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "ssOSUoHX/vDy6QFV6RU7Z2Q/zJkl56eU7+8Sg0Cne1ZRG2LYDe19tamcunmXS3v63AHqVo+GWimTAu89/qYmcA==",
+  "dgSpecHash": "XaInkGh+OrvRwM+s7HVgx9teZXatiOCXVtvukp1A61i7kxwRwq+SnDFRUl1CDfYG68NYwd1XVmg9cecRB7AAVw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Finance\\src\\FinanceService.Application\\FinanceService.Application.csproj",
+  "projectFilePath": "D:\\SESC\\ApiGateways\\Services\\Finance\\src\\FinanceService.Application\\FinanceService.Application.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
-    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
+    "C:\\Users\\sofia\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\sofia\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }
