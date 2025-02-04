@@ -624,24 +624,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\sofia\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj",
       "projectName": "LibraryService.Domain",
-      "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj",
-      "packagesPath": "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Domain\\obj\\",
+      "projectPath": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj",
+      "packagesPath": "C:\\Users\\sofia\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Domain\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Sofia Markusfeld\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\sofia\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -649,7 +644,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -697,7 +691,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

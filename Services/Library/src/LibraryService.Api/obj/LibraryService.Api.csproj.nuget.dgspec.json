@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Api\\LibraryService.Api.csproj": {}
+    "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Api\\LibraryService.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Api\\LibraryService.Api.csproj": {
+    "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Api\\LibraryService.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Api\\LibraryService.Api.csproj",
+        "projectUniqueName": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Api\\LibraryService.Api.csproj",
         "projectName": "LibraryService.Api",
-        "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Api\\LibraryService.Api.csproj",
-        "packagesPath": "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Api\\obj\\",
+        "projectPath": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Api\\LibraryService.Api.csproj",
+        "packagesPath": "C:\\Users\\sofia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Api\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Sofia Markusfeld\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\sofia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,18 +22,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj": {
-                "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj"
+              "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj": {
+                "projectPath": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj"
               },
-              "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj": {
-                "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj"
+              "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj": {
+                "projectPath": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj"
               }
             }
           }
@@ -84,25 +79,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj": {
+    "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj",
+        "projectUniqueName": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj",
         "projectName": "LibraryService.Application",
-        "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj",
-        "packagesPath": "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Application\\obj\\",
+        "projectPath": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj",
+        "packagesPath": "C:\\Users\\sofia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Application\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Sofia Markusfeld\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\sofia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -110,15 +101,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj": {
-                "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj"
+              "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj": {
+                "projectPath": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj"
               }
             }
           }
@@ -170,25 +160,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj": {
+    "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj",
         "projectName": "LibraryService.Domain",
-        "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj",
-        "packagesPath": "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Domain\\obj\\",
+        "projectPath": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj",
+        "packagesPath": "C:\\Users\\sofia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Sofia Markusfeld\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\sofia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -196,7 +182,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -244,25 +229,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj": {
+    "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj",
+        "projectUniqueName": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj",
         "projectName": "LibraryService.Infastructure",
-        "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj",
-        "packagesPath": "C:\\Users\\Sofia Markusfeld\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Infastructure\\obj\\",
+        "projectPath": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Infastructure\\LibraryService.Infastructure.csproj",
+        "packagesPath": "C:\\Users\\sofia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Infastructure\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Sofia Markusfeld\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\sofia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -270,18 +251,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj": {
-                "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj"
+              "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj": {
+                "projectPath": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Application\\LibraryService.Application.csproj"
               },
-              "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj": {
-                "projectPath": "C:\\Users\\Sofia Markusfeld\\Documents\\Coursework\\Level 7\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj"
+              "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj": {
+                "projectPath": "C:\\Users\\sofia\\source\\repos\\SESC\\Services\\Library\\src\\LibraryService.Domain\\LibraryService.Domain.csproj"
               }
             }
           }
@@ -345,7 +325,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
