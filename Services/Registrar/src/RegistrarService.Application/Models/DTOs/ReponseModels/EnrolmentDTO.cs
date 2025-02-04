@@ -16,9 +16,6 @@ namespace RegistrarService.Application.Models.DTOs.ReponseModels
         public string Status { get; private set; }
         public float Tutition { get; set; }
         public string AcademicYear { get; set; }
-        public string AcademicTerm { get; set; }
-        public string CourseLevelName { get; set; }
-        public string CourseName { get; set; }
         public string CourseCode { get; set; }
     }
 }

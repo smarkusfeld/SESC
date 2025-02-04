@@ -20,7 +20,7 @@ namespace RegistrarService.Application.Models.DTOs.ReponseModels
 
         public AddressDTO? Address { get; set; }
 
-        public IEnumerable<ApplicationDTO> Applications { get; set; }
+        public List<int> Applications { get; set; }
     }
 
     

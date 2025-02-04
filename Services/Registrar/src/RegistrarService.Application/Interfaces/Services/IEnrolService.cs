@@ -29,35 +29,22 @@ namespace RegistrarService.Application.Interfaces.Services
         /// <summary>
         /// First time enrolment
         /// </summary>
-        /// <param name="student"></param>
-        /// <param name="courseLevel"></param>
+        /// <param name="courseCode"></param>
+        /// <param name="applicantId"></param>
         /// <returns></returns>
         /// <exception cref="KeyNotFoundException"></exception>
         /// <exception cref="BadRequestException"></exception>
 
-        Task<EnrolmentDTO> Enrol(int courseLevel, NewStudentDTO student);
+        Task<EnrolmentDTO> FirstEnrol(string courseCode, int applicantId);
 
         /// <summary>
         /// Returning student enrolment, no account updates
         /// </summary>
-        /// <param name="courseLevel"></param>
+        /// <param name="courseCode"></param>
         /// <param name="studentId"></param>
         /// <returns></returns>
-        Task<EnrolmentDTO> Enrol(int courseLevel, int studentId);
+        Task<EnrolmentDTO> Enrol(string courseCode, int studentId);
 
-        /// <summary>
-        /// Returning Student Enrolment
-        /// </summary>
-        /// <param name="student"></param>
-        /// <param name="courseLevel"></param>
-        /// <returns></returns>
-        /// <exception cref="KeyNotFoundException"></exception>
-        /// <exception cref="BadRequestException"></exception>
-        Task<EnrolmentDTO> Enrol(int courseLevel, UpdateStudentDTO student);
-
-        Task<int> GetEligibleCourseLevel(string courseCode, int studentId);
-
-        Task<int> GetFirstCourseLevel(string courseCode, int applicantId);
 
 
 

@@ -20,6 +20,8 @@ namespace RegistrarService.Application.Interfaces.Repositories
         public IApplicantRepository Applicants { get; }
         public ICourseApplicationRepository Applications { get; }
         public ICourseRepository Courses { get; }
+
+        public ICourseLevelRepository CourseLevels { get; }
         public IEnrolmentRepository Enrolments { get; }
         public IAwardRepository Awards { get; }
 

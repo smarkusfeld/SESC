@@ -99,5 +99,21 @@ namespace RegistrarService.Api.Controllers
             return result != null ? Ok(result) : BadRequest();
         }
 
+        /// <summary>
+        /// Add student account
+        /// <br></br>
+        /// </summary>
+        /// <param name="inputModel"></param>
+        /// <returns>
+        /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with <seealso cref="StudentAccountDTO"/> <br/> 
+        /// A 400 status code prodeced by the <seealso cref="BadRequestObjectResult"/> if update fails<br/> 
+        /// </returns>
+        [HttpPost("new")]
+        public async Task<IActionResult> Add([FromBody] NewStudentDTO inputModel)
+        {
+            _logger.LogInformation("Adding Student Record");
+            var result = await _service.AddStudentAccount(inputModel);
+            return result != null ? Ok(result) : BadRequest();
+        }
     }
 }

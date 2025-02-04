@@ -18,13 +18,7 @@ namespace RegistrarService.Application.Common.Mapper
         /// </summary>
         public StudentProfile()
         {
-            CreateMap<AddressDTO, Address>()
-                .ReverseMap()
-                .ForAllMembers(opts =>
-                {
-                    opts.AllowNull();
-                    opts.Condition((src, dest, srcMember) => srcMember != null);
-                });
+ 
 
             CreateMap<NewStudentDTO, Student>()           
                  .ForMember(dest => dest.StudentId, opt => opt.Ignore())
@@ -69,7 +63,7 @@ namespace RegistrarService.Application.Common.Mapper
 
             CreateMap<Student, StudentProgressionDTO>()
                 .ForMember(dest=>dest.Status, opt => opt.MapFrom(src => src.Status))
-                .ForMember(dest => dest.Results, opt => opt.MapFrom(src => src.Status))
+                .ForMember(dest => dest.Results, opt => opt.MapFrom(src => src.Results))
                 .ForAllMembers(opts =>
                 {
                     opts.AllowNull();
@@ -88,7 +82,7 @@ namespace RegistrarService.Application.Common.Mapper
             .ForMember(dest => dest.UpdatedBy, opt => opt.Ignore())
             .ForMember(dest => dest.UpdatedDate, opt => opt.Ignore())
             .ReverseMap()
-            .ForMember(dest => dest.CourseLevelName, opt => opt.MapFrom(src => src.CourseLevel.Name))
+            //.ForMember(dest => dest.CourseLevelName, opt => opt.MapFrom(src => src.CourseLevel.Name))
             .ForPath(dest => dest.CourseCode, opt => opt.MapFrom(src => src.CourseLevel.CourseCode));
             
 

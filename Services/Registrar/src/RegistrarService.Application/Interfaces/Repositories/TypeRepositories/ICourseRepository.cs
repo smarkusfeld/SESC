@@ -21,7 +21,7 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
         /// <exception cref="NullReferenceException"></exception> 
         Task<IEnumerable<Course>> GetAllActiveCoursesAsync();
 
-
+      
         
     }
 

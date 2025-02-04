@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Identity.Client;
@@ -94,6 +95,6 @@ namespace RegistrarService.Application.Interfaces.Repositories.TypeRepositories
                .ToListAsync();
         }
 
-
+       
     }
 }

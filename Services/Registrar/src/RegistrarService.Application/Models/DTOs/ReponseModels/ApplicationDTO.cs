@@ -23,5 +23,9 @@ namespace RegistrarService.Application.Models.DTOs.ReponseModels
         public string CourseCode { get; set; }
         public AddressDTO Address { get; set; }
         public string Status { get; set; }
+
+        public string Statement { get; set; }
     }
+
+    
 }

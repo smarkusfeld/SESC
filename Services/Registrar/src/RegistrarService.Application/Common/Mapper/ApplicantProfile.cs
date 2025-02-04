@@ -17,20 +17,18 @@ namespace RegistrarService.Application.Common.Mapper
         /// </summary>
         public ApplicantProfile() 
         {
-            CreateMap<AddressDTO, Address>()
-                .ReverseMap()
-                .ForAllMembers(opts =>
-                {
-                    opts.AllowNull();
-                    opts.Condition((src, dest, srcMember) => srcMember != null);
-                });
+
+
 
             CreateMap<Applicant, ApplicantDTO>()
+
+              .ForMember(dest => dest.Applications, opt => opt.MapFrom(src => src.Applicantions.Select(x => x.ApplicationId)))
               .ForAllMembers(opts =>
               {
                   opts.AllowNull();
                   opts.Condition((src, dest, srcMember) => srcMember != null);
               });
+      
 
             CreateMap<NewApplicantDTO, Applicant>()
                  .ForMember(dest => dest.ApplicantId, opt => opt.Ignore())
@@ -56,6 +54,9 @@ namespace RegistrarService.Application.Common.Mapper
                      opts.AllowNull();
                      opts.Condition((src, dest, srcMember) => srcMember != null); ;
                  });
+
+      
+
 
         }
     }

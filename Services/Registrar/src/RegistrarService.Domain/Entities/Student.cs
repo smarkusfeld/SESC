@@ -15,10 +15,10 @@ namespace RegistrarService.Domain.Entities
     /// </summary>
     public class Student : BaseAuditableEntity, IAggregateRoot
     {
-        
+
 
         /// <summary>
-        /// Constructor for new account
+        /// Constructor for new Student account
         /// </summary>
         public Student()
         {}

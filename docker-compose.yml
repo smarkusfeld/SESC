@@ -78,12 +78,12 @@ services:
     depends_on:
       - finance-gateway
   # eventbus serice
-  rabbitmq:
-        image: rabbitmq:3-management
-        container_name: rabbitmq
-        ports:
-            - 5672:5672
-            - 15672:15672
+  #rabbitmq:
+        #image: rabbitmq:3-management
+        #container_name: rabbitmq
+        #ports:
+           # - 5672:5672
+           # - 15672:15672
     
   # create gateways
   # all gateways use the same base image 

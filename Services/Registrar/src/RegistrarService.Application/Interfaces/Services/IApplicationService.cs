@@ -60,14 +60,7 @@ namespace RegistrarService.Application.Interfaces.Services
         /// <param name="courseCode">courseCode</param>
         /// <exception cref="BadRequestException"></exception>
         /// <returns><seealso cref="ApplicationDTO"/></returns>
-        Task<ApplicationDTO> SaveApplication(int applicantId, string courseCode);
 
-        /// <summary>
-        /// Save Application
-        /// </summary>
-        /// <param name="inputModel"><seealso cref="NewApplicationDTO"/></param>
-        /// <exception cref="BadRequestException"></exception>
-        /// <returns><seealso cref="ApplicationDTO"/></returns>
         Task<ApplicationDTO> SaveApplication(NewApplicationDTO inputModel);
 
         /// <summary>

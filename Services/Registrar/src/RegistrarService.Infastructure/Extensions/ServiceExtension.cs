@@ -21,7 +21,7 @@ namespace RegistrarService.Infastructure.Extensions
 
             });
 
-            services.AddAutoMapper(typeof(StudentProfile),typeof(EnrolmentProfile), typeof(CourseProfile), typeof(ApplicantProfile),typeof(ApplicationProfile));
+            services.AddAutoMapper(typeof(AddressProfile), typeof(StudentProfile),typeof(EnrolmentProfile), typeof(CourseProfile), typeof(ApplicantProfile),typeof(ApplicationProfile));
 
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();

@@ -15,11 +15,11 @@ namespace RegistrarService.Domain.Entities
     /// </summary>
     public class Applicant : BaseAuditableEntity
     {
-
+        /// <summary>
+        /// Constructor for new Applicant account
+        /// </summary>
         public Applicant()
-        {
-
-        }
+        { }
         public override object Key => ApplicantId;
 
         [Key]

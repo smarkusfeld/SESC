@@ -25,7 +25,6 @@ namespace RegistrarService.Application.Models.DTOs.ReponseModels
 
         public int Credits { get; set; }
 
-        public string Name { get; set; }
         public string ProgrammeCode { get; set; }
 
         public string School { get; set; }

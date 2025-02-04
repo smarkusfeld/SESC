@@ -30,7 +30,16 @@ namespace RegistrarService.Infastructure.Repositories.TypeRepositories
 
 
         }
+        public override async Task<IEnumerable<CourseApplication>> GetAllAsync()
+        {
 
+            return await _set
+               .Include(x => x.Applicant)
+               .Include(x => x.Course)
+               .AsNoTracking()
+               .ToListAsync();
+
+        }
         public override async Task<IEnumerable<CourseApplication>> GetAllWhereAsync(Expression<Func<CourseApplication, bool>> predicate)
         {
 

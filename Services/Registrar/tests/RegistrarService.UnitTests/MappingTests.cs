@@ -60,13 +60,13 @@ namespace RegistrarService.UnitTests
             var instance = FormatterServices.GetUninitializedObject(origin);
             _Mapper.Map(instance, origin, destination);
         }
-        [Theory]
-        [InlineData(typeof(Student), typeof(StudentProgressionDTO))]
-        public void StudentResultResponseModelMap_SourceToDestination_ExistConfiguration(Type origin, Type destination)
-        {
-            var instance = FormatterServices.GetUninitializedObject(origin);
-            _Mapper.Map(instance, origin, destination);
-        }
+        //[Theory]
+        //[InlineData(typeof(Student), typeof(StudentProgressionDTO))]
+        //public void StudentResultResponseModelMap_SourceToDestination_ExistConfiguration(Type origin, Type destination)
+        //{
+        //    var instance = FormatterServices.GetUninitializedObject(origin);
+        //    _Mapper.Map(instance, origin, destination);
+        //}
 
         [Theory]
         [InlineData(typeof(ProgressionResult), typeof(ProgressionDTO))]

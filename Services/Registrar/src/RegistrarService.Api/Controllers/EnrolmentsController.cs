@@ -36,18 +36,16 @@ namespace RegistrarService.Api.Controllers
         /// <br></br>
         /// </summary>
         /// <param name="courseCode"></param>
-        /// <param name="inputModel"></param>
+        /// <param name="applicantId"></param>
         /// <returns>
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with the registration and and student account details <br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if registration can not be completed<br/> 
         /// </returns>
-        [HttpPost("{courseCode}")]
-        public async Task<IActionResult> FirstEnrolment(string courseCode, [FromBody] NewStudentDTO inputModel )
+        [HttpPost("first/{applicantId}/{courseCode}")]
+        public async Task<IActionResult> FirstEnrolment(string courseCode, int applicantId)
         {
-            _logger.LogInformation($"Checking applicantion status for {inputModel.ApplicantId}");
-            var courseId = await _service.GetFirstCourseLevel(courseCode, inputModel.ApplicantId);
             _logger.LogInformation("Creating student account and enrolling student");
-            var result = await _service.Enrol(courseId, inputModel);
+            var result = await _service.FirstEnrol(courseCode, applicantId);
             return result != null ? Ok(result) : BadRequest(); 
         }
 
@@ -55,18 +53,16 @@ namespace RegistrarService.Api.Controllers
         /// Enrol Student in Eligible Course
         /// </summary>
         /// <param name="courseCode"></param>
-        /// <param name="inputModel"></param>
+        /// <param name="studentId"></param>
         /// <returns>
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with enrolment confirmation details <br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestResult"/> if enrolment can not be completed<br/> 
         /// </returns>
         [HttpPost("{studentId}/{courseCode}")]
-        public async Task<IActionResult> StudentEnrolment(string courseCode, int studentId, [FromBody] UpdateStudentDTO inputModel)
+        public async Task<IActionResult> StudentEnrolment(string courseCode, int studentId)
         {
-            _logger.LogInformation($"Checking eligibile offerings for course {studentId}");
-            var courseId = await _service.GetEligibleCourseLevel(courseCode, studentId);
-            _logger.LogInformation("Updating Student Account and Enrolling Student");
-            var result = await _service.Enrol(courseId, inputModel);
+            _logger.LogInformation("Enrolling Student");
+            var result = await _service.Enrol(courseCode, studentId);
             return result != null ? Ok(result) : BadRequest();
         }
 

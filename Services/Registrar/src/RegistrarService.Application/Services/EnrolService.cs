@@ -21,35 +21,57 @@ namespace RegistrarService.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<EnrolmentDTO> Enrol(int courseLevel, UpdateStudentDTO student)
-        {            
 
-            //update student account
-            var studentUpdate = await UpdateStudentAccount(student);
-
-            var enrolment = await _unitOfWork.Enrolments.AddAsync(new Enrolment(studentUpdate.StudentId, courseLevel))
-           ?? throw new MySQLException($"Unable to complete enrolment");
-            return _mapper.Map<EnrolmentDTO>(enrolment);
+        public async Task<EnrolmentDTO> Enrol(string courseCode, int studentId)
+        {
+            var courseLevel = await GetEligibleCourseLevel(courseCode, studentId);
+            if (courseLevel != 0)
+            {
+                var enrolment = await _unitOfWork.Enrolments.AddAsync(new Enrolment(studentId, courseLevel));
+                if (await _unitOfWork.Save() < 0)
+                {
+                    throw new BadRequestException();
+                }
+                return _mapper.Map<EnrolmentDTO>(enrolment);
+            }
+            else
+            {
+                throw new BadRequestException("Unable to enrol student in course");
+            }
 
         }
-        public async Task<EnrolmentDTO> Enrol(int courseLevel, int studentId)
-        {
 
-            var enrolment = await _unitOfWork.Enrolments.AddAsync(new Enrolment(studentId, courseLevel))
-           ?? throw new MySQLException($"Unable to complete enrolment");
+        public async Task<EnrolmentDTO> FirstEnrol(string courseCode, int applicantId)
+        {
+            //check course code 
+            courseCode = courseCode.Normalize();
+            var course = await _unitOfWork.Courses.GetAsync(courseCode)
+                ?? throw new KeyNotFoundException($"Course code: {courseCode} not found");
+
+            //check applicant id
+            var applicant = await _unitOfWork.Applicants.GetByAsync(x => x.ApplicantId == applicantId)
+                ?? throw new KeyNotFoundException($"Applicant Id: {applicantId} not found");
+
+            //check application
+            var application = await _unitOfWork.Applications.GetByAsync(x => x.ApplicantId == applicantId && x.CourseCode.Equals(courseCode))
+                ?? throw new BadRequestException($"No applicants for course {courseCode} found for applicant {applicantId}. Please check course code ");
+
+            if (!CheckApplicationStatus(application))
+            {
+                throw new BadRequestException("Unable to enrol applicant in course");
+            }
+            var courselevel = course.CourseLevels.OrderByDescending(x => x.QualificationLevel).ToList().First()
+                ?? throw new BadRequestException("No Course Levels Available for Enrolment");
+
+            var newStudent = await AddStudentAccount(applicant);
+
+            var enrolment = await _unitOfWork.Enrolments.AddAsync(new Enrolment(newStudent.StudentId, courselevel.CourseLevelId));
+            if (await _unitOfWork.Save() < 0)
+            {
+                throw new BadRequestException();
+            }
             return _mapper.Map<EnrolmentDTO>(enrolment);
 
-        }
-
-
-        public async Task<EnrolmentDTO> Enrol(int courseLevel, NewStudentDTO student)
-        {
-            
-            var newStudent = await AddStudentAccount(student);
-            var enrolment = await _unitOfWork.Enrolments.AddAsync(new Enrolment(newStudent.StudentId, courseLevel))
-                ?? throw new MySQLException($"Unable to complete enrolment");
-            return _mapper.Map<EnrolmentDTO>(enrolment);
-                          
         }
 
         public async Task<IEnumerable<EnrolmentDTO>> GetAllEnrolments(int studentId)
@@ -66,7 +88,7 @@ namespace RegistrarService.Application.Services
             return Enumerable.Empty<EnrolmentDTO>();
         }
 
-        public async Task<int> GetEligibleCourseLevel(string courseCode, int studentId)
+        private async Task<int> GetEligibleCourseLevel(string courseCode, int studentId)
         {
             //check course code 
             courseCode = courseCode.Normalize();
@@ -80,7 +102,7 @@ namespace RegistrarService.Application.Services
             var results = await _unitOfWork.Results.GetAllWhereAsync(x => x.StudentId == studentId && x.CourseLevel.CourseCode.Equals(courseCode))
                 ?? throw new BadRequestException($"Check student course code");
 
-            var lastResult = results.OrderByDescending(d => d.ProgressDate).First();
+            var lastResult = results.OrderBy(d => d.ProgressDate).First();
             switch (lastResult.ProgressDecision)
             {
                 case ProgressDecision.pass_proceed:
@@ -99,62 +121,32 @@ namespace RegistrarService.Application.Services
             }
 
         }
-
         /// <summary>
-        /// Get first course level for new students
+        /// Check Application Status
         /// </summary>
-        /// <param name="courseCode"></param>
-        /// <param name="applicantId"></param>
+        /// <param name="application"></param>
         /// <returns></returns>
         /// <exception cref="BadRequestException"></exception>
-        /// <exception cref="MySQLException"></exception>
-        public async Task<int> GetFirstCourseLevel(string courseCode, int applicantId)
+        private bool CheckApplicationStatus(CourseApplication application)
         {
-            //check course code 
-            courseCode = courseCode.Normalize();
-            var course = await _unitOfWork.Courses.GetAsync(courseCode)
-                ?? throw new KeyNotFoundException($"Course code: {courseCode} not found");
 
-            //check applicant id
-            var applicant = await _unitOfWork.Applicants.GetByAsync(x => x.ApplicantId == applicantId)
-                ?? throw new KeyNotFoundException($"Applicant Id: {applicantId} not found");
-
-            var applicantion = await _unitOfWork.Applications.GetByAsync(x=>x.ApplicantId == applicantId && x.CourseCode.Equals(courseCode))
-                ?? throw new BadRequestException($"No applicants for course {courseCode} found for applicant {applicantId}. Please check course code ");
-
-            switch (applicantion.Status)
+            switch (application.Status)
             {
                 case ApplicationStatus.Accepted:
-                    //get first course level
-                    var level = applicantion.Course.CourseLevels.OrderBy(x => x.QualificationLevel).ToList().First()
-                        ?? throw new MySQLException($"No Course Levels found for course {courseCode}");
-                    return level.CourseLevelId;
+                    return true;
                 case ApplicationStatus.ConditionalOffer:
                 case ApplicationStatus.Offer:
-                    throw new BadRequestException($"Applicant {applicantId} must meet offer conditions and/or accept offer prior to enrolment");
+                    throw new BadRequestException($"Applicant {application.ApplicantId} must meet offer conditions and/or accept offer prior to enrolment");
                 case ApplicationStatus.Declined:
-                    throw new BadRequestException($"Applicant {applicantId} has declined or withdrawn their application for course {courseCode}");
+                    throw new BadRequestException($"Applicant {application.ApplicantId}  has declined or withdrawn their application for course {application.CourseCode}");
                 default:
-                    throw new BadRequestException($"Applicant {applicantId} is unable to enrol due to applicantion status: {applicantion.Status}");
-                    
-            }           
-            
+                    throw new BadRequestException($"Applicant {application.ApplicantId}  is unable to enrol due to applicantion status: {application.Status}");
+
+            }
+
         }
-        /// <summary>
-        /// UpdateStudentAccount
-        /// </summary>
-        /// <param name="studentId"></param>
-        /// <param name="student"></param>
-        /// <returns></returns>
-        /// <exception cref="KeyNotFoundException"></exception>
-        /// <exception cref="MySQLException"></exception>
-        private async Task<StudentAccountDTO> UpdateStudentAccount(UpdateStudentDTO student)
-        {
-            var update = _mapper.Map<Student>(student);
-            var result =  _unitOfWork.Students.Update(update)
-                ?? throw new MySQLException("Could not update student account");
-            return _mapper.Map<StudentAccountDTO>(result);
-        }
+       
+
 
         /// <summary>
         /// Create New Student Account
@@ -162,14 +154,21 @@ namespace RegistrarService.Application.Services
         /// <param name="studentDTO"></param>
         /// <returns></returns>
         /// <exception cref="BadRequestException"></exception>
-        private async Task<StudentAccountDTO> AddStudentAccount(NewStudentDTO studentDTO)
+        private async Task<StudentAccountDTO> AddStudentAccount(Applicant applicant)
         {
-            string normalizedEmail = studentDTO.Email.Normalize().ToUpperInvariant();
-            var check = await _unitOfWork.Students.GetByAsync(x => x.AlternateEmail.Normalize().ToUpperInvariant().Equals(normalizedEmail));
-            if (check != null) { throw new BadRequestException($"Student already exists for {studentDTO.Email}"); }
+            var check = await _unitOfWork.Students.GetByAsync(x => x.AlternateEmail.Equals(applicant.Email));
+            if (check != null) { throw new BadRequestException($"Student already exists for {applicant.Email}"); }
 
-            var student = _mapper.Map<Student>(studentDTO);
-            student.StudentEmail = await CreateStudentEmail(studentDTO.FirstName, studentDTO.Surname);
+            var email = await CreateStudentEmail(applicant.FirstName, applicant.Surname);
+            var student = new Student()
+            {
+                FirstName = applicant.FirstName,
+                MiddleName = applicant.MiddleName,
+                Surname = applicant.Surname,
+                AlternateEmail = applicant.Email,
+                StudentEmail = email,
+
+            };
 
             var newStudent = await _unitOfWork.Students.AddAsync(student);
             if (await _unitOfWork.Save() < 0)
@@ -193,8 +192,7 @@ namespace RegistrarService.Application.Services
             while (true)
             {
                 string email = emailHeader + emailDomain;
-                string normalizedEmail = email;
-                var check = await _unitOfWork.Students.GetByAsync(x => x.AlternateEmail.Normalize().ToUpperInvariant().Equals(normalizedEmail));
+                var check = await _unitOfWork.Students.GetByAsync(x => x.AlternateEmail.Equals(email));
                 if (check == null)
                 {
                     return email;

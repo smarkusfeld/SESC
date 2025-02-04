@@ -34,3 +34,27 @@ C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\refint\FinanceService.Domain.dll
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\FinanceService.Domain.pdb
 C:\Users\Sofia Markusfeld\Documents\Coursework\Level 7\SESC\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\ref\FinanceService.Domain.dll
+D:\SESC\Services\Finance\src\FinanceService.Domain\bin\Debug\net6.0\FinanceService.Domain.deps.json
+D:\SESC\Services\Finance\src\FinanceService.Domain\bin\Debug\net6.0\FinanceService.Domain.dll
+D:\SESC\Services\Finance\src\FinanceService.Domain\bin\Debug\net6.0\FinanceService.Domain.pdb
+D:\SESC\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\FinanceService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\SESC\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\FinanceService.Domain.AssemblyInfoInputs.cache
+D:\SESC\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\FinanceService.Domain.AssemblyInfo.cs
+D:\SESC\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\FinanceService.Domain.csproj.CoreCompileInputs.cache
+D:\SESC\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\FinanceService.Domain.sourcelink.json
+D:\SESC\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\FinanceService.Domain.dll
+D:\SESC\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\refint\FinanceService.Domain.dll
+D:\SESC\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\FinanceService.Domain.pdb
+D:\SESC\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\ref\FinanceService.Domain.dll
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Domain\bin\Debug\net6.0\FinanceService.Domain.deps.json
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Domain\bin\Debug\net6.0\FinanceService.Domain.dll
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Domain\bin\Debug\net6.0\FinanceService.Domain.pdb
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\FinanceService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\FinanceService.Domain.AssemblyInfoInputs.cache
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\FinanceService.Domain.AssemblyInfo.cs
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\FinanceService.Domain.csproj.CoreCompileInputs.cache
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\FinanceService.Domain.sourcelink.json
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\FinanceService.Domain.dll
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\refint\FinanceService.Domain.dll
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\FinanceService.Domain.pdb
+D:\SESC\ApiGateways\Services\Finance\src\FinanceService.Domain\obj\Debug\net6.0\ref\FinanceService.Domain.dll

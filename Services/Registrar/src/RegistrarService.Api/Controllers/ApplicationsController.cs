@@ -49,7 +49,6 @@ namespace RegistrarService.Api.Controllers
         }
         /// <summary>
         /// View all applications for course
-        /// <br></br>
         /// </summary>
         /// <param name="courseCode"></param>
         /// <returns>
@@ -68,7 +67,6 @@ namespace RegistrarService.Api.Controllers
         }
         /// <summary>
         /// View all applications by status
-        /// <br></br>
         /// </summary>
         /// <param name="status"></param>
         /// <returns>
@@ -88,7 +86,6 @@ namespace RegistrarService.Api.Controllers
 
         /// <summary>
         /// View all applications for applicant
-        /// <br></br>
         /// </summary>
         /// <param name="applicantId"></param>
         /// <returns>
@@ -108,7 +105,6 @@ namespace RegistrarService.Api.Controllers
 
         /// <summary>
         /// View all applications for applicant
-        /// <br></br>
         /// </summary>
         /// <param name="applicationId"></param>
         /// <returns>
@@ -124,31 +120,10 @@ namespace RegistrarService.Api.Controllers
             return result != null ? Ok(result) : NotFound();
         }
 
-        /// <summary>
-        /// Add Application
-        /// <br></br>
-        /// </summary>
-        /// <param name="applicantId"></param>
-        /// <param name="courseCode"></param>
-        /// <returns>
-        /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with updated application <br/> 
-        /// A 400 status code prodeced by the <seealso cref="BadRequestObjectResult"/> if update fails<br/> 
-        /// </returns>
-        [HttpPost("new/{applicantId}/{courseCode}")]
-        public async Task<IActionResult> AddApplication(int applicantId, string courseCode)
-        {
-            _logger.LogInformation($"Adding Application");
-            var result = await _service.SaveApplication(applicantId, courseCode);
-            _logger.LogInformation($"Returned Updated Application");
-            return result != null ? Ok(result) : BadRequest();
-        }
 
         /// <summary>
         /// Add Application
-        /// <br></br>
         /// </summary>
-        /// <param name="applicantId"></param>
-        /// <param name="inputModel"></param>
         /// <returns>
         /// A 200 status code produced by the <seealso cref="OkObjectResult"/> with updated application <br/> 
         /// A 400 status code prodeced by the <seealso cref="BadRequestObjectResult"/> if update fails<br/> 

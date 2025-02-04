@@ -18,6 +18,7 @@ namespace RegistrarService.Infastructure.Repositories
         private IApplicantRepository _applicants;
         private IAwardRepository _awards;
         private ICourseRepository _courses;
+        private ICourseLevelRepository _courseLevels;
         private ICourseApplicationRepository _applicantions;
         private IEnrolmentRepository _enrolments;
         private IProgrammeRepository _programmes;
@@ -51,6 +52,15 @@ namespace RegistrarService.Infastructure.Repositories
                 _courses ??= new CourseRepository(_dbContext);
                 return _courses;
             }
+        }
+        
+        public ICourseLevelRepository CourseLevels
+        {
+            get
+           {
+                _courseLevels ??= new CourseLevelRepository(_dbContext);
+               return _courseLevels;
+           }
         }
 
         public ICourseApplicationRepository Applications
@@ -112,6 +122,8 @@ namespace RegistrarService.Infastructure.Repositories
             }
         }
 
+       
+
         public UnitOfWork(DataContext dbContext)
         {
             _dbContext = dbContext;
@@ -119,6 +131,7 @@ namespace RegistrarService.Infastructure.Repositories
             _schools = Schools;
             _subjects = Subjects;
             _courses = Courses;
+            _courseLevels = CourseLevels;
             _awards = Awards;
             _applicantions = Applications;
             _applicants = Applicants;

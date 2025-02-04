@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RegistrarService.Application.Models.DTOs.ReponseModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,8 @@ namespace RegistrarService.Application.Models.DTOs.InputModels
         public string Email { get; set; }
 
         public AddressDTO Address { get; set; }
+
+        public ApplicationDTO Applications { get; set; }
 
     }
 }

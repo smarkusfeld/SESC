@@ -9,6 +9,7 @@ using RegistrarService.Domain.Common.Enums;
 using RegistrarService.Domain.Entities;
 using System;
 using static System.Net.Mime.MediaTypeNames;
+using Microsoft.VisualBasic;
 
 namespace RegistrarService.Application.Services
 {
@@ -93,9 +94,14 @@ namespace RegistrarService.Application.Services
             if(application.Status == ApplicationStatus.Offer)
             {
                 application.Status = ApplicationStatus.Accepted;
-                var result =  _unitOfWork.Applications.Update(application)
+                var update =  _unitOfWork.Applications.Update(application)
                     ?? throw new MySQLException("Could not update application");
-                return _mapper.Map<ApplicationDTO>(application);
+                if (update != null)
+                {
+                    var result = await _unitOfWork.Save();
+                    return result > 0 ? _mapper.Map<ApplicationDTO>(update) : throw new MySQLException("MySQL Error. Changes not saved");
+                }
+                throw new BadRequestException("Unable to update application account");
             }
             throw new BadRequestException("Cannot accept until offer issued");
         }
@@ -109,9 +115,14 @@ namespace RegistrarService.Application.Services
             if (application.Status == ApplicationStatus.Offer || application.Status == ApplicationStatus.ConditionalOffer)
             {
                 application.Status = ApplicationStatus.Declined;
-                var result = _unitOfWork.Applications.Update(application)
+                var update = _unitOfWork.Applications.Update(application)
                     ?? throw new MySQLException("Could not update application");
-                return _mapper.Map<ApplicationDTO> (application);
+                if (update != null)
+                {
+                    var result = await _unitOfWork.Save();
+                    return result > 0 ? _mapper.Map<ApplicationDTO>(update) : throw new MySQLException("MySQL Error. Changes not saved");
+                }
+                throw new BadRequestException("Unable to update application account");
             }
             throw new BadRequestException("Cannot decline until offer issued");
         }
@@ -123,9 +134,14 @@ namespace RegistrarService.Application.Services
                 ?? throw new KeyNotFoundException($"No application found for applicantion id: {applicationId}");
 
             application.Status = ApplicationStatus.Withdrawn;
-            var result = _unitOfWork.Applications.Update(application)
-                ?? throw new MySQLException("Could not update application");
-            return _mapper.Map<ApplicationDTO>(application);
+            var update = _unitOfWork.Applications.Update(application)
+                    ?? throw new MySQLException("Could not update application");
+            if (update != null)
+            {
+                var result = await _unitOfWork.Save();
+                return result > 0 ? _mapper.Map<ApplicationDTO>(update) : throw new MySQLException("MySQL Error. Changes not saved");
+            }
+            throw new BadRequestException("Unable to update application account");
         }
 
         public async Task<ApplicationDTO> SubmitApplication(int applicationId)
@@ -135,9 +151,14 @@ namespace RegistrarService.Application.Services
                 ?? throw new KeyNotFoundException($"No application found for applicantion id: {applicationId}");
 
             application.Status = ApplicationStatus.Received;
-            var result = _unitOfWork.Applications.Update(application)
-                ?? throw new MySQLException("Could not update application");
-            return _mapper.Map<ApplicationDTO>(application);
+            var update = _unitOfWork.Applications.Update(application)
+                    ?? throw new MySQLException("Could not update application");
+            if (update != null)
+            {
+                var result = await _unitOfWork.Save();
+                return result > 0 ? _mapper.Map<ApplicationDTO>(update) : throw new MySQLException("MySQL Error. Changes not saved");
+            }
+            throw new BadRequestException("Unable to update application account");
 
 
         }
@@ -153,9 +174,14 @@ namespace RegistrarService.Application.Services
                 { throw new BadRequestException($"Invalid Application Status: {status}"); }
             }
             application.Status = status;
-            var result = _unitOfWork.Applications.Update(application)
-                ?? throw new MySQLException("Could not update application");
-            return _mapper.Map<ApplicationDTO>(application);
+            var update = _unitOfWork.Applications.Update(application)
+                  ?? throw new MySQLException("Could not update application");
+            if (update != null)
+            {
+                var result = await _unitOfWork.Save();
+                return result > 0 ? _mapper.Map<ApplicationDTO>(update) : throw new MySQLException("MySQL Error. Changes not saved");
+            }
+            throw new BadRequestException("Unable to update application account");
 
 
         }
@@ -176,6 +202,10 @@ namespace RegistrarService.Application.Services
             if (addedApplication != null)
             {
                 var result = await _unitOfWork.Save();
+                if (await _unitOfWork.Save() < 0)
+                {
+                    throw new BadRequestException("Unable to create application.");
+                }
                 var dto = new ApplicationDTO
                 {
                     ApplicationId = addedApplication.ApplicationId,
@@ -196,39 +226,5 @@ namespace RegistrarService.Application.Services
 
         }
 
-        public async Task<ApplicationDTO> SaveApplication(int applicantId, string courseCode)
-        {
-            //validate application id
-            var applicant = await _unitOfWork.Applicants.GetAsync(applicantId)
-                ?? throw new KeyNotFoundException($"No applicant associated with applicant id: {applicantId}");
-            //check course code
-            var course = await _unitOfWork.Courses.GetAsync(courseCode)
-                ?? throw new KeyNotFoundException($"No course associated with course code: {courseCode}");
-
-            //add application
-            var application = new CourseApplication(applicantId, courseCode);
-            application.Status = ApplicationStatus.InProgress;
-            var addedApplication = await _unitOfWork.Applications.AddAsync(application);
-            if(addedApplication != null)
-            {
-                var result = await _unitOfWork.Save();
-                var dto = new ApplicationDTO
-                {
-                    ApplicationId = addedApplication.ApplicantId,
-                    CourseCode = course.CourseCode,
-                    FirstName = applicant.FirstName,
-                    Surname = applicant.Surname,
-                    MiddleName = applicant.MiddleName,
-                    Email = applicant.Email,
-                    Address = _mapper.Map<AddressDTO>(applicant.Address),
-                    Status = addedApplication.Status.ToString()
-
-                };
-                return result > 0 ? dto : throw new MySQLException();
-            }
-            throw new BadRequestException("Unable to create application.");
-
-
-        }
     }
 }

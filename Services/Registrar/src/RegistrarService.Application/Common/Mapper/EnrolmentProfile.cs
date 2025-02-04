@@ -16,6 +16,32 @@ namespace RegistrarService.Application.Common.Mapper
         /// </summary>
         public EnrolmentProfile()
         {
+
+            CreateMap<Enrolment, EnrolmentDTO>()
+                .IncludeMembers(s => s.CourseLevel)
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+                .ForMember(dest => dest.StudentId, opt => opt.MapFrom(src => src.StudentId))
+                .ForMember(dest => dest.CourseLevelId, opt => opt.MapFrom(src => src.CourseLevelId))
+                 .ForAllMembers(opts =>
+                 {
+                     opts.AllowNull();
+                     opts.Condition((src, dest, srcMember) => srcMember != null);
+                 });
+                          
+
+            CreateMap<CourseLevel, EnrolmentDTO>()
+               .ForMember(dest => dest.Status, opt => opt.Ignore())
+                .ForMember(dest => dest.StudentId, opt => opt.Ignore())
+                .ForMember(dest => dest.CourseLevelId, opt => opt.Ignore())
+               .ForPath(dest => dest.Tutition, opt => opt.MapFrom(src => src.TuitionFee))
+               .ForPath(dest => dest.AcademicYear, opt => opt.MapFrom(src => src.AcademicYear.Name))
+               .ForAllMembers(opts =>
+               {
+                   opts.AllowNull();
+                   opts.Condition((src, dest, srcMember) => srcMember != null);
+               });
+
+
             CreateMap<EnrolmentDTO, Enrolment>()
               .ForMember(dest => dest.Key, opt => opt.Ignore())
                .ForMember(dest => dest.Id, opt => opt.Ignore())
@@ -26,9 +52,7 @@ namespace RegistrarService.Application.Common.Mapper
               .ForMember(dest => dest.UpdatedDate, opt => opt.Ignore())
               .ForMember(dest => dest.CourseLevel, opt => opt.Ignore())
               .ReverseMap()
-              .ForPath(dest => dest.CourseLevelName, opt => opt.MapFrom(src => src.CourseLevel.Name))
-              .ForPath(dest => dest.CourseCode, opt => opt.MapFrom(src => src.CourseLevel.Course.CourseCode))
-              .ForPath(dest => dest.Tutition, opt => opt.MapFrom(src => src.CourseLevel.TuitionFee));
+              .ForPath(dest => dest.CourseCode, opt => opt.MapFrom(src => src.CourseLevel.Course.CourseCode));
 
 
         }
